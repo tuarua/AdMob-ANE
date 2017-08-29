@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="com.android.support.support-v4-25.3.1" type="flex">
+    <CLASSES>
+      <root url="jar://$DOCUMENTS$/AdMob-ANE/native_extension/ane/com.android.support.support-v4-25.3.1.ane!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

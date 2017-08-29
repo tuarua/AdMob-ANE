@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="com.google.android.gms.play-services-ads-lite-11.2.0" type="flex">
+    <CLASSES>
+      <root url="jar://$DOCUMENTS$/AdMob-ANE/native_extension/ane/com.google.android.gms.play-services-ads-lite-11.2.0.ane!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

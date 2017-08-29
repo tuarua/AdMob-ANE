@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="AdMobANE" type="flex">
+    <CLASSES>
+      <root url="jar://$DOCUMENTS$/AdMob-ANE/native_extension/ane/AdMobANE.ane!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
