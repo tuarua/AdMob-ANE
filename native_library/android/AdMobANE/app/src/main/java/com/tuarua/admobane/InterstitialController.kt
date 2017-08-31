@@ -15,30 +15,37 @@
  */
 package com.tuarua.admobane
 
-import android.util.Log
 import android.view.Gravity
 import android.widget.FrameLayout
+import android.widget.FrameLayout.*
 import com.adobe.fre.FREContext
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
-import com.tuarua.frekotlin.sendEvent
-import com.tuarua.frekotlin.trace
-import org.json.JSONException
-import org.json.JSONObject
+import com.google.gson.Gson
+import com.tuarua.admobane.Position.*
+import com.tuarua.frekotlin.FreKotlinController
 
 @Suppress("JoinDeclarationAndAssignment")
-class InterstitialController(private var context: FREContext) : AdListener() {
+class InterstitialController(override var context: FREContext?) : FreKotlinController, AdListener() {
+
     private var _adView: InterstitialAd? = null
     private var _showOnLoad:Boolean = true
     private var container: FrameLayout
-    var adView: InterstitialAd?
-        get() = _adView
-        set(value) {
-            _adView = value
-        }
+    private val gson = Gson()
+
+    init {
+        container = FrameLayout(this.context?.activity?.applicationContext)
+        container.isClickable = false
+
+        val lp = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        lp.gravity = Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM
+        container.layoutParams = lp
+    }
+
+
     fun load(unitId: String, deviceList: List<String>?, targeting: Targeting?, showOnLoad:Boolean) {
-        _adView = InterstitialAd(this.context.activity?.applicationContext)
+        _adView = InterstitialAd(this.context?.activity?.applicationContext)
         _showOnLoad = showOnLoad
         val av = _adView ?: return
         av.adListener = this
@@ -69,69 +76,32 @@ class InterstitialController(private var context: FREContext) : AdListener() {
 
     override fun onAdImpression() {
         super.onAdImpression()
-        val props = JSONObject()
-        try {
-            props.put("position", Position.INTERSTITIAL)
-            sendEvent(Constants.ON_IMPRESSION, props.toString())
-        } catch (e: JSONException) {
-            Log.e(TAG, e.toString())
-        }
+        sendEvent(Constants.ON_IMPRESSION, gson.toJson(AdMobEvent(INTERSTITIAL)))
     }
 
     override fun onAdLeftApplication() {
         super.onAdLeftApplication()
-        val props = JSONObject()
-        try {
-            props.put("position", Position.INTERSTITIAL)
-            sendEvent(Constants.ON_LEFT_APPLICATION, props.toString())
-        } catch (e: JSONException) {
-            Log.e(TAG, e.toString())
-        }
+        sendEvent(Constants.ON_LEFT_APPLICATION, gson.toJson(AdMobEvent(INTERSTITIAL)))
     }
 
     override fun onAdClicked() {
         super.onAdClicked()
-        val props = JSONObject()
-        try {
-            props.put("position", Position.INTERSTITIAL)
-            sendEvent(Constants.ON_CLICKED, props.toString())
-        } catch (e: JSONException) {
-            Log.e(TAG, e.toString())
-        }
+        sendEvent(Constants.ON_CLICKED, gson.toJson(AdMobEvent(INTERSTITIAL)))
     }
 
     override fun onAdFailedToLoad(p0: Int) {
         super.onAdFailedToLoad(p0)
-        val props = JSONObject()
-        try {
-            props.put("position", Position.INTERSTITIAL)
-            props.put("errorCode", p0)
-            sendEvent(Constants.ON_LOAD_FAILED, props.toString())
-        } catch (e: JSONException) {
-            Log.e(TAG, e.toString())
-        }
+        sendEvent(Constants.ON_LOAD_FAILED, gson.toJson(AdMobEvent(INTERSTITIAL, p0)))
     }
 
     override fun onAdClosed() {
         super.onAdClosed()
-        val props = JSONObject()
-        try {
-            props.put("position", Position.INTERSTITIAL)
-            sendEvent(Constants.ON_CLOSED, props.toString())
-        } catch (e: JSONException) {
-            Log.e(TAG, e.toString())
-        }
+        sendEvent(Constants.ON_CLOSED, gson.toJson(AdMobEvent(INTERSTITIAL)))
     }
 
     override fun onAdOpened() {
         super.onAdOpened()
-        val props = JSONObject()
-        try {
-            props.put("position", Position.INTERSTITIAL)
-            sendEvent(Constants.ON_OPENED, props.toString())
-        } catch (e: JSONException) {
-            Log.e(TAG, e.toString())
-        }
+        sendEvent(Constants.ON_OPENED, gson.toJson(AdMobEvent(INTERSTITIAL)))
     }
 
     override fun onAdLoaded() {
@@ -142,37 +112,11 @@ class InterstitialController(private var context: FREContext) : AdListener() {
             av.show()
         }
 
-        val props = JSONObject()
-        try {
-            props.put("position", Position.INTERSTITIAL)
-            sendEvent(Constants.ON_LOADED, props.toString())
-        } catch (e: JSONException) {
-            Log.e(TAG, e.toString())
-        }
-
+        sendEvent(Constants.ON_LOADED, gson.toJson(AdMobEvent(INTERSTITIAL)))
     }
 
-    private fun trace(vararg value: Any?) {
-        context.trace(TAG, value)
-    }
 
-    private fun sendEvent(name: String, value: String) {
-        context.sendEvent(name, value)
-    }
-
-    companion object {
-        private var TAG = InterstitialController::class.java.canonicalName
-    }
-
-    init {
-        container = FrameLayout(this.context.activity?.applicationContext)
-        container.isClickable = false
-
-        val lp = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,
-                FrameLayout.LayoutParams.WRAP_CONTENT)
-        lp.gravity = Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM
-        container.layoutParams = lp
-    }
-
+    override val TAG: String
+        get() = this::class.java.canonicalName
 
 }

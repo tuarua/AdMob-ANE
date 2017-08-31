@@ -42,11 +42,7 @@
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
-  <applications>
-    <application path="Main.as">
-      <airExcludes/>
-    </application>
-  </applications>
+  <applications/>
   <modules/>
   <workers/>
   <buildCSSFiles/>

@@ -19,6 +19,7 @@ import com.adobe.fre.FREContext;
 import com.adobe.fre.FREExtension;
 import com.tuarua.admobane.KotlinController;
 
+@SuppressWarnings("unused")
 public class AdMobANE implements FREExtension {
 
     private static final String[] FUNCTIONS = {
@@ -30,16 +31,14 @@ public class AdMobANE implements FREExtension {
             ,"showInterstitial"
             ,"getBannerSizes"
             ,"setTestDevices"
-
-
     };
-
-    private static AdMobANEContext extensionContext;
 
     @Override
     public void initialize() {
 
     }
+
+    private static AdMobANEContext extensionContext;
 
     @Override
     public FREContext createContext(String s) {
@@ -49,6 +48,6 @@ public class AdMobANE implements FREExtension {
 
     @Override
     public void dispose() {
-
+        extensionContext.dispose();
     }
 }

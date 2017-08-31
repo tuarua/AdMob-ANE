@@ -23,6 +23,7 @@ Much time, skill and effort has gone into this. Help support the project
     <extensionID>com.google.android.gms.play-services-base</extensionID>
     <extensionID>com.google.android.gms.play-services-ads-lite</extensionID>
     <extensionID>com.android.support.support-v4</extensionID>
+    <extensionID>com.google.code.gson.gson</extensionID>
     ...
 </extensions>
 `````

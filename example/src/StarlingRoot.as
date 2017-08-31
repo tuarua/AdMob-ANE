@@ -91,12 +91,16 @@ public class StarlingRoot extends Sprite {
     private static function onAdLoaded(event:AdMobEvent):void {
         trace(event);
         var position:int = event.params.position;
+        trace("position", position);
     }
 
     private static function onAdLoadFailed(event:AdMobEvent):void {
         trace(event);
         var position:int = event.params.position;
         var errorCode:int = event.params.errorCode;
+
+        trace("Ad failed to load", position, errorCode);
+
     }
 
     private static function onAdLeftApplication(event:AdMobEvent):void {
@@ -139,9 +143,13 @@ public class StarlingRoot extends Sprite {
                 targeting.birthday = new Date(1999, 5, 10);
                 targeting.gender = Targeting.MALE;
                 targeting.forChildren = true;
+
+                trace("adMobANE.banner.availableSizes:", adMobANE.banner.availableSizes);
+                trace(adMobANE.banner.canDisplay(AdSize.FULL_BANNER));
+
                 if (adMobANE.banner.canDisplay(AdSize.FULL_BANNER)) {
                     adMobANE.banner.adSize = AdSize.FULL_BANNER;
-                } else if (adMobANE.banner.canDisplay(AdSize.SMART_BANNER)){
+                } else if (adMobANE.banner.canDisplay(AdSize.SMART_BANNER)) {
                     adMobANE.banner.adSize = AdSize.SMART_BANNER;
                 } else {
                     adMobANE.banner.adSize = AdSize.BANNER;
@@ -158,9 +166,6 @@ public class StarlingRoot extends Sprite {
                 adMobANE.banner.y = 200;*/
 
                 adMobANE.banner.load();
-
-                trace("adMobANE.banner.availableSizes:", adMobANE.banner.availableSizes);
-                trace(adMobANE.banner.canDisplay(AdSize.FULL_BANNER))
 
 
             } catch (e:ANEError) {

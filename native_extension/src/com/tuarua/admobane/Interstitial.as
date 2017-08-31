@@ -11,44 +11,73 @@ public class Interstitial {
     public function Interstitial(context:ExtensionContext) {
         this._context = context;
     }
-
+	/**
+	 * 
+	 * 
+	 */
     public function load():void {
         var theRet:* = _context.call("loadInterstitial", _adUnit, _targeting, _showOnLoad);
         if (theRet is ANEError) {
             throw theRet as ANEError;
         }
     }
-
+	/**
+	 * 
+	 * 
+	 */
     public function clear():void {
         var theRet:* = _context.call("clearInterstitial");
         if (theRet is ANEError) {
             throw theRet as ANEError;
         }
     }
-
+	/**
+	 * 
+	 * 
+	 */
     public function show():void {
         var theRet:* = _context.call("showInterstitial");
         if (theRet is ANEError) {
             throw theRet as ANEError;
         }
     }
-
+	/**
+	 * 
+	 * @return 
+	 * 
+	 */
     public function get targeting():Targeting {
         return _targeting;
     }
-
+	/**
+	 * 
+	 * @param value
+	 * 
+	 */
     public function set targeting(value:Targeting):void {
         _targeting = value;
     }
-
+	/**
+	 * 
+	 * @return 
+	 * 
+	 */
     public function get adUnit():String {
         return _adUnit;
     }
-
+	/**
+	 * 
+	 * @param value
+	 * 
+	 */
     public function set adUnit(value:String):void {
         _adUnit = value;
     }
-
+	/**
+	 * 
+	 * @param value
+	 * 
+	 */
     public function set showOnLoad(value:Boolean):void {
         _showOnLoad = value;
     }

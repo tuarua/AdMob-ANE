@@ -20,13 +20,9 @@ import com.adobe.fre.FREContext
 import com.adobe.fre.FREObject
 import com.google.android.gms.ads.MobileAds
 import com.tuarua.frekotlin.*
-import java.util.ArrayList
 
-typealias FREArgv = ArrayList<FREObject>
 @Suppress("unused", "UNUSED_PARAMETER", "UNCHECKED_CAST")
-class KotlinController : FreKotlinController {
-
-    private var context: FREContext? = null
+class KotlinController : FreKotlinMainController {
     private lateinit var airView: ViewGroup
     private val TRACE = "TRACE"
     private var deviceList: List<String>? = null
@@ -52,7 +48,7 @@ class KotlinController : FreKotlinController {
             MobileAds.setAppVolume(volume)
             MobileAds.setAppMuted(muted)
 
-            bannerController = BannerController(ctx, airView)
+            bannerController = BannerController(_context, airView)
             interstitialController = InterstitialController(ctx)
         } catch (e: FreException) {
             return e.getError(Thread.currentThread().stackTrace)
@@ -170,25 +166,18 @@ class KotlinController : FreKotlinController {
         super.onDestroyed()
         bannerController?.adView?.destroy()
     }
-
-    override fun setFREContext(context: FREContext) {
-        this.context = context
-    }
-
     override fun dispose() {
         super.dispose()
         bannerController?.adView?.destroy()
     }
 
-    private fun trace(vararg value: Any?) {
-        context?.trace(TAG, value)
-    }
+    override val TAG: String
+        get() = this::class.java.canonicalName
+    private var _context:FREContext? = null
+    override var context: FREContext?
+        get() = _context
+        set(value) {
+            _context = value
+        }
 
-    private fun sendEvent(name: String, value: String) {
-        context?.sendEvent(name, value)
-    }
-
-    companion object {
-        private var TAG = KotlinController::class.java.canonicalName
-    }
 }

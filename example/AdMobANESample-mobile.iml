@@ -26,6 +26,9 @@
             <entry library-name="FiraSansSemiBold" library-level="project">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="com.google.code.gson.gson-2.8.1" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="AIRSDK" />
         </dependencies>
@@ -63,5 +66,6 @@
     <orderEntry type="library" exported="" name="com.google.android.gms.play-services-ads-lite-11.2.0" level="project" />
     <orderEntry type="library" exported="" name="starling" level="project" />
     <orderEntry type="library" exported="" name="FiraSansSemiBold" level="project" />
+    <orderEntry type="library" exported="" name="com.google.code.gson.gson-2.8.1" level="project" />
   </component>
 </module>

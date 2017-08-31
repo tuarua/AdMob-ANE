@@ -96,14 +96,28 @@ public class AdMobANE extends EventDispatcher {
         return _isSupported;
     }
 
+	/**
+	 * 
+	 * @return 
+	 * 
+	 */	
     public function get banner():Banner {
         return _banner;
     }
 
+	/**
+	 * 
+	 * @return 
+	 * 
+	 */	
     public function get interstitial():Interstitial {
         return _interstitial;
     }
-
+	/**
+	 * 
+	 * @param value
+	 * 
+	 */
     public function set testDevices(value:Vector.<String>):void {
         _testDevices = value;
         var theRet:* = ctx.call("setTestDevices", _testDevices);
@@ -111,11 +125,18 @@ public class AdMobANE extends EventDispatcher {
             throw theRet as ANEError;
         }
     }
-
+	/**
+	 * 
+	 * @return 
+	 * 
+	 */
     public function get testDevices():Vector.<String> {
         return _testDevices;
     }
-
+	/**
+	 * 
+	 * 
+	 */
     public function dispose():void {
         if (!ctx) {
             trace("[" + NAME + "] Error. ANE Already in a disposed or failed state...");

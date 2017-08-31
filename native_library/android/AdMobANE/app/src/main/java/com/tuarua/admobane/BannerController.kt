@@ -16,34 +16,43 @@
 package com.tuarua.admobane
 
 import android.annotation.SuppressLint
-import android.content.res.Configuration
-import android.util.Log
+import android.content.res.Configuration.*
 import android.view.Gravity.*
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.widget.LinearLayout
+import android.widget.FrameLayout.*
+import android.widget.FrameLayout.LayoutParams.*
 import com.adobe.fre.FREContext
 import com.google.android.gms.ads.*
-import com.tuarua.frekotlin.sendEvent
-import com.tuarua.frekotlin.trace
-import org.json.JSONException
-import org.json.JSONObject
+import com.tuarua.frekotlin.FreKotlinController
+import com.google.gson.Gson
+import com.tuarua.admobane.Position.*
 
 @Suppress("JoinDeclarationAndAssignment")
-class BannerController(private var context: FREContext, airView: ViewGroup) : AdListener() {
+class BannerController(override var context: FREContext?, airView: ViewGroup) : FreKotlinController, AdListener() {
+
     private var airView: ViewGroup? = airView
     private var _adView: AdView? = null
     private var container: FrameLayout
+    private val gson = Gson()
     var adView: AdView?
         get() = _adView
         set(value) {
             _adView = value
         }
 
+    init {
+        container = FrameLayout(this.context?.activity?.applicationContext)
+        container.isClickable = false
+
+        val lp = LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
+        lp.gravity = CENTER_HORIZONTAL or BOTTOM
+        container.layoutParams = lp
+    }
+
     @SuppressLint("RtlHardcoded")
     fun load(unitId: String, size: Int, deviceList: List<String>?, targeting: Targeting?, x: Float, y: Float, hAlign:
     String, vAlign: String) {
-
         val existingAv = _adView
         if (existingAv != null) {
             if (existingAv.parent == container) {
@@ -52,7 +61,7 @@ class BannerController(private var context: FREContext, airView: ViewGroup) : Ad
             existingAv.destroy()
         }
 
-        _adView = AdView(this.context.activity?.applicationContext)
+        _adView = AdView(this.context?.activity?.applicationContext)
 
         val av = _adView ?: return
         av.adListener = this
@@ -67,8 +76,7 @@ class BannerController(private var context: FREContext, airView: ViewGroup) : Ad
             5 -> av.adSize = AdSize.SMART_BANNER
         }
 
-        val lp = FrameLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                FrameLayout.LayoutParams.WRAP_CONTENT)
+        val lp = LayoutParams(LayoutParams.WRAP_CONTENT, WRAP_CONTENT)
 
         when {
             x > -1 && y > -1 -> {
@@ -121,69 +129,32 @@ class BannerController(private var context: FREContext, airView: ViewGroup) : Ad
 
     override fun onAdImpression() {
         super.onAdImpression()
-        val props = JSONObject()
-        try {
-            props.put("position", Position.BANNER)
-            sendEvent(Constants.ON_IMPRESSION, props.toString())
-        } catch (e: JSONException) {
-            Log.e(TAG, e.toString())
-        }
+        sendEvent(Constants.ON_IMPRESSION, gson.toJson(AdMobEvent(BANNER)))
     }
 
     override fun onAdLeftApplication() {
         super.onAdLeftApplication()
-        val props = JSONObject()
-        try {
-            props.put("position", Position.BANNER)
-            sendEvent(Constants.ON_LEFT_APPLICATION, props.toString())
-        } catch (e: JSONException) {
-            Log.e(TAG, e.toString())
-        }
+        sendEvent(Constants.ON_LEFT_APPLICATION, gson.toJson(AdMobEvent(BANNER)))
     }
 
     override fun onAdClicked() {
         super.onAdClicked()
-        val props = JSONObject()
-        try {
-            props.put("position", Position.BANNER)
-            sendEvent(Constants.ON_CLICKED, props.toString())
-        } catch (e: JSONException) {
-            Log.e(TAG, e.toString())
-        }
+        sendEvent(Constants.ON_CLICKED, gson.toJson(AdMobEvent(BANNER)))
     }
 
     override fun onAdFailedToLoad(p0: Int) {
         super.onAdFailedToLoad(p0)
-        val props = JSONObject()
-        try {
-            props.put("position", Position.BANNER)
-            props.put("errorCode", p0)
-            sendEvent(Constants.ON_LOAD_FAILED, props.toString())
-        } catch (e: JSONException) {
-            Log.e(TAG, e.toString())
-        }
+        sendEvent(Constants.ON_LOAD_FAILED, gson.toJson(AdMobEvent(BANNER, p0)))
     }
 
     override fun onAdClosed() {
         super.onAdClosed()
-        val props = JSONObject()
-        try {
-            props.put("position", Position.BANNER)
-            sendEvent(Constants.ON_CLOSED, props.toString())
-        } catch (e: JSONException) {
-            Log.e(TAG, e.toString())
-        }
+        sendEvent(Constants.ON_CLOSED, gson.toJson(AdMobEvent(BANNER)))
     }
 
     override fun onAdOpened() {
         super.onAdOpened()
-        val props = JSONObject()
-        try {
-            props.put("position", Position.BANNER)
-            sendEvent(Constants.ON_OPENED, props.toString())
-        } catch (e: JSONException) {
-            Log.e(TAG, e.toString())
-        }
+        sendEvent(Constants.ON_OPENED, gson.toJson(AdMobEvent(BANNER)))
     }
 
     override fun onAdLoaded() {
@@ -196,48 +167,21 @@ class BannerController(private var context: FREContext, airView: ViewGroup) : Ad
             airView?.addView(container)
         }
 
-        val props = JSONObject()
-        try {
-            props.put("position", Position.BANNER)
-            sendEvent(Constants.ON_LOADED, props.toString())
-        } catch (e: JSONException) {
-            Log.e(TAG, e.toString())
-        }
+        sendEvent(Constants.ON_LOADED, gson.toJson(AdMobEvent(BANNER)))
 
-    }
-
-    private fun trace(vararg value: Any?) {
-        context.trace(TAG, value)
-    }
-
-    private fun sendEvent(name: String, value: String) {
-        context.sendEvent(name, value)
-    }
-
-    companion object {
-        private var TAG = BannerController::class.java.canonicalName
-    }
-
-    init {
-        container = FrameLayout(this.context.activity?.applicationContext)
-        container.isClickable = false
-
-        val lp = FrameLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                FrameLayout.LayoutParams.WRAP_CONTENT)
-        lp.gravity = CENTER_HORIZONTAL or BOTTOM
-        container.layoutParams = lp
     }
 
     fun getBannerSizes(): IntArray {
-        val screenSize = this.context.activity.resources.configuration.screenLayout and Configuration
-                .SCREENLAYOUT_SIZE_MASK
+        val screenSize = this.context?.activity?.resources?.configuration?.screenLayout?.and(SCREENLAYOUT_SIZE_MASK)
 
         return when (screenSize) {
-            Configuration.SCREENLAYOUT_SIZE_LARGE, Configuration.SCREENLAYOUT_SIZE_XLARGE -> intArrayOf(0, 1, 2, 3,
+            SCREENLAYOUT_SIZE_LARGE, SCREENLAYOUT_SIZE_XLARGE -> intArrayOf(0, 1, 2, 3,
                     4, 5)
             else -> intArrayOf(0, 2, 5)
         }
     }
 
+    override val TAG: String
+        get() = this::class.java.canonicalName
 
 }
