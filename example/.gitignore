@@ -74,6 +74,5 @@ fabric.properties
 # .idea/misc.xml
 # *.ipr
 
-src/GoogleMapsANESample-app-27.xml
-/native/
+/android_dependencies/*.ane
 /sprite-sheet/

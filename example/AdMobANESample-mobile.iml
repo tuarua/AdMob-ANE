@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="Flex" version="4">
-  <component name="FlexBuildConfigurationManager" active="AdMob Sample Android">
+  <component name="FlexBuildConfigurationManager" active="AdMob Sample iOS Device">
     <configurations>
       <configuration name="AdMob Sample Android" target-platform="Mobile" pure-as="true" main-class="AdMobANESample" output-file="Main.swf" output-folder="$MODULE_DIR$/bin-release/device">
         <dependencies>
@@ -43,7 +43,7 @@
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/assets" path-in-package="." />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system" path-in-package="." />
           </files-to-package>
-          <AirSigningOptions keystore-path="$DOCUMENTS$/TuaRua2017.p12" use-temp-certificate="false" />
+          <AirSigningOptions keystore-path="$DOCUMENTS$/tuaruaWin.p12" use-temp-certificate="false" />
         </packaging-android>
         <packaging-ios use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/Main-app.xml" package-file-name="Main" />
       </configuration>
@@ -92,7 +92,7 @@
         </packaging-android>
         <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/AdMobANESample.xml" package-file-name="AdMob_Sample_iOS">
           <files-to-package>
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/native/simulator" path-in-package="." />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/ios_dependencies/simulator" path-in-package="." />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system" path-in-package="." />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/assets" path-in-package="." />
           </files-to-package>
@@ -129,7 +129,7 @@
         </packaging-android>
         <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/AdMobANESample-27.xml" package-file-name="AdMob_Sample_iOS_Device">
           <files-to-package>
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/native/device" path-in-package="." />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/ios_dependencies/device" path-in-package="." />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system" path-in-package="." />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/assets" path-in-package="." />
           </files-to-package>

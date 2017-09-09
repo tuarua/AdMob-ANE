@@ -1,10 +1,18 @@
-//
-//  BannerController.swift
-//  AdMobANE
-//
-//  Created by Eoin Landy on 03/09/2017.
-//  Copyright © 2017 Tua Rua Ltd. All rights reserved.
-//
+/*
+ *  Copyright 2017 Tua Rua Ltd.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 
 import UIKit
 import GoogleMobileAds
@@ -12,6 +20,7 @@ import FreSwift
 
 
 class BannerController: UIViewController, FreSwiftController, GADBannerViewDelegate {
+    var TAG: String? = "AdMobANE"
     internal var context: FreContextSwift!
     private var adView: GADBannerView!
     private var _size:Int = 0
@@ -27,7 +36,6 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
         NotificationCenter.default.addObserver(self, selector: #selector(BannerController.orientationDidChange(notification:)), name: Notification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     
-    
 
     convenience init(context: FreContextSwift) {
         self.init()
@@ -39,8 +47,6 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
             return
         }
 
-        //trace("orientationDidChange \(uiDevice.orientation)")
-        
         if(_size == 5) {
             if(uiDevice.orientation == .portrait
                 || uiDevice.orientation == .portraitUpsideDown
@@ -67,6 +73,7 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
         let theW: CGFloat = adV.adSize.size.width > 0.0 ? adV.adSize.size.width : adV.frame.width
         let theH: CGFloat = adV.adSize.size.width > 0.0 ? adV.adSize.size.height : adV.frame.height
         
+        //TODO x and y supersede aligns
         if (_hAlign == "center") {
             theX = airv.center.x - (theW / 2)
         } else if (_hAlign == "right") {
@@ -100,43 +107,42 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
             if (self.view.superview != airView) {
                 airView.addSubview(self.view)
             }
-
         }
 
         adView.adUnitID = unitId
         adView.rootViewController = self
 
         switch _size {
-        case 0:
-            adView.adSize = kGADAdSizeBanner
-            break
-        case 1:
-            adView.adSize = kGADAdSizeFullBanner
-            break
-        case 2:
-            adView.adSize = kGADAdSizeLargeBanner
-            break
-        case 3:
-            adView.adSize = kGADAdSizeLeaderboard
-            break
-        case 4:
-            adView.adSize = kGADAdSizeMediumRectangle
-            break
-        case 5:
-            if(UIDevice.current.orientation == .portrait
-                || UIDevice.current.orientation == .portraitUpsideDown
-                || UIDevice.current.orientation == .faceUp
-                || UIDevice.current.orientation == .faceDown
-                || UIDevice.current.orientation == .unknown ) {
-                adView.adSize = kGADAdSizeSmartBannerPortrait
-            } else if(UIDevice.current.orientation == .landscapeLeft
-                || UIDevice.current.orientation == .landscapeRight){
-                adView.adSize = kGADAdSizeSmartBannerLandscape
-            }
-            break
-        default:
-            adView.adSize = kGADAdSizeBanner
-            break
+            case 0:
+                adView.adSize = kGADAdSizeBanner
+                break
+            case 1:
+                adView.adSize = kGADAdSizeFullBanner
+                break
+            case 2:
+                adView.adSize = kGADAdSizeLargeBanner
+                break
+            case 3:
+                adView.adSize = kGADAdSizeLeaderboard
+                break
+            case 4:
+                adView.adSize = kGADAdSizeMediumRectangle
+                break
+            case 5:
+                if(UIDevice.current.orientation == .portrait
+                    || UIDevice.current.orientation == .portraitUpsideDown
+                    || UIDevice.current.orientation == .faceUp
+                    || UIDevice.current.orientation == .faceDown
+                    || UIDevice.current.orientation == .unknown ) {
+                    adView.adSize = kGADAdSizeSmartBannerPortrait
+                } else if(UIDevice.current.orientation == .landscapeLeft
+                    || UIDevice.current.orientation == .landscapeRight){
+                    adView.adSize = kGADAdSizeSmartBannerLandscape
+                }
+                break
+            default:
+                adView.adSize = kGADAdSizeBanner
+                break
         }
 
         position()

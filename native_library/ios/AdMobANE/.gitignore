@@ -81,3 +81,8 @@ fabric.properties
 # modules.xml
 # .idea/misc.xml
 # *.ipr
+
+Frameworks/*.bundle
+Frameworks/*.framework
+Carthage/
+FreSwift_bak/

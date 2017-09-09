@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="com.tuarua.frekotlin" type="flex">
     <CLASSES>
-      <root url="jar://$DOCUMENTS$/AdMob-ANE/native_extension/ane/com.tuarua.frekotlin.ane!/" />
+      <root url="jar://$DOCUMENTS$/AdMob-ANE/example/android_dependencies/com.tuarua.frekotlin.ane!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

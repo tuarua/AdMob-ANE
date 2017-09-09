@@ -66,10 +66,6 @@ public class StarlingRoot extends Sprite {
         btn3.addEventListener(TouchEvent.TOUCH, onLoadInterstitial);
         addChild(btn3);
 
-
-        var d:Date = new Date(1504474778836.03)
-        trace(d);
-
         stage.addEventListener(Event.RESIZE, onResize);
 
     }
