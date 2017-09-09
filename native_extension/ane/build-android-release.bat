@@ -2,6 +2,7 @@
 SET pathtome=%~dp0
 SET SZIP="C:\Program Files\7-Zip\7z.exe"
 SET AIR_PATH="D:\dev\sdks\AIR\AIRSDK_26\bin\"
+SET AIR_PATH="D:\dev\sdks\AIR\AIRSDK_26\bin\"
 
 SET projectName=AdMobANE
 
@@ -26,7 +27,7 @@ call %SZIP% x %pathtome%platforms\android\app-release.aar -o%pathtome%platforms\
 
 
 echo "GENERATING ANE"
-call %AIR_PATH%adt.bat -package -target ane %pathtome%%projectName%.ane extension_mobile.xml ^
+call %AIR_PATH%adt.bat -package -target ane %pathtome%%projectName%.ane extension_android.xml ^
 -swc %projectName%.swc ^
 -platform Android-ARM ^
 -C platforms/android library.swf classes.jar ^

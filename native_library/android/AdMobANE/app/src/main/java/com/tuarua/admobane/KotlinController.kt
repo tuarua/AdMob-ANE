@@ -37,17 +37,14 @@ class KotlinController : FreKotlinMainController {
     fun init(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 2 } ?: return ArgCountException().getError(Thread.currentThread().stackTrace)
         try {
-            val key: String = FreObjectKotlin(argv[0]).value as String // key:String
-
-            val volumeFre = FreObjectKotlin(argv[1]).value
-            val volume = ((volumeFre as? Int)?.toDouble() ?: volumeFre as Double).toFloat()
-            val muted = FreObjectKotlin(argv[2]).value as Boolean
+            val key = String(argv[0])
+            val volume = Float(argv[1])
+            val muted = Boolean(argv[2])
             airView = context?.activity?.findViewById(android.R.id.content) as ViewGroup
             airView = airView.getChildAt(0) as ViewGroup
             MobileAds.initialize(ctx.activity?.applicationContext, key)
-            MobileAds.setAppVolume(volume)
-            MobileAds.setAppMuted(muted)
-
+            volume?.let { MobileAds.setAppVolume(it) }
+            muted?.let { MobileAds.setAppMuted(it) }
             bannerController = BannerController(_context, airView)
             interstitialController = InterstitialController(ctx)
         } catch (e: FreException) {
@@ -74,17 +71,17 @@ class KotlinController : FreKotlinMainController {
     fun loadBanner(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 6 } ?: return ArgCountException().getError(Thread.currentThread().stackTrace)
         try {
-            val unitId: String = FreObjectKotlin(argv[0]).value as String
-            val adSize: Int = FreObjectKotlin(argv[1]).value as Int
+            val unitId = String(argv[0])
+            val adSize = Int(argv[1])
             val targeting: Targeting? = Targeting(FreObjectKotlin(argv[2]))
-            val xFre = FreObjectKotlin(argv[3]).value
-            val x = ((xFre as? Int)?.toDouble() ?: xFre as Double).toFloat()
-            val yFre = FreObjectKotlin(argv[4]).value
-            val y = ((yFre as? Int)?.toDouble() ?: yFre as Double).toFloat()
-            val hAlign: String = FreObjectKotlin(argv[5]).value as String
-            val vAlign: String = FreObjectKotlin(argv[6]).value as String
+            val x = Float(argv[3])
+            val y = Float(argv[4])
+            val hAlign = String(argv[5])
+            val vAlign = String(argv[6])
 
-            bannerController?.load(unitId, adSize, deviceList, targeting, x, y, hAlign, vAlign)
+            if (unitId != null && adSize != null && x != null && y != null && hAlign != null && vAlign != null) {
+                bannerController?.load(unitId, adSize, deviceList, targeting, x, y, hAlign, vAlign)
+            }
         } catch (e: FreException) {
             return e.getError(Thread.currentThread().stackTrace)
         } catch (e: Exception) {
@@ -94,13 +91,7 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun clearBanner(ctx: FREContext, argv: FREArgv): FREObject? {
-        try {
-            bannerController?.clear()
-        } catch (e: FreException) {
-            return e.getError(Thread.currentThread().stackTrace)
-        } catch (e: Exception) {
-            return FreException(e).getError(Thread.currentThread().stackTrace)
-        }
+        bannerController?.clear()
         return null
     }
 
@@ -117,10 +108,12 @@ class KotlinController : FreKotlinMainController {
     fun loadInterstitial(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 2 } ?: return ArgCountException().getError(Thread.currentThread().stackTrace)
         try {
-            val unitId: String = FreObjectKotlin(argv[0]).value as String
+            val unitId = String(argv[0])
             val targeting: Targeting? = Targeting(FreObjectKotlin(argv[1]))
-            val showOnLoad: Boolean = FreObjectKotlin(argv[2]).value as Boolean
-            interstitialController?.load(unitId, deviceList, targeting, showOnLoad)
+            val showOnLoad = Boolean(argv[2])
+            if (unitId != null && showOnLoad != null) {
+                interstitialController?.load(unitId, deviceList, targeting, showOnLoad)
+            }
         } catch (e: FreException) {
             return e.getError(Thread.currentThread().stackTrace)
         } catch (e: Exception) {
@@ -130,13 +123,7 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun showInterstitial(ctx: FREContext, argv: FREArgv): FREObject? {
-        try {
-            interstitialController?.show()
-        } catch (e: FreException) {
-            return e.getError(Thread.currentThread().stackTrace)
-        } catch (e: Exception) {
-            return FreException(e).getError(Thread.currentThread().stackTrace)
-        }
+        interstitialController?.show()
         return null
     }
 
@@ -166,6 +153,7 @@ class KotlinController : FreKotlinMainController {
         super.onDestroyed()
         bannerController?.adView?.destroy()
     }
+
     override fun dispose() {
         super.dispose()
         bannerController?.adView?.destroy()
@@ -173,7 +161,7 @@ class KotlinController : FreKotlinMainController {
 
     override val TAG: String
         get() = this::class.java.canonicalName
-    private var _context:FREContext? = null
+    private var _context: FREContext? = null
     override var context: FREContext?
         get() = _context
         set(value) {
