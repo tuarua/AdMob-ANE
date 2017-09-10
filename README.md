@@ -1,6 +1,7 @@
 # AdMob-ANE
 
-AdMob Adobe Air Native Extension for Android 19+.
+AdMob Adobe Air Native Extension for iOS 9.0+, Android 19+.
+
 
 -------------
 
@@ -10,13 +11,22 @@ Much time, skill and effort has gone into this. Help support the project
 
 -------------
 
+## The ANE
+ 
+Download the latest from the [Releases](https://github.com/tuarua/AdMob-ANE/releases) page.
+
 ## Android
  
- **Dependencies**
- Several dependency ANEs are needed.
- They can be found in this repo:  
- [https://github.com/tuarua/Android-ANE-Dependancies/tree/master/anes]
+**Dependencies**
+Several dependency ANEs are needed.  
  
+From the command line cd into /example and run:
+````shell
+bash get_android_dependencies.sh
+`````
+
+They can be downloaded directly from this repo:  
+[https://github.com/tuarua/Android-ANE-Dependancies/tree/master/anes]
 ````xml
 <extensions>
     <extensionID>com.tuarua.frekotlin</extensionID>
@@ -57,19 +67,49 @@ You will also need to include the following in your app manifest. Update accordi
 
 ## iOS
 
-Coming soon...   
+**Dependencies**   
+From the command line cd into /example and run:
+````shell
+bash get_ios_dependencies.sh
+`````
 
-### Technical Details
-The Android version is written in Kotlin. Kotlin is a joy to work with and provides a syntax more familiar to Actionscript or Swift developers.
-Full source is provided.
+Test Ads are included in the demo.
+You will need an AdMob account to deliver live ads.   
+[https://support.google.com/admob/answer/7356219?visit_id=1-636396064763467790-3385881595&rd=1]
+
+You will also need to include the following in your app manifest. Update accordingly.
+````xml
+<InfoAdditions><![CDATA[
+    <key>UIDeviceFamily</key>
+    <array>
+        <string>1</string>
+        <string>2</string>
+    </array>
+    <key>MinimumOSVersion</key>
+    <string>9.0</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+        <key>NSAllowsArbitraryLoadsForMedia</key>
+        <true/>
+        <key>NSAllowsArbitraryLoadsInWebContent</key>
+        <true/>
+    </dict>
+]]></InfoAdditions>
+`````  
+
 
 ### Prerequisites
 
 You will need:
 
 - IntelliJ IDEA / Flash Builder
-- AIR 26
-- Android Studio 3 Beta if you wish to edit the source
+- AIR 26 + AIR 27 Beta
+- Android Studio 3 Beta if you wish to edit the Android source
+- Xcode 8.3 if you wish to edit the iOS source
+- wget on OSX
+
 
 ### References
 * [https://developers.google.com/admob/android/quick-start]

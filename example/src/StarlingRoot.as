@@ -42,25 +42,29 @@ public class StarlingRoot extends Sprite {
         adMobANE.addEventListener(AdMobEvent.ON_LOADED, onAdLoaded);
         adMobANE.addEventListener(AdMobEvent.ON_OPENED, onAdOpened);
         adMobANE.init("ca-app-pub-3940256099942544~3347511713", 0.5, true);
+
+        //on iOS /Users/User/sdks/AIR/AIRSDK_27_B/bin/adt -devices -platform iOS
+
         var vecDevices:Vector.<String> = new <String>[];
-        vecDevices.push("09872C13E51671E053FC7DC8DFC0C689");
+        vecDevices.push("09872C13E51671E053FC7DC8DFC0C689"); //my Android Nexus
+        vecDevices.push("459d71e2266bab6c3b7702ab5fe011e881b90d3c"); //my iPad Pro
+        vecDevices.push("9b6d1bfa1701ec25be4b51b38eed6e897c3a7a65"); //my iPad Mini
         adMobANE.testDevices = vecDevices;
 
         btn.x = 10;
-        btn.y = 10;
+        btn.y = 50;
         btn.addEventListener(TouchEvent.TOUCH, onLoadBanner);
         addChild(btn);
 
         btn2.x = 130;
-        btn2.y = 10;
+        btn2.y = 50;
         btn2.addEventListener(TouchEvent.TOUCH, onClearBanner);
         addChild(btn2);
 
         btn3.x = 250;
-        btn3.y = 10;
+        btn3.y = 50;
         btn3.addEventListener(TouchEvent.TOUCH, onLoadInterstitial);
         addChild(btn3);
-
 
         stage.addEventListener(Event.RESIZE, onResize);
 
@@ -72,8 +76,9 @@ public class StarlingRoot extends Sprite {
             try {
                 var targeting:Targeting = new Targeting();
                 targeting.birthday = new Date(1999, 5, 10);
-                targeting.gender = Targeting.MALE;
-                targeting.forChildren = true;
+                targeting.gender = Targeting.FEMALE;
+                targeting.forChildren = false;
+
                 adMobANE.interstitial.adUnit = "ca-app-pub-3940256099942544/1033173712";
                 adMobANE.interstitial.targeting = targeting;
                 adMobANE.interstitial.load();
@@ -128,6 +133,7 @@ public class StarlingRoot extends Sprite {
         var touch:Touch = event.getTouch(btn2);
         if (touch != null && touch.phase == TouchPhase.ENDED) {
             try {
+                trace("calling adMobANE.banner.clear()");
                 adMobANE.banner.clear();
             } catch (e:ANEError) {
                 trace(e.getStackTrace());
@@ -143,9 +149,10 @@ public class StarlingRoot extends Sprite {
                 targeting.birthday = new Date(1999, 5, 10);
                 targeting.gender = Targeting.MALE;
                 targeting.forChildren = true;
+                targeting.contentUrl = "http://googleadsdeveloper.blogspot.com/2016/03/rewarded-video-support-for-admob.html";
 
                 trace("adMobANE.banner.availableSizes:", adMobANE.banner.availableSizes);
-                trace(adMobANE.banner.canDisplay(AdSize.FULL_BANNER));
+                trace("Can we display a smart banner? ",adMobANE.banner.canDisplay(AdSize.FULL_BANNER));
 
                 if (adMobANE.banner.canDisplay(AdSize.FULL_BANNER)) {
                     adMobANE.banner.adSize = AdSize.FULL_BANNER;
@@ -154,21 +161,26 @@ public class StarlingRoot extends Sprite {
                 } else {
                     adMobANE.banner.adSize = AdSize.BANNER;
                 }
-
+                
                 adMobANE.banner.adUnit = "ca-app-pub-3940256099942544/6300978111";
                 adMobANE.banner.targeting = targeting;
                 adMobANE.banner.hAlign = Align.RIGHT;
                 adMobANE.banner.vAlign = Align.BOTTOM;
 
-                /*
+
                 // x  & y supersede hAlign and vAlign if both > -1
-                adMobANE.banner.x = 100;
-                adMobANE.banner.y = 200;*/
+                /*adMobANE.banner.x = 40;
+                adMobANE.banner.y = 50;*/ //TODO scaleFactor
 
                 adMobANE.banner.load();
 
 
             } catch (e:ANEError) {
+                trace(e.name);
+                trace(e.errorID)
+                trace(e.type);
+                trace(e.message);
+                trace(e.source);
                 trace(e.getStackTrace());
             }
         }
@@ -189,14 +201,14 @@ public class StarlingRoot extends Sprite {
         trace(current.viewPort);
 
         //when we rotate the device we demo switching different sizes
-        adMobANE.banner.adUnit = "ca-app-pub-3940256099942544/6300978111";
+        /*adMobANE.banner.adUnit = "ca-app-pub-3940256099942544/6300978111";
         if (current.viewPort.width > current.viewPort.height) {
             adMobANE.banner.adSize = AdSize.LEADERBOARD;
             adMobANE.banner.load();
         } else {
             adMobANE.banner.adSize = AdSize.MEDIUM_RECTANGLE;
             adMobANE.banner.load();
-        }
+        }*/
 
 
     }

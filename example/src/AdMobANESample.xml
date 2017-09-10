@@ -15,7 +15,7 @@
 
 	<!-- A universally unique application identifier. Must be unique across all AIR applications.
 	Using a reverse DNS-style name as the id is recommended. (Eg. com.example.ExampleApplication.) Required. -->
-	<id>Main</id>
+    <id>com.tuarua.admobaneexample</id>
 
 	<!-- Used as the filename for the application. Required. -->
 	<filename>Main</filename>
@@ -290,11 +290,21 @@
 				<string>1</string>
 				<string>2</string>
 			</array>
+			<key>MinimumOSVersion</key>
+            <string>9.0</string>
+			<key>NSAppTransportSecurity</key>
+            <dict>
+                <key>NSAllowsArbitraryLoads</key>
+                <true/>
+                <key>NSAllowsArbitraryLoadsForMedia</key>
+                <true/>
+                <key>NSAllowsArbitraryLoadsInWebContent</key>
+                <true/>
+            </dict>
 		]]></InfoAdditions>
         <requestedDisplayResolution>high</requestedDisplayResolution>
     </iPhone>
 <extensions>
-
     <extensionID>com.tuarua.frekotlin</extensionID>
     <extensionID>com.google.android.gms.play-services-base</extensionID>
     <extensionID>com.google.android.gms.play-services-ads-lite</extensionID>

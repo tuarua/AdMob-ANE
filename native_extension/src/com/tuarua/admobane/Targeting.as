@@ -5,6 +5,7 @@ public class Targeting extends Object {
     public static const FEMALE:int = 2;
     public var birthday:Date;
     public var gender:int = UNSPECIFIED;
+    public var contentUrl:String;
     private var _forChildren:Boolean = false;
     public var forChildrenSet:Boolean = false;
 	/**

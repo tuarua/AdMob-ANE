@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Android - Device" type="FlashRunConfigurationType" factoryName="Flash App">
-    <option name="BCName" value="AdMobANESample-mobile" />
+    <option name="BCName" value="AdMob Sample Android" />
     <option name="IOSSimulatorSdkPath" value="" />
     <option name="adlOptions" value="" />
     <option name="airProgramParameters" value="" />
