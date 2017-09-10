@@ -71,14 +71,15 @@ public class AdMobANE extends EventDispatcher {
 
     /**
      *
-     * @param key
-     * @param volume
-     * @param muted
+     * @param key - iOS only. This is your AdMob API key
+     * @param volume - Sets the volume of Video Ads
+     * @param muted - Sets whether Video Ads are muted
+     * @param scaleFactor - Used on Android only
      * @return
      *
      */
-    public function init(key:String, volume:Number = 1.0, muted:Boolean = false):Boolean {
-        var theRet:* = ctx.call("init", key, volume, muted);
+    public function init(key:String, volume:Number = 1.0, muted:Boolean = false, scaleFactor:Number = 1.0):Boolean {
+        var theRet:* = ctx.call("init", key, volume, muted, scaleFactor);
         if (theRet is ANEError) {
             throw theRet as ANEError;
         }

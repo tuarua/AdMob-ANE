@@ -41,9 +41,9 @@ public class StarlingRoot extends Sprite {
         adMobANE.addEventListener(AdMobEvent.ON_LOAD_FAILED, onAdLoadFailed);
         adMobANE.addEventListener(AdMobEvent.ON_LOADED, onAdLoaded);
         adMobANE.addEventListener(AdMobEvent.ON_OPENED, onAdOpened);
-        adMobANE.init("ca-app-pub-3940256099942544~3347511713", 0.5, true);
+        adMobANE.init("ca-app-pub-3940256099942544~3347511713", 0.5, true, Starling.current.contentScaleFactor);
 
-        //on iOS /Users/User/sdks/AIR/AIRSDK_27_B/bin/adt -devices -platform iOS
+        //on iOS to retrieve your deviceID run: adt -devices -platform iOS
 
         var vecDevices:Vector.<String> = new <String>[];
         vecDevices.push("09872C13E51671E053FC7DC8DFC0C689"); //my Android Nexus

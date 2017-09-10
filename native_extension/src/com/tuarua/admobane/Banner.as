@@ -19,7 +19,7 @@ public class Banner {
     }
 	/**
 	 * 
-	 * 
+	 * Load the banner
 	 */
     public function load():void {
         var theRet:* = _context.call("loadBanner", _adUnit, _adSize, _targeting, _x, _y, _hAlign, _vAlign);
@@ -29,7 +29,7 @@ public class Banner {
     }
 	/**
 	 * 
-	 * 
+	 * Clear the banner
 	 */
     public function clear():void {
         var theRet:* = _context.call("clearBanner");

@@ -25,6 +25,7 @@ import com.tuarua.frekotlin.*
 class KotlinController : FreKotlinMainController {
     private lateinit var airView: ViewGroup
     private val TRACE = "TRACE"
+    private var scaleFactor: Float = 1.0F
     private var deviceList: List<String>? = null
 
     private var bannerController: BannerController? = null
@@ -35,11 +36,15 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun init(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 2 } ?: return ArgCountException().getError(Thread.currentThread().stackTrace)
+        argv.takeIf { argv.size > 3 } ?: return ArgCountException().getError(Thread.currentThread().stackTrace)
         try {
             val key = String(argv[0])
             val volume = Float(argv[1])
             val muted = Boolean(argv[2])
+            val _scaleFactor = Float(argv[3])
+            if (_scaleFactor != null) {
+                scaleFactor = _scaleFactor
+            }
             airView = context?.activity?.findViewById(android.R.id.content) as ViewGroup
             airView = airView.getChildAt(0) as ViewGroup
             MobileAds.initialize(ctx.activity?.applicationContext, key)
@@ -80,7 +85,7 @@ class KotlinController : FreKotlinMainController {
             val vAlign = String(argv[6])
 
             if (unitId != null && adSize != null && x != null && y != null && hAlign != null && vAlign != null) {
-                bannerController?.load(unitId, adSize, deviceList, targeting, x, y, hAlign, vAlign)
+                bannerController?.load(unitId, adSize, deviceList, targeting, x * scaleFactor, y * scaleFactor, hAlign, vAlign)
             }
         } catch (e: FreException) {
             return e.getError(Thread.currentThread().stackTrace)
