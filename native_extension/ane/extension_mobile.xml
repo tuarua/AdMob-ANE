@@ -3,7 +3,7 @@
     <id>com.tuarua.AdMobANE</id>
 	<name>AdMob ANE</name>
 	<copyright>This work is licensed under Apache License, Copyright (c) 2017 Tua Rua Ltd.</copyright>
-	<versionNumber>0.0.2</versionNumber>
+	<versionNumber>0.0.3</versionNumber>
     <platforms>
 		<platform name="Android-ARM"> 
            <applicationDeployment>
@@ -19,12 +19,22 @@
 				<finalizer>com.tuarua.AdMobANE</finalizer>
 			</applicationDeployment>
         </platform>
-         <platform name="iPhone-ARM">
-        <applicationDeployment>
-            <nativeLibrary>libAdMobANE.a</nativeLibrary>
-            <initializer>TRAMAExtInizer</initializer>
-            <finalizer>TRAMAExtFinizer</finalizer>
-        </applicationDeployment>
-    </platform>
+        <platform name="iPhone-ARM">
+            <applicationDeployment>
+                <nativeLibrary>libAdMobANE.a</nativeLibrary>
+                <initializer>TRAMAExtInizer</initializer>
+                <finalizer>TRAMAExtFinizer</finalizer>
+            </applicationDeployment>
+        </platform>
+        <platform name="iPhone-x86">
+            <applicationDeployment>
+                <nativeLibrary>libAdMobANE.a</nativeLibrary>
+                <initializer>TRAMAExtInizer</initializer>
+                <finalizer>TRAMAExtFinizer</finalizer>
+            </applicationDeployment>
+        </platform>
+        <platform name="default">
+            <applicationDeployment/>
+        </platform>
     </platforms>
 </extension>
