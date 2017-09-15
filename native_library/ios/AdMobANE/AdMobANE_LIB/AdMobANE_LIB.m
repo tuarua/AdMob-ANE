@@ -27,7 +27,7 @@
 FRE_OBJC_BRIDGE_FUNCS
 @end
 
-
+@implementation AdMobANE_LIB
 SWIFT_DECL(TRAMA) // use unique prefix throughout to prevent clashes with other ANEs
 CONTEXT_INIT(TRAMA) {
     SWIFT_INITS(TRAMA)
@@ -62,3 +62,4 @@ CONTEXT_FIN(TRAMA) {
 }
 EXTENSION_INIT(TRAMA)
 EXTENSION_FIN(TRAMA)
+@end

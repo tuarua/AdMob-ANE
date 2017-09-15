@@ -88,7 +88,7 @@ public class SwiftController: NSObject, FreSwiftMainController {
               type: FreError.Code.invalidArgument).getError(#file, #line, #column)
         }
 
-        let targeting = Targeting.init(freObjectSwift: FreObjectSwift.init(freObject: inFRE2))
+        let targeting = Targeting.init(freObject: inFRE2)
         if let rootViewController = UIApplication.shared.keyWindow?.rootViewController,
            let avc = bannerController {
             avc.load(airView: rootViewController.view, unitId: unitId, size: adSize, deviceList: deviceArray,
@@ -118,7 +118,7 @@ public class SwiftController: NSObject, FreSwiftMainController {
               type: FreError.Code.invalidArgument).getError(#file, #line, #column)
         }
 
-        let targeting = Targeting.init(freObjectSwift: FreObjectSwift.init(freObject: inFRE1))
+        let targeting = Targeting.init(freObject: inFRE1)
 
         if let rootViewController = UIApplication.shared.keyWindow?.rootViewController,
            let ivc = interstitialController {
@@ -142,7 +142,7 @@ public class SwiftController: NSObject, FreSwiftMainController {
             return nil
         }
         do {
-            let arr: FreArraySwift = try FreArraySwift.init(intArray: bc.getBannerSizes())
+            let arr = try FREArray.init(intArray: bc.getBannerSizes())
             return arr.rawValue
         } catch {
         }
@@ -157,7 +157,7 @@ public class SwiftController: NSObject, FreSwiftMainController {
               message: "setTestDevices - incorrect arguments",
               type: FreError.Code.invalidArgument).getError(#file, #line, #column)
         }
-        let deviceArrayAny: Array<Any?> = FreArraySwift.init(freObject: inFRE0).value
+        let deviceArrayAny: Array<Any?> = FREArray.init(inFRE0).value
         for device in deviceArrayAny {
             deviceArray.append(device as! String)
         }
@@ -175,6 +175,9 @@ public class SwiftController: NSObject, FreSwiftMainController {
 
     @objc public func setFREContext(ctx: FREContext) {
         self.context = FreContextSwift.init(freContext: ctx)
+    }
+  
+    @objc public func onLoad() {
     }
 
 
