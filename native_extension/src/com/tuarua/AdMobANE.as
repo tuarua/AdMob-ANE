@@ -52,7 +52,7 @@ public class AdMobANE extends EventDispatcher {
     private function gotEvent(event:StatusEvent):void {
         switch (event.level) {
             case TRACE:
-                trace(event.code);
+                trace("[" + NAME + "]", event.code);
                 break;
             case AdMobEvent.ON_REWARDED:
             case AdMobEvent.ON_CLICKED:

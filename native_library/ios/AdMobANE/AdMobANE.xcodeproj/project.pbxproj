@@ -21,6 +21,7 @@
 		CE46CA6D1F5B6C050067794D /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE46CA6C1F5B6C050067794D /* GoogleMobileAds.framework */; };
 		CE46CA701F5B73650067794D /* Targeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE46CA6F1F5B73650067794D /* Targeting.swift */; };
 		CE827F7C1F5C041F0041D809 /* BannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE827F7B1F5C041F0041D809 /* BannerController.swift */; };
+		CE95E4931F6D745500BC0F46 /* RewardVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95E4921F6D745500BC0F46 /* RewardVideoController.swift */; };
 		CEB5ED121F5C4F7800AE8B16 /* SwiftyJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = CEB5ED101F5C4F7800AE8B16 /* SwiftyJSON.h */; };
 		CEB5ED131F5C4F7800AE8B16 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB5ED111F5C4F7800AE8B16 /* SwiftyJSON.swift */; };
 		CEB5ED151F5C56F900AE8B16 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB5ED141F5C56F900AE8B16 /* Constants.swift */; };
@@ -57,13 +58,14 @@
 		CE39808A1E58BAA90062485B /* AdMobANE_FW.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdMobANE_FW.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE39808C1E58BAA90062485B /* AdMobANE_FW.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdMobANE_FW.h; sourceTree = "<group>"; };
 		CE39808D1E58BAA90062485B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE3980971E58BB070062485B /* SwiftController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SwiftController.swift; sourceTree = "<group>"; tabWidth = 2; };
+		CE3980971E58BB070062485B /* SwiftController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = SwiftController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		CE3980991E58BC3B0062485B /* AdMobANE_FW-Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AdMobANE_FW-Swift.h"; sourceTree = "<group>"; };
 		CE39809F1E58BEE10062485B /* libAdMobANE_LIB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAdMobANE_LIB.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE43C32E1F5CA4E1002170F2 /* InterstitialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterstitialController.swift; sourceTree = "<group>"; };
 		CE46CA6C1F5B6C050067794D /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = Frameworks/GoogleMobileAds.framework; sourceTree = "<group>"; };
 		CE46CA6F1F5B73650067794D /* Targeting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Targeting.swift; sourceTree = "<group>"; };
 		CE827F7B1F5C041F0041D809 /* BannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerController.swift; sourceTree = "<group>"; };
+		CE95E4921F6D745500BC0F46 /* RewardVideoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardVideoController.swift; sourceTree = "<group>"; };
 		CEB5ED101F5C4F7800AE8B16 /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
 		CEB5ED111F5C4F7800AE8B16 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		CEB5ED141F5C56F900AE8B16 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				CEB5ED141F5C56F900AE8B16 /* Constants.swift */,
 				CEB5ED161F5C578500AE8B16 /* Position.swift */,
 				CE43C32E1F5CA4E1002170F2 /* InterstitialController.swift */,
+				CE95E4921F6D745500BC0F46 /* RewardVideoController.swift */,
 			);
 			path = AdMobANE_FW;
 			sourceTree = "<group>";
@@ -290,14 +293,14 @@
 /* Begin PBXShellScriptBuildPhase section */
 		CE3980B21E58C0D80062485B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = ../../../native_extension/ane/build_ios.sh;
 		};
@@ -314,6 +317,7 @@
 				CEB5ED171F5C578500AE8B16 /* Position.swift in Sources */,
 				CE827F7C1F5C041F0041D809 /* BannerController.swift in Sources */,
 				CE46CA701F5B73650067794D /* Targeting.swift in Sources */,
+				CE95E4931F6D745500BC0F46 /* RewardVideoController.swift in Sources */,
 				CEB5ED131F5C4F7800AE8B16 /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

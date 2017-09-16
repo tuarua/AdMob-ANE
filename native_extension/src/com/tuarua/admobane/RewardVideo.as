@@ -5,7 +5,7 @@ import flash.external.ExtensionContext;
 
 public class RewardVideo {
     private var _context:ExtensionContext;
-    private var _adUnit:String = "ca-app-pub-3940256099942544/5224354917";
+    private var _adUnit:String = "ca-app-pub-3940256099942544/1712485313";
     private var _targeting:Targeting;
     private var _showOnLoad:Boolean = true;
 

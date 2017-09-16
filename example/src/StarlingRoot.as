@@ -18,6 +18,8 @@ import starling.events.TouchEvent;
 import starling.events.TouchPhase;
 import starling.utils.AssetManager;
 
+import utils.os;
+
 import views.SimpleButton;
 
 public class StarlingRoot extends Sprite {
@@ -46,8 +48,9 @@ public class StarlingRoot extends Sprite {
         adMobANE.addEventListener(AdMobEvent.ON_REWARDED, onRewarded);
         adMobANE.init("ca-app-pub-3940256099942544~3347511713", 0.5, true, Starling.current.contentScaleFactor);
 
-        //on iOS to retrieve your deviceID run: adt -devices -platform iOS
+        //// Sample AdMob app ID: ca-app-pub-3940256099942544~1458002511
 
+        //on iOS to retrieve your deviceID run: adt -devices -platform iOS
         var vecDevices:Vector.<String> = new <String>[];
         vecDevices.push("09872C13E51671E053FC7DC8DFC0C689"); //my Android Nexus
         vecDevices.push("459d71e2266bab6c3b7702ab5fe011e881b90d3c"); //my iPad Pro
@@ -109,13 +112,13 @@ public class StarlingRoot extends Sprite {
         var touch:Touch = event.getTouch(btn4);
         if (touch != null && touch.phase == TouchPhase.ENDED) {
             try {
-                /*var targeting:Targeting = new Targeting();
+                var targeting:Targeting = new Targeting();
                 targeting.birthday = new Date(1999, 5, 10);
                 targeting.gender = Targeting.FEMALE;
                 targeting.forChildren = false;
-*/
-                /*adMobANE.interstitial.adUnit = "ca-app-pub-3940256099942544/1033173712";
-                adMobANE.interstitial.targeting = targeting;*/
+
+                adMobANE.rewardVideo.adUnit = os.isIos ? "ca-app-pub-3940256099942544/1712485313": "ca-app-pub-3940256099942544/5224354917";
+                adMobANE.rewardVideo.targeting = targeting;
                 adMobANE.rewardVideo.load();
             } catch (e:ANEError) {
                 trace(e.getStackTrace());

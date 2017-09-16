@@ -91,8 +91,6 @@ class RewardedVideoController(override var context: FREContext?) : FreKotlinCont
     override fun onRewarded(rewardItem: RewardItem?) {
         //trace("onRewarded")
         if (rewardItem != null) {
-/*            trace("reward amount", rewardItem.amount)
-            trace("reward type", rewardItem.type)*/
             sendEvent(Constants.ON_REWARDED,
                     gson.toJson(AdMobEventWithReward(Position.REWARD, amount = rewardItem.amount, type = rewardItem.type)))
         } else {

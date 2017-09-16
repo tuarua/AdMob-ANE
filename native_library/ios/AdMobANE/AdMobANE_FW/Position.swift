@@ -19,4 +19,5 @@ import Foundation
 public enum Position: Int {
     case banner = 0
     case interstitial
+    case reward
 }

@@ -46,6 +46,8 @@ CONTEXT_INIT(TRAMA) {
         ,MAP_FUNCTION(TRAMA, showInterstitial)
         ,MAP_FUNCTION(TRAMA, getBannerSizes)
         ,MAP_FUNCTION(TRAMA, setTestDevices)
+        ,MAP_FUNCTION(TRAMA, loadRewardVideo)
+        ,MAP_FUNCTION(TRAMA, showRewardVideo)
     };
     
    

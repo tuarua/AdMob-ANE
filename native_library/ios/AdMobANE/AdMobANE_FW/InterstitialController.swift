@@ -18,10 +18,10 @@ import UIKit
 import GoogleMobileAds
 import FreSwift
 class InterstitialController: NSObject, FreSwiftController, GADInterstitialDelegate {
-    var TAG: String? = "AdMobANE"
+    var TAG: String? = "InterstitialController"
 
     internal var context: FreContextSwift!
-    private var adView: GADInterstitial!
+    private var adView: GADInterstitial?
     private var _showOnLoad:Bool = true
     private var _airVC:UIViewController?
     convenience init(context: FreContextSwift) {
@@ -33,7 +33,7 @@ class InterstitialController: NSObject, FreSwiftController, GADInterstitialDeleg
         _airVC = airVC
         _showOnLoad = showOnLoad
         adView = GADInterstitial(adUnitID: unitId)
-        adView.delegate = self
+        adView?.delegate = self
         let request = GADRequest()
         if deviceList != nil {
             request.testDevices = deviceList!
@@ -52,7 +52,7 @@ class InterstitialController: NSObject, FreSwiftController, GADInterstitialDeleg
             }
             
         }
-        adView.load(request)
+        adView?.load(request)
     }
     
     func show() {
@@ -79,7 +79,6 @@ class InterstitialController: NSObject, FreSwiftController, GADInterstitialDeleg
     }
     
     func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
-        //trace("interstitial:didFailToReceiveAdWithError: \(error.localizedDescription)")
         var props: Dictionary<String, Any> = Dictionary()
         props["position"] = Position.interstitial.rawValue
         props["errorCode"] = error.code

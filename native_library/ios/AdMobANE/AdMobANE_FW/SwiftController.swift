@@ -24,6 +24,7 @@ public class SwiftController: NSObject, FreSwiftMainController {
     public var functionsToSet: FREFunctionMap = [:]
     private var bannerController: BannerController? = nil
     private var interstitialController: InterstitialController? = nil
+    private var rewardVideoController: RewardVideoController? = nil
     private var deviceArray: Array<String> = Array()
 
     // Must have this function. It exposes the methods to our entry ObjC.
@@ -37,6 +38,8 @@ public class SwiftController: NSObject, FreSwiftMainController {
         functionsToSet["\(prefix)showInterstitial"] = showInterstitial
         functionsToSet["\(prefix)getBannerSizes"] = getBannerSizes
         functionsToSet["\(prefix)setTestDevices"] = setTestDevices
+        functionsToSet["\(prefix)loadRewardVideo"] = loadRewardVideo
+        functionsToSet["\(prefix)showRewardVideo"] = showRewardVideo
 
         var arr: Array<String> = []
         for key in functionsToSet.keys {
@@ -63,13 +66,13 @@ public class SwiftController: NSObject, FreSwiftMainController {
               type: FreError.Code.invalidArgument).getError(#file, #line, #column)
         }
 
-        // Sample AdMob app ID: ca-app-pub-3940256099942544~1458002511
         GADMobileAds.configure(withApplicationID: key)
         GADMobileAds.sharedInstance().applicationVolume = volume
         GADMobileAds.sharedInstance().applicationMuted = muted
 
         bannerController = BannerController.init(context: context)
         interstitialController = InterstitialController.init(context: context)
+        rewardVideoController = RewardVideoController.init(context: context)
         return nil
     }
 
@@ -122,8 +125,8 @@ public class SwiftController: NSObject, FreSwiftMainController {
 
         if let rootViewController = UIApplication.shared.keyWindow?.rootViewController,
            let ivc = interstitialController {
-            //unitId, deviceList, targeting, showOnLoad
-            ivc.load(airVC: rootViewController, unitId: unitId, deviceList: deviceArray, targeting: targeting, showOnLoad: showOnLoad)
+            ivc.load(airVC: rootViewController, unitId: unitId, deviceList: deviceArray,
+                     targeting: targeting, showOnLoad: showOnLoad)
         }
 
         return nil
@@ -133,10 +136,37 @@ public class SwiftController: NSObject, FreSwiftMainController {
         if let ivc = interstitialController {
             ivc.show()
         }
-
+        return nil
+    }
+  
+    func loadRewardVideo(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        guard argc > 2,
+            let inFRE1 = argv[1],
+            let unitId = String(argv[0]),
+            let showOnLoad = Bool(argv[2])
+            else {
+                return FreError(stackTrace: "",
+                                message: "loadRewardVideo - incorrect arguments",
+                                type: FreError.Code.invalidArgument).getError(#file, #line, #column)
+        }
+        
+        let targeting = Targeting.init(freObject: inFRE1)
+        
+        if let rootViewController = UIApplication.shared.keyWindow?.rootViewController,
+            let rvc = rewardVideoController {
+            rvc.load(airVC: rootViewController, unitId: unitId, deviceList: deviceArray,
+                     targeting: targeting, showOnLoad: showOnLoad)
+        }
         return nil
     }
 
+    func showRewardVideo(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        if let rvc = rewardVideoController {
+            rvc.show()
+        }
+        return nil
+    }
+  
     func getBannerSizes(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         guard let bc = bannerController else {
             return nil
