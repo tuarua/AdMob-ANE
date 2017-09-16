@@ -213,22 +213,7 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
         let json = JSON(props)
         sendEvent(name: Constants.ON_LOAD_FAILED, value: json.description)
     }
-
-    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
-        trace("adViewWillPresentScreen")
-        //TODO
-    }
-
-    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
-        trace("adViewDidDismissScreen")
-        //TODO
-    }
-
-    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
-        trace("adViewWillDismissScreen")
-        //TODO
-    }
-
+    
     func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
         var props: Dictionary<String, Any> = Dictionary()
         props["position"] = Position.banner.rawValue
