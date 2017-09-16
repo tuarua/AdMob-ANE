@@ -13,11 +13,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+
 package com.tuarua.admobane
 
-import android.view.Gravity
-import android.widget.FrameLayout
-import android.widget.FrameLayout.*
 import com.adobe.fre.FREContext
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
@@ -31,16 +29,9 @@ class InterstitialController(override var context: FREContext?) : FreKotlinContr
 
     private var _adView: InterstitialAd? = null
     private var _showOnLoad:Boolean = true
-    private var container: FrameLayout
     private val gson = Gson()
 
     init {
-        container = FrameLayout(this.context?.activity?.applicationContext)
-        container.isClickable = false
-
-        val lp = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-        lp.gravity = Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM
-        container.layoutParams = lp
     }
 
 

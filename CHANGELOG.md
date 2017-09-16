@@ -1,3 +1,8 @@
+### 0.0.4
+- Added Reward Videos
+- Updated to FreSwift 1.2.0
+- Updated to FreKotlin 0.0.10
+
 ### 0.0.3
 - iOS version
 

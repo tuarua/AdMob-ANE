@@ -16,5 +16,6 @@
 package com.tuarua.admobane
 enum class Position {
     BANNER,
-    INTERSTITIAL
+    INTERSTITIAL,
+    REWARD
 }

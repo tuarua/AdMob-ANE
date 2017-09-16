@@ -15,9 +15,9 @@
  */
 package com.tuarua.admobane
 
+import com.adobe.fre.FREObject
 import com.google.android.gms.ads.AdRequest
-import com.tuarua.frekotlin.FreObjectKotlin
-import com.tuarua.frekotlin.FreObjectTypeKotlin
+import com.tuarua.frekotlin.*
 import java.util.*
 
 class Targeting() {
@@ -25,16 +25,19 @@ class Targeting() {
     var gender: Int = AdRequest.GENDER_UNKNOWN
     var forChildren: Boolean? = null
 
-    constructor(freObjectKotlin: FreObjectKotlin?) : this() {
-        val o = freObjectKotlin ?: return
-        gender = o.getProperty("gender")?.value as Int
-        val forChildrenSet = o.getProperty("forChildrenSet")?.value as Boolean
-        if (forChildrenSet) {
-            forChildren = o.getProperty("forChildren")?.value as Boolean
+    constructor(freObject: FREObject?) : this() {
+        val o = freObject ?: return
+        val _gender = Int(o.getProp("gender"))
+        if(_gender != null) gender = _gender
+
+        val _forChildrenSet = Boolean(o.getProp("forChildrenSet"))
+        val _forChildren = Boolean(o.getProp("forChildren"))
+        if (_forChildrenSet != null && _forChildrenSet && _forChildren != null) {
+            forChildren = _forChildren
         }
         val birthdayFre = o.getProperty("birthday")
-        if (FreObjectTypeKotlin.DATE == birthdayFre?.getType()){
-            birthday = birthdayFre.value as Date
+        if (FreObjectTypeKotlin.DATE == birthdayFre?.type){
+            birthday = Date(birthdayFre)
         }
     }
 
