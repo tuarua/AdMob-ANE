@@ -67,32 +67,32 @@ class InterstitialController(override var context: FREContext?) : FreKotlinContr
 
     override fun onAdImpression() {
         super.onAdImpression()
-        sendEvent(Constants.ON_IMPRESSION, gson.toJson(AdMobEvent(INTERSTITIAL)))
+        sendEvent(Constants.ON_IMPRESSION, gson.toJson(AdMobEvent(INTERSTITIAL.ordinal)))
     }
 
     override fun onAdLeftApplication() {
         super.onAdLeftApplication()
-        sendEvent(Constants.ON_LEFT_APPLICATION, gson.toJson(AdMobEvent(INTERSTITIAL)))
+        sendEvent(Constants.ON_LEFT_APPLICATION, gson.toJson(AdMobEvent(INTERSTITIAL.ordinal)))
     }
 
     override fun onAdClicked() {
         super.onAdClicked()
-        sendEvent(Constants.ON_CLICKED, gson.toJson(AdMobEvent(INTERSTITIAL)))
+        sendEvent(Constants.ON_CLICKED, gson.toJson(AdMobEvent(INTERSTITIAL.ordinal)))
     }
 
     override fun onAdFailedToLoad(p0: Int) {
         super.onAdFailedToLoad(p0)
-        sendEvent(Constants.ON_LOAD_FAILED, gson.toJson(AdMobEvent(INTERSTITIAL, p0)))
+        sendEvent(Constants.ON_LOAD_FAILED, gson.toJson(AdMobEvent(INTERSTITIAL.ordinal, p0)))
     }
 
     override fun onAdClosed() {
         super.onAdClosed()
-        sendEvent(Constants.ON_CLOSED, gson.toJson(AdMobEvent(INTERSTITIAL)))
+        sendEvent(Constants.ON_CLOSED, gson.toJson(AdMobEvent(INTERSTITIAL.ordinal)))
     }
 
     override fun onAdOpened() {
         super.onAdOpened()
-        sendEvent(Constants.ON_OPENED, gson.toJson(AdMobEvent(INTERSTITIAL)))
+        sendEvent(Constants.ON_OPENED, gson.toJson(AdMobEvent(INTERSTITIAL.ordinal)))
     }
 
     override fun onAdLoaded() {
@@ -103,7 +103,7 @@ class InterstitialController(override var context: FREContext?) : FreKotlinContr
             av.show()
         }
 
-        sendEvent(Constants.ON_LOADED, gson.toJson(AdMobEvent(INTERSTITIAL)))
+        sendEvent(Constants.ON_LOADED, gson.toJson(AdMobEvent(INTERSTITIAL.ordinal)))
     }
 
 

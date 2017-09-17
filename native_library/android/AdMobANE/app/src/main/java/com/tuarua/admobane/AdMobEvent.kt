@@ -15,6 +15,6 @@
  */
 package com.tuarua.admobane
 
-data class AdMobEvent(val position: Position, val errorCode: Int = 0)
-data class AdMobEventWithReward(val position: Position, val errorCode: Int = 0,
+data class AdMobEvent(val position: Int, val errorCode: Int = 0)
+data class AdMobEventWithReward(val position: Int, val errorCode: Int = 0,
                                 val amount: Int = 0, val type: String? = null)

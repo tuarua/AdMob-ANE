@@ -54,16 +54,11 @@ public class SwiftController: NSObject, FreSwiftMainController {
 
     func initController(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         guard argc > 2,
-              let inFRE0 = argv[0],
-              let inFRE1 = argv[1],
-              let inFRE2 = argv[2],
-              let key = String(inFRE0),
-              let volume = Float(inFRE1),
-              let muted = Bool(inFRE2)
+              let key = String(argv[0]),
+              let volume = Float(argv[1]),
+              let muted = Bool(argv[2])
           else {
-            return FreError(stackTrace: "",
-              message: "initAdMob - incorrect arguments",
-              type: FreError.Code.invalidArgument).getError(#file, #line, #column)
+            return ArgCountError(message: "initAdMob").getError(#file, #line, #column)
         }
 
         GADMobileAds.configure(withApplicationID: key)
@@ -86,9 +81,7 @@ public class SwiftController: NSObject, FreSwiftMainController {
               let hAlign = String(argv[5]),
               let vAlign = String(argv[6])
           else {
-            return FreError(stackTrace: "",
-              message: "loadBanner - incorrect arguments",
-              type: FreError.Code.invalidArgument).getError(#file, #line, #column)
+            return ArgCountError(message: "loadBanner").getError(#file, #line, #column)
         }
 
         let targeting = Targeting.init(freObject: inFRE2)
@@ -116,9 +109,7 @@ public class SwiftController: NSObject, FreSwiftMainController {
               let unitId = String(argv[0]),
               let showOnLoad = Bool(argv[2])
           else {
-            return FreError(stackTrace: "",
-              message: "loadInterstitial - incorrect arguments",
-              type: FreError.Code.invalidArgument).getError(#file, #line, #column)
+            return ArgCountError(message: "loadInterstitial").getError(#file, #line, #column)
         }
 
         let targeting = Targeting.init(freObject: inFRE1)
@@ -145,9 +136,7 @@ public class SwiftController: NSObject, FreSwiftMainController {
             let unitId = String(argv[0]),
             let showOnLoad = Bool(argv[2])
             else {
-                return FreError(stackTrace: "",
-                                message: "loadRewardVideo - incorrect arguments",
-                                type: FreError.Code.invalidArgument).getError(#file, #line, #column)
+                return ArgCountError(message: "loadRewardVideo").getError(#file, #line, #column)
         }
         
         let targeting = Targeting.init(freObject: inFRE1)
@@ -183,9 +172,7 @@ public class SwiftController: NSObject, FreSwiftMainController {
         guard argc > 0,
               let inFRE0 = argv[0]
           else {
-            return FreError(stackTrace: "",
-              message: "setTestDevices - incorrect arguments",
-              type: FreError.Code.invalidArgument).getError(#file, #line, #column)
+            return ArgCountError(message: "setTestDevices").getError(#file, #line, #column)
         }
         let deviceArrayAny: Array<Any?> = FREArray.init(inFRE0).value
         for device in deviceArrayAny {
@@ -195,7 +182,7 @@ public class SwiftController: NSObject, FreSwiftMainController {
     }
 
 
-    // Must have this function. It exposes the methods to our entry ObjC.
+    // Must have these 3 functions. It exposes the methods to our entry ObjC.
     @objc public func callSwiftFunction(name: String, ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         if let fm = functionsToSet[name] {
             return fm(ctx, argc, argv)
