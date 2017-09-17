@@ -16,6 +16,7 @@
 package com.tuarua.admobane
 
 import android.view.ViewGroup
+import com.adobe.fre.FREArray
 import com.adobe.fre.FREContext
 import com.adobe.fre.FREObject
 import com.google.android.gms.ads.MobileAds
@@ -30,9 +31,10 @@ class KotlinController : FreKotlinMainController {
 
     private var bannerController: BannerController? = null
     private var interstitialController: InterstitialController? = null
+    private var rewardController: RewardedVideoController? = null
 
     fun isSupported(ctx: FREContext, argv: FREArgv): FREObject? {
-        return FreObjectKotlin(true).rawValue.guard { return null }
+        return true.toFREObject()
     }
 
     fun init(ctx: FREContext, argv: FREArgv): FREObject? {
@@ -52,19 +54,20 @@ class KotlinController : FreKotlinMainController {
             muted?.let { MobileAds.setAppMuted(it) }
             bannerController = BannerController(_context, airView)
             interstitialController = InterstitialController(ctx)
+            rewardController = RewardedVideoController(ctx)
         } catch (e: FreException) {
             return e.getError(Thread.currentThread().stackTrace)
         } catch (e: Exception) {
             return FreException(e).getError(Thread.currentThread().stackTrace)
         }
-        return FreObjectKotlin(true).rawValue.guard { return null }
+        return true.toFREObject()
     }
 
     fun setTestDevices(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 0 } ?: return ArgCountException().getError(Thread.currentThread().stackTrace)
         try {
-            val deviceArray = FreArrayKotlin(argv[0]).value
-            deviceList = deviceArray.map { it.toString() }
+            val deviceArray: FREArray? = FREArray(argv[0])
+            deviceList = List(deviceArray)
         } catch (e: FreException) {
             return e.getError(Thread.currentThread().stackTrace)
         } catch (e: Exception) {
@@ -78,7 +81,7 @@ class KotlinController : FreKotlinMainController {
         try {
             val unitId = String(argv[0])
             val adSize = Int(argv[1])
-            val targeting: Targeting? = Targeting(FreObjectKotlin(argv[2]))
+            val targeting: Targeting? = Targeting(argv[2])
             val x = Float(argv[3])
             val y = Float(argv[4])
             val hAlign = String(argv[5])
@@ -102,7 +105,7 @@ class KotlinController : FreKotlinMainController {
 
     fun getBannerSizes(ctx: FREContext, argv: FREArgv): FREObject? {
         return try {
-            FreArrayKotlin(bannerController?.getBannerSizes() ?: intArrayOf(-1)).rawValue
+            FREArray(bannerController?.getBannerSizes() ?: intArrayOf(-1))
         } catch (e: FreException) {
             e.getError(Thread.currentThread().stackTrace)
         } catch (e: Exception) {
@@ -114,7 +117,7 @@ class KotlinController : FreKotlinMainController {
         argv.takeIf { argv.size > 2 } ?: return ArgCountException().getError(Thread.currentThread().stackTrace)
         try {
             val unitId = String(argv[0])
-            val targeting: Targeting? = Targeting(FreObjectKotlin(argv[1]))
+            val targeting: Targeting? = Targeting(argv[1])
             val showOnLoad = Boolean(argv[2])
             if (unitId != null && showOnLoad != null) {
                 interstitialController?.load(unitId, deviceList, targeting, showOnLoad)
@@ -132,6 +135,29 @@ class KotlinController : FreKotlinMainController {
         return null
     }
 
+    fun loadRewardVideo(ctx: FREContext, argv: FREArgv): FREObject? {
+        argv.takeIf { argv.size > 2 } ?: return ArgCountException().getError(Thread.currentThread().stackTrace)
+        try {
+            val unitId = String(argv[0])
+            val targeting: Targeting? = Targeting(argv[1])
+            val showOnLoad = Boolean(argv[2])
+            if (unitId != null && showOnLoad != null) {
+                rewardController?.load(unitId, deviceList, targeting, showOnLoad)
+            }
+        } catch (e: FreException) {
+            return e.getError(Thread.currentThread().stackTrace)
+        } catch (e: Exception) {
+            return FreException(e).getError(Thread.currentThread().stackTrace)
+        }
+
+        return null
+    }
+
+    fun showRewardVideo(ctx: FREContext, argv: FREArgv): FREObject? {
+        rewardController?.show()
+        return null
+    }
+
     override fun onStarted() {
         super.onStarted()
     }
@@ -143,11 +169,13 @@ class KotlinController : FreKotlinMainController {
     override fun onResumed() {
         super.onResumed()
         bannerController?.adView?.resume()
+        rewardController?.adView?.resume(this.context?.activity)
     }
 
     override fun onPaused() {
         super.onPaused()
         bannerController?.adView?.pause()
+        rewardController?.adView?.pause(this.context?.activity)
     }
 
     override fun onStopped() {
@@ -157,11 +185,13 @@ class KotlinController : FreKotlinMainController {
     override fun onDestroyed() {
         super.onDestroyed()
         bannerController?.adView?.destroy()
+        rewardController?.adView?.destroy(this.context?.activity)
     }
 
     override fun dispose() {
         super.dispose()
         bannerController?.adView?.destroy()
+        rewardController?.adView?.destroy(this.context?.activity)
     }
 
     override val TAG: String

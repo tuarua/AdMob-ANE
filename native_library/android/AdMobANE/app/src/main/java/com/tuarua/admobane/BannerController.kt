@@ -129,32 +129,32 @@ class BannerController(override var context: FREContext?, airView: ViewGroup) : 
 
     override fun onAdImpression() {
         super.onAdImpression()
-        sendEvent(Constants.ON_IMPRESSION, gson.toJson(AdMobEvent(BANNER)))
+        sendEvent(Constants.ON_IMPRESSION, gson.toJson(AdMobEvent(BANNER.ordinal)))
     }
 
     override fun onAdLeftApplication() {
         super.onAdLeftApplication()
-        sendEvent(Constants.ON_LEFT_APPLICATION, gson.toJson(AdMobEvent(BANNER)))
+        sendEvent(Constants.ON_LEFT_APPLICATION, gson.toJson(AdMobEvent(BANNER.ordinal)))
     }
 
     override fun onAdClicked() {
         super.onAdClicked()
-        sendEvent(Constants.ON_CLICKED, gson.toJson(AdMobEvent(BANNER)))
+        sendEvent(Constants.ON_CLICKED, gson.toJson(AdMobEvent(BANNER.ordinal)))
     }
 
     override fun onAdFailedToLoad(p0: Int) {
         super.onAdFailedToLoad(p0)
-        sendEvent(Constants.ON_LOAD_FAILED, gson.toJson(AdMobEvent(BANNER, p0)))
+        sendEvent(Constants.ON_LOAD_FAILED, gson.toJson(AdMobEvent(BANNER.ordinal, p0)))
     }
 
     override fun onAdClosed() {
         super.onAdClosed()
-        sendEvent(Constants.ON_CLOSED, gson.toJson(AdMobEvent(BANNER)))
+        sendEvent(Constants.ON_CLOSED, gson.toJson(AdMobEvent(BANNER.ordinal)))
     }
 
     override fun onAdOpened() {
         super.onAdOpened()
-        sendEvent(Constants.ON_OPENED, gson.toJson(AdMobEvent(BANNER)))
+        sendEvent(Constants.ON_OPENED, gson.toJson(AdMobEvent(BANNER.ordinal)))
     }
 
     override fun onAdLoaded() {
@@ -167,7 +167,7 @@ class BannerController(override var context: FREContext?, airView: ViewGroup) : 
             airView?.addView(container)
         }
 
-        sendEvent(Constants.ON_LOADED, gson.toJson(AdMobEvent(BANNER)))
+        sendEvent(Constants.ON_LOADED, gson.toJson(AdMobEvent(BANNER.ordinal)))
 
     }
 

@@ -2,6 +2,7 @@ package com.tuarua {
 import com.tuarua.admobane.AdMobEvent;
 import com.tuarua.admobane.Banner;
 import com.tuarua.admobane.Interstitial;
+import com.tuarua.admobane.RewardVideo;
 import com.tuarua.fre.ANEError;
 
 import flash.events.EventDispatcher;
@@ -18,6 +19,7 @@ public class AdMobANE extends EventDispatcher {
     private var _testDevices:Vector.<String> = new <String>[];
     private var _banner:Banner;
     private var _interstitial:Interstitial;
+    private var _rewardVideo:RewardVideo;
 
     public function AdMobANE() {
         initiate();
@@ -34,6 +36,7 @@ public class AdMobANE extends EventDispatcher {
             _isSupported = ctx.call("isSupported");
             _banner = new Banner(ctx);
             _interstitial = new Interstitial(ctx);
+            _rewardVideo = new RewardVideo(ctx);
         } catch (e:Error) {
             trace(e.name);
             trace(e.message);
@@ -49,8 +52,9 @@ public class AdMobANE extends EventDispatcher {
     private function gotEvent(event:StatusEvent):void {
         switch (event.level) {
             case TRACE:
-                trace(event.code);
+                trace("[" + NAME + "]", event.code);
                 break;
+            case AdMobEvent.ON_REWARDED:
             case AdMobEvent.ON_CLICKED:
             case AdMobEvent.ON_LOADED:
             case AdMobEvent.ON_LOAD_FAILED:
@@ -58,6 +62,7 @@ public class AdMobANE extends EventDispatcher {
             case AdMobEvent.ON_CLOSED:
             case AdMobEvent.ON_IMPRESSION:
             case AdMobEvent.ON_LEFT_APPLICATION:
+            case AdMobEvent.ON_VIDEO_STARTED:
                 try {
                     //trace("event.code", event.code);
                     argsAsJSON = JSON.parse(event.code);
@@ -118,6 +123,15 @@ public class AdMobANE extends EventDispatcher {
 
     /**
      *
+     * @return
+     *
+     */
+    public function get rewardVideo():RewardVideo {
+        return _rewardVideo;
+    }
+
+    /**
+     *
      * @param value
      *
      */
@@ -152,6 +166,7 @@ public class AdMobANE extends EventDispatcher {
         ctx.dispose();
         ctx = null;
     }
+
 
 
 }

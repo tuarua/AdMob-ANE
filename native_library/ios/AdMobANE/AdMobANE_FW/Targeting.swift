@@ -24,13 +24,13 @@ public struct Targeting {
     public var forChildren: Bool? = nil
     public var contentUrl: String?
 
-    init(freObjectSwift: FreObjectSwift?) {
-        guard let o = freObjectSwift else {
+    init(freObject: FREObject?) {
+        guard let o = freObject else {
             return
         }
 
         do {
-            if let g = try o.getProperty(name: "gender")?.value as? Int {
+            if let g = try Int(o.getProp(name: "gender")) {
                 switch g {
                 case 1:
                     gender = .male
@@ -40,21 +40,20 @@ public struct Targeting {
                     gender = .unknown
                 }
             }
-            let forChildrenSet = try o.getProperty(name: "forChildrenSet")?.value as! Bool
+            let forChildrenSet = try Bool(o.getProp(name: "forChildrenSet")) == true
             if forChildrenSet {
-                forChildren = try o.getProperty(name: "forChildren")?.value as? Bool
+                forChildren = try Bool(o.getProp(name: "forChildren"))
             }
-            if let birthdayFre = try o.getProperty(name: "birthday") {
-                Swift.debugPrint("birthdayFre.getType(): \(birthdayFre.getType())")
-                if FreObjectTypeSwift.date == birthdayFre.getType() {
-                    if let d = birthdayFre.value as? Date {
+            if let birthdayFre = try o.getProp(name: "birthday") {
+                if FreObjectTypeSwift.date == birthdayFre.type {
+                    if let d = Date(birthdayFre) {
                         birthday = d
                     }
                 }
             }
             
-            if let contentUrlFre = try o.getProperty(name: "contentUrl") {
-                contentUrl = contentUrlFre.value as? String
+            if let contentUrlFre = try o.getProp(name: "contentUrl") {
+                contentUrl = String(contentUrlFre)
             }
 
         } catch let e as FreError {

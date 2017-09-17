@@ -14,7 +14,8 @@
  *  limitations under the License.
  */
 package com.tuarua.admobane
-enum class Position {
-    BANNER,
-    INTERSTITIAL
+enum class Position(i: kotlin.Int) {
+    BANNER(0),
+    INTERSTITIAL(1),
+    REWARD(2)
 }

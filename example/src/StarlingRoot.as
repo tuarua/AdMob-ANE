@@ -18,12 +18,15 @@ import starling.events.TouchEvent;
 import starling.events.TouchPhase;
 import starling.utils.AssetManager;
 
+import utils.os;
+
 import views.SimpleButton;
 
 public class StarlingRoot extends Sprite {
     private var btn:SimpleButton = new SimpleButton("Load Banner", 100);
     private var btn2:SimpleButton = new SimpleButton("Clear Banner", 100);
     private var btn3:SimpleButton = new SimpleButton("Load InterS", 100);
+    private var btn4:SimpleButton = new SimpleButton("Load Reward", 100);
     private var adMobANE:AdMobANE = new AdMobANE();
 
     public function StarlingRoot() {
@@ -41,10 +44,13 @@ public class StarlingRoot extends Sprite {
         adMobANE.addEventListener(AdMobEvent.ON_LOAD_FAILED, onAdLoadFailed);
         adMobANE.addEventListener(AdMobEvent.ON_LOADED, onAdLoaded);
         adMobANE.addEventListener(AdMobEvent.ON_OPENED, onAdOpened);
+        adMobANE.addEventListener(AdMobEvent.ON_VIDEO_STARTED, onVideoStarted);
+        adMobANE.addEventListener(AdMobEvent.ON_REWARDED, onRewarded);
         adMobANE.init("ca-app-pub-3940256099942544~3347511713", 0.5, true, Starling.current.contentScaleFactor);
 
-        //on iOS to retrieve your deviceID run: adt -devices -platform iOS
+        //// Sample AdMob app ID: ca-app-pub-3940256099942544~1458002511
 
+        //on iOS to retrieve your deviceID run: adt -devices -platform iOS
         var vecDevices:Vector.<String> = new <String>[];
         vecDevices.push("09872C13E51671E053FC7DC8DFC0C689"); //my Android Nexus
         vecDevices.push("459d71e2266bab6c3b7702ab5fe011e881b90d3c"); //my iPad Pro
@@ -66,8 +72,22 @@ public class StarlingRoot extends Sprite {
         btn3.addEventListener(TouchEvent.TOUCH, onLoadInterstitial);
         addChild(btn3);
 
+        btn4.x = 370;
+        btn4.y = 50;
+        btn4.addEventListener(TouchEvent.TOUCH, onLoadReward);
+        addChild(btn4);
+
         stage.addEventListener(Event.RESIZE, onResize);
 
+    }
+
+    private function onVideoStarted(event:AdMobEvent):void {
+        trace(event);
+    }
+
+    private function onRewarded(event:AdMobEvent):void {
+        trace(event);
+        trace("Reward=", event.params.amount, event.params.type);
     }
 
     private function onLoadInterstitial(event:TouchEvent):void {
@@ -82,6 +102,24 @@ public class StarlingRoot extends Sprite {
                 adMobANE.interstitial.adUnit = "ca-app-pub-3940256099942544/1033173712";
                 adMobANE.interstitial.targeting = targeting;
                 adMobANE.interstitial.load();
+            } catch (e:ANEError) {
+                trace(e.getStackTrace());
+            }
+        }
+    }
+
+    private function onLoadReward(event:TouchEvent):void {
+        var touch:Touch = event.getTouch(btn4);
+        if (touch != null && touch.phase == TouchPhase.ENDED) {
+            try {
+                var targeting:Targeting = new Targeting();
+                targeting.birthday = new Date(1999, 5, 10);
+                targeting.gender = Targeting.FEMALE;
+                targeting.forChildren = false;
+
+                adMobANE.rewardVideo.adUnit = os.isIos ? "ca-app-pub-3940256099942544/1712485313": "ca-app-pub-3940256099942544/5224354917";
+                adMobANE.rewardVideo.targeting = targeting;
+                adMobANE.rewardVideo.load();
             } catch (e:ANEError) {
                 trace(e.getStackTrace());
             }
@@ -170,14 +208,14 @@ public class StarlingRoot extends Sprite {
 
                 // x  & y supersede hAlign and vAlign if both > -1
                 /*adMobANE.banner.x = 40;
-                adMobANE.banner.y = 50;*/ //TODO scaleFactor
+                adMobANE.banner.y = 50;*/
 
                 adMobANE.banner.load();
 
 
             } catch (e:ANEError) {
                 trace(e.name);
-                trace(e.errorID)
+                trace(e.errorID);
                 trace(e.type);
                 trace(e.message);
                 trace(e.source);

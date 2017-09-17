@@ -31,6 +31,8 @@ public class AdMobANE implements FREExtension {
             ,"showInterstitial"
             ,"getBannerSizes"
             ,"setTestDevices"
+            ,"loadRewardVideo"
+            ,"showRewardVideo"
     };
 
     @Override
