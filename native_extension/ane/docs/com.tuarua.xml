@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><apiPackage id="com.tuarua"><apiName>com.tuarua</apiName><apiDetail/><apiClassifier id="com.tuarua:AdMobANE"><apiName>AdMobANE</apiName><shortdesc/><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiConstructor id="com.tuarua:AdMobANE:AdMobANE"><apiName>AdMobANE</apiName><shortdesc/><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef></apiConstructorDetail></apiConstructor><apiOperation id="com.tuarua:AdMobANE:dispose"><apiName>dispose</apiName><shortdesc>
+     
+     
+     </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+     
+     
+     </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.tuarua:AdMobANE:init"><apiName>init</apiName><shortdesc>
+     
+     </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>
+     
+     </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>key</apiItemName><apiType value="String"/><apiDesc>- iOS only. This is your AdMob API key
+     </apiDesc></apiParam><apiParam><apiItemName>volume</apiItemName><apiType value="Number"/><apiData>1.0</apiData><apiDesc>- Sets the volume of Video Ads
+     </apiDesc></apiParam><apiParam><apiItemName>muted</apiItemName><apiType value="Boolean"/><apiData>false</apiData><apiDesc>- Sets whether Video Ads are muted
+     </apiDesc></apiParam><apiParam><apiItemName>scaleFactor</apiItemName><apiType value="Number"/><apiData>1.0</apiData><apiDesc>- Used on Android only
+     </apiDesc></apiParam></apiOperationDef><apiDesc>
+     
+     </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.tuarua:AdMobANE:banner:get"><apiName>banner</apiName><shortdesc>
+     
+     </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.tuarua.admobane:Banner</apiValueClassifier></apiValueDef><apiDesc>
+     
+     </apiDesc></apiValueDetail></apiValue><apiValue id="com.tuarua:AdMobANE:interstitial:get"><apiName>interstitial</apiName><shortdesc>
+     
+     </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.tuarua.admobane:Interstitial</apiValueClassifier></apiValueDef><apiDesc>
+     
+     </apiDesc></apiValueDetail></apiValue><apiValue id="com.tuarua:AdMobANE:rewardVideo:get"><apiName>rewardVideo</apiName><shortdesc>
+     
+     </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.tuarua.admobane:RewardVideo</apiValueClassifier></apiValueDef><apiDesc>
+     
+     </apiDesc></apiValueDetail></apiValue><apiValue id="com.tuarua:AdMobANE:testDevices:get"><apiName>testDevices</apiName><shortdesc>
+     
+     </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Vector$String"/></apiValueDef><apiDesc>
+     
+     </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>
