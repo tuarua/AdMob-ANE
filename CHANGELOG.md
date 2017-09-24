@@ -1,3 +1,6 @@
+### 0.0.5
+- Updated FreKotlin
+
 ### 0.0.4
 - Added Reward Videos
 - Fxed Position enum on Android

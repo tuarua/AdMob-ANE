@@ -39,9 +39,6 @@ com.tuarua.%projectName%-res/. ^
 -platformoptions platforms/android/platform.xml
 
 
-REM res/.
-
-
 del %pathtome%platforms\\android\\classes.jar
 del %pathtome%platforms\\android\\app-release.aar
 del %pathtome%platforms\\android\\library.swf

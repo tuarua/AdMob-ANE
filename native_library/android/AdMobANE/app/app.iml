@@ -35,7 +35,6 @@
           <option name="pluginClasspaths">
             <array />
           </option>
-          <option name="version" value="true" />
         </compilerArguments>
       </configuration>
     </facet>
@@ -121,16 +120,16 @@
     <orderEntry type="jdk" jdkName="Android API 25 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="runtimeClasses" level="project" />
-    <orderEntry type="library" name="kotlin-stdlib-1.1.4-3" level="project" />
-    <orderEntry type="library" name="play-services-ads-lite-11.2.0" level="project" />
-    <orderEntry type="library" name="play-services-basement-11.2.0" level="project" />
+    <orderEntry type="library" name="play-services-ads-lite-11.4.0" level="project" />
     <orderEntry type="library" name="gson-2.8.1" level="project" />
     <orderEntry type="library" name="annotations-13.0" level="project" />
-    <orderEntry type="library" name="frekotlin-1.1.4-3" level="project" />
+    <orderEntry type="library" name="frekotlin-1.1.50" level="project" />
     <orderEntry type="library" name="support-v4-25.2.0" level="project" />
+    <orderEntry type="library" name="kotlin-stdlib-1.1.50" level="project" />
     <orderEntry type="library" name="support-compat-25.2.0" level="project" />
     <orderEntry type="library" name="support-media-compat-25.2.0" level="project" />
     <orderEntry type="library" name="support-core-ui-25.2.0" level="project" />
+    <orderEntry type="library" name="play-services-basement-11.4.0" level="project" />
     <orderEntry type="library" name="FlashRuntimeExtensions" level="project" />
     <orderEntry type="library" name="support-annotations-25.2.0" level="project" />
     <orderEntry type="library" name="support-core-utils-25.2.0" level="project" />

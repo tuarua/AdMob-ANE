@@ -154,4 +154,7 @@ rm -r "$pathtome/platforms/ios/simulator"
 rm -r "$pathtome/platforms/ios/device"
 rm "$pathtome/$PROJECTNAME.swc"
 rm "$pathtome/library.swf"
-echo "Finished."
+
+echo "Packaging docs into ANE."
+zip "$pathtome/$PROJECTNAME.ane" -u docs/*
+echo "DONE!"
