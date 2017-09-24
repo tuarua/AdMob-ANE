@@ -45,7 +45,7 @@ They can be downloaded directly from this repo:
 
 Test Ads are included in the demo.
 You will need an AdMob account to deliver live ads.   
-[https://support.google.com/admob/answer/7356219?visit_id=1-636396064763467790-3385881595&rd=1]
+[https://support.google.com/admob/answer/7356219]
 
 You will also need to include the following in your app manifest. Update accordingly.
 
@@ -80,7 +80,7 @@ bash get_ios_dependencies.sh
 
 Test Ads are included in the demo.
 You will need an AdMob account to deliver live ads.   
-[https://support.google.com/admob/answer/7356219?visit_id=1-636396064763467790-3385881595&rd=1]
+[https://support.google.com/admob/answer/7356219]
 
 You will also need to include the following in your app manifest. Update accordingly.
 ````xml
