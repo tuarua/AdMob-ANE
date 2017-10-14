@@ -1,3 +1,6 @@
+### 0.0.6
+- Updated FreSwift
+
 ### 0.0.5
 - Updated FreKotlin
 
