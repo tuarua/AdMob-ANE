@@ -71,10 +71,6 @@ You will also need to include the following in your app manifest. Update accordi
 `````
 
 ## iOS
-**There is an issue with uploading to the AppStore**   
-ADT is not setting the correct Entitlements on the frameworks
-Please vote for the issue on the Adobe tracker:
-https://tracker.adobe.com/#/view/AIR-4198407
 
 **Dependencies**   
 From the command line cd into /example and run:
