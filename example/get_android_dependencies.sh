@@ -5,4 +5,4 @@ wget -O android_dependencies/com.android.support.support-v4-25.3.1.ane https://g
 wget -O android_dependencies/com.google.android.gms.play-services-base-11.4.0.ane https://github.com/tuarua/Android-ANE-Dependencies/blob/master/anes/play-services/com.google.android.gms.play-services-base-11.4.0.ane?raw=true
 wget -O android_dependencies/com.google.android.gms.play-services-ads-lite-11.4.0.ane https://github.com/tuarua/Android-ANE-Dependencies/blob/master/anes/play-services/com.google.android.gms.play-services-ads-lite-11.4.0.ane?raw=true
 
-wget -O ../native_extension/ane/AdMobANE.ane https://github.com/tuarua/AdMob-ANE/releases/download/0.0.5/AdMobANE.ane?raw=true
+wget -O ../native_extension/ane/AdMobANE.ane https://github.com/tuarua/AdMob-ANE/releases/download/0.0.6/AdMobANE.ane?raw=true
