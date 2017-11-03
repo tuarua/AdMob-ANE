@@ -4,8 +4,8 @@ wget https://github.com/tuarua/Swift-IOS-ANE/releases/download/1.2.1/ios_depende
 unzip -u -o ios_dependencies.zip
 rm ios_dependencies.zip
 
-wget https://github.com/tuarua/AdMob-ANE/releases/download/0.0.6/ios_dependencies.zip
+wget https://github.com/tuarua/AdMob-ANE/releases/download/0.0.7/ios_dependencies.zip
 unzip -u -o ios_dependencies.zip
 rm ios_dependencies.zip
 
-wget -O ../native_extension/ane/AdMobANE.ane https://github.com/tuarua/AdMob-ANE/releases/download/0.0.6/AdMobANE.ane?raw=true
+wget -O ../native_extension/ane/AdMobANE.ane https://github.com/tuarua/AdMob-ANE/releases/download/0.0.7/AdMobANE.ane?raw=true

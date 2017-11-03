@@ -11,13 +11,13 @@
             <entry library-name="com.tuarua.frekotlin" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.android.support.support-v4-25.3.1" library-level="project">
+            <entry library-name="com.android.support.support-v4-25.4.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.google.android.gms.play-services-base-11.2.0" library-level="project">
+            <entry library-name="com.google.android.gms.play-services-base-11.4.2" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.google.android.gms.play-services-ads-lite-11.2.0" library-level="project">
+            <entry library-name="com.google.android.gms.play-services-ads-lite-11.4.2" library-level="project">
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="starling" library-level="project">
@@ -59,13 +59,13 @@
             <entry library-name="AdMobANE" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.android.support.support-v4-25.3.1" library-level="project">
+            <entry library-name="com.android.support.support-v4-25.4.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.google.android.gms.play-services-ads-lite-11.2.0" library-level="project">
+            <entry library-name="com.google.android.gms.play-services-ads-lite-11.4.2" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.google.android.gms.play-services-base-11.2.0" library-level="project">
+            <entry library-name="com.google.android.gms.play-services-base-11.4.2" library-level="project">
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="com.google.code.gson.gson-2.8.1" library-level="project">
@@ -148,11 +148,11 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="AdMobANE" level="project" />
     <orderEntry type="library" exported="" name="com.tuarua.frekotlin" level="project" />
-    <orderEntry type="library" exported="" name="com.android.support.support-v4-25.3.1" level="project" />
-    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-base-11.2.0" level="project" />
-    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-ads-11.2.0" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support.support-v4-25.4.0" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-base-11.4.2" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-ads-11.4.2" level="project" />
     <orderEntry type="library" exported="" name="com.distriqt.playservices.Ads" level="project" />
-    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-ads-lite-11.2.0" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-ads-lite-11.4.2" level="project" />
     <orderEntry type="library" exported="" name="starling" level="project" />
     <orderEntry type="library" exported="" name="FiraSansSemiBold" level="project" />
     <orderEntry type="library" exported="" name="com.google.code.gson.gson-2.8.1" level="project" />

@@ -1,3 +1,8 @@
+### 0.0.7
+- Updated FreKotlin
+- Updated Android Play Services to 11.4.2
+- Updated Android Support to 25.4.0
+
 ### 0.0.6
 - Updated FreSwift
 

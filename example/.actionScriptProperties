@@ -35,9 +35,9 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="5" linkType="2" path="D:/dev/flash/AdMob-ANE/native_extension/ane/AdMobANE.ane"/>
-      <libraryPathEntry kind="5" linkType="2" path="D:/dev/flash/AdMob-ANE/native_extension/ane/com.android.support.support-v4-25.3.1.ane"/>
-      <libraryPathEntry kind="5" linkType="2" path="D:/dev/flash/AdMob-ANE/native_extension/ane/com.google.android.gms.play-services-ads-11.2.0.ane"/>
-      <libraryPathEntry kind="5" linkType="2" path="D:/dev/flash/AdMob-ANE/native_extension/ane/com.google.android.gms.play-services-base-11.2.0.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="D:/dev/flash/AdMob-ANE/native_extension/ane/com.android.support.support-v4-25.4.0.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="D:/dev/flash/AdMob-ANE/native_extension/ane/com.google.android.gms.play-services-ads-11.4.2.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="D:/dev/flash/AdMob-ANE/native_extension/ane/com.google.android.gms.play-services-base-11.4.2.ane"/>
       <libraryPathEntry kind="5" linkType="2" path="D:/dev/flash/AdMob-ANE/native_extension/ane/com.tuarua.frekotlin.ane"/>
     </libraryPath>
     <sourceAttachmentPath/>
@@ -65,9 +65,9 @@
         <airExcludes/>
         <anePaths>
           <anePathEntry path="${DOCUMENTS}/AdMob-ANE/native_extension/ane/AdMobANE.ane"/>
-          <anePathEntry path="${DOCUMENTS}/AdMob-ANE/native_extension/ane/com.android.support.support-v4-25.3.1.ane"/>
-          <anePathEntry path="${DOCUMENTS}/AdMob-ANE/native_extension/ane/com.google.android.gms.play-services-ads-11.2.0.ane"/>
-          <anePathEntry path="${DOCUMENTS}/AdMob-ANE/native_extension/ane/com.google.android.gms.play-services-base-11.2.0.ane"/>
+          <anePathEntry path="${DOCUMENTS}/AdMob-ANE/native_extension/ane/com.android.support.support-v4-25.4.0.ane"/>
+          <anePathEntry path="${DOCUMENTS}/AdMob-ANE/native_extension/ane/com.google.android.gms.play-services-ads-11.4.2.ane"/>
+          <anePathEntry path="${DOCUMENTS}/AdMob-ANE/native_extension/ane/com.google.android.gms.play-services-base-11.4.2.ane"/>
           <anePathEntry path="${DOCUMENTS}/AdMob-ANE/native_extension/ane/com.tuarua.frekotlin.ane"/>
         </anePaths>
         <newLaunchParams/>
