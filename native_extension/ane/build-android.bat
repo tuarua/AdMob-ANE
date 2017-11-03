@@ -24,7 +24,8 @@ copy /Y %pathtome%..\..\native_library\android\%projectName%\app\build\outputs\a
 
 echo "GETTING ANDROID JAR"
 call %SZIP% x %pathtome%platforms\android\app-release.aar -o%pathtome%platforms\android\ classes.jar
-
+call %SZIP% x %pathtome%platforms\android\app-release.aar -o%pathtome%platforms\android\ res
+ren %pathtome%platforms\android\res com.tuarua.%projectName%-res
 
 echo "GENERATING ANE"
 call %AIR_PATH%adt.bat -package -target ane %pathtome%%projectName%.ane extension_android.xml ^
@@ -46,5 +47,7 @@ del %pathtome%platforms\\android\\library.swf
 call DEL /F /Q /A %pathtome%library.swf
 call DEL /F /Q /A %pathtome%catalog.xml
 call DEL /F /Q /A %pathtome%%projectName%.swc
+
+call rmdir /Q /S %pathtome%platforms\android\com.tuarua.%projectName%-res
 
 echo "DONE!"
