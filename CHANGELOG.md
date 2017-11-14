@@ -1,3 +1,7 @@
+### 0.0.8
+- Updated to Xcode 8.3.3
+- Updated to FreSwift 1.3.0
+
 ### 0.0.7
 - Updated FreKotlin
 - Updated Android Play Services to 11.4.2
