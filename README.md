@@ -125,7 +125,7 @@ You will need:
 - IntelliJ IDEA / Flash Builder
 - AIR 26 + AIR 27
 - Android Studio 3 Beta if you wish to edit the Android source
-- Xcode 8.3 if you wish to edit the iOS source
+- Xcode 8.3.3 if you wish to edit the iOS source
 - wget on OSX
 
 

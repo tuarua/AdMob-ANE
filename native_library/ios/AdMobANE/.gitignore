@@ -86,3 +86,4 @@ Frameworks/*.bundle
 Frameworks/*.framework
 Carthage/
 FreSwift_bak/
+Cartfile.resolved
