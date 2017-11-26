@@ -1,3 +1,8 @@
+### 1.0.0
+- iOS: Updated to FreSwift 2.0.0
+- iOS: Updated to Xcode 9.1
+- Updated to AIR 28
+
 ### 0.0.8
 - Updated to Xcode 8.3.3
 - Updated to FreSwift 1.3.0

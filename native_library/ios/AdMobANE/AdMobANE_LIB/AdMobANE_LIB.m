@@ -17,7 +17,7 @@
 #import "FreMacros.h"
 #import "AdMobANE_LIB.h"
 #import <FreSwift/FreSwift-iOS-Swift.h>
-#import "AdMobANE_FW-Swift.h"
+#import <AdMobANE_FW/AdMobANE_FW.h>
 
 #define FRE_OBJC_BRIDGE TRAMA_FlashRuntimeExtensionsBridge // use unique prefix throughout to prevent clashes with other ANEs
 @interface FRE_OBJC_BRIDGE : NSObject<FreSwiftBridgeProtocol>

@@ -9,13 +9,11 @@
 /* Begin PBXBuildFile section */
 		285FE3EB871F2DD420623AEE /* AdMobANE_LIB.h in Headers */ = {isa = PBXBuildFile; fileRef = 285FEBB3CADF8D704FAB5E4D /* AdMobANE_LIB.h */; };
 		285FECB67C2311471C2CD119 /* AdMobANE_LIB.m in Sources */ = {isa = PBXBuildFile; fileRef = 285FE6D7F3D6356FA03A26C0 /* AdMobANE_LIB.m */; };
-		CE0014CE1F647371000AE663 /* FreSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0014CD1F647371000AE663 /* FreSwift.framework */; };
-		CE0014CF1F647371000AE663 /* FreSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0014CD1F647371000AE663 /* FreSwift.framework */; };
 		CE164B221F6C5A5C00035B1E /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE164B211F6C5A5C00035B1E /* FreMacros.h */; };
 		CE164B231F6C5A6200035B1E /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE164B211F6C5A5C00035B1E /* FreMacros.h */; };
+		CE3311B51FCA3AA90032F25E /* FreSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE3311B41FCA3AA90032F25E /* FreSwift.framework */; };
 		CE39808E1E58BAA90062485B /* AdMobANE_FW.h in Headers */ = {isa = PBXBuildFile; fileRef = CE39808C1E58BAA90062485B /* AdMobANE_FW.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE3980981E58BB070062485B /* SwiftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3980971E58BB070062485B /* SwiftController.swift */; };
-		CE39809A1E58BC3B0062485B /* AdMobANE_FW-Swift.h in Headers */ = {isa = PBXBuildFile; fileRef = CE3980991E58BC3B0062485B /* AdMobANE_FW-Swift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE3980AD1E58BF3F0062485B /* AdMobANE_FW.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE39808A1E58BAA90062485B /* AdMobANE_FW.framework */; };
 		CE43C32F1F5CA4E1002170F2 /* InterstitialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43C32E1F5CA4E1002170F2 /* InterstitialController.swift */; };
 		CE46CA6D1F5B6C050067794D /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE46CA6C1F5B6C050067794D /* GoogleMobileAds.framework */; };
@@ -38,28 +36,15 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		CE39809D1E58BEE10062485B /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		285FE6D7F3D6356FA03A26C0 /* AdMobANE_LIB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdMobANE_LIB.m; sourceTree = "<group>"; };
 		285FEBB3CADF8D704FAB5E4D /* AdMobANE_LIB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobANE_LIB.h; sourceTree = "<group>"; };
-		CE0014CD1F647371000AE663 /* FreSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FreSwift.framework; path = Carthage/Build/iOS/FreSwift.framework; sourceTree = "<group>"; };
 		CE164B211F6C5A5C00035B1E /* FreMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreMacros.h; sourceTree = "<group>"; };
+		CE3311B41FCA3AA90032F25E /* FreSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FreSwift.framework; path = Carthage/Build/iOS/FreSwift.framework; sourceTree = "<group>"; };
 		CE39808A1E58BAA90062485B /* AdMobANE_FW.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdMobANE_FW.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE39808C1E58BAA90062485B /* AdMobANE_FW.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdMobANE_FW.h; sourceTree = "<group>"; };
 		CE39808D1E58BAA90062485B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE3980971E58BB070062485B /* SwiftController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = SwiftController.swift; sourceTree = "<group>"; tabWidth = 4; };
-		CE3980991E58BC3B0062485B /* AdMobANE_FW-Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AdMobANE_FW-Swift.h"; sourceTree = "<group>"; };
 		CE39809F1E58BEE10062485B /* libAdMobANE_LIB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAdMobANE_LIB.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE43C32E1F5CA4E1002170F2 /* InterstitialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterstitialController.swift; sourceTree = "<group>"; };
 		CE46CA6C1F5B6C050067794D /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = Frameworks/GoogleMobileAds.framework; sourceTree = "<group>"; };
@@ -77,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE0014CE1F647371000AE663 /* FreSwift.framework in Frameworks */,
+				CE3311B51FCA3AA90032F25E /* FreSwift.framework in Frameworks */,
 				CE46CA6D1F5B6C050067794D /* GoogleMobileAds.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,7 +71,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE0014CF1F647371000AE663 /* FreSwift.framework in Frameworks */,
 				CE3980AD1E58BF3F0062485B /* AdMobANE_FW.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,7 +91,6 @@
 		CE3551E11E7F1C37009375A7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				CE3980991E58BC3B0062485B /* AdMobANE_FW-Swift.h */,
 				CE39808C1E58BAA90062485B /* AdMobANE_FW.h */,
 			);
 			name = Headers;
@@ -162,7 +145,7 @@
 		CE46CA6B1F5B6BC30067794D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CE0014CD1F647371000AE663 /* FreSwift.framework */,
+				CE3311B41FCA3AA90032F25E /* FreSwift.framework */,
 				CE46CA6C1F5B6C050067794D /* GoogleMobileAds.framework */,
 			);
 			name = Frameworks;
@@ -176,7 +159,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEB5ED121F5C4F7800AE8B16 /* SwiftyJSON.h in Headers */,
-				CE39809A1E58BC3B0062485B /* AdMobANE_FW-Swift.h in Headers */,
 				CE39808E1E58BAA90062485B /* AdMobANE_FW.h in Headers */,
 				CE164B221F6C5A5C00035B1E /* FreMacros.h in Headers */,
 			);
@@ -201,7 +183,6 @@
 				CE3980851E58BAA90062485B /* Sources */,
 				CE3980861E58BAA90062485B /* Frameworks */,
 				CE3980871E58BAA90062485B /* Headers */,
-				CE3980881E58BAA90062485B /* Resources */,
 			);
 			buildRules = (
 			);
@@ -218,10 +199,8 @@
 			buildPhases = (
 				CE39809B1E58BEE10062485B /* Sources */,
 				CE39809C1E58BEE10062485B /* Frameworks */,
-				CE39809D1E58BEE10062485B /* CopyFiles */,
 				CE3980AE1E58BF530062485B /* Headers */,
 				CE3980B21E58C0D80062485B /* ShellScript */,
-				CEFD140F1E59F28C00CA19D0 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -239,13 +218,13 @@
 		CE3980631E58BA7F0062485B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "Tua Rua Ltd";
 				TargetAttributes = {
 					CE3980891E58BAA90062485B = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = FWEQJ32FGC;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Manual;
 					};
 					CE39809E1E58BEE10062485B = {
@@ -273,23 +252,6 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		CE3980881E58BAA90062485B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CEFD140F1E59F28C00CA19D0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXShellScriptBuildPhase section */
 		CE3980B21E58C0D80062485B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -302,7 +264,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ../../../native_extension/ane/build_ios.sh;
+			shellScript = ../../../native_extension/ane/build_mobile.sh;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -350,7 +312,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -358,7 +322,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -400,7 +368,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -408,7 +378,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -468,7 +442,8 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "AdMobANE_FW-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -505,7 +480,8 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "AdMobANE_FW-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
