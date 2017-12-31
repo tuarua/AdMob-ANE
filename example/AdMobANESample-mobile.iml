@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="Flex" version="4">
-  <component name="FlexBuildConfigurationManager" active="AdMob Sample Android">
+  <component name="FlexBuildConfigurationManager" active="AdMob Sample iOS Device">
     <configurations>
       <configuration name="AdMob Sample Android" target-platform="Mobile" pure-as="true" main-class="AdMobANESample" output-file="Main.swf" output-folder="$MODULE_DIR$/bin-release/device">
         <dependencies>
@@ -14,10 +14,10 @@
             <entry library-name="com.android.support.support-v4-25.4.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.google.android.gms.play-services-base-11.4.2" library-level="project">
+            <entry library-name="com.google.android.gms.play-services-base-11.8.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.google.android.gms.play-services-ads-lite-11.4.2" library-level="project">
+            <entry library-name="com.google.android.gms.play-services-ads-lite-11.8.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="starling" library-level="project">
@@ -30,7 +30,7 @@
               <dependency linkage="Merged" />
             </entry>
           </entries>
-          <sdk name="AIRSDK_28_B" />
+          <sdk name="AIRSDK_28" />
         </dependencies>
         <compiler-options>
           <map>
@@ -61,10 +61,10 @@
             <entry library-name="com.android.support.support-v4-25.4.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.google.android.gms.play-services-ads-lite-11.4.2" library-level="project">
+            <entry library-name="com.google.android.gms.play-services-ads-lite-11.8.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.google.android.gms.play-services-base-11.4.2" library-level="project">
+            <entry library-name="com.google.android.gms.play-services-base-11.8.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="com.google.code.gson.gson-2.8.1" library-level="project">
@@ -74,22 +74,15 @@
               <dependency linkage="Merged" />
             </entry>
           </entries>
-          <sdk name="AIRSDK_28_B" />
+          <sdk name="AIRSDK_28" />
         </dependencies>
         <compiler-options>
           <map>
             <entry key="compiler.locale" value="en_US" />
           </map>
-          <option name="additionalOptions" value="-swf-version=39" />
         </compiler-options>
         <packaging-air-desktop />
-        <packaging-android use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/AdMobANESample.xml" package-file-name="AdMob_Sample_iOS">
-          <files-to-package>
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/assets" path-in-package="." />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/system" path-in-package="." />
-          </files-to-package>
-          <AirSigningOptions keystore-path="$DOCUMENTS$/TuaRua2017.p12" use-temp-certificate="false" />
-        </packaging-android>
+        <packaging-android custom-descriptor-path="$MODULE_DIR$/src/AdMobANESample.xml" package-file-name="AdMob_Sample_iOS" />
         <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/AdMobANESample-app.xml" package-file-name="AdMob_Sample_iOS">
           <files-to-package>
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/ios_dependencies/simulator" path-in-package="." />
@@ -111,37 +104,32 @@
             <entry library-name="AdMobANE" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.tuarua.frekotlin" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-name="com.android.support.support-v4-25.4.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.google.android.gms.play-services-ads-lite-11.4.2" library-level="project">
+            <entry library-name="com.google.android.gms.play-services-ads-lite-11.8.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.google.android.gms.play-services-base-11.4.2" library-level="project">
+            <entry library-name="com.google.android.gms.play-services-base-11.8.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="com.google.code.gson.gson-2.8.1" library-level="project">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="com.tuarua.frekotlin" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
-          <sdk name="AIRSDK_28_B" />
+          <sdk name="AIRSDK_28" />
         </dependencies>
         <compiler-options>
           <map>
             <entry key="compiler.locale" value="en_US" />
           </map>
-          <option name="additionalOptions" value="-swf-version=39" />
         </compiler-options>
         <packaging-air-desktop />
-        <packaging-android use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/AdMobANESample.xml" package-file-name="AdMob_Sample_iOS_Device">
-          <files-to-package>
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/assets" path-in-package="." />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/system" path-in-package="." />
-          </files-to-package>
-          <AirSigningOptions keystore-path="$DOCUMENTS$/TuaRua2017.p12" use-temp-certificate="false" />
+        <packaging-android custom-descriptor-path="$MODULE_DIR$/src/AdMobANESample.xml">
+          <AirSigningOptions use-temp-certificate="false" />
         </packaging-android>
         <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/AdMobANESample-app.xml" package-file-name="AdMob_Sample_iOS_Device">
           <files-to-package>
@@ -160,15 +148,13 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="AIRSDK_28_B" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="jdk" jdkName="AIRSDK_28" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="AdMobANE" level="project" />
     <orderEntry type="library" exported="" name="com.tuarua.frekotlin" level="project" />
     <orderEntry type="library" exported="" name="com.android.support.support-v4-25.4.0" level="project" />
-    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-base-11.4.2" level="project" />
-    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-ads-11.4.2" level="project" />
-    <orderEntry type="library" exported="" name="com.distriqt.playservices.Ads" level="project" />
-    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-ads-lite-11.4.2" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-base-11.8.0" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-ads-lite-11.8.0" level="project" />
     <orderEntry type="library" exported="" name="starling" level="project" />
     <orderEntry type="library" exported="" name="FiraSansSemiBold" level="project" />
     <orderEntry type="library" exported="" name="com.google.code.gson.gson-2.8.1" level="project" />

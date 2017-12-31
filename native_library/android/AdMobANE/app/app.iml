@@ -26,9 +26,15 @@
       <configuration version="3" platform="JVM 1.8" useProjectSettings="false">
         <compilerSettings />
         <compilerArguments>
+          <option name="destination" value="$MODULE_DIR$/build/tmp/kotlin-classes/debug" />
+          <option name="noStdlib" value="true" />
+          <option name="noReflect" value="true" />
+          <option name="moduleName" value="app_debug" />
           <option name="jvmTarget" value="1.8" />
-          <option name="languageVersion" value="1.1" />
-          <option name="apiVersion" value="1.1" />
+          <option name="addCompilerBuiltIns" value="true" />
+          <option name="loadBuiltInsFromDependencies" value="true" />
+          <option name="languageVersion" value="1.2" />
+          <option name="apiVersion" value="1.2" />
           <option name="pluginOptions">
             <array />
           </option>
@@ -101,7 +107,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/shaders" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/build/.DS_Store" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/annotations" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/attr" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/blame" />
@@ -128,18 +133,18 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="__local_aars__:/Users/User/flash/AdMob-ANE/native_library/android/AdMobANE/app/libs/runtimeClasses.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-core-utils-25.2.0" level="project" />
-    <orderEntry type="library" name="com.google.android.gms:play-services-ads-lite-license-11.4.2" level="project" />
-    <orderEntry type="library" name="org.jetbrains.kotlin:kotlin-stdlib:1.1.51@jar" level="project" />
+    <orderEntry type="library" name="com.google.android.gms:play-services-basement-11.8.0" level="project" />
+    <orderEntry type="library" name="__local_aars__:/Users/User/flash/AdMob-ANE/native_library/android/AdMobANE/app/libs/frekotlin-1.2.10.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-core-ui-25.2.0" level="project" />
+    <orderEntry type="library" name="org.jetbrains.kotlin:kotlin-stdlib:1.2.10@jar" level="project" />
     <orderEntry type="library" name="com.google.code.gson:gson:2.8.1@jar" level="project" />
+    <orderEntry type="library" name="com.google.android.gms:play-services-ads-lite-11.8.0" level="project" />
     <orderEntry type="library" name="com.android.support:support-media-compat-25.2.0" level="project" />
     <orderEntry type="library" name="com.android.support:support-compat-25.2.0" level="project" />
+    <orderEntry type="library" name="com.google.android.gms:play-services-basement-license-11.8.0" level="project" />
     <orderEntry type="library" name="com.android.support:support-annotations:25.2.0@jar" level="project" />
+    <orderEntry type="library" name="com.google.android.gms:play-services-ads-lite-license-11.8.0" level="project" />
     <orderEntry type="library" name="org.jetbrains:annotations:13.0@jar" level="project" />
-    <orderEntry type="library" name="com.google.android.gms:play-services-basement-license-11.4.2" level="project" />
-    <orderEntry type="library" name="com.google.android.gms:play-services-basement-11.4.2" level="project" />
-    <orderEntry type="library" name="com.google.android.gms:play-services-ads-lite-11.4.2" level="project" />
-    <orderEntry type="library" name="__local_aars__:/Users/User/flash/AdMob-ANE/native_library/android/AdMobANE/app/libs/frekotlin-1.1.51.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="__local_aars__:/Users/User/flash/AdMob-ANE/native_library/android/AdMobANE/app/libs/FlashRuntimeExtensions.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-v4-25.2.0" level="project" />
     <orderEntry type="library" name="com.android.support:support-fragment-25.2.0" level="project" />
