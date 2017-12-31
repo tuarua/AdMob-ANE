@@ -1,7 +1,7 @@
 ﻿$currentDir = (Get-Item -Path ".\" -Verbose).FullName
-Invoke-WebRequest -Uri https://github.com/tuarua/AdMob-ANE/releases/download/1.0.0/AdMobANE.ane?raw=true -OutFile "$currentDir\..\native_extension\ane\AdMobANE.ane"
+Invoke-WebRequest -Uri https://github.com/tuarua/AdMob-ANE/releases/download/1.1.0/AdMobANE.ane?raw=true -OutFile "$currentDir\..\native_extension\ane\AdMobANE.ane"
 Invoke-WebRequest -OutFile "$currentDir\android_dependencies\com.tuarua.frekotlin.ane" -Uri https://github.com/tuarua/Android-ANE-Dependencies/blob/master/anes/kotlin/com.tuarua.frekotlin.ane?raw=true
 Invoke-WebRequest -OutFile "$currentDir\android_dependencies\com.google.code.gson.gson-2.8.1.ane" -Uri https://github.com/tuarua/Android-ANE-Dependencies/blob/master/anes/misc/com.google.code.gson.gson-2.8.1.ane?raw=true
 Invoke-WebRequest -OutFile "$currentDir\android_dependencies\com.android.support.support-v4-25.4.0.ane" -Uri https://github.com/tuarua/Android-ANE-Dependencies/blob/master/anes/support/com.android.support.support-v4-25.4.0.ane?raw=true
-Invoke-WebRequest -OutFile "$currentDir\android_dependencies\com.google.android.gms.play-services-base-11.4.2.ane" -Uri https://github.com/tuarua/Android-ANE-Dependencies/blob/master/anes/play-services/com.google.android.gms.play-services-base-11.4.2.ane?raw=true
-Invoke-WebRequest -OutFile "$currentDir\android_dependencies\com.google.android.gms.play-services-ads-lite-11.4.2.ane" -Uri https://github.com/tuarua/Android-ANE-Dependencies/blob/master/anes/play-services/com.google.android.gms.play-services-ads-lite-11.4.2.ane?raw=true
+Invoke-WebRequest -OutFile "$currentDir\android_dependencies\com.google.android.gms.play-services-base-11.8.0.ane" -Uri https://github.com/tuarua/Android-ANE-Dependencies/blob/master/anes/play-services/com.google.android.gms.play-services-base-11.8.0.ane?raw=true
+Invoke-WebRequest -OutFile "$currentDir\android_dependencies\com.google.android.gms.play-services-ads-lite-11.8.0.ane" -Uri https://github.com/tuarua/Android-ANE-Dependencies/blob/master/anes/play-services/com.google.android.gms.play-services-ads-lite-11.8.0.ane?raw=true
