@@ -62,7 +62,14 @@ class InterstitialController: NSObject, FreSwiftController, GADInterstitialDeleg
         } else {
             trace("Ad wasn't ready")
         }
-        
+    }
+    
+    func dispose(){
+        guard let av = adView else {
+            return
+        }
+        av.delegate = nil
+        adView = nil
     }
     
     func interstitialDidReceiveAd(_ ad: GADInterstitial) {

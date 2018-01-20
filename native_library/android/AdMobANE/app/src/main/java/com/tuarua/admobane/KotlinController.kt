@@ -190,8 +190,11 @@ class KotlinController : FreKotlinMainController {
 
     override fun dispose() {
         super.dispose()
-        bannerController?.adView?.destroy()
         rewardController?.adView?.destroy(this.context?.activity)
+        rewardController = null
+        bannerController?.dispose()
+        bannerController = null
+        interstitialController = null
     }
 
     override val TAG: String

@@ -36,7 +36,6 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
         NotificationCenter.default.addObserver(self, selector: #selector(BannerController.orientationDidChange(notification:)), name: Notification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     
-
     convenience init(context: FreContextSwift) {
         self.init()
         self.context = context
@@ -203,6 +202,11 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
             return
         }
         position()
+    }
+    
+    func dispose(){
+        clear()
+        self.removeFromParentViewController()
     }
 
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {

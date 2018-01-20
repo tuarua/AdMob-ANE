@@ -71,5 +71,7 @@ public class AdMobANEContext extends FreKotlinContext implements TRActivityResul
             aaw.removeActivityStateChangeListner(this);
             aaw = null;
         }
+        controller.dispose();
+        controller = null;
     }
 }
