@@ -181,6 +181,14 @@ public class SwiftController: NSObject, FreSwiftMainController {
         return nil
     }
 
+    @objc public func dispose() {
+        bannerController?.dispose()
+        interstitialController?.dispose()
+        rewardVideoController?.dispose()
+        bannerController = nil
+        interstitialController = nil
+        rewardVideoController = nil
+    }
 
     // Must have these 3 functions. It exposes the methods to our entry ObjC.
     @objc public func callSwiftFunction(name: String, ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {

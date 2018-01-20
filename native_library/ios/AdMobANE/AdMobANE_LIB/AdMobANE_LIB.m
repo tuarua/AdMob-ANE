@@ -50,8 +50,7 @@ CONTEXT_INIT(TRAMA) {
         ,MAP_FUNCTION(TRAMA, showRewardVideo)
     };
     
-   
-    
+
     /**************************************************************************/
     /**************************************************************************/
     
@@ -60,7 +59,11 @@ CONTEXT_INIT(TRAMA) {
 }
 
 CONTEXT_FIN(TRAMA) {
-    //any clean up code here
+    [TRAMA_swft dispose];
+    TRAMA_swft = nil;
+    TRAMA_freBridge = nil;
+    TRAMA_swftBridge = nil;
+    TRAMA_funcArray = nil;
 }
 EXTENSION_INIT(TRAMA)
 EXTENSION_FIN(TRAMA)

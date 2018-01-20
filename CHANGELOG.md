@@ -1,4 +1,8 @@
-### 1.0.0
+### 1.2.0
+- iOS: Updated to FreSwift 2.2.0
+- AND/iOS: dispose not working correctly
+
+### 1.1.0
 - iOS: Updated to FreSwift 2.1.0
 - Android: Updated to FreKotlin 1.0.0
 - Android: Updated Android Play Services to 11.8.0

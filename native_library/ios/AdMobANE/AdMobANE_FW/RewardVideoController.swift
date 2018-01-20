@@ -75,7 +75,14 @@ class RewardVideoController: NSObject, FreSwiftController, GADRewardBasedVideoAd
         props["amount"] = reward.amount
         let json = JSON(props)
         sendEvent(name: Constants.ON_REWARDED, value: json.description)
-        
+    }
+    
+    func dispose(){
+        guard let av = adView else {
+            return
+        }
+        av.delegate = nil
+        adView = nil
     }
     
     func rewardBasedVideoAdDidReceive(_ rewardBasedVideoAd:GADRewardBasedVideoAd) {

@@ -119,6 +119,11 @@ class BannerController(override var context: FREContext?, airView: ViewGroup) : 
         av.loadAd(builder.build())
     }
 
+    fun dispose() {
+        clear()
+        (airView as ViewGroup).removeView(container)
+    }
+
     fun clear() {
         val av = _adView ?: return
         av.adListener = null
