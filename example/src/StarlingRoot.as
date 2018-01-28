@@ -5,7 +5,6 @@ import com.tuarua.admobane.AdSize;
 import com.tuarua.admobane.Align;
 import com.tuarua.admobane.Targeting;
 import com.tuarua.fre.ANEError;
-import com.tuarua.fre.ANEUtils;
 
 import flash.desktop.NativeApplication;
 import flash.events.Event;
