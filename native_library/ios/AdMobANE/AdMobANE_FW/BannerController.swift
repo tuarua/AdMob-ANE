@@ -18,12 +18,11 @@ import UIKit
 import GoogleMobileAds
 import FreSwift
 
-
 class BannerController: UIViewController, FreSwiftController, GADBannerViewDelegate {
     var TAG: String? = "AdMobANE"
     internal var context: FreContextSwift!
     private var adView: GADBannerView!
-    private var _size:Int = 0
+    private var _size: Int = 0
     private var _airView: UIView!
     private var _hAlign: String = "center"
     private var _vAlign: String = "bottom"
@@ -33,7 +32,10 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.frame = CGRect.zero
-        NotificationCenter.default.addObserver(self, selector: #selector(BannerController.orientationDidChange(notification:)), name: Notification.Name.UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(BannerController.orientationDidChange(notification:)),
+            name: Notification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     
     convenience init(context: FreContextSwift) {
@@ -46,14 +48,14 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
             return
         }
 
-        if(_size == 5) {
-            if(uiDevice.orientation == .portrait
+        if _size == 5 {
+            if uiDevice.orientation == .portrait
                 || uiDevice.orientation == .portraitUpsideDown
                 || uiDevice.orientation == .faceUp
                 || uiDevice.orientation == .faceDown
-                || uiDevice.orientation == .unknown ) {
+                || uiDevice.orientation == .unknown {
                 adView.adSize = kGADAdSizeSmartBannerPortrait
-            } else if(uiDevice.orientation == .landscapeLeft || uiDevice.orientation == .landscapeRight){
+            } else if uiDevice.orientation == .landscapeLeft || uiDevice.orientation == .landscapeRight {
                 adView.adSize = kGADAdSizeSmartBannerLandscape
             }
         }
@@ -72,24 +74,23 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
         let theW: CGFloat = adV.adSize.size.width > 0.0 ? adV.adSize.size.width : adV.frame.width
         let theH: CGFloat = adV.adSize.size.width > 0.0 ? adV.adSize.size.height : adV.frame.height
         
-        //TODO x and y supersede aligns
-        if (_hAlign == "center") {
+        if _hAlign == "center" {
             theX = airv.center.x - (theW / 2)
-        } else if (_hAlign == "right") {
+        } else if _hAlign == "right" {
             theX = airv.frame.width - theW
         }
         
-        if (_vAlign == "center") {
+        if _vAlign == "center" {
             theY = airv.center.y - (theH / 2)
-        } else if (_vAlign == "bottom") {
+        } else if _vAlign == "bottom" {
             theY = airv.frame.height - theH
         }
         self.view.frame = CGRect.init(origin: CGPoint.init(x: theX, y: theY),
                                       size: CGSize.init(width: theW, height: theH))
     }
 
-
-    func load(airView: UIView, unitId: String, size: Int, deviceList: Array<String>?, targeting: Targeting?,
+    func load(airView: UIView, unitId: String, size: Int,
+              deviceList: [String]?, targeting: Targeting?,
               x: CGFloat, y: CGFloat, hAlign: String, vAlign: String) {
         _size = size
         _airView = airView
@@ -103,7 +104,7 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
             adView.delegate = self
             view.addSubview(adView)
             adView.translatesAutoresizingMaskIntoConstraints = false
-            if (self.view.superview != airView) {
+            if self.view.superview != airView {
                 airView.addSubview(self.view)
             }
         }
@@ -112,36 +113,29 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
         adView.rootViewController = self
 
         switch _size {
-            case 0:
-                adView.adSize = kGADAdSizeBanner
-                break
-            case 1:
-                adView.adSize = kGADAdSizeFullBanner
-                break
-            case 2:
-                adView.adSize = kGADAdSizeLargeBanner
-                break
-            case 3:
-                adView.adSize = kGADAdSizeLeaderboard
-                break
-            case 4:
-                adView.adSize = kGADAdSizeMediumRectangle
-                break
-            case 5:
-                if(UIDevice.current.orientation == .portrait
-                    || UIDevice.current.orientation == .portraitUpsideDown
-                    || UIDevice.current.orientation == .faceUp
-                    || UIDevice.current.orientation == .faceDown
-                    || UIDevice.current.orientation == .unknown ) {
-                    adView.adSize = kGADAdSizeSmartBannerPortrait
-                } else if(UIDevice.current.orientation == .landscapeLeft
-                    || UIDevice.current.orientation == .landscapeRight){
-                    adView.adSize = kGADAdSizeSmartBannerLandscape
-                }
-                break
-            default:
-                adView.adSize = kGADAdSizeBanner
-                break
+        case 0:
+            adView.adSize = kGADAdSizeBanner
+        case 1:
+            adView.adSize = kGADAdSizeFullBanner
+        case 2:
+            adView.adSize = kGADAdSizeLargeBanner
+        case 3:
+            adView.adSize = kGADAdSizeLeaderboard
+        case 4:
+            adView.adSize = kGADAdSizeMediumRectangle
+        case 5:
+            if UIDevice.current.orientation == .portrait
+                || UIDevice.current.orientation == .portraitUpsideDown
+                || UIDevice.current.orientation == .faceUp
+                || UIDevice.current.orientation == .faceDown
+                || UIDevice.current.orientation == .unknown {
+                adView.adSize = kGADAdSizeSmartBannerPortrait
+            } else if UIDevice.current.orientation == .landscapeLeft
+                || UIDevice.current.orientation == .landscapeRight {
+                adView.adSize = kGADAdSizeSmartBannerLandscape
+            }
+        default:
+            adView.adSize = kGADAdSizeBanner
         }
 
         position()
@@ -169,7 +163,7 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
 
     }
 
-    func getBannerSizes() -> Array<Int> {
+    func getBannerSizes() -> [Int] {
         switch UIDevice.current.userInterfaceIdiom {
         case .phone, .unspecified:
             return [0, 2, 5]
@@ -192,7 +186,7 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
     }
 
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        var props: Dictionary<String, Any> = Dictionary()
+        var props: [String: Any] = Dictionary()
         props["position"] = Position.banner.rawValue
         let json = JSON(props)
         sendEvent(name: Constants.ON_LOADED, value: json.description)
@@ -204,14 +198,14 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
         position()
     }
     
-    func dispose(){
+    func dispose() {
         clear()
         self.removeFromParentViewController()
     }
 
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
         //trace("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
-        var props: Dictionary<String, Any> = Dictionary()
+        var props: [String: Any] = Dictionary()
         props["position"] = Position.banner.rawValue
         props["errorCode"] = error.code
         let json = JSON(props)
@@ -219,7 +213,7 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
     }
     
     func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
-        var props: Dictionary<String, Any> = Dictionary()
+        var props: [String: Any] = Dictionary()
         props["position"] = Position.banner.rawValue
         let json = JSON(props)
         sendEvent(name: Constants.ON_LEFT_APPLICATION, value: json.description)
@@ -232,7 +226,8 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
     
     deinit {
         NotificationCenter.default.removeObserver(self,
-                                                  name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+                                                  name: NSNotification.Name.UIDeviceOrientationDidChange,
+                                                  object: nil)
     }
 
 }

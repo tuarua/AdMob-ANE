@@ -1,3 +1,7 @@
+### 1.3.0
+- iOS: SwiftLint
+- Android: Updated to FreKotlin 1.1.0
+
 ### 1.2.0
 - iOS: Updated to FreSwift 2.2.0
 - AND/iOS: dispose not working correctly

@@ -24,6 +24,6 @@ public struct Constants {
     public static let ON_CLICKED: String = "AdMob.OnClicked"
     public static let ON_IMPRESSION: String = "AdMob.OnImpression"
     public static let ON_LEFT_APPLICATION: String = "AdMob.OnLeftApplication"
-    public static let ON_REWARDED:String = "AdMob.onRewarded"
-    public static let ON_VIDEO_STARTED:String = "AdMob.onVideoStarted"
+    public static let ON_REWARDED: String = "AdMob.onRewarded"
+    public static let ON_VIDEO_STARTED: String = "AdMob.onVideoStarted"
 }
