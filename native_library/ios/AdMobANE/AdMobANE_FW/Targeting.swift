@@ -19,9 +19,9 @@ import FreSwift
 import GoogleMobileAds
 
 public struct Targeting {
-    public var birthday: Date? = nil
+    public var birthday: Date?
     public var gender: GADGender = .unknown
-    public var forChildren: Bool? = nil
+    public var forChildren: Bool?
     public var contentUrl: String?
 
     init(freObject: FREObject?) {
@@ -60,7 +60,6 @@ public struct Targeting {
             _ = e.getError(#file, #line, #column)
         } catch {
         }
-
 
     }
 }

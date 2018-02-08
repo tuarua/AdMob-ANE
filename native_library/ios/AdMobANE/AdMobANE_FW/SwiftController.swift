@@ -22,13 +22,13 @@ public class SwiftController: NSObject, FreSwiftMainController {
     public var TAG: String? = "AdMobANE"
     public var context: FreContextSwift!
     public var functionsToSet: FREFunctionMap = [:]
-    private var bannerController: BannerController? = nil
-    private var interstitialController: InterstitialController? = nil
-    private var rewardVideoController: RewardVideoController? = nil
-    private var deviceArray: Array<String> = Array()
+    private var bannerController: BannerController?
+    private var interstitialController: InterstitialController?
+    private var rewardVideoController: RewardVideoController?
+    private var deviceArray: [String] = []
 
     // Must have this function. It exposes the methods to our entry ObjC.
-    @objc public func getFunctions(prefix: String) -> Array<String> {
+    @objc public func getFunctions(prefix: String) -> [String] {
 
         functionsToSet["\(prefix)isSupported"] = isSupported
         functionsToSet["\(prefix)init"] = initController
@@ -41,7 +41,7 @@ public class SwiftController: NSObject, FreSwiftMainController {
         functionsToSet["\(prefix)loadRewardVideo"] = loadRewardVideo
         functionsToSet["\(prefix)showRewardVideo"] = showRewardVideo
 
-        var arr: Array<String> = []
+        var arr: [String] = []
         for key in functionsToSet.keys {
             arr.append(key)
         }
@@ -174,9 +174,11 @@ public class SwiftController: NSObject, FreSwiftMainController {
           else {
             return ArgCountError(message: "setTestDevices").getError(#file, #line, #column)
         }
-        let deviceArrayAny: Array<Any?> = FREArray.init(inFRE0).value
+        let deviceArrayAny: [Any?] = FREArray.init(inFRE0).value
         for device in deviceArrayAny {
-            deviceArray.append(device as! String)
+            if let d = device as? String {
+                deviceArray.append(d)
+            }
         }
         return nil
     }
@@ -204,6 +206,5 @@ public class SwiftController: NSObject, FreSwiftMainController {
   
     @objc public func onLoad() {
     }
-
 
 }

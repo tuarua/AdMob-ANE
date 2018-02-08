@@ -21,8 +21,8 @@ import FreSwift
 class RewardVideoController: NSObject, FreSwiftController, GADRewardBasedVideoAdDelegate {
     var TAG: String? = "RewardVideoController"
     internal var context: FreContextSwift!
-    private var _showOnLoad:Bool = true
-    private var _airVC:UIViewController?
+    private var _showOnLoad: Bool = true
+    private var _airVC: UIViewController?
     private var adView: GADRewardBasedVideoAd?
     
     convenience init(context: FreContextSwift) {
@@ -30,7 +30,8 @@ class RewardVideoController: NSObject, FreSwiftController, GADRewardBasedVideoAd
         self.context = context
         
     }
-    func load(airVC: UIViewController, unitId: String, deviceList: Array<String>?, targeting: Targeting?, showOnLoad:Bool){
+    func load(airVC: UIViewController, unitId: String, deviceList: [String]?,
+              targeting: Targeting?, showOnLoad: Bool) {
         _airVC = airVC
         _showOnLoad = showOnLoad
         adView = GADRewardBasedVideoAd.sharedInstance()
@@ -62,14 +63,14 @@ class RewardVideoController: NSObject, FreSwiftController, GADRewardBasedVideoAd
         guard let av = adView, let avc = _airVC else {return}
         if av.isReady == true {
             av.present(fromRootViewController: avc)
-        }else {
+        } else {
             trace("Ad wasn't ready")
         }
     }
     
     func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd,
                             didRewardUserWith reward: GADAdReward) {
-        var props: Dictionary<String, Any> = Dictionary()
+        var props: [String: Any] = Dictionary()
         props["position"] = Position.reward.rawValue
         props["type"] = reward.type
         props["amount"] = reward.amount
@@ -77,7 +78,7 @@ class RewardVideoController: NSObject, FreSwiftController, GADRewardBasedVideoAd
         sendEvent(name: Constants.ON_REWARDED, value: json.description)
     }
     
-    func dispose(){
+    func dispose() {
         guard let av = adView else {
             return
         }
@@ -85,41 +86,41 @@ class RewardVideoController: NSObject, FreSwiftController, GADRewardBasedVideoAd
         adView = nil
     }
     
-    func rewardBasedVideoAdDidReceive(_ rewardBasedVideoAd:GADRewardBasedVideoAd) {
-        var props: Dictionary<String, Any> = Dictionary()
+    func rewardBasedVideoAdDidReceive(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
+        var props: [String: Any] = Dictionary()
         props["position"] = Position.reward.rawValue
         let json = JSON(props)
         sendEvent(name: Constants.ON_LOADED, value: json.description)
         
         guard let av = adView, let avc = _airVC else {return}
-        if(_showOnLoad) {
+        if _showOnLoad {
             av.present(fromRootViewController: avc)
         }
     }
     
     func rewardBasedVideoAdDidOpen(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
-        var props: Dictionary<String, Any> = Dictionary()
+        var props: [String: Any] = Dictionary()
         props["position"] = Position.reward.rawValue
         let json = JSON(props)
         sendEvent(name: Constants.ON_OPENED, value: json.description)
     }
     
     func rewardBasedVideoAdDidStartPlaying(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
-        var props: Dictionary<String, Any> = Dictionary()
+        var props: [String: Any] = Dictionary()
         props["position"] = Position.reward.rawValue
         let json = JSON(props)
         sendEvent(name: Constants.ON_VIDEO_STARTED, value: json.description)
     }
     
     func rewardBasedVideoAdDidClose(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
-        var props: Dictionary<String, Any> = Dictionary()
+        var props: [String: Any] = Dictionary()
         props["position"] = Position.reward.rawValue
         let json = JSON(props)
         sendEvent(name: Constants.ON_CLOSED, value: json.description)
     }
     
     func rewardBasedVideoAdWillLeaveApplication(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
-        var props: Dictionary<String, Any> = Dictionary()
+        var props: [String: Any] = Dictionary()
         props["position"] = Position.reward.rawValue
         let json = JSON(props)
         sendEvent(name: Constants.ON_LEFT_APPLICATION, value: json.description)
@@ -127,7 +128,7 @@ class RewardVideoController: NSObject, FreSwiftController, GADRewardBasedVideoAd
     
     func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd,
                             didFailToLoadWithError error: Error) {
-        var props: Dictionary<String, Any> = Dictionary()
+        var props: [String: Any] = Dictionary()
         props["position"] = Position.reward.rawValue
         props["errorCode"] = 0
         let json = JSON(props)
