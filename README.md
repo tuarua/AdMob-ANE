@@ -11,14 +11,9 @@ Much time, skill and effort has gone into this. Help support the project
 
 -------------
 
-## The ANE
- 
-Download the latest from the [Releases](https://github.com/tuarua/AdMob-ANE/releases) page.
-
 ## Android
  
-##### Dependencies
-Several dependency ANEs are needed.  
+##### The ANE + Dependencies
  
 From the command line cd into /example and run:   
  - OSX
@@ -30,7 +25,7 @@ bash get_android_dependencies.sh
 PS get_android_dependencies.ps1
 `````
 
-They can be downloaded directly from this repo:  
+They dependencies can be downloaded directly from this repo:  
 [https://github.com/tuarua/Android-ANE-Dependancies/tree/master/anes]
 ````xml
 <extensions>
@@ -42,10 +37,6 @@ They can be downloaded directly from this repo:
     ...
 </extensions>
 `````
-
-Test Ads are included in the demo.
-You will need an AdMob account to deliver live ads.   
-[https://support.google.com/admob/answer/7356219]
 
 You will also need to include the following in your app manifest. Update accordingly.
 
@@ -70,17 +61,25 @@ You will also need to include the following in your app manifest. Update accordi
 </manifest>
 `````
 
+Test Ads are included in the demo.
+You will need an AdMob account to deliver live ads.   
+[https://support.google.com/admob/answer/7356219]
+
+-------------
+
 ## iOS
 
-##### Dependencies
+##### The ANE + Dependencies
+
+N.B. You must use a Mac to build an iOS app using this ANE. Windows is NOT supported.
+
 From the command line cd into /example and run:
 ````shell
 bash get_ios_dependencies.sh
 `````
 
-Test Ads are included in the demo.
-You will need an AdMob account to deliver live ads.   
-[https://support.google.com/admob/answer/7356219]
+The folder, ios_dependencies/device/Frameworks, must be packaged as part of your app when creating the ipa. How this is done will depend on the IDE you are using.   
+After the ipa is created unzip it and confirm there is a "Frameworks" folder in the root of the .app package.
 
 You will also need to include the following in your app manifest. Update accordingly.
 ````xml
@@ -103,6 +102,12 @@ You will also need to include the following in your app manifest. Update accordi
     </dict>
 ]]></InfoAdditions>
 `````  
+
+Test Ads are included in the demo.
+You will need an AdMob account to deliver live ads.   
+[https://support.google.com/admob/answer/7356219]
+
+-------------
 
 ### Running on Simulator
 
