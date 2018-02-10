@@ -25,7 +25,7 @@ bash get_android_dependencies.sh
 PS get_android_dependencies.ps1
 `````
 
-They dependencies can be downloaded directly from this repo:  
+The dependencies can be downloaded directly from this repo:  
 [https://github.com/tuarua/Android-ANE-Dependancies/tree/master/anes]
 ````xml
 <extensions>
