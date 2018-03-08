@@ -1,13 +1,13 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-//apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "26.0.3"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
     }
@@ -25,5 +25,5 @@ dependencies {
     implementation "com.google.code.gson:gson:$gson_version"
     implementation files('libs/FlashRuntimeExtensions.jar')
     implementation files('libs/runtimeClasses.jar')
-    implementation files('libs/frekotlin-1.2.10.jar')
+    implementation files('libs/frekotlin-1.2.30.jar')
 }
