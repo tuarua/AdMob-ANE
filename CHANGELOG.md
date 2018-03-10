@@ -1,3 +1,9 @@
+### 1.4.0
+- iOS: Updated to FreSwift 2.3.0
+- AND: Updated Android Support to 27.1.0
+- AND: Updated to FreKotlin 1.2.0
+- Updated to AIR 29
+
 ### 1.3.0
 - iOS: SwiftLint
 - Android: Updated to FreKotlin 1.1.0

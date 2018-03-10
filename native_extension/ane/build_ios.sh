@@ -12,7 +12,7 @@ PROJECTNAME=AdMobANE
 fwSuffix="_FW"
 libSuffix="_LIB"
 
-AIR_SDK="/Users/User/sdks/AIR/AIRSDK_28"
+AIR_SDK="/Users/User/sdks/AIR/AIRSDK_29"
 echo $AIR_SDK
 
 if [ ! -d "$pathtome/../../native_library/ios/$PROJECTNAME/Build/Products/Release-iphonesimulator/" ]; then

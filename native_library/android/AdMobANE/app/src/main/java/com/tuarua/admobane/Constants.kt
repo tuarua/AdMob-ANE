@@ -16,13 +16,13 @@
 package com.tuarua.admobane
 
 object Constants {
-    val ON_LOADED:String = "AdMob.OnLoaded"
-    val ON_LOAD_FAILED:String = "AdMob.OnLoadFailed"
-    val ON_OPENED:String = "AdMob.OnOpened"
-    val ON_CLOSED:String = "AdMob.OnClosed"
-    val ON_CLICKED:String = "AdMob.OnClicked"
-    val ON_IMPRESSION:String = "AdMob.OnImpression"
-    val ON_LEFT_APPLICATION:String = "AdMob.OnLeftApplication"
-    val ON_REWARDED:String = "AdMob.onRewarded"
-    val ON_VIDEO_STARTED:String = "AdMob.onVideoStarted"
+    const val ON_LOADED:String = "AdMob.OnLoaded"
+    const val ON_LOAD_FAILED:String = "AdMob.OnLoadFailed"
+    const val ON_OPENED:String = "AdMob.OnOpened"
+    const val ON_CLOSED:String = "AdMob.OnClosed"
+    const val ON_CLICKED:String = "AdMob.OnClicked"
+    const val ON_IMPRESSION:String = "AdMob.OnImpression"
+    const val ON_LEFT_APPLICATION:String = "AdMob.OnLeftApplication"
+    const val ON_REWARDED:String = "AdMob.onRewarded"
+    const val ON_VIDEO_STARTED:String = "AdMob.onVideoStarted"
 }

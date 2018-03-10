@@ -43,10 +43,7 @@ class KotlinController : FreKotlinMainController {
             val key = String(argv[0])
             val volume = Float(argv[1])
             val muted = Boolean(argv[2])
-            val _scaleFactor = Float(argv[3])
-            if (_scaleFactor != null) {
-                scaleFactor = _scaleFactor
-            }
+            scaleFactor = Float(argv[3]) ?: 1.0F
             airView = context?.activity?.findViewById(android.R.id.content) as ViewGroup
             airView = airView.getChildAt(0) as ViewGroup
             MobileAds.initialize(ctx.activity?.applicationContext, key)
@@ -158,14 +155,6 @@ class KotlinController : FreKotlinMainController {
         return null
     }
 
-    override fun onStarted() {
-        super.onStarted()
-    }
-
-    override fun onRestarted() {
-        super.onRestarted()
-    }
-
     override fun onResumed() {
         super.onResumed()
         bannerController?.adView?.resume()
@@ -176,10 +165,6 @@ class KotlinController : FreKotlinMainController {
         super.onPaused()
         bannerController?.adView?.pause()
         rewardController?.adView?.pause(this.context?.activity)
-    }
-
-    override fun onStopped() {
-        super.onStopped()
     }
 
     override fun onDestroyed() {
