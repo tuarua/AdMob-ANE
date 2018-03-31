@@ -122,9 +122,10 @@ The example project can be run on the device from IntelliJ using AIR 28.
 You will need:
 
 - IntelliJ IDEA / Flash Builder
-- AIR 28
+- AIR 29
+- Xcode 9.3
+- Xcode 9.1 for iOS Simulator
 - Android Studio 3 if you wish to edit the Android source
-- Xcode 9.1 if you wish to edit the iOS source
 - wget on OSX
 - Powershell on Windows
 
