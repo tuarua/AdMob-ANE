@@ -11,9 +11,6 @@
             <entry library-name="com.tuarua.frekotlin" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.android.support.support-v4-25.4.0" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-name="com.google.android.gms.play-services-base-11.8.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
@@ -27,6 +24,9 @@
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="com.google.code.gson.gson-2.8.1" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="com.android.support.support-v4-27.1.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -73,6 +73,9 @@
             <entry library-name="com.tuarua.frekotlin" library-level="project">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="com.android.support.support-v4-27.1.0" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="AIRSDK_29" />
         </dependencies>
@@ -89,7 +92,7 @@
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system" path-in-package="." />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/assets" path-in-package="." />
           </files-to-package>
-          <AirSigningOptions keystore-path="$USER_HOME$/Documents/appleCertsProv/2017/dev/tuarua_dev.p12" provisioning-profile-path="$USER_HOME$/Documents/appleCertsProv/2017/dev/Tua_Rua_Dev_Provisioning.mobileprovision" />
+          <AirSigningOptions keystore-path="$USER_HOME$/Documents/appleCertsProv/2018/dev/tua_rua_dev_2018.p12" provisioning-profile-path="$USER_HOME$/Documents/appleCertsProv/2018/dev/Tua_Rua_Dev_Provisioning-2.mobileprovision" />
         </packaging-ios>
       </configuration>
       <configuration name="AdMob Sample iOS Device" target-platform="Mobile" pure-as="true" main-class="AdMobANESample" output-file="AdMob_Sample_iOS_Device.swf" output-folder="$MODULE_DIR$/bin-release/device">
@@ -119,6 +122,9 @@
             <entry library-name="com.tuarua.frekotlin" library-level="project">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="com.android.support.support-v4-27.1.0" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="AIRSDK_29" />
         </dependencies>
@@ -137,7 +143,7 @@
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system" path-in-package="." />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/assets" path-in-package="." />
           </files-to-package>
-          <AirSigningOptions keystore-path="$USER_HOME$/Documents/appleCertsProv/2017/dev/tuarua_dev.p12" provisioning-profile-path="$USER_HOME$/Documents/appleCertsProv/2017/dev/Tua_Rua_Dev_Provisioning.mobileprovision" />
+          <AirSigningOptions keystore-path="$USER_HOME$/Documents/appleCertsProv/2018/dev/tua_rua_dev_2018.p12" provisioning-profile-path="$USER_HOME$/Documents/appleCertsProv/2018/dev/Tua_Rua_Dev_Provisioning-2.mobileprovision" />
         </packaging-ios>
       </configuration>
     </configurations>
@@ -158,5 +164,6 @@
     <orderEntry type="library" exported="" name="starling" level="project" />
     <orderEntry type="library" exported="" name="FiraSansSemiBold" level="project" />
     <orderEntry type="library" exported="" name="com.google.code.gson.gson-2.8.1" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support.support-v4-27.1.0" level="project" />
   </component>
 </module>
