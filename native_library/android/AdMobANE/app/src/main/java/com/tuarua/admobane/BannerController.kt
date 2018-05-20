@@ -105,10 +105,6 @@ class BannerController(override var context: FREContext?, airView: ViewGroup) : 
 
         val builder = AdRequest.Builder()
         if (targeting != null) {
-            builder.setGender(targeting.gender)
-            if (targeting.birthday != null) {
-                builder.setBirthday(targeting.birthday)
-            }
             if (targeting.forChildren != null) {
                 val forChildren = targeting.forChildren
                 forChildren?.let { builder.tagForChildDirectedTreatment(it) }

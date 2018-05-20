@@ -44,10 +44,6 @@ class InterstitialController: NSObject, FreSwiftController, GADInterstitialDeleg
             if let fc = t.forChildren {
                 request.tag(forChildDirectedTreatment: fc)
             }
-            request.gender = t.gender
-            if let birthday = t.birthday {
-                request.birthday = birthday
-            }
             if let contentUrl = t.contentUrl {
                 request.contentURL = contentUrl
             }

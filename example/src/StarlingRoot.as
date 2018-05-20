@@ -15,7 +15,6 @@ import starling.events.ResizeEvent;
 import starling.events.Touch;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
-import starling.utils.AssetManager;
 
 import utils.os;
 
@@ -31,10 +30,8 @@ public class StarlingRoot extends Sprite {
     public function StarlingRoot() {
     }
 
-    public function start(assets:AssetManager):void {
+    public function start():void {
         NativeApplication.nativeApplication.addEventListener(Event.EXITING, onExiting);
-        var _assets:AssetManager = assets;
-
 
         adMobANE.addEventListener(AdMobEvent.ON_CLICKED, onAdClicked);
         adMobANE.addEventListener(AdMobEvent.ON_CLOSED, onAdClosed);
@@ -44,6 +41,7 @@ public class StarlingRoot extends Sprite {
         adMobANE.addEventListener(AdMobEvent.ON_LOADED, onAdLoaded);
         adMobANE.addEventListener(AdMobEvent.ON_OPENED, onAdOpened);
         adMobANE.addEventListener(AdMobEvent.ON_VIDEO_STARTED, onVideoStarted);
+        adMobANE.addEventListener(AdMobEvent.ON_VIDEO_COMPLETE, onVideoComplete);
         adMobANE.addEventListener(AdMobEvent.ON_REWARDED, onRewarded);
         adMobANE.init("ca-app-pub-3940256099942544~3347511713", 0.5, true, Starling.current.contentScaleFactor);
 
@@ -84,6 +82,10 @@ public class StarlingRoot extends Sprite {
         trace(event);
     }
 
+    private function onVideoComplete(event:AdMobEvent):void {
+        trace(event);
+    }
+
     private function onRewarded(event:AdMobEvent):void {
         trace(event);
         trace("Reward=", event.params.amount, event.params.type);
@@ -94,8 +96,6 @@ public class StarlingRoot extends Sprite {
         if (touch != null && touch.phase == TouchPhase.ENDED) {
             try {
                 var targeting:Targeting = new Targeting();
-                targeting.birthday = new Date(1999, 5, 10);
-                targeting.gender = Targeting.FEMALE;
                 targeting.forChildren = false;
 
                 adMobANE.interstitial.adUnit = "ca-app-pub-3940256099942544/1033173712";
@@ -112,8 +112,6 @@ public class StarlingRoot extends Sprite {
         if (touch != null && touch.phase == TouchPhase.ENDED) {
             try {
                 var targeting:Targeting = new Targeting();
-                targeting.birthday = new Date(1999, 5, 10);
-                targeting.gender = Targeting.FEMALE;
                 targeting.forChildren = false;
 
                 adMobANE.rewardVideo.adUnit = os.isIos ? "ca-app-pub-3940256099942544/1712485313": "ca-app-pub-3940256099942544/5224354917";
@@ -162,7 +160,6 @@ public class StarlingRoot extends Sprite {
 
     private static function onAdClicked(event:AdMobEvent):void {
         trace(event);
-
         var position:int = event.params.position;
     }
 
@@ -183,8 +180,6 @@ public class StarlingRoot extends Sprite {
         if (touch != null && touch.phase == TouchPhase.ENDED) {
             try {
                 var targeting:Targeting = new Targeting();
-                targeting.birthday = new Date(1999, 5, 10);
-                targeting.gender = Targeting.MALE;
                 targeting.forChildren = true;
                 targeting.contentUrl = "http://googleadsdeveloper.blogspot.com/2016/03/rewarded-video-support-for-admob.html";
 

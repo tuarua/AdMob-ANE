@@ -11,6 +11,7 @@ public class AdMobEvent extends Event{
     public static const ON_LEFT_APPLICATION:String = "AdMob.OnLeftApplication";
     public static const ON_REWARDED:String = "AdMob.onRewarded";
     public static const ON_VIDEO_STARTED:String = "AdMob.onVideoStarted";
+    public static const ON_VIDEO_COMPLETE:String = "AdMob.onVideoComplete";
 
     public var params:*;
     public function AdMobEvent(type:String, params:* = null, bubbles:Boolean = false, cancelable:Boolean = false) {

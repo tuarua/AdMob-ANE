@@ -21,23 +21,14 @@ import com.tuarua.frekotlin.*
 import java.util.*
 
 class Targeting() {
-    var birthday: Date? = null
-    var gender: Int = AdRequest.GENDER_UNKNOWN
     var forChildren: Boolean? = null
 
     constructor(freObject: FREObject?) : this() {
         val o = freObject ?: return
-        val _gender = Int(o.getProp("gender"))
-        if(_gender != null) gender = _gender
-
-        val _forChildrenSet = Boolean(o.getProp("forChildrenSet"))
-        val _forChildren = Boolean(o.getProp("forChildren"))
-        if (_forChildrenSet != null && _forChildrenSet && _forChildren != null) {
-            forChildren = _forChildren
-        }
-        val birthdayFre = o.getProperty("birthday")
-        if (FreObjectTypeKotlin.DATE == birthdayFre?.type){
-            birthday = Date(birthdayFre)
+        val forChildrenSet = Boolean(o.getProp("forChildrenSet"))
+        val forChildren = Boolean(o.getProp("forChildren"))
+        if (forChildrenSet != null && forChildrenSet && forChildren != null) {
+            this.forChildren = forChildren
         }
     }
 

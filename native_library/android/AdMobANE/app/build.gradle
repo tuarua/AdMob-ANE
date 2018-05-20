@@ -25,5 +25,5 @@ dependencies {
     implementation "com.google.code.gson:gson:$gson_version"
     implementation files('libs/FlashRuntimeExtensions.jar')
     implementation files('libs/runtimeClasses.jar')
-    implementation files('libs/frekotlin-1.2.30.jar')
+    implementation files('libs/frekotlin-1.2.41.jar')
 }

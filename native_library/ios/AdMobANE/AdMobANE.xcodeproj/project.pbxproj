@@ -19,6 +19,7 @@
 		CE46CA6D1F5B6C050067794D /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE46CA6C1F5B6C050067794D /* GoogleMobileAds.framework */; };
 		CE46CA701F5B73650067794D /* Targeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE46CA6F1F5B73650067794D /* Targeting.swift */; };
 		CE827F7C1F5C041F0041D809 /* BannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE827F7B1F5C041F0041D809 /* BannerController.swift */; };
+		CE8BC49520B192D3009164ED /* SwiftController+FreSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8BC49420B192D3009164ED /* SwiftController+FreSwift.swift */; };
 		CE95E4931F6D745500BC0F46 /* RewardVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95E4921F6D745500BC0F46 /* RewardVideoController.swift */; };
 		CEB5ED121F5C4F7800AE8B16 /* SwiftyJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = CEB5ED101F5C4F7800AE8B16 /* SwiftyJSON.h */; };
 		CEB5ED131F5C4F7800AE8B16 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB5ED111F5C4F7800AE8B16 /* SwiftyJSON.swift */; };
@@ -50,6 +51,7 @@
 		CE46CA6C1F5B6C050067794D /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = Frameworks/GoogleMobileAds.framework; sourceTree = "<group>"; };
 		CE46CA6F1F5B73650067794D /* Targeting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Targeting.swift; sourceTree = "<group>"; };
 		CE827F7B1F5C041F0041D809 /* BannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerController.swift; sourceTree = "<group>"; };
+		CE8BC49420B192D3009164ED /* SwiftController+FreSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftController+FreSwift.swift"; sourceTree = "<group>"; };
 		CE95E4921F6D745500BC0F46 /* RewardVideoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardVideoController.swift; sourceTree = "<group>"; };
 		CEB5ED101F5C4F7800AE8B16 /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
 		CEB5ED111F5C4F7800AE8B16 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				CEB5ED161F5C578500AE8B16 /* Position.swift */,
 				CE43C32E1F5CA4E1002170F2 /* InterstitialController.swift */,
 				CE95E4921F6D745500BC0F46 /* RewardVideoController.swift */,
+				CE8BC49420B192D3009164ED /* SwiftController+FreSwift.swift */,
 			);
 			path = AdMobANE_FW;
 			sourceTree = "<group>";
@@ -269,14 +272,14 @@
 		};
 		CE7CFE052022903C007F9024 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
@@ -289,6 +292,7 @@
 			files = (
 				CE43C32F1F5CA4E1002170F2 /* InterstitialController.swift in Sources */,
 				CEB5ED151F5C56F900AE8B16 /* Constants.swift in Sources */,
+				CE8BC49520B192D3009164ED /* SwiftController+FreSwift.swift in Sources */,
 				CE3980981E58BB070062485B /* SwiftController.swift in Sources */,
 				CEB5ED171F5C578500AE8B16 /* Position.swift in Sources */,
 				CE827F7C1F5C041F0041D809 /* BannerController.swift in Sources */,

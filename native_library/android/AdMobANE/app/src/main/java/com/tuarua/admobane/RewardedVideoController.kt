@@ -28,6 +28,8 @@ import com.tuarua.admobane.Position.*
 import com.tuarua.frekotlin.FreKotlinController
 
 class RewardedVideoController(override var context: FREContext?) : FreKotlinController, RewardedVideoAdListener {
+
+
     private val gson = Gson()
     private var _adView: RewardedVideoAd? = null
     private var _showOnLoad: Boolean = true
@@ -49,10 +51,6 @@ class RewardedVideoController(override var context: FREContext?) : FreKotlinCont
 
         val builder = AdRequest.Builder()
         if (targeting != null) {
-            builder.setGender(targeting.gender)
-            if (targeting.birthday != null) {
-                builder.setBirthday(targeting.birthday)
-            }
             if (targeting.forChildren != null) {
                 val forChildren = targeting.forChildren
                 forChildren?.let { builder.tagForChildDirectedTreatment(it) }
@@ -96,6 +94,10 @@ class RewardedVideoController(override var context: FREContext?) : FreKotlinCont
         } else {
             sendEvent(Constants.ON_REWARDED, gson.toJson(AdMobEventWithReward(REWARD.ordinal)))
         }
+    }
+
+    override fun onRewardedVideoCompleted() {
+        sendEvent(Constants.ON_VIDEO_COMPLETE, gson.toJson(AdMobEvent(REWARD.ordinal)))
     }
 
     override fun onRewardedVideoStarted() {

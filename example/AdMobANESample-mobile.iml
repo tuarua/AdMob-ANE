@@ -2,7 +2,7 @@
 <module type="Flex" version="4">
   <component name="FlexBuildConfigurationManager" active="AdMob Sample iOS Device">
     <configurations>
-      <configuration name="AdMob Sample Android" target-platform="Mobile" pure-as="true" main-class="AdMobANESample" output-file="Main.swf" output-folder="$MODULE_DIR$/bin-release/device">
+      <configuration name="AdMob Sample Android" target-platform="Mobile" pure-as="true" main-class="Main" output-file="Main.swf" output-folder="$MODULE_DIR$/bin-release/device">
         <dependencies>
           <entries>
             <entry library-name="AdMobANE" library-level="project">
@@ -29,6 +29,12 @@
             <entry library-name="com.android.support.support-v4-27.1.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-name="com.google.android.gms.play-services-ads-lite-12.0.1" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="com.google.android.gms.play-services-base-12.0.1" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="AIRSDK_29" />
         </dependencies>
@@ -38,15 +44,14 @@
           </map>
         </compiler-options>
         <packaging-air-desktop />
-        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/AdMobANESample-app.xml" package-file-name="AdMobANESample-mobile">
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/Main.xml" package-file-name="AdMobANESample-mobile">
           <files-to-package>
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/assets" path-in-package="." />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system" path-in-package="." />
           </files-to-package>
         </packaging-android>
         <packaging-ios use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/Main-app.xml" package-file-name="Main" />
       </configuration>
-      <configuration name="AdMob Sample iOS simulator" target-platform="Mobile" pure-as="true" main-class="AdMobANESample" output-file="AdMob_Sample_iOS.swf" output-folder="$MODULE_DIR$/bin-release/sim">
+      <configuration name="AdMob Sample iOS simulator" target-platform="Mobile" pure-as="true" main-class="Main" output-file="AdMob_Sample_iOS.swf" output-folder="$MODULE_DIR$/bin-release/sim">
         <dependencies>
           <entries>
             <entry library-name="starling" library-level="project">
@@ -74,6 +79,12 @@
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="com.android.support.support-v4-27.1.0" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="com.google.android.gms.play-services-ads-lite-12.0.1" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="com.google.android.gms.play-services-base-12.0.1" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -86,16 +97,16 @@
         </compiler-options>
         <packaging-air-desktop />
         <packaging-android custom-descriptor-path="$MODULE_DIR$/src/AdMobANESample.xml" package-file-name="AdMob_Sample_iOS" />
-        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/AdMobANESample-app.xml" package-file-name="AdMob_Sample_iOS">
+        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/Main.xml" package-file-name="AdMob_Sample_iOS">
           <files-to-package>
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/ios_dependencies/simulator" path-in-package="." />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system" path-in-package="." />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/assets" path-in-package="." />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/Assets.car" path-in-package="Assets.car" />
           </files-to-package>
           <AirSigningOptions keystore-path="$USER_HOME$/Documents/appleCertsProv/2018/dev/tua_rua_dev_2018.p12" provisioning-profile-path="$USER_HOME$/Documents/appleCertsProv/2018/dev/Tua_Rua_Dev_Provisioning-2.mobileprovision" />
         </packaging-ios>
       </configuration>
-      <configuration name="AdMob Sample iOS Device" target-platform="Mobile" pure-as="true" main-class="AdMobANESample" output-file="AdMob_Sample_iOS_Device.swf" output-folder="$MODULE_DIR$/bin-release/device">
+      <configuration name="AdMob Sample iOS Device" target-platform="Mobile" pure-as="true" main-class="Main" output-file="AdMob_Sample_iOS_Device.swf" output-folder="$MODULE_DIR$/bin-release/device">
         <dependencies>
           <entries>
             <entry library-name="starling" library-level="project">
@@ -123,6 +134,12 @@
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="com.android.support.support-v4-27.1.0" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="com.google.android.gms.play-services-ads-lite-12.0.1" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="com.google.android.gms.play-services-base-12.0.1" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -137,11 +154,11 @@
         <packaging-android custom-descriptor-path="$MODULE_DIR$/src/AdMobANESample.xml">
           <AirSigningOptions use-temp-certificate="false" />
         </packaging-android>
-        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/AdMobANESample-app.xml" package-file-name="AdMob_Sample_iOS_Device">
+        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/Main.xml" package-file-name="AdMob_Sample_iOS_Device">
           <files-to-package>
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/ios_dependencies/device" path-in-package="." />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system" path-in-package="." />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/assets" path-in-package="." />
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/Assets.car" path-in-package="Assets.car" />
           </files-to-package>
           <AirSigningOptions keystore-path="$USER_HOME$/Documents/appleCertsProv/2018/dev/tua_rua_dev_2018.p12" provisioning-profile-path="$USER_HOME$/Documents/appleCertsProv/2018/dev/Tua_Rua_Dev_Provisioning-2.mobileprovision" />
         </packaging-ios>
@@ -165,5 +182,7 @@
     <orderEntry type="library" exported="" name="FiraSansSemiBold" level="project" />
     <orderEntry type="library" exported="" name="com.google.code.gson.gson-2.8.1" level="project" />
     <orderEntry type="library" exported="" name="com.android.support.support-v4-27.1.0" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-ads-lite-12.0.1" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-base-12.0.1" level="project" />
   </component>
 </module>
