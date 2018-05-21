@@ -28,6 +28,7 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
     private var _vAlign: String = "bottom"
     private var _x: CGFloat = CGFloat.init()
     private var _y: CGFloat = CGFloat.init()
+    private var isPersonalised: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +39,10 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
             name: Notification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     
-    convenience init(context: FreContextSwift) {
+    convenience init(context: FreContextSwift, isPersonalised: Bool) {
         self.init()
         self.context = context
+        self.isPersonalised = isPersonalised
     }
 
     @objc private func orientationDidChange(notification: Notification) {
@@ -141,6 +143,12 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
         position()
 
         let request = GADRequest()
+        if !isPersonalised {
+            let extras = GADExtras()
+            extras.additionalParameters = ["npa": "1"]
+            request.register(extras)
+        }
+        
         if deviceList != nil {
             request.testDevices = deviceList!
         }

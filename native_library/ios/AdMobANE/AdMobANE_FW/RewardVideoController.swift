@@ -23,12 +23,13 @@ class RewardVideoController: NSObject, FreSwiftController, GADRewardBasedVideoAd
     internal var context: FreContextSwift!
     private var _showOnLoad: Bool = true
     private var _airVC: UIViewController?
+    private var isPersonalised: Bool = true
     private var adView: GADRewardBasedVideoAd?
     
-    convenience init(context: FreContextSwift) {
+    convenience init(context: FreContextSwift, isPersonalised: Bool) {
         self.init()
         self.context = context
-        
+        self.isPersonalised = isPersonalised
     }
     func load(airVC: UIViewController, unitId: String, deviceList: [String]?,
               targeting: Targeting?, showOnLoad: Bool) {
@@ -38,6 +39,11 @@ class RewardVideoController: NSObject, FreSwiftController, GADRewardBasedVideoAd
         
         adView?.delegate = self
         let request = GADRequest()
+        if !isPersonalised {
+            let extras = GADExtras()
+            extras.additionalParameters = ["npa": "1"]
+            request.register(extras)
+        }
         if deviceList != nil {
             request.testDevices = deviceList!
         }

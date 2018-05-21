@@ -17,7 +17,9 @@
 
 package com.tuarua.admobane
 
+import android.os.Bundle
 import com.adobe.fre.FREContext
+import com.google.ads.mediation.admob.AdMobAdapter
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.reward.RewardItem
@@ -27,7 +29,7 @@ import com.google.gson.Gson
 import com.tuarua.admobane.Position.*
 import com.tuarua.frekotlin.FreKotlinController
 
-class RewardedVideoController(override var context: FREContext?) : FreKotlinController, RewardedVideoAdListener {
+class RewardedVideoController(override var context: FREContext?, private val isPersonalised: Boolean) : FreKotlinController, RewardedVideoAdListener {
     private val gson = Gson()
     private var _adView: RewardedVideoAd? = null
     private var _showOnLoad: Boolean = true
@@ -48,6 +50,13 @@ class RewardedVideoController(override var context: FREContext?) : FreKotlinCont
         av.rewardedVideoAdListener = this
 
         val builder = AdRequest.Builder()
+
+        if (!isPersonalised){
+            val extras = Bundle()
+            extras.putString("npa", "1")
+            builder.addNetworkExtrasBundle(AdMobAdapter::class.java, extras)
+        }
+
         if (targeting != null) {
             builder.setGender(targeting.gender)
             if (targeting.birthday != null) {

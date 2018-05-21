@@ -24,9 +24,11 @@ class InterstitialController: NSObject, FreSwiftController, GADInterstitialDeleg
     private var adView: GADInterstitial?
     private var _showOnLoad: Bool = true
     private var _airVC: UIViewController?
-    convenience init(context: FreContextSwift) {
+    private var isPersonalised: Bool = true
+    convenience init(context: FreContextSwift, isPersonalised: Bool) {
         self.init()
         self.context = context
+        self.isPersonalised = isPersonalised
     }
     
     func load(airVC: UIViewController, unitId: String, deviceList: [String]?,
@@ -36,6 +38,11 @@ class InterstitialController: NSObject, FreSwiftController, GADInterstitialDeleg
         adView = GADInterstitial(adUnitID: unitId)
         adView?.delegate = self
         let request = GADRequest()
+        if !isPersonalised {
+            let extras = GADExtras()
+            extras.additionalParameters = ["npa": "1"]
+            request.register(extras)
+        }
         if deviceList != nil {
             request.testDevices = deviceList!
         }
