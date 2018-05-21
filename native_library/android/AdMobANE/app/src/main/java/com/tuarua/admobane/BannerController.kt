@@ -27,9 +27,15 @@ import com.google.android.gms.ads.*
 import com.tuarua.frekotlin.FreKotlinController
 import com.google.gson.Gson
 import com.tuarua.admobane.Position.*
+import android.os.Bundle
+import com.google.ads.mediation.admob.AdMobAdapter
+
+
+
+
 
 @Suppress("JoinDeclarationAndAssignment")
-class BannerController(override var context: FREContext?, airView: ViewGroup) : FreKotlinController, AdListener() {
+class BannerController(override var context: FREContext?, airView: ViewGroup, private val isPersonalised: Boolean) : FreKotlinController, AdListener() {
 
     private var airView: ViewGroup? = airView
     private var _adView: AdView? = null
@@ -102,8 +108,15 @@ class BannerController(override var context: FREContext?, airView: ViewGroup) : 
         }
         container.layoutParams = lp
 
-
         val builder = AdRequest.Builder()
+
+        if (!isPersonalised){
+            val extras = Bundle()
+            extras.putString("npa", "1")
+            builder.addNetworkExtrasBundle(AdMobAdapter::class.java, extras)
+        }
+
+
         if (targeting != null) {
             if (targeting.forChildren != null) {
                 val forChildren = targeting.forChildren
