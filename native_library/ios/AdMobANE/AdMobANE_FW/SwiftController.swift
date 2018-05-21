@@ -53,10 +53,11 @@ public class SwiftController: NSObject, FreSwiftMainController {
     }
 
     func initController(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        guard argc > 2,
-              let key = String(argv[0]),
-              let volume = Float(argv[1]),
-              let muted = Bool(argv[2])
+        guard argc > 3,
+            let key = String(argv[0]),
+            let volume = Float(argv[1]),
+            let muted = Bool(argv[2]),
+            let isPersonalised = Bool(argv[3])
           else {
             return ArgCountError(message: "initAdMob").getError(#file, #line, #column)
         }
@@ -65,9 +66,9 @@ public class SwiftController: NSObject, FreSwiftMainController {
         GADMobileAds.sharedInstance().applicationVolume = volume
         GADMobileAds.sharedInstance().applicationMuted = muted
 
-        bannerController = BannerController.init(context: context)
-        interstitialController = InterstitialController.init(context: context)
-        rewardVideoController = RewardVideoController.init(context: context)
+        bannerController = BannerController.init(context: context, isPersonalised: isPersonalised)
+        interstitialController = InterstitialController.init(context: context, isPersonalised: isPersonalised)
+        rewardVideoController = RewardVideoController.init(context: context, isPersonalised: isPersonalised)
         return nil
     }
 
