@@ -38,12 +38,12 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun init(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 3 } ?: return ArgCountException().getError(Thread.currentThread().stackTrace)
+        argv.takeIf { argv.size > 4 } ?: return ArgCountException().getError(Thread.currentThread().stackTrace)
         try {
             val key = String(argv[0])
             val volume = Float(argv[1])
             val muted = Boolean(argv[2])
-            val isPersonalised = Boolean(argv[3]) == true
+            val isPersonalised = Boolean(argv[4]) == true
             scaleFactor = Float(argv[3]) ?: 1.0F
             airView = context?.activity?.findViewById(android.R.id.content) as ViewGroup
             airView = airView.getChildAt(0) as ViewGroup

@@ -53,11 +53,11 @@ public class SwiftController: NSObject, FreSwiftMainController {
     }
 
     func initController(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        guard argc > 3,
+        guard argc > 4,
             let key = String(argv[0]),
             let volume = Float(argv[1]),
             let muted = Bool(argv[2]),
-            let isPersonalised = Bool(argv[3])
+            let isPersonalised = Bool(argv[4])
           else {
             return ArgCountError(message: "initAdMob").getError(#file, #line, #column)
         }
