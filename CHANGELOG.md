@@ -1,3 +1,6 @@
+### 1.5.5
+- Added isPersonalised = true/false to comply with GDPR
+
 ### 1.5.0
 - Updated to FreSwift 2.4.0
 
