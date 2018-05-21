@@ -76,11 +76,13 @@ public class AdMobANE extends EventDispatcher {
      * @param volume - Sets the volume of Video Ads
      * @param muted - Sets whether Video Ads are muted
      * @param scaleFactor - Used on Android only
+     * @param isPersonalised - Set based on user consent for GDPR
      * @return
      *
      */
-    public function init(key:String, volume:Number = 1.0, muted:Boolean = false, scaleFactor:Number = 1.0):Boolean {
-        var theRet:* = ctx.call("init", key, volume, muted, scaleFactor);
+    public function init(key:String, volume:Number = 1.0, muted:Boolean = false, scaleFactor:Number = 1.0,
+                         isPersonalised:Boolean = true):Boolean {
+        var theRet:* = ctx.call("init", key, volume, muted, scaleFactor, isPersonalised);
         if (theRet is ANEError) {
             throw theRet as ANEError;
         }
