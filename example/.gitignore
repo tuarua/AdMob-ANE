@@ -75,4 +75,3 @@ fabric.properties
 # *.ipr
 
 /android_dependencies/*.ane
-/sprite-sheet/

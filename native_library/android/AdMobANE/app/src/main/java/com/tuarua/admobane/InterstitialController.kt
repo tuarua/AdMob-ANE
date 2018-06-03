@@ -1,5 +1,5 @@
 /*
- *  Copyright 2017 Tua Rua Ltd.
+ *  Copyright 2018 Tua Rua Ltd.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -27,7 +27,8 @@ import com.tuarua.admobane.Position.*
 import com.tuarua.frekotlin.FreKotlinController
 
 @Suppress("JoinDeclarationAndAssignment")
-class InterstitialController(override var context: FREContext?, private val isPersonalised: Boolean) : FreKotlinController, AdListener() {
+class InterstitialController(override var context: FREContext?,
+                             private val isPersonalised: Boolean) : FreKotlinController, AdListener() {
 
     private var _adView: InterstitialAd? = null
     private var _showOnLoad:Boolean = true
@@ -35,7 +36,6 @@ class InterstitialController(override var context: FREContext?, private val isPe
 
     init {
     }
-
 
     fun load(unitId: String, deviceList: List<String>?, targeting: Targeting?, showOnLoad:Boolean) {
         _adView = InterstitialAd(this.context?.activity?.applicationContext)

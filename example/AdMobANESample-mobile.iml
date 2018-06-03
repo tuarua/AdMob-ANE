@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="Flex" version="4">
-  <component name="FlexBuildConfigurationManager" active="AdMob Sample iOS Device">
+  <component name="FlexBuildConfigurationManager" active="AdMob Sample Android">
     <configurations>
       <configuration name="AdMob Sample Android" target-platform="Mobile" pure-as="true" main-class="Main" output-file="Main.swf" output-folder="$MODULE_DIR$/bin-release/device">
         <dependencies>
@@ -9,12 +9,6 @@
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="com.tuarua.frekotlin" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-name="com.google.android.gms.play-services-base-11.8.0" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-name="com.google.android.gms.play-services-ads-lite-11.8.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="starling" library-level="project">
@@ -29,10 +23,10 @@
             <entry library-name="com.android.support.support-v4-27.1.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.google.android.gms.play-services-ads-lite-12.0.1" library-level="project">
+            <entry library-name="com.google.android.gms.play-services-ads-lite-15.0.1" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.google.android.gms.play-services-base-12.0.1" library-level="project">
+            <entry library-name="com.google.android.gms.play-services-base-15.0.1" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -63,15 +57,6 @@
             <entry library-name="AdMobANE" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.android.support.support-v4-25.4.0" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-name="com.google.android.gms.play-services-ads-lite-11.8.0" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-name="com.google.android.gms.play-services-base-11.8.0" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-name="com.google.code.gson.gson-2.8.1" library-level="project">
               <dependency linkage="Merged" />
             </entry>
@@ -81,10 +66,10 @@
             <entry library-name="com.android.support.support-v4-27.1.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.google.android.gms.play-services-ads-lite-12.0.1" library-level="project">
+            <entry library-name="com.google.android.gms.play-services-ads-lite-15.0.1" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.google.android.gms.play-services-base-12.0.1" library-level="project">
+            <entry library-name="com.google.android.gms.play-services-base-15.0.1" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -118,15 +103,6 @@
             <entry library-name="AdMobANE" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.android.support.support-v4-25.4.0" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-name="com.google.android.gms.play-services-ads-lite-11.8.0" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-name="com.google.android.gms.play-services-base-11.8.0" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-name="com.google.code.gson.gson-2.8.1" library-level="project">
               <dependency linkage="Merged" />
             </entry>
@@ -136,10 +112,10 @@
             <entry library-name="com.android.support.support-v4-27.1.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.google.android.gms.play-services-ads-lite-12.0.1" library-level="project">
+            <entry library-name="com.google.android.gms.play-services-ads-lite-15.0.1" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.google.android.gms.play-services-base-12.0.1" library-level="project">
+            <entry library-name="com.google.android.gms.play-services-base-15.0.1" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -184,5 +160,7 @@
     <orderEntry type="library" exported="" name="com.android.support.support-v4-27.1.0" level="project" />
     <orderEntry type="library" exported="" name="com.google.android.gms.play-services-ads-lite-12.0.1" level="project" />
     <orderEntry type="library" exported="" name="com.google.android.gms.play-services-base-12.0.1" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-ads-lite-15.0.1" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-base-15.0.1" level="project" />
   </component>
 </module>
