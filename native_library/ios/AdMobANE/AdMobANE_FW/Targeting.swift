@@ -19,8 +19,6 @@ import FreSwift
 import GoogleMobileAds
 
 public struct Targeting {
-    public var birthday: Date?
-    public var gender: GADGender = .unknown
     public var forChildren: Bool?
     public var contentUrl: String?
 
@@ -30,28 +28,11 @@ public struct Targeting {
         }
 
         do {
-            if let g = try Int(o.getProp(name: "gender")) {
-                switch g {
-                case 1:
-                    gender = .male
-                case 2:
-                    gender = .female
-                default:
-                    gender = .unknown
-                }
-            }
             let forChildrenSet = try Bool(o.getProp(name: "forChildrenSet")) == true
             if forChildrenSet {
                 forChildren = try Bool(o.getProp(name: "forChildren"))
             }
-            if let birthdayFre = try o.getProp(name: "birthday") {
-                if FreObjectTypeSwift.date == birthdayFre.type {
-                    if let d = Date(birthdayFre) {
-                        birthday = d
-                    }
-                }
-            }
-            
+
             if let contentUrlFre = try o.getProp(name: "contentUrl") {
                 contentUrl = String(contentUrlFre)
             }

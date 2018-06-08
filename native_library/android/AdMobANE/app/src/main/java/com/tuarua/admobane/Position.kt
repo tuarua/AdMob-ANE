@@ -1,5 +1,5 @@
 /*
- *  Copyright 2017 Tua Rua Ltd.
+ *  Copyright 2018 Tua Rua Ltd.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  *  limitations under the License.
  */
 package com.tuarua.admobane
+@Suppress("UNUSED_PARAMETER")
 enum class Position(i: kotlin.Int) {
     BANNER(0),
     INTERSTITIAL(1),

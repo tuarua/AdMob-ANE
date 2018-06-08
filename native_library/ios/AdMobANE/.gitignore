@@ -84,6 +84,7 @@ fabric.properties
 
 Frameworks/*.bundle
 Frameworks/*.framework
+Frameworks_bak/
 Carthage/
 FreSwift_bak/
 Cartfile.resolved

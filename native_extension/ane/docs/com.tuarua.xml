@@ -12,6 +12,7 @@
      </apiDesc></apiParam><apiParam><apiItemName>volume</apiItemName><apiType value="Number"/><apiData>1.0</apiData><apiDesc>- Sets the volume of Video Ads
      </apiDesc></apiParam><apiParam><apiItemName>muted</apiItemName><apiType value="Boolean"/><apiData>false</apiData><apiDesc>- Sets whether Video Ads are muted
      </apiDesc></apiParam><apiParam><apiItemName>scaleFactor</apiItemName><apiType value="Number"/><apiData>1.0</apiData><apiDesc>- Used on Android only
+     </apiDesc></apiParam><apiParam><apiItemName>isPersonalised</apiItemName><apiType value="Boolean"/><apiData>true</apiData><apiDesc>- Set based on user consent for GDPR
      </apiDesc></apiParam></apiOperationDef><apiDesc>
      
      </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.tuarua:AdMobANE:banner:get"><apiName>banner</apiName><shortdesc>

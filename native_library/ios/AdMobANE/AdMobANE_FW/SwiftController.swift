@@ -18,7 +18,7 @@ import Foundation
 import CoreImage
 import GoogleMobileAds
 
-public class SwiftController: NSObject, FreSwiftMainController {
+public class SwiftController: NSObject {
     public var TAG: String? = "AdMobANE"
     public var context: FreContextSwift!
     public var functionsToSet: FREFunctionMap = [:]
@@ -26,27 +26,6 @@ public class SwiftController: NSObject, FreSwiftMainController {
     private var interstitialController: InterstitialController?
     private var rewardVideoController: RewardVideoController?
     private var deviceArray: [String] = []
-
-    // Must have this function. It exposes the methods to our entry ObjC.
-    @objc public func getFunctions(prefix: String) -> [String] {
-
-        functionsToSet["\(prefix)isSupported"] = isSupported
-        functionsToSet["\(prefix)init"] = initController
-        functionsToSet["\(prefix)loadBanner"] = loadBanner
-        functionsToSet["\(prefix)clearBanner"] = clearBanner
-        functionsToSet["\(prefix)loadInterstitial"] = loadInterstitial
-        functionsToSet["\(prefix)showInterstitial"] = showInterstitial
-        functionsToSet["\(prefix)getBannerSizes"] = getBannerSizes
-        functionsToSet["\(prefix)setTestDevices"] = setTestDevices
-        functionsToSet["\(prefix)loadRewardVideo"] = loadRewardVideo
-        functionsToSet["\(prefix)showRewardVideo"] = showRewardVideo
-
-        var arr: [String] = []
-        for key in functionsToSet.keys {
-            arr.append(key)
-        }
-        return arr
-    }
 
     func isSupported(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         return true.toFREObject()
@@ -191,21 +170,6 @@ public class SwiftController: NSObject, FreSwiftMainController {
         bannerController = nil
         interstitialController = nil
         rewardVideoController = nil
-    }
-
-    // Must have these 3 functions. It exposes the methods to our entry ObjC.
-    @objc public func callSwiftFunction(name: String, ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        if let fm = functionsToSet[name] {
-            return fm(ctx, argc, argv)
-        }
-        return nil
-    }
-
-    @objc public func setFREContext(ctx: FREContext) {
-        self.context = FreContextSwift.init(freContext: ctx)
-    }
-  
-    @objc public func onLoad() {
     }
 
 }

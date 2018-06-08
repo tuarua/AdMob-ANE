@@ -1,5 +1,8 @@
-### 1.5.5
-- Added isPersonalised = true/false to comply with GDPR
+### 1.6.0
+- AND: Updated to FreKotlin 1.3.0
+- iOS: Updated to Google Mobile Ads SDK 7.31.0
+- Android: Updated Android Play Services to 15.0.1
+- AND/iOS: removed gender and birthday from targeting
 
 ### 1.5.0
 - Updated to FreSwift 2.4.0

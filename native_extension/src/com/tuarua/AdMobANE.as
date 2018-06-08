@@ -25,9 +25,7 @@ public class AdMobANE extends EventDispatcher {
         initiate();
     }
 
-    /**
-     * This method is omitted from the output. * * @private
-     */
+    /** @private */
     private function initiate():void {
         trace("[" + NAME + "] Initalizing ANE...");
         try {
@@ -46,9 +44,7 @@ public class AdMobANE extends EventDispatcher {
         }
     }
 
-    /**
-     * This method is omitted from the output. * * @private
-     */
+    /** @private */
     private function gotEvent(event:StatusEvent):void {
         switch (event.level) {
             case TRACE:
@@ -63,8 +59,8 @@ public class AdMobANE extends EventDispatcher {
             case AdMobEvent.ON_IMPRESSION:
             case AdMobEvent.ON_LEFT_APPLICATION:
             case AdMobEvent.ON_VIDEO_STARTED:
+            case AdMobEvent.ON_VIDEO_COMPLETE:
                 try {
-                    //trace("event.code", event.code);
                     argsAsJSON = JSON.parse(event.code);
                     dispatchEvent(new AdMobEvent(event.level, argsAsJSON));
                 } catch (e:Error) {
@@ -94,9 +90,7 @@ public class AdMobANE extends EventDispatcher {
         return _isInited;
     }
 
-    /**
-     * This method is omitted from the output. * * @private
-     */
+    /** @private */
     private function safetyCheck():Boolean {
         if (!_isInited) {
             trace("You need to init first");

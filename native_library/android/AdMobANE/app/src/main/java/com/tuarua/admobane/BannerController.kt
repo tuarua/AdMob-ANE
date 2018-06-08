@@ -1,5 +1,5 @@
 /*
- *  Copyright 2017 Tua Rua Ltd.
+ *  Copyright 2018 Tua Rua Ltd.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,12 +30,9 @@ import com.tuarua.admobane.Position.*
 import android.os.Bundle
 import com.google.ads.mediation.admob.AdMobAdapter
 
-
-
-
-
 @Suppress("JoinDeclarationAndAssignment")
-class BannerController(override var context: FREContext?, airView: ViewGroup, private val isPersonalised: Boolean) : FreKotlinController, AdListener() {
+class BannerController(override var context: FREContext?, airView: ViewGroup,
+                       private val isPersonalised: Boolean) : FreKotlinController, AdListener() {
 
     private var airView: ViewGroup? = airView
     private var _adView: AdView? = null
@@ -110,7 +107,7 @@ class BannerController(override var context: FREContext?, airView: ViewGroup, pr
 
         val builder = AdRequest.Builder()
 
-        if (!isPersonalised){
+        if (!isPersonalised) {
             val extras = Bundle()
             extras.putString("npa", "1")
             builder.addNetworkExtrasBundle(AdMobAdapter::class.java, extras)
@@ -118,10 +115,6 @@ class BannerController(override var context: FREContext?, airView: ViewGroup, pr
 
 
         if (targeting != null) {
-            builder.setGender(targeting.gender)
-            if (targeting.birthday != null) {
-                builder.setBirthday(targeting.birthday)
-            }
             if (targeting.forChildren != null) {
                 val forChildren = targeting.forChildren
                 forChildren?.let { builder.tagForChildDirectedTreatment(it) }

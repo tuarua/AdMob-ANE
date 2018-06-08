@@ -47,19 +47,14 @@ class RewardVideoController: NSObject, FreSwiftController, GADRewardBasedVideoAd
         if deviceList != nil {
             request.testDevices = deviceList!
         }
-        
+
         if let t = targeting {
             if let fc = t.forChildren {
                 request.tag(forChildDirectedTreatment: fc)
             }
-            request.gender = t.gender
-            if let birthday = t.birthday {
-                request.birthday = birthday
-            }
             if let contentUrl = t.contentUrl {
                 request.contentURL = contentUrl
             }
-            
         }
         adView?.load(request, withAdUnitID: unitId)
         
@@ -80,8 +75,7 @@ class RewardVideoController: NSObject, FreSwiftController, GADRewardBasedVideoAd
         props["position"] = Position.reward.rawValue
         props["type"] = reward.type
         props["amount"] = reward.amount
-        let json = JSON(props)
-        sendEvent(name: Constants.ON_REWARDED, value: json.description)
+        sendEvent(name: Constants.ON_REWARDED, value: JSON(props).description)
     }
     
     func dispose() {
@@ -95,8 +89,7 @@ class RewardVideoController: NSObject, FreSwiftController, GADRewardBasedVideoAd
     func rewardBasedVideoAdDidReceive(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
         var props: [String: Any] = Dictionary()
         props["position"] = Position.reward.rawValue
-        let json = JSON(props)
-        sendEvent(name: Constants.ON_LOADED, value: json.description)
+        sendEvent(name: Constants.ON_LOADED, value: JSON(props).description)
         
         guard let av = adView, let avc = _airVC else {return}
         if _showOnLoad {
@@ -107,29 +100,31 @@ class RewardVideoController: NSObject, FreSwiftController, GADRewardBasedVideoAd
     func rewardBasedVideoAdDidOpen(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
         var props: [String: Any] = Dictionary()
         props["position"] = Position.reward.rawValue
-        let json = JSON(props)
-        sendEvent(name: Constants.ON_OPENED, value: json.description)
+        sendEvent(name: Constants.ON_OPENED, value: JSON(props).description)
     }
     
     func rewardBasedVideoAdDidStartPlaying(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
         var props: [String: Any] = Dictionary()
         props["position"] = Position.reward.rawValue
-        let json = JSON(props)
-        sendEvent(name: Constants.ON_VIDEO_STARTED, value: json.description)
+        sendEvent(name: Constants.ON_VIDEO_STARTED, value: JSON(props).description)
+    }
+    
+    func rewardBasedVideoAdDidCompletePlaying(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
+        var props: [String: Any] = Dictionary()
+        props["position"] = Position.reward.rawValue
+        sendEvent(name: Constants.ON_VIDEO_COMPLETE, value: JSON(props).description)
     }
     
     func rewardBasedVideoAdDidClose(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
         var props: [String: Any] = Dictionary()
         props["position"] = Position.reward.rawValue
-        let json = JSON(props)
-        sendEvent(name: Constants.ON_CLOSED, value: json.description)
+        sendEvent(name: Constants.ON_CLOSED, value: JSON(props).description)
     }
     
     func rewardBasedVideoAdWillLeaveApplication(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
         var props: [String: Any] = Dictionary()
         props["position"] = Position.reward.rawValue
-        let json = JSON(props)
-        sendEvent(name: Constants.ON_LEFT_APPLICATION, value: json.description)
+        sendEvent(name: Constants.ON_LEFT_APPLICATION, value: JSON(props).description)
     }
     
     func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd,
@@ -137,8 +132,7 @@ class RewardVideoController: NSObject, FreSwiftController, GADRewardBasedVideoAd
         var props: [String: Any] = Dictionary()
         props["position"] = Position.reward.rawValue
         props["errorCode"] = 0
-        let json = JSON(props)
-        sendEvent(name: Constants.ON_LOAD_FAILED, value: json.description)
+        sendEvent(name: Constants.ON_LOAD_FAILED, value: JSON(props).description)
     }
     
 }

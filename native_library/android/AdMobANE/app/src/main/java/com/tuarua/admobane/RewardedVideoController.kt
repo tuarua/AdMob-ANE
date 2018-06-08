@@ -1,5 +1,5 @@
 /*
- *  Copyright 2017 Tua Rua Ltd.
+ *  Copyright 2018 Tua Rua Ltd.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -29,7 +29,8 @@ import com.google.gson.Gson
 import com.tuarua.admobane.Position.*
 import com.tuarua.frekotlin.FreKotlinController
 
-class RewardedVideoController(override var context: FREContext?, private val isPersonalised: Boolean) : FreKotlinController, RewardedVideoAdListener {
+class RewardedVideoController(override var context: FREContext?,
+                              private val isPersonalised: Boolean) : FreKotlinController, RewardedVideoAdListener {
     private val gson = Gson()
     private var _adView: RewardedVideoAd? = null
     private var _showOnLoad: Boolean = true
@@ -50,18 +51,12 @@ class RewardedVideoController(override var context: FREContext?, private val isP
         av.rewardedVideoAdListener = this
 
         val builder = AdRequest.Builder()
-
-        if (!isPersonalised){
+        if (!isPersonalised) {
             val extras = Bundle()
             extras.putString("npa", "1")
             builder.addNetworkExtrasBundle(AdMobAdapter::class.java, extras)
         }
-
         if (targeting != null) {
-            builder.setGender(targeting.gender)
-            if (targeting.birthday != null) {
-                builder.setBirthday(targeting.birthday)
-            }
             if (targeting.forChildren != null) {
                 val forChildren = targeting.forChildren
                 forChildren?.let { builder.tagForChildDirectedTreatment(it) }
@@ -105,6 +100,10 @@ class RewardedVideoController(override var context: FREContext?, private val isP
         } else {
             sendEvent(Constants.ON_REWARDED, gson.toJson(AdMobEventWithReward(REWARD.ordinal)))
         }
+    }
+
+    override fun onRewardedVideoCompleted() {
+        sendEvent(Constants.ON_VIDEO_COMPLETE, gson.toJson(AdMobEvent(REWARD.ordinal)))
     }
 
     override fun onRewardedVideoStarted() {
