@@ -16,9 +16,7 @@
 package com.tuarua.admobane
 
 import com.adobe.fre.FREObject
-import com.google.android.gms.ads.AdRequest
 import com.tuarua.frekotlin.*
-import java.util.*
 
 class Targeting() {
     var forChildren: Boolean? = null

@@ -45,9 +45,9 @@ public class SwiftController: NSObject {
         GADMobileAds.sharedInstance().applicationVolume = volume
         GADMobileAds.sharedInstance().applicationMuted = muted
 
-        bannerController = BannerController.init(context: context, isPersonalised: isPersonalised)
-        interstitialController = InterstitialController.init(context: context, isPersonalised: isPersonalised)
-        rewardVideoController = RewardVideoController.init(context: context, isPersonalised: isPersonalised)
+        bannerController = BannerController(context: context, isPersonalised: isPersonalised)
+        interstitialController = InterstitialController(context: context, isPersonalised: isPersonalised)
+        rewardVideoController = RewardVideoController(context: context, isPersonalised: isPersonalised)
         return nil
     }
 
@@ -64,7 +64,7 @@ public class SwiftController: NSObject {
             return ArgCountError(message: "loadBanner").getError(#file, #line, #column)
         }
 
-        let targeting = Targeting.init(freObject: inFRE2)
+        let targeting = Targeting(freObject: inFRE2)
         if let rootViewController = UIApplication.shared.keyWindow?.rootViewController,
            let avc = bannerController {
             avc.load(airView: rootViewController.view, unitId: unitId, size: adSize, deviceList: deviceArray,
@@ -92,7 +92,7 @@ public class SwiftController: NSObject {
             return ArgCountError(message: "loadInterstitial").getError(#file, #line, #column)
         }
 
-        let targeting = Targeting.init(freObject: inFRE1)
+        let targeting = Targeting(freObject: inFRE1)
 
         if let rootViewController = UIApplication.shared.keyWindow?.rootViewController,
            let ivc = interstitialController {
@@ -119,7 +119,7 @@ public class SwiftController: NSObject {
                 return ArgCountError(message: "loadRewardVideo").getError(#file, #line, #column)
         }
         
-        let targeting = Targeting.init(freObject: inFRE1)
+        let targeting = Targeting(freObject: inFRE1)
         
         if let rootViewController = UIApplication.shared.keyWindow?.rootViewController,
             let rvc = rewardVideoController {
@@ -141,7 +141,7 @@ public class SwiftController: NSObject {
             return nil
         }
         do {
-            let arr = try FREArray.init(intArray: bc.getBannerSizes())
+            let arr = try FREArray(intArray: bc.getBannerSizes())
             return arr.rawValue
         } catch {
         }
@@ -154,7 +154,7 @@ public class SwiftController: NSObject {
           else {
             return ArgCountError(message: "setTestDevices").getError(#file, #line, #column)
         }
-        let deviceArrayAny: [Any?] = FREArray.init(inFRE0).value
+        let deviceArrayAny: [Any?] = FREArray(inFRE0).value
         for device in deviceArrayAny {
             if let d = device as? String {
                 deviceArray.append(d)
