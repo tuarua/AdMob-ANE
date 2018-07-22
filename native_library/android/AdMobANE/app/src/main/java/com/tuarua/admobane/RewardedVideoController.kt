@@ -74,11 +74,11 @@ class RewardedVideoController(override var context: FREContext?,
     }
 
     override fun onRewardedVideoAdClosed() {
-        sendEvent(Constants.ON_CLOSED, gson.toJson(AdMobEvent(REWARD.ordinal)))
+        dispatchEvent(Constants.ON_CLOSED, gson.toJson(AdMobEvent(REWARD.ordinal)))
     }
 
     override fun onRewardedVideoAdLeftApplication() {
-        sendEvent(Constants.ON_LEFT_APPLICATION, gson.toJson(AdMobEvent(REWARD.ordinal)))
+        dispatchEvent(Constants.ON_LEFT_APPLICATION, gson.toJson(AdMobEvent(REWARD.ordinal)))
     }
 
     override fun onRewardedVideoAdLoaded() {
@@ -86,32 +86,32 @@ class RewardedVideoController(override var context: FREContext?,
         if (_showOnLoad) {
             av.show()
         }
-        sendEvent(Constants.ON_LOADED, gson.toJson(AdMobEvent(REWARD.ordinal)))
+        dispatchEvent(Constants.ON_LOADED, gson.toJson(AdMobEvent(REWARD.ordinal)))
     }
 
     override fun onRewardedVideoAdOpened() {
-        sendEvent(Constants.ON_OPENED, gson.toJson(AdMobEvent(REWARD.ordinal)))
+        dispatchEvent(Constants.ON_OPENED, gson.toJson(AdMobEvent(REWARD.ordinal)))
     }
 
     override fun onRewarded(rewardItem: RewardItem?) {
         if (rewardItem != null) {
-            sendEvent(Constants.ON_REWARDED,
+            dispatchEvent(Constants.ON_REWARDED,
                     gson.toJson(AdMobEventWithReward(REWARD.ordinal, amount = rewardItem.amount, type = rewardItem.type)))
         } else {
-            sendEvent(Constants.ON_REWARDED, gson.toJson(AdMobEventWithReward(REWARD.ordinal)))
+            dispatchEvent(Constants.ON_REWARDED, gson.toJson(AdMobEventWithReward(REWARD.ordinal)))
         }
     }
 
     override fun onRewardedVideoCompleted() {
-        sendEvent(Constants.ON_VIDEO_COMPLETE, gson.toJson(AdMobEvent(REWARD.ordinal)))
+        dispatchEvent(Constants.ON_VIDEO_COMPLETE, gson.toJson(AdMobEvent(REWARD.ordinal)))
     }
 
     override fun onRewardedVideoStarted() {
-        sendEvent(Constants.ON_VIDEO_STARTED, gson.toJson(AdMobEvent(REWARD.ordinal)))
+        dispatchEvent(Constants.ON_VIDEO_STARTED, gson.toJson(AdMobEvent(REWARD.ordinal)))
     }
 
     override fun onRewardedVideoAdFailedToLoad(p0: Int) {
-        sendEvent(Constants.ON_LOAD_FAILED, gson.toJson(AdMobEvent(REWARD.ordinal, p0)))
+        dispatchEvent(Constants.ON_LOAD_FAILED, gson.toJson(AdMobEvent(REWARD.ordinal, p0)))
     }
 
     override val TAG: String

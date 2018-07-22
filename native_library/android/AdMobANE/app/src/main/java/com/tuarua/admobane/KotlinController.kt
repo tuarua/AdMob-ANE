@@ -57,7 +57,7 @@ class KotlinController : FreKotlinMainController {
 
     fun setTestDevices(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 0 } ?: return FreArgException("setTestDevices")
-        val deviceArray: FREArray? = FREArray(argv[0])
+        val deviceArray = FREArray(argv[0])
         deviceList = List(deviceArray)
         return null
     }
@@ -66,7 +66,7 @@ class KotlinController : FreKotlinMainController {
         argv.takeIf { argv.size > 6 } ?: return FreArgException("loadBanner")
         val unitId = String(argv[0]) ?: return FreConversionException("unitId")
         val adSize = Int(argv[1]) ?: return FreConversionException("adSize")
-        val targeting: Targeting? = Targeting(argv[2])
+        val targeting = Targeting(argv[2])
         val x = Float(argv[3]) ?: return FreConversionException("x")
         val y = Float(argv[4]) ?: return FreConversionException("y")
         val hAlign = String(argv[5]) ?: return FreConversionException("hAlign")
@@ -94,7 +94,7 @@ class KotlinController : FreKotlinMainController {
     fun loadInterstitial(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 2 } ?: return FreArgException("loadInterstitial")
         val unitId = String(argv[0]) ?: return FreConversionException("unitId")
-        val targeting: Targeting? = Targeting(argv[1])
+        val targeting = Targeting(argv[1])
         val showOnLoad = Boolean(argv[2]) == true
         interstitialController?.load(unitId, deviceList, targeting, showOnLoad)
         return null
@@ -108,7 +108,7 @@ class KotlinController : FreKotlinMainController {
     fun loadRewardVideo(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 2 } ?: return FreArgException("loadRewardVideo")
         val unitId = String(argv[0]) ?: return FreConversionException("unitId")
-        val targeting: Targeting? = Targeting(argv[1])
+        val targeting = Targeting(argv[1])
         val showOnLoad = Boolean(argv[2]) == true
         rewardController?.load(unitId, deviceList, targeting, showOnLoad)
         return null

@@ -208,7 +208,6 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
     }
 
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        //trace("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
         var props: [String: Any] = Dictionary()
         props["position"] = Position.banner.rawValue
         props["errorCode"] = error.code
