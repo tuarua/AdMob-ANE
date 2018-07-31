@@ -37,11 +37,7 @@ public class Banner {
             throw theRet as ANEError;
         }
     }
-	/**
-	 * 
-	 * @return 
-	 * 
-	 */
+    /** @return*/
     public function get adUnit():String {
         return _adUnit;
     }
@@ -53,11 +49,7 @@ public class Banner {
     public function set adUnit(value:String):void {
         _adUnit = value;
     }
-	/**
-	 * 
-	 * @return 
-	 * 
-	 */
+    /** @return*/
     public function get adSize():int {
         return _adSize;
     }
@@ -69,11 +61,7 @@ public class Banner {
     public function set adSize(value:int):void {
         _adSize = value;
     }
-	/**
-	 * 
-	 * @return 
-	 * 
-	 */
+    /** @return*/
     public function get availableSizes():Array {
         if (_availableSizes.length == 0) {
             var theRet:* = _context.call("getBannerSizes");
@@ -93,11 +81,7 @@ public class Banner {
     public function canDisplay(size:int):Boolean {
         return availableSizes.indexOf(size) > -1
     }
-	/**
-	 * 
-	 * @return 
-	 * 
-	 */
+    /** @return*/
     public function get targeting():Targeting {
         return _targeting;
     }

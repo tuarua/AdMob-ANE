@@ -17,20 +17,100 @@
 import Foundation
 import CoreImage
 import GoogleMobileAds
+import PersonalizedAdConsent
 
 public class SwiftController: NSObject {
-    public var TAG: String? = "AdMobANE"
+    public var TAG: String? = "SwiftController"
     public var context: FreContextSwift!
     public var functionsToSet: FREFunctionMap = [:]
     private var bannerController: BannerController?
     private var interstitialController: InterstitialController?
     private var rewardVideoController: RewardVideoController?
+    
+    private var _consentController: ConsentController?
+    var consentController: ConsentController {
+        if _consentController == nil {
+            _consentController = ConsentController(context: context, deviceList: deviceArray)
+        }
+        return _consentController!
+    }
+    
     private var deviceArray: [String] = []
 
     func isSupported(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         return true.toFREObject()
     }
 
+    func requestConsentInfoUpdate(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        guard argc > 0,
+            let keys = [String](argv[0])
+            else {
+                return FreArgError(message: "requestConsentInfoUpdate").getError(#file, #line, #column)
+        }
+        consentController.requestConsentInfoUpdate(keys: keys)
+        return nil
+    }
+    
+    func resetConsent(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        consentController.resetConsent()
+        return nil
+    }
+    
+    func showConsentForm(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        guard argc > 3,
+            let url = String(argv[0]),
+            let privacyUrl = URL(safe: url),
+            let shouldOfferPersonalizedAds = Bool(argv[1]),
+            let shouldOfferNonPersonalizedAds = Bool(argv[2]),
+            let shouldOfferAdFree = Bool(argv[3]),
+            let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+            else {
+                return FreArgError(message: "showConsentForm").getError(#file, #line, #column)
+        }
+        
+        consentController.showConsentForm(airVC: rootViewController, privacyUrl: privacyUrl,
+                                           shouldOfferPersonalizedAds: shouldOfferPersonalizedAds,
+                                           shouldOfferNonPersonalizedAds: shouldOfferNonPersonalizedAds,
+                                           shouldOfferAdFree: shouldOfferAdFree)
+        return nil
+    }
+    
+    func getIsTFUA(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        return consentController.getIsTFUA().toFREObject()
+    }
+    
+    func setIsTFUA(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        guard argc > 0
+            else {
+                return FreArgError(message: "setIsTFUA").getError(#file, #line, #column)
+        }
+        consentController.setIsTFUA(value: Bool(argv[0]) == true)
+        return nil
+        
+    }
+    
+    func setConsentStatus(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        guard argc > 0,
+        let status = Int(argv[0]),
+            let consentStatus = PACConsentStatus.init(rawValue: status)
+            else {
+                return FreArgError(message: "setConsentStatus").getError(#file, #line, #column)
+        }
+        consentController.setConsentStatus(value: consentStatus)
+        return nil
+    }
+    
+    func setDebugGeography(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        guard argc > 0,
+        let geography = Int(argv[0]),
+            let debugGeography = PACDebugGeography.init(rawValue: geography)
+            else {
+                return FreArgError(message: "setDebugGeography").getError(#file, #line, #column)
+        }
+        consentController.setDebugGeography(value: debugGeography)
+        return nil
+    }
+    
     func initController(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         guard argc > 4,
             let key = String(argv[0]),
@@ -38,7 +118,7 @@ public class SwiftController: NSObject {
             let muted = Bool(argv[2]),
             let isPersonalised = Bool(argv[4])
           else {
-            return ArgCountError(message: "initAdMob").getError(#file, #line, #column)
+            return FreArgError(message: "initAdMob").getError(#file, #line, #column)
         }
 
         GADMobileAds.configure(withApplicationID: key)
@@ -48,6 +128,7 @@ public class SwiftController: NSObject {
         bannerController = BannerController(context: context, isPersonalised: isPersonalised)
         interstitialController = InterstitialController(context: context, isPersonalised: isPersonalised)
         rewardVideoController = RewardVideoController(context: context, isPersonalised: isPersonalised)
+        
         return nil
     }
 
@@ -61,7 +142,7 @@ public class SwiftController: NSObject {
               let hAlign = String(argv[5]),
               let vAlign = String(argv[6])
           else {
-            return ArgCountError(message: "loadBanner").getError(#file, #line, #column)
+            return FreArgError(message: "loadBanner").getError(#file, #line, #column)
         }
 
         let targeting = Targeting(freObject: inFRE2)
@@ -89,7 +170,7 @@ public class SwiftController: NSObject {
               let unitId = String(argv[0]),
               let showOnLoad = Bool(argv[2])
           else {
-            return ArgCountError(message: "loadInterstitial").getError(#file, #line, #column)
+            return FreArgError(message: "loadInterstitial").getError(#file, #line, #column)
         }
 
         let targeting = Targeting(freObject: inFRE1)
@@ -116,7 +197,7 @@ public class SwiftController: NSObject {
             let unitId = String(argv[0]),
             let showOnLoad = Bool(argv[2])
             else {
-                return ArgCountError(message: "loadRewardVideo").getError(#file, #line, #column)
+                return FreArgError(message: "loadRewardVideo").getError(#file, #line, #column)
         }
         
         let targeting = Targeting(freObject: inFRE1)
@@ -150,16 +231,11 @@ public class SwiftController: NSObject {
 
     func setTestDevices(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         guard argc > 0,
-              let inFRE0 = argv[0]
+              let deviceArray = [String](argv[0])
           else {
-            return ArgCountError(message: "setTestDevices").getError(#file, #line, #column)
+            return FreArgError(message: "setTestDevices").getError(#file, #line, #column)
         }
-        let deviceArrayAny: [Any?] = FREArray(inFRE0).value
-        for device in deviceArrayAny {
-            if let d = device as? String {
-                deviceArray.append(d)
-            }
-        }
+        self.deviceArray = deviceArray
         return nil
     }
 

@@ -26,7 +26,7 @@
     <android>
         <manifestAdditions><![CDATA[
 			<manifest android:installLocation="auto">
-		of preventing you from debugging your application on your device-->
+			<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="27" />
 			    <uses-permission android:name="android.permission.INTERNET"/>
 			    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 			    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
@@ -72,6 +72,7 @@
         <extensionID>com.tuarua.frekotlin</extensionID>
         <extensionID>com.google.android.gms.play-services-base</extensionID>
         <extensionID>com.google.android.gms.play-services-ads-lite</extensionID>
+        <extensionID>com.google.android.ads.consent.consent-library</extensionID>
         <extensionID>com.android.support.support-v4</extensionID>
         <extensionID>com.google.code.gson.gson</extensionID>
         <extensionID>com.tuarua.AdMobANE</extensionID>

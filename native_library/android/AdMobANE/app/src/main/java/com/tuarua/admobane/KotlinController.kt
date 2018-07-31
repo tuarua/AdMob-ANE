@@ -16,11 +16,13 @@
 package com.tuarua.admobane
 
 import android.view.ViewGroup
-import com.adobe.fre.FREArray
 import com.adobe.fre.FREContext
 import com.adobe.fre.FREObject
+import com.google.ads.consent.ConsentStatus
+import com.google.ads.consent.DebugGeography
 import com.google.android.gms.ads.MobileAds
 import com.tuarua.frekotlin.*
+import java.net.URL
 
 @Suppress("unused", "UNUSED_PARAMETER", "UNCHECKED_CAST")
 class KotlinController : FreKotlinMainController {
@@ -32,9 +34,89 @@ class KotlinController : FreKotlinMainController {
     private var bannerController: BannerController? = null
     private var interstitialController: InterstitialController? = null
     private var rewardController: RewardedVideoController? = null
+    private var consentController: ConsentController? = null
+        get() {
+            if (field != null) return field
+            return ConsentController(context)
+        }
 
     fun isSupported(ctx: FREContext, argv: FREArgv): FREObject? {
         return true.toFREObject()
+    }
+
+    // https://developers.google.com/admob/android/eu-consent
+
+    fun requestConsentInfoUpdate(ctx: FREContext, argv: FREArgv): FREObject? {
+        argv.takeIf { argv.size > 0 } ?: return FreArgException("requestConsentInfoUpdate")
+        val keys = List<String>(argv[0])
+        if (keys.isEmpty()) return FreConversionException("You must supply at least 1 appId")
+
+        // consentController = ConsentController(ctx)
+        consentController?.requestConsentInfoUpdate(keys)
+        return null
+    }
+
+    fun resetConsent(ctx: FREContext, argv: FREArgv): FREObject? {
+        consentController?.resetConsent()
+        return null
+    }
+
+    fun showConsentForm(ctx: FREContext, argv: FREArgv): FREObject? {
+        argv.takeIf { argv.size > 3 } ?: return FreArgException("showConsentForm")
+        val url = String(argv[0]) ?: return FreConversionException("url")
+        val privacyUrl = URL(url)
+        val shouldOfferPersonalizedAds = Boolean(argv[1]) ?: true
+        val shouldOfferNonPersonalizedAds = Boolean(argv[2]) ?: true
+        val shouldOfferAdFree = Boolean(argv[3]) ?: false
+
+        consentController?.showConsentForm(privacyUrl,
+                shouldOfferPersonalizedAds,
+                shouldOfferNonPersonalizedAds,
+                shouldOfferAdFree)
+
+        return null
+    }
+
+    fun getIsTFUA(ctx: FREContext, argv: FREArgv): FREObject? {
+        return consentController?.getIsTFUA()?.toFREObject()
+    }
+
+    fun setIsTFUA(ctx: FREContext, argv: FREArgv): FREObject? {
+        argv.takeIf { argv.size > 0 } ?: return FreArgException("setIsTFUA")
+        consentController?.setIsTFUA(Boolean(argv[0]) == true)
+        return null
+    }
+
+
+    fun setConsentStatus(ctx: FREContext, argv: FREArgv): FREObject? {
+        argv.takeIf { argv.size > 0 } ?: return FreArgException("setConsentStatus")
+        val status = Int(argv[0]) ?: 0
+
+        val consentStatus:ConsentStatus = when (status) {
+            1 -> ConsentStatus.NON_PERSONALIZED
+            2 -> ConsentStatus.PERSONALIZED
+            else -> ConsentStatus.UNKNOWN
+        }
+        consentController?.setConsentStatus(consentStatus)
+
+        return null
+    }
+
+    fun setDebugGeography(ctx: FREContext, argv: FREArgv): FREObject? {
+        argv.takeIf { argv.size > 0 } ?: return FreArgException("setDebugGeography")
+        val geography = Int(argv[0]) ?: 0
+        trace("setting geography to ", geography)
+        val debugGeography:DebugGeography = when (geography) {
+            1 -> DebugGeography.DEBUG_GEOGRAPHY_EEA
+            2 -> DebugGeography.DEBUG_GEOGRAPHY_NOT_EEA
+            else -> DebugGeography.DEBUG_GEOGRAPHY_DISABLED
+        }
+
+        trace("setting debugGeography to ", debugGeography.ordinal)
+
+        consentController?.setDebugGeography(debugGeography)
+
+        return null
     }
 
     fun init(ctx: FREContext, argv: FREArgv): FREObject? {
@@ -72,7 +154,10 @@ class KotlinController : FreKotlinMainController {
         val hAlign = String(argv[5]) ?: return FreConversionException("hAlign")
         val vAlign = String(argv[6]) ?: return FreConversionException("vAlign")
 
-        bannerController?.load(unitId, adSize, deviceList, targeting, x * scaleFactor, y * scaleFactor, hAlign, vAlign)
+        bannerController?.load(unitId, adSize, deviceList,
+                targeting,
+                x * scaleFactor,
+                y * scaleFactor, hAlign, vAlign)
         return null
     }
 

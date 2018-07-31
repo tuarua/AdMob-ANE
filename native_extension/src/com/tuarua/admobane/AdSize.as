@@ -1,5 +1,5 @@
 package com.tuarua.admobane {
-public class AdSize {
+public final class AdSize {
     public static const BANNER:int = 0;
     public static const FULL_BANNER:int = 1;
     public static const LARGE_BANNER:int = 2;

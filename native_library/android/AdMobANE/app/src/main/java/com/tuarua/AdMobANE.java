@@ -33,6 +33,14 @@ public class AdMobANE implements FREExtension {
             ,"setTestDevices"
             ,"loadRewardVideo"
             ,"showRewardVideo"
+            ,"requestConsentInfoUpdate"
+            ,"resetConsent"
+            ,"showConsentForm"
+            ,"getIsTFUA"
+            ,"setIsTFUA"
+            ,"setDebugGeography"
+            ,"setConsentStatus"
+
     };
 
     @Override
