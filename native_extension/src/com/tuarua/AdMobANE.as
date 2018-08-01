@@ -151,6 +151,7 @@ public class AdMobANE extends EventDispatcher {
         return _rewardVideo;
     }
 
+    /** Test ads will be returned for devices with device IDs specified in this array. */
     public function set testDevices(value:Vector.<String>):void {
         _testDevices = value;
         var theRet:* = ctx.call("setTestDevices", _testDevices);

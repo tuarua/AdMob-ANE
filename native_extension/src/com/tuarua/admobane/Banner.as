@@ -38,6 +38,7 @@ public class Banner {
         }
     }
 
+    /** Example AdMob ad unit ID: @"ca-app-pub-0123456789012345/0123456789" */
     public function get adUnit():String {
         return _adUnit;
     }

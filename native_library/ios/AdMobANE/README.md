@@ -3,6 +3,7 @@
 Install [Carthage](https://github.com/Carthage/Carthage)  
  
  In Terminal cd into this directory and run:
+ 
 ```shell
 carthage update
 ```
@@ -16,6 +17,7 @@ Copy GoogleMobileAds.framework into the Frameworks folder
 #### To download the required Google Consent Project
 
  In Terminal cd into this directory and run:
+ 
 ```shell
 git clone https://github.com/googleads/googleads-consent-sdk-ios.git
 ```

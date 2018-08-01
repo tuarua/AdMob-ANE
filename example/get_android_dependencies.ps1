@@ -1,4 +1,4 @@
-﻿$AneVersion = "1.7.0"
+﻿$AneVersion = "1.8.0"
 $PlayerServicesVersion = "15.0.1"
 $SupportV4Version = "27.1.0"
 $ConsenrVersion = "1.0.6"
