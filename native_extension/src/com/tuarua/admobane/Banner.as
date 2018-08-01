@@ -37,31 +37,23 @@ public class Banner {
             throw theRet as ANEError;
         }
     }
-    /** @return*/
+
     public function get adUnit():String {
         return _adUnit;
     }
-	/**
-	 * 
-	 * @param value
-	 * 
-	 */
+
     public function set adUnit(value:String):void {
         _adUnit = value;
     }
-    /** @return*/
+
     public function get adSize():int {
         return _adSize;
     }
-	/**
-	 * 
-	 * @param value
-	 * 
-	 */
+
     public function set adSize(value:int):void {
         _adSize = value;
     }
-    /** @return*/
+
     public function get availableSizes():Array {
         if (_availableSizes.length == 0) {
             var theRet:* = _context.call("getBannerSizes");
@@ -72,56 +64,31 @@ public class Banner {
         }
         return _availableSizes
     }
-	/**
-	 * 
-	 * @param size
-	 * @return 
-	 * 
-	 */
+
     public function canDisplay(size:int):Boolean {
         return availableSizes.indexOf(size) > -1
     }
-    /** @return*/
+
     public function get targeting():Targeting {
         return _targeting;
     }
-	/**
-	 * 
-	 * @param value
-	 * 
-	 */
+
     public function set targeting(value:Targeting):void {
         _targeting = value;
     }
-	/**
-	 * 
-	 * @param value
-	 * 
-	 */
+
     public function set x(value:int):void {
         _x = value;
     }
-	/**
-	 * 
-	 * @param value
-	 * 
-	 */
+
     public function set y(value:int):void {
         _y = value;
     }
-	/**
-	 * 
-	 * @param value
-	 * 
-	 */
+
     public function set hAlign(value:String):void {
         _hAlign = value;
     }
-	/**
-	 * 
-	 * @param value
-	 * 
-	 */
+
     public function set vAlign(value:String):void {
         _vAlign = value;
     }

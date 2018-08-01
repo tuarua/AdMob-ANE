@@ -139,29 +139,24 @@ public class AdMobANE extends EventDispatcher {
         return _isSupported;
     }
 
-    /** @return*/
     public function get banner():Banner {
         return _banner;
     }
 
-    /** @return*/
     public function get interstitial():Interstitial {
         return _interstitial;
     }
 
-    /** @return*/
     public function get rewardVideo():RewardVideo {
         return _rewardVideo;
     }
 
-    /** @return*/
     public function set testDevices(value:Vector.<String>):void {
         _testDevices = value;
         var theRet:* = ctx.call("setTestDevices", _testDevices);
         if (theRet is ANEError) throw theRet as ANEError;
     }
 
-    /** @return*/
     public function get testDevices():Vector.<String> {
         return _testDevices;
     }
