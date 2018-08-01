@@ -20,7 +20,9 @@ import FreSwift
 extension SwiftController: FreSwiftMainController {
     // Must have this function. It exposes the methods to our entry ObjC.
     @objc public func getFunctions(prefix: String) -> [String] {
-        
+        functionsToSet["\(prefix)requestConsentInfoUpdate"] = requestConsentInfoUpdate
+        functionsToSet["\(prefix)resetConsent"] = resetConsent
+        functionsToSet["\(prefix)showConsentForm"] = showConsentForm
         functionsToSet["\(prefix)isSupported"] = isSupported
         functionsToSet["\(prefix)init"] = initController
         functionsToSet["\(prefix)loadBanner"] = loadBanner
@@ -31,6 +33,10 @@ extension SwiftController: FreSwiftMainController {
         functionsToSet["\(prefix)setTestDevices"] = setTestDevices
         functionsToSet["\(prefix)loadRewardVideo"] = loadRewardVideo
         functionsToSet["\(prefix)showRewardVideo"] = showRewardVideo
+        functionsToSet["\(prefix)getIsTFUA"] = getIsTFUA
+        functionsToSet["\(prefix)setIsTFUA"] = setIsTFUA
+        functionsToSet["\(prefix)setConsentStatus"] = setConsentStatus
+        functionsToSet["\(prefix)setDebugGeography"] = setDebugGeography
         
         var arr: [String] = []
         for key in functionsToSet.keys {

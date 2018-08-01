@@ -193,7 +193,7 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
         var props: [String: Any] = Dictionary()
         props["position"] = Position.banner.rawValue
         let json = JSON(props)
-        sendEvent(name: Constants.ON_LOADED, value: json.description)
+        dispatchEvent(name: Constants.ON_LOADED, value: json.description)
         
         //handle smart banners separately
         guard let adV = adView, adV.adSize.size.width < 0.1 else {
@@ -212,14 +212,14 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
         props["position"] = Position.banner.rawValue
         props["errorCode"] = error.code
         let json = JSON(props)
-        sendEvent(name: Constants.ON_LOAD_FAILED, value: json.description)
+        dispatchEvent(name: Constants.ON_LOAD_FAILED, value: json.description)
     }
     
     func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
         var props: [String: Any] = Dictionary()
         props["position"] = Position.banner.rawValue
         let json = JSON(props)
-        sendEvent(name: Constants.ON_LEFT_APPLICATION, value: json.description)
+        dispatchEvent(name: Constants.ON_LEFT_APPLICATION, value: json.description)
     }
 
     override func didReceiveMemoryWarning() {

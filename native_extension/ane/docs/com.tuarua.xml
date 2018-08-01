@@ -1,10 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><apiPackage id="com.tuarua"><apiName>com.tuarua</apiName><apiDetail/><apiClassifier id="com.tuarua:AdMobANE"><apiName>AdMobANE</apiName><shortdesc/><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiConstructor id="com.tuarua:AdMobANE:AdMobANE"><apiName>AdMobANE</apiName><shortdesc/><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef></apiConstructorDetail></apiConstructor><apiOperation id="com.tuarua:AdMobANE:dispose"><apiName>dispose</apiName><shortdesc>
-     
-     
-     </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
-     
-     
-     </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.tuarua:AdMobANE:init"><apiName>init</apiName><shortdesc>
+<?xml version="1.0" encoding="UTF-8"?><apiPackage id="com.tuarua"><apiName>com.tuarua</apiName><apiDetail/><apiClassifier id="com.tuarua:AdMobANE"><apiName>AdMobANE</apiName><shortdesc/><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiConstructor id="com.tuarua:AdMobANE:AdMobANE"><apiName>AdMobANE</apiName><shortdesc/><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef></apiConstructorDetail></apiConstructor><apiOperation id="com.tuarua:AdMobANE:dispose"><apiName>dispose</apiName><shortdesc> disposes the ANE</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc> disposes the ANE</apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.tuarua:AdMobANE:init"><apiName>init</apiName><shortdesc>
      
      </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>
      
@@ -15,20 +9,23 @@
      </apiDesc></apiParam><apiParam><apiItemName>isPersonalised</apiItemName><apiType value="Boolean"/><apiData>true</apiData><apiDesc>- Set based on user consent for GDPR
      </apiDesc></apiParam></apiOperationDef><apiDesc>
      
-     </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.tuarua:AdMobANE:banner:get"><apiName>banner</apiName><shortdesc>
+     </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.tuarua:AdMobANE:requestConsentInfoUpdate"><apiName>requestConsentInfoUpdate</apiName><shortdesc>
+     Requests consent information update for the provided publisher identifiers.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>key</apiItemName><apiType value="Vector$String"/><apiDesc>-
      
-     </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.tuarua.admobane:Banner</apiValueClassifier></apiValueDef><apiDesc>
+     </apiDesc></apiParam></apiOperationDef><apiDesc>
+     Requests consent information update for the provided publisher identifiers. All publisher
+     identifiers used in the application should be specified in this call. Consent status is reset to
+     unknown when the ad provider list changes.
+     </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.tuarua:AdMobANE:resetConsent"><apiName>resetConsent</apiName><shortdesc>
+     Resets consent information to default state and clears ad providers.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+     Resets consent information to default state and clears ad providers.
+     </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.tuarua:AdMobANE:showConsentForm"><apiName>showConsentForm</apiName><shortdesc>
+     Presents the full screen consent form above AIR stage.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>privacyUrl</apiItemName><apiType value="String"/><apiDesc>    </apiDesc></apiParam><apiParam><apiItemName>shouldOfferPersonalizedAds</apiItemName><apiType value="Boolean"/><apiData>true</apiData><apiDesc>Indicates whether the consent form should show a personalized ad option. Defaults to true.
+     </apiDesc></apiParam><apiParam><apiItemName>shouldOfferNonPersonalizedAds</apiItemName><apiType value="Boolean"/><apiData>true</apiData><apiDesc>Indicates whether the consent form should show a non-personalized ad option. Defaults to true.
+     </apiDesc></apiParam><apiParam><apiItemName>shouldOfferAdFree</apiItemName><apiType value="Boolean"/><apiData>false</apiData><apiDesc>Indicates whether the consent form should show an ad-free app option. Defaults to false.
+     </apiDesc></apiParam></apiOperationDef><apiDesc>
+     Presents the full screen consent form above AIR stage.
      
-     </apiDesc></apiValueDetail></apiValue><apiValue id="com.tuarua:AdMobANE:interstitial:get"><apiName>interstitial</apiName><shortdesc>
-     
-     </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.tuarua.admobane:Interstitial</apiValueClassifier></apiValueDef><apiDesc>
-     
-     </apiDesc></apiValueDetail></apiValue><apiValue id="com.tuarua:AdMobANE:rewardVideo:get"><apiName>rewardVideo</apiName><shortdesc>
-     
-     </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.tuarua.admobane:RewardVideo</apiValueClassifier></apiValueDef><apiDesc>
-     
-     </apiDesc></apiValueDetail></apiValue><apiValue id="com.tuarua:AdMobANE:testDevices:get"><apiName>testDevices</apiName><shortdesc>
-     
-     </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Vector$String"/></apiValueDef><apiDesc>
-     
-     </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>
+     </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.tuarua:AdMobANE:banner:get"><apiName>banner</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.tuarua.admobane:Banner</apiValueClassifier></apiValueDef></apiValueDetail></apiValue><apiValue id="com.tuarua:AdMobANE:interstitial:get"><apiName>interstitial</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.tuarua.admobane:Interstitial</apiValueClassifier></apiValueDef></apiValueDetail></apiValue><apiValue id="com.tuarua:AdMobANE:isTaggedForUnderAgeOfConsent:get"><apiName>isTaggedForUnderAgeOfConsent</apiName><shortdesc> If a publisher is aware that the user is under the age of consent,
+     all ad requests must set TFUA (Tag For Users under the Age of Consent in Europe).</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc> If a publisher is aware that the user is under the age of consent,
+     all ad requests must set TFUA (Tag For Users under the Age of Consent in Europe). </apiDesc></apiValueDetail></apiValue><apiValue id="com.tuarua:AdMobANE:rewardVideo:get"><apiName>rewardVideo</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.tuarua.admobane:RewardVideo</apiValueClassifier></apiValueDef></apiValueDetail></apiValue><apiValue id="com.tuarua:AdMobANE:testDevices:get"><apiName>testDevices</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Vector$String"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.tuarua:AdMobANE:consentStatus:set"><apiName>consentStatus</apiName><shortdesc> Debug geography.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="write"/><apiType value="int"/></apiValueDef><apiDesc> Debug geography. Used for debug devices only.</apiDesc></apiValueDetail></apiValue><apiValue id="com.tuarua:AdMobANE:debugGeography:set"><apiName>debugGeography</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="write"/><apiType value="int"/></apiValueDef></apiValueDetail></apiValue></apiClassifier></apiPackage>

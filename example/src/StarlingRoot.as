@@ -3,6 +3,8 @@ import com.tuarua.AdMobANE;
 import com.tuarua.admobane.AdMobEvent;
 import com.tuarua.admobane.AdSize;
 import com.tuarua.admobane.Align;
+import com.tuarua.admobane.ConsentStatus;
+import com.tuarua.admobane.DebugGeography;
 import com.tuarua.admobane.Targeting;
 import com.tuarua.fre.ANEError;
 
@@ -21,10 +23,13 @@ import utils.os;
 import views.SimpleButton;
 
 public class StarlingRoot extends Sprite {
-    private var btn:SimpleButton = new SimpleButton("Load Banner", 100);
-    private var btn2:SimpleButton = new SimpleButton("Clear Banner", 100);
-    private var btn3:SimpleButton = new SimpleButton("Load InterS", 100);
-    private var btn4:SimpleButton = new SimpleButton("Load Reward", 100);
+    private static const GAP:int = 70;
+    private static const key:String = "ca-app-pub-3940256099942544~3347511713";
+    private var btn1:SimpleButton = new SimpleButton("Load Banner");
+    private var btn2:SimpleButton = new SimpleButton("Clear Banner");
+    private var btn3:SimpleButton = new SimpleButton("Load Interstitial");
+    private var btn4:SimpleButton = new SimpleButton("Load Reward");
+    private var btn5:SimpleButton = new SimpleButton("Reset Consent");
     private var adMobANE:AdMobANE = new AdMobANE();
 
     public function StarlingRoot() {
@@ -32,6 +37,9 @@ public class StarlingRoot extends Sprite {
 
     public function start():void {
         NativeApplication.nativeApplication.addEventListener(Event.EXITING, onExiting);
+
+        //// Sample AdMob app ID: ca-app-pub-3940256099942544~1458002511
+        //on iOS to retrieve your deviceID run: adt -devices -platform iOS
 
         adMobANE.addEventListener(AdMobEvent.ON_CLICKED, onAdClicked);
         adMobANE.addEventListener(AdMobEvent.ON_CLOSED, onAdClosed);
@@ -43,39 +51,78 @@ public class StarlingRoot extends Sprite {
         adMobANE.addEventListener(AdMobEvent.ON_VIDEO_STARTED, onVideoStarted);
         adMobANE.addEventListener(AdMobEvent.ON_VIDEO_COMPLETE, onVideoComplete);
         adMobANE.addEventListener(AdMobEvent.ON_REWARDED, onRewarded);
-        adMobANE.init("ca-app-pub-3940256099942544~3347511713", 0.5, true, Starling.current.contentScaleFactor);
+        adMobANE.addEventListener(AdMobEvent.ON_CONSENT_INFO_UPDATE, onConsentInfoUpdate);
+        adMobANE.addEventListener(AdMobEvent.ON_CONSENT_FORM_DISMISSED, onConsentFormDismissed);
 
-        //// Sample AdMob app ID: ca-app-pub-3940256099942544~1458002511
 
-        //on iOS to retrieve your deviceID run: adt -devices -platform iOS
-        var vecDevices:Vector.<String> = new <String>[];
-        vecDevices.push("09872C13E51671E053FC7DC8DFC0C689"); //my Android Nexus
-        vecDevices.push("459d71e2266bab6c3b7702ab5fe011e881b90d3c"); //my iPad Pro
-        vecDevices.push("9b6d1bfa1701ec25be4b51b38eed6e897c3a7a65"); //my iPad Mini
-        adMobANE.testDevices = vecDevices;
+        // adMobANE.isTaggedForUnderAgeOfConsent = true;
+        adMobANE.debugGeography = DebugGeography.EEA;
+        adMobANE.requestConsentInfoUpdate(new <String>["pub-YOUR_ID"]);
+    }
 
-        btn.x = 10;
-        btn.y = 50;
-        btn.addEventListener(TouchEvent.TOUCH, onLoadBanner);
-        addChild(btn);
 
-        btn2.x = 130;
-        btn2.y = 50;
+
+    private function initMenu(inEU:Boolean):void {
+        btn1.x = btn2.x = btn3.x = btn4.x = btn5.x = (stage.stageWidth - 200) * 0.5;
+        btn1.y = GAP;
+        btn2.y = btn1.y + GAP;
+        btn3.y = btn2.y + GAP;
+        btn4.y = btn3.y + GAP;
+        btn5.y = btn4.y + GAP;
+
+        btn1.addEventListener(TouchEvent.TOUCH, onLoadBanner);
         btn2.addEventListener(TouchEvent.TOUCH, onClearBanner);
-        addChild(btn2);
-
-        btn3.x = 250;
-        btn3.y = 50;
         btn3.addEventListener(TouchEvent.TOUCH, onLoadInterstitial);
-        addChild(btn3);
-
-        btn4.x = 370;
-        btn4.y = 50;
         btn4.addEventListener(TouchEvent.TOUCH, onLoadReward);
+
+        addChild(btn1);
+        addChild(btn2);
+        addChild(btn3);
         addChild(btn4);
 
-        stage.addEventListener(Event.RESIZE, onResize);
+        if (inEU) {
+            btn5.addEventListener(TouchEvent.TOUCH, onResetConsent);
+            addChild(btn5);
+        }
 
+        stage.addEventListener(Event.RESIZE, onResize);
+    }
+
+    private function onConsentInfoUpdate(event:AdMobEvent):void {
+        if (event.params.isRequestLocationInEEAOrUnknown) {
+            // in EU, ask whether user wishes to receive personalised Ads
+            switch (event.params.consentStatus) {
+                case ConsentStatus.UNKNOWN:
+                    // launch consent form
+                    showConsentForm();
+                    return;
+                case ConsentStatus.PERSONALIZED:
+                    // user has agreed prior
+                    initAdMob(true, true);
+                    break;
+                case ConsentStatus.NON_PERSONALIZED:
+                    // boo user said no
+                    initAdMob(false, true);
+                    break;
+            }
+        } else {
+            // outside EU
+            initAdMob(true);
+        }
+
+    }
+
+    private function onConsentFormDismissed(event:AdMobEvent):void {
+        initAdMob(event.params.consentStatus == ConsentStatus.PERSONALIZED, true);
+    }
+
+    private function showConsentForm():void {
+        adMobANE.showConsentForm("https://media.termsfeed.com/pdf/privacy-policy-template.pdf");
+    }
+
+    private function initAdMob(isPersonalised:Boolean, inEU:Boolean = false):void {
+        adMobANE.init(key, 0.5, true, Starling.current.contentScaleFactor, isPersonalised);
+        initMenu(inEU);
     }
 
     private function onVideoStarted(event:AdMobEvent):void {
@@ -114,12 +161,19 @@ public class StarlingRoot extends Sprite {
                 var targeting:Targeting = new Targeting();
                 targeting.forChildren = false;
 
-                adMobANE.rewardVideo.adUnit = os.isIos ? "ca-app-pub-3940256099942544/1712485313": "ca-app-pub-3940256099942544/5224354917";
+                adMobANE.rewardVideo.adUnit = os.isIos ? "ca-app-pub-3940256099942544/1712485313" : "ca-app-pub-3940256099942544/5224354917";
                 adMobANE.rewardVideo.targeting = targeting;
                 adMobANE.rewardVideo.load();
             } catch (e:ANEError) {
                 trace(e.getStackTrace());
             }
+        }
+    }
+
+    private function onResetConsent(event:TouchEvent):void {
+        var touch:Touch = event.getTouch(btn5);
+        if (touch != null && touch.phase == TouchPhase.ENDED) {
+            adMobANE.resetConsent();
         }
     }
 
@@ -176,7 +230,7 @@ public class StarlingRoot extends Sprite {
     }
 
     private function onLoadBanner(event:TouchEvent):void {
-        var touch:Touch = event.getTouch(btn);
+        var touch:Touch = event.getTouch(btn1);
         if (touch != null && touch.phase == TouchPhase.ENDED) {
             try {
                 var targeting:Targeting = new Targeting();
@@ -184,7 +238,7 @@ public class StarlingRoot extends Sprite {
                 targeting.contentUrl = "http://googleadsdeveloper.blogspot.com/2016/03/rewarded-video-support-for-admob.html";
 
                 trace("adMobANE.banner.availableSizes:", adMobANE.banner.availableSizes);
-                trace("Can we display a smart banner? ",adMobANE.banner.canDisplay(AdSize.FULL_BANNER));
+                trace("Can we display a smart banner? ", adMobANE.banner.canDisplay(AdSize.FULL_BANNER));
 
                 if (adMobANE.banner.canDisplay(AdSize.FULL_BANNER)) {
                     adMobANE.banner.adSize = AdSize.FULL_BANNER;
@@ -193,7 +247,7 @@ public class StarlingRoot extends Sprite {
                 } else {
                     adMobANE.banner.adSize = AdSize.BANNER;
                 }
-                
+
                 adMobANE.banner.adUnit = "ca-app-pub-3940256099942544/6300978111";
                 adMobANE.banner.targeting = targeting;
                 adMobANE.banner.hAlign = Align.RIGHT;

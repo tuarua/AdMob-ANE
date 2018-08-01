@@ -1,5 +1,7 @@
 # Created by https://www.gitignore.io/api/xcode
 
+googleads-consent-sdk-ios/
+
 ### Xcode ###
 # Xcode
 #

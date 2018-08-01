@@ -27,4 +27,6 @@ public struct Constants {
     public static let ON_REWARDED = "AdMob.onRewarded"
     public static let ON_VIDEO_STARTED = "AdMob.onVideoStarted"
     public static let ON_VIDEO_COMPLETE = "AdMob.onVideoComplete"
+    public static let ON_CONSENT_INFO_UPDATE = "AdMob.onConsentInfoUpdate"
+    public static let ON_CONSENT_FORM_DISMISSED = "AdMob.onConsentFormDismissed"
 }

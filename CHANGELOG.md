@@ -1,3 +1,6 @@
+### 1.8.0
+- Added Google Consent SDK
+
 ### 1.7.0
 - iOS: Updated to FreSwift 2.5.0
 - AND: Updated to FreKotlin 1.4.0

@@ -48,8 +48,14 @@ CONTEXT_INIT(TRAMA) {
         ,MAP_FUNCTION(TRAMA, setTestDevices)
         ,MAP_FUNCTION(TRAMA, loadRewardVideo)
         ,MAP_FUNCTION(TRAMA, showRewardVideo)
+        ,MAP_FUNCTION(TRAMA, requestConsentInfoUpdate)
+        ,MAP_FUNCTION(TRAMA, resetConsent)
+        ,MAP_FUNCTION(TRAMA, showConsentForm)
+        ,MAP_FUNCTION(TRAMA, getIsTFUA)
+        ,MAP_FUNCTION(TRAMA, setIsTFUA)
+        ,MAP_FUNCTION(TRAMA, setConsentStatus)
+        ,MAP_FUNCTION(TRAMA, setDebugGeography)
     };
-    
 
     /**************************************************************************/
     /**************************************************************************/

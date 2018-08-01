@@ -1,6 +1,3 @@
-/**
- * Created by Eoin Landy on 29/04/2017.
- */
 package com.tuarua.fre {
 import flash.system.Capabilities;
 

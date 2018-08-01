@@ -80,7 +80,7 @@ class InterstitialController: NSObject, FreSwiftController, GADInterstitialDeleg
         var props: [String: Any] = Dictionary()
         props["position"] = Position.interstitial.rawValue
         let json = JSON(props)
-        sendEvent(name: Constants.ON_LOADED, value: json.description)
+        dispatchEvent(name: Constants.ON_LOADED, value: json.description)
         
         guard let av = adView, let avc = _airVC else {return}
         if _showOnLoad {
@@ -94,28 +94,28 @@ class InterstitialController: NSObject, FreSwiftController, GADInterstitialDeleg
         props["position"] = Position.interstitial.rawValue
         props["errorCode"] = error.code
         let json = JSON(props)
-        sendEvent(name: Constants.ON_LOAD_FAILED, value: json.description)
+        dispatchEvent(name: Constants.ON_LOAD_FAILED, value: json.description)
     }
     
     func interstitialWillPresentScreen(_ ad: GADInterstitial) {
         var props: [String: Any] = Dictionary()
         props["position"] = Position.interstitial.rawValue
         let json = JSON(props)
-        sendEvent(name: Constants.ON_OPENED, value: json.description)
+        dispatchEvent(name: Constants.ON_OPENED, value: json.description)
     }
     
     func interstitialDidDismissScreen(_ ad: GADInterstitial) {
         var props: [String: Any] = Dictionary()
         props["position"] = Position.interstitial.rawValue
         let json = JSON(props)
-        sendEvent(name: Constants.ON_CLOSED, value: json.description)
+        dispatchEvent(name: Constants.ON_CLOSED, value: json.description)
     }
     
     func interstitialWillLeaveApplication(_ ad: GADInterstitial) {
         var props: [String: Any] = Dictionary()
         props["position"] = Position.interstitial.rawValue
         let json = JSON(props)
-        sendEvent(name: Constants.ON_LEFT_APPLICATION, value: json.description)
+        dispatchEvent(name: Constants.ON_LEFT_APPLICATION, value: json.description)
     }
     
 }

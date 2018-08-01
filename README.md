@@ -16,18 +16,20 @@ Much time, skill and effort has gone into this. Help support the project
 ##### The ANE + Dependencies
  
 From the command line cd into /example and run:   
- - OSX
-````shell
+OSX
+ 
+```shell
 bash get_android_dependencies.sh
-`````
- - Windows Powershell
-````shell
-PS get_android_dependencies.ps1
-`````
+```
+Windows Powershell
 
-The dependencies can be downloaded directly from this repo:  
-[https://github.com/tuarua/Android-ANE-Dependancies/tree/master/anes]
-````xml
+```shell
+PS get_android_dependencies.ps1
+```
+
+The dependencies can be downloaded directly from [this repo](https://github.com/tuarua/Android-ANE-Dependancies/tree/master/anes):  
+
+```xml
 <extensions>
     <extensionID>com.tuarua.frekotlin</extensionID>
     <extensionID>com.google.android.gms.play-services-base</extensionID>
@@ -36,11 +38,11 @@ The dependencies can be downloaded directly from this repo:
     <extensionID>com.google.code.gson.gson</extensionID>
     ...
 </extensions>
-`````
+```
 
 You will also need to include the following in your app manifest. Update accordingly.
 
-````xml
+```xml
 <manifest android:installLocation="auto">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -59,11 +61,10 @@ You will also need to include the following in your app manifest. Update accordi
              android:theme="@android:style/Theme.Translucent" />
     </application>
 </manifest>
-`````
+```
 
 Test Ads are included in the demo.
-You will need an AdMob account to deliver live ads.   
-[https://support.google.com/admob/answer/7356219]
+You will need an AdMob account to [deliver live ads](https://support.google.com/admob/answer/7356219).   
 
 -------------
 
@@ -71,18 +72,20 @@ You will need an AdMob account to deliver live ads.
 
 ##### The ANE + Dependencies
 
-N.B. You must use a Mac to build an iOS app using this ANE. Windows is NOT supported.
+>N.B. You must use a Mac to build an iOS app using this ANE. Windows is **NOT** supported.
 
-From the command line cd into /example and run:
-````shell
+From the  Terminal cd into /example and run:
+
+```shell
 bash get_ios_dependencies.sh
-`````
+```
 
-The folder, ios_dependencies/device/Frameworks, must be packaged as part of your app when creating the ipa. How this is done will depend on the IDE you are using.   
+The folder, **ios_dependencies/device/Frameworks**, must be packaged as part of your app when creating the ipa. How this is done will depend on the IDE you are using.   
 After the ipa is created unzip it and confirm there is a "Frameworks" folder in the root of the .app package.
 
 You will also need to include the following in your app manifest. Update accordingly.
-````xml
+
+```xml
 <InfoAdditions><![CDATA[
     <key>UIDeviceFamily</key>
     <array>
@@ -101,13 +104,22 @@ You will also need to include the following in your app manifest. Update accordi
         <true/>
     </dict>
 ]]></InfoAdditions>
-`````  
+```  
 
 Test Ads are included in the demo.
-You will need an AdMob account to deliver live ads.   
-[https://support.google.com/admob/answer/7356219]
+You will need an AdMob account to [deliver live ads](https://support.google.com/admob/answer/7356219).
 
 -------------
+
+### Consent SDK for GDPR
+#### !! Important !!
+Before using the consent methods:
+
+1. Login in to you [AdMob account](https://apps.admob.com).
+2. Navigate to Blocking Controls > EU User Consent.
+3. Check radio for **Custom set of ad technology providers**.
+4. Click Select Providers.
+5. Select up to **12** providers only.
 
 ### Running on Simulator
 
