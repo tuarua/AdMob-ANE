@@ -44,14 +44,11 @@ class KotlinController : FreKotlinMainController {
         return true.toFREObject()
     }
 
-    // https://developers.google.com/admob/android/eu-consent
-
     fun requestConsentInfoUpdate(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 0 } ?: return FreArgException("requestConsentInfoUpdate")
         val keys = List<String>(argv[0])
         if (keys.isEmpty()) return FreConversionException("You must supply at least 1 appId")
 
-        // consentController = ConsentController(ctx)
         consentController?.requestConsentInfoUpdate(keys)
         return null
     }
@@ -105,15 +102,11 @@ class KotlinController : FreKotlinMainController {
     fun setDebugGeography(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 0 } ?: return FreArgException("setDebugGeography")
         val geography = Int(argv[0]) ?: 0
-        trace("setting geography to ", geography)
         val debugGeography:DebugGeography = when (geography) {
             1 -> DebugGeography.DEBUG_GEOGRAPHY_EEA
             2 -> DebugGeography.DEBUG_GEOGRAPHY_NOT_EEA
             else -> DebugGeography.DEBUG_GEOGRAPHY_DISABLED
         }
-
-        trace("setting debugGeography to ", debugGeography.ordinal)
-
         consentController?.setDebugGeography(debugGeography)
 
         return null
@@ -167,13 +160,7 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun getBannerSizes(ctx: FREContext, argv: FREArgv): FREObject? {
-        return try {
-            FREArray(bannerController?.getBannerSizes() ?: intArrayOf(-1))
-        } catch (e: FreException) {
-            e.getError(Thread.currentThread().stackTrace)
-        } catch (e: Exception) {
-            FreException(e).getError(Thread.currentThread().stackTrace)
-        }
+        return FREArray(bannerController?.getBannerSizes() ?: intArrayOf(-1))
     }
 
     fun loadInterstitial(ctx: FREContext, argv: FREArgv): FREObject? {

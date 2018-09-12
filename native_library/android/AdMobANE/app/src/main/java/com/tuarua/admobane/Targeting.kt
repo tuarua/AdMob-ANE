@@ -23,9 +23,9 @@ class Targeting() {
 
     constructor(freObject: FREObject?) : this() {
         val o = freObject ?: return
-        val forChildrenSet = Boolean(o.getProp("forChildrenSet"))
-        val forChildren = Boolean(o.getProp("forChildren"))
-        if (forChildrenSet != null && forChildrenSet && forChildren != null) {
+        val forChildrenSet = Boolean(o["forChildrenSet"]) == true
+        val forChildren = Boolean(o["forChildren"]) == true
+        if (forChildrenSet && forChildren) {
             this.forChildren = forChildren
         }
     }

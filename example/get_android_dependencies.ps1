@@ -1,7 +1,7 @@
-﻿$AneVersion = "1.8.0"
+﻿$AneVersion = "1.9.0"
 $PlayerServicesVersion = "15.0.1"
 $SupportV4Version = "27.1.0"
-$ConsenrVersion = "1.0.6"
+$ConsentVersion = "1.0.6"
 
 $currentDir = (Get-Item -Path ".\" -Verbose).FullName
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
