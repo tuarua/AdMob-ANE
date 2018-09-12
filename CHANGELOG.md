@@ -1,3 +1,7 @@
+### 1.9.0
+- AND: Updated to FreKotlin 1.5.0
+- Upgraded to AIR 31
+
 ### 1.8.0
 - Added Google Consent SDK
 
