@@ -1,6 +1,6 @@
 #!/bin/sh
 
-AneVersion="1.9.0"
+AneVersion="2.0.0"
 PlayerServicesVersion="15.0.1"
 SupportV4Version="27.1.0"
 FreSwiftVersion="2.5.0"
