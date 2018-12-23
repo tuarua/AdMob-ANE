@@ -20,7 +20,7 @@ import FreSwift
 import PersonalizedAdConsent
 
 class ConsentController: FreSwiftController {
-    var TAG: String? = "ConsentController"
+    static var TAG = "ConsentController"
     internal var context: FreContextSwift!
     
     convenience init(context: FreContextSwift, deviceList: [String]?) {

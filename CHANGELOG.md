@@ -1,3 +1,9 @@
+### 2.1.0
+- iOS: Updated to Google Mobile Ads SDK 7.36.0
+- Upgraded to AIR 32
+- iOS: Updated to FreSwift 3.0.0
+- AND: Updated to FreKotlin 1.6.0
+
 ### 2.0.0
 - iOS: Support AIR 32
 

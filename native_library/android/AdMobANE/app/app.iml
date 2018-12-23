@@ -27,13 +27,14 @@
         <compilerSettings />
         <compilerArguments>
           <option name="destination" value="$MODULE_DIR$/build/tmp/kotlin-classes/debug" />
+          <option name="classpath" value="$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-ads-lite-15.0.1.aar/0bbd034ce120966654f736c1045ef8d4/jars/classes.jar:/Users/eoinlandy/.gradle/caches/transforms-1/files-1.1/consent-library-1.0.6.aar/85af6fa74bbe3573f8f65211723941c9/jars/classes.jar:/Users/eoinlandy/.gradle/caches/transforms-1/files-1.1/FreKotlin-1.6.0.aar/232fe6c79e773c09a55bc3664ad5290f/jars/classes.jar:/Users/eoinlandy/.gradle/caches/transforms-1/files-1.1/FreKotlin-1.6.0.aar/232fe6c79e773c09a55bc3664ad5290f/jars/libs/FlashRuntimeExtensions.jar:/Users/eoinlandy/.gradle/caches/transforms-1/files-1.1/FreKotlin-1.6.0.aar/232fe6c79e773c09a55bc3664ad5290f/jars/libs/runtimeClasses.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.3.11/4cbc5922a54376018307a731162ccaf3ef851a39/kotlin-stdlib-1.3.11.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.4/d0de1ca9b69e69d1d497ee3c6009d015f64dad57/gson-2.8.4.jar:/Users/eoinlandy/.gradle/caches/transforms-1/files-1.1/play-services-ads-base-15.0.1.aar/9681d9b6796cef4e07b6da0f65ec5af7/jars/classes.jar:/Users/eoinlandy/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/48596f19893ba1a9d61f58d004dc9745/jars/classes.jar:/Users/eoinlandy/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/48fe20b77b72ddbea8e4f2309c77588c/jars/classes.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.3.11/d8b8e746e279f1c4f5e08bc14a96b82e6bb1de02/kotlin-stdlib-common-1.3.11.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar:/Users/eoinlandy/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/2e6b6ff4ad6f24ff3435b4276f7d979d/jars/classes.jar:/Users/eoinlandy/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/8927bf0840bde2c6703d93bc64b649b3/jars/classes.jar:/Users/eoinlandy/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/9637b15117ef0fc4d153b5027936c24a/jars/classes.jar:/Users/eoinlandy/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/8e596df493b6ff49ea0c520c362ccaba/jars/classes.jar:/Users/eoinlandy/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/aab2bcfc250efae95660202c2127256e/jars/classes.jar:/Users/eoinlandy/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/6df0c2e761320f680708a3fe850a132c/jars/classes.jar:/Users/eoinlandy/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/63eb67e24c85cb8fb4582501b2cb4d56/jars/classes.jar:/Users/eoinlandy/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/4f1d01dec5ab64459e58be55921b9d14/jars/classes.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/26.1.0/814258103cf26a15fcc26ecce35f5b7d24b73f8/support-annotations-26.1.0.jar:/Users/eoinlandy/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/ea2945e344ed5bf448258e335f4177d4/jars/classes.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.0.0/e414a4cb28434e25c4f6aa71426eb20cf4874ae9/common-1.0.0.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.0.0/a2d487452376193fc8c103dd2b9bd5f2b1b44563/common-1.0.0.jar:/Users/eoinlandy/Library/Android/sdk/platforms/android-27/android.jar" />
           <option name="noStdlib" value="true" />
           <option name="noReflect" value="true" />
           <option name="moduleName" value="app_debug" />
           <option name="addCompilerBuiltIns" value="true" />
           <option name="loadBuiltInsFromDependencies" value="true" />
-          <option name="languageVersion" value="1.2" />
-          <option name="apiVersion" value="1.2" />
+          <option name="languageVersion" value="1.3" />
+          <option name="apiVersion" value="1.3" />
           <option name="pluginOptions">
             <array>
               <option value="plugin:org.jetbrains.kotlin.android:experimental=false" />
@@ -43,7 +44,7 @@
           </option>
           <option name="pluginClasspaths">
             <array>
-              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-android-extensions/1.2.61/564710f8171991001cba1c828c3331d833d9d28b/kotlin-android-extensions-1.2.61.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-android-extensions/1.3.11/61615dc1b4490a6a1940454da57496356067e488/kotlin-android-extensions-1.3.11.jar" />
             </array>
           </option>
         </compilerArguments>
@@ -143,7 +144,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: com.android.support:animated-vector-drawable-26.1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-basement-15.0.1" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.2.61@jar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:common:1.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.ads.consent:consent-library-1.0.6" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-vector-drawable-26.1.0" level="project" />
@@ -151,13 +151,14 @@
     <orderEntry type="library" name="Gradle: com.android.support:support-core-utils-26.1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:appcompat-v7-26.1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads-base-15.0.1" level="project" />
-    <orderEntry type="library" name="Gradle: com.tuarua:FreKotlin-1.5.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.3.11@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-fragment-26.1.0" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.core:common:1.0.0@jar" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.3.11@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.tuarua:FreKotlin-1.6.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads-lite-15.0.1" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.4@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-media-compat-26.1.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.2.61@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-annotations:26.1.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-compat-26.1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-v4-26.1.0" level="project" />

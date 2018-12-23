@@ -19,7 +19,7 @@ import GoogleMobileAds
 import FreSwift
 
 class BannerController: UIViewController, FreSwiftController, GADBannerViewDelegate {
-    var TAG: String? = "AdMobANE"
+    static var TAG = "AdMobANE"
     internal var context: FreContextSwift!
     private var adView: GADBannerView!
     private var _size: Int = 0
@@ -36,7 +36,7 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(BannerController.orientationDidChange(notification:)),
-            name: Notification.Name.UIDeviceOrientationDidChange, object: nil)
+            name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
     convenience init(context: FreContextSwift, isPersonalised: Bool) {
@@ -204,7 +204,7 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
     
     func dispose() {
         clear()
-        self.removeFromParentViewController()
+        self.removeFromParent()
     }
 
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
@@ -229,7 +229,7 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
     
     deinit {
         NotificationCenter.default.removeObserver(self,
-                                                  name: NSNotification.Name.UIDeviceOrientationDidChange,
+                                                  name: UIDevice.orientationDidChangeNotification,
                                                   object: nil)
     }
 

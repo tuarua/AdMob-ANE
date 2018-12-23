@@ -19,7 +19,7 @@ import GoogleMobileAds
 import FreSwift
 
 class RewardVideoController: NSObject, FreSwiftController, GADRewardBasedVideoAdDelegate {
-    var TAG: String? = "RewardVideoController"
+    static var TAG = "RewardVideoController"
     internal var context: FreContextSwift!
     private var _showOnLoad: Bool = true
     private var _airVC: UIViewController?

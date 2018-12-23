@@ -130,15 +130,6 @@ public class AdMobANE extends EventDispatcher {
         return _isInited;
     }
 
-    /** @private */
-    private function safetyCheck():Boolean {
-        if (!_isInited) {
-            trace("You need to init first");
-            return false;
-        }
-        return _isSupported;
-    }
-
     public function get banner():Banner {
         return _banner;
     }

@@ -9,7 +9,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0"
+        versionName "2.1.0"
     }
     buildTypes {
         release {
@@ -24,7 +24,7 @@ android {
 
 dependencies {
     implementation "com.google.android.gms:play-services-ads-lite:$play_services_version"
-    implementation 'com.google.android.ads.consent:consent-library:1.0.6'
+    implementation "com.google.android.ads.consent:consent-library:$consent_library_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "com.google.code.gson:gson:$gson_version"
     implementation "com.tuarua:FreKotlin:$frekotlin_version"
