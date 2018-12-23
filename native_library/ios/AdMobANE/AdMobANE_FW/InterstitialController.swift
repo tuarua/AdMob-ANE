@@ -18,7 +18,7 @@ import UIKit
 import GoogleMobileAds
 import FreSwift
 class InterstitialController: NSObject, FreSwiftController, GADInterstitialDelegate {
-    var TAG: String? = "InterstitialController"
+    static var TAG = "InterstitialController"
 
     internal var context: FreContextSwift!
     private var adView: GADInterstitial?

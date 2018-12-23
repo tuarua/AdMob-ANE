@@ -83,6 +83,12 @@ bash get_ios_dependencies.sh
 The folder, **ios_dependencies/device/Frameworks**, must be packaged as part of your app when creating the ipa. How this is done will depend on the IDE you are using.   
 After the ipa is created unzip it and confirm there is a "Frameworks" folder in the root of the .app package.
 
+### Modifications to the AIR SDK
+
+For iOS we need some additions to the AIRSDK. 
+
+Copy the files from **AIRSDK_additions** into the corresponding folders in your AIRSDK.
+
 You will also need to include the following in your app manifest. Update accordingly.
 
 ```xml
@@ -121,22 +127,13 @@ Before using the consent methods:
 4. Click Select Providers.
 5. Select up to **12** providers only.
 
-### Running on Simulator
-
-The example project can be run on the Simulator from IntelliJ using AIR 28.
-
-### Running on Device
-
-The example project can be run on the device from IntelliJ using AIR 28.
-
 ### Prerequisites
 
 You will need:
 
 - IntelliJ IDEA / Flash Builder
-- AIR 29
-- Xcode 9.3
-- Xcode 9.1 for iOS Simulator
+- AIR 32
+- Xcode 10.1
 - Android Studio 3 if you wish to edit the Android source
 - wget on OSX
 - Powershell on Windows

@@ -1,4 +1,4 @@
-/* Copyright 2018 Tua Rua Ltd.
+/* Copyright 2017 Tua Rua Ltd.
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -205,4 +205,3 @@ return FRESetObjectProperty(object, (const uint8_t *) [propertyName UTF8String],
 };
 #endif
 #endif /* FreMacros_h */
-

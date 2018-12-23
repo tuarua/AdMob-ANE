@@ -27,20 +27,12 @@ public struct Targeting {
             return
         }
 
-        do {
-            let forChildrenSet = try Bool(o.getProp(name: "forChildrenSet")) == true
-            if forChildrenSet {
-                forChildren = try Bool(o.getProp(name: "forChildren"))
-            }
-
-            if let contentUrlFre = try o.getProp(name: "contentUrl") {
-                contentUrl = String(contentUrlFre)
-            }
-
-        } catch let e as FreError {
-            _ = e.getError(#file, #line, #column)
-        } catch {
+        let forChildrenSet = Bool(o["forChildrenSet"]) == true
+        if forChildrenSet {
+            forChildren = Bool(o["forChildren"])
         }
-
+        if let contentUrlFre = o["contentUrl"] {
+            contentUrl = String(contentUrlFre)
+        }
     }
 }

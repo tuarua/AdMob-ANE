@@ -55,11 +55,10 @@ public class StarlingRoot extends Sprite {
         adMobANE.addEventListener(AdMobEvent.ON_CONSENT_FORM_DISMISSED, onConsentFormDismissed);
 
 
-        // adMobANE.isTaggedForUnderAgeOfConsent = true;
+        adMobANE.isTaggedForUnderAgeOfConsent = true;
         adMobANE.debugGeography = DebugGeography.EEA;
         adMobANE.requestConsentInfoUpdate(new <String>["pub-YOUR_ID"]);
     }
-
 
 
     private function initMenu(inEU:Boolean):void {

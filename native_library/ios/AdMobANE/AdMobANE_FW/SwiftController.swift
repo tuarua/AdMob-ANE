@@ -20,7 +20,7 @@ import GoogleMobileAds
 import PersonalizedAdConsent
 
 public class SwiftController: NSObject {
-    public var TAG: String? = "SwiftController"
+    public static var TAG = "SwiftController"
     public var context: FreContextSwift!
     public var functionsToSet: FREFunctionMap = [:]
     private var bannerController: BannerController?
@@ -221,12 +221,7 @@ public class SwiftController: NSObject {
         guard let bc = bannerController else {
             return nil
         }
-        do {
-            let arr = try FREArray(intArray: bc.getBannerSizes())
-            return arr.rawValue
-        } catch {
-        }
-        return nil
+        return FREArray(intArray: bc.getBannerSizes())?.rawValue
     }
 
     func setTestDevices(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
