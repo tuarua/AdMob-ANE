@@ -87,7 +87,10 @@ After the ipa is created unzip it and confirm there is a "Frameworks" folder in 
 
 We need to patch some files in AIR SDK. 
 
-Copy the files from **AIRSDK_patch** into the corresponding folders in your AIR SDK.
+1. Copy adt.jar from **AIRSDK_patch** into the corresponding folder in your AIR SDK.
+2. Delete ld64 in your AIR SDK from `/lib/aot/bin/ld64/ld64`
+3. in Terminal:
+`ln -s /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld /PATH/TO/YOUR/AIRSDK_32/lib/aot/bin/ld64/ld64` 
 
 -------------
 
