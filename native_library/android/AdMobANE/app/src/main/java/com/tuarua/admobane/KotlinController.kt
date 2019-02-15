@@ -47,7 +47,7 @@ class KotlinController : FreKotlinMainController {
     fun requestConsentInfoUpdate(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 0 } ?: return FreArgException("requestConsentInfoUpdate")
         val keys = List<String>(argv[0])
-        if (keys.isEmpty()) return FreConversionException("You must supply at least 1 appId")
+        if (keys.isEmpty()) return FreException("You must supply at least 1 appId").getError()
 
         consentController?.requestConsentInfoUpdate(keys)
         return null
@@ -60,7 +60,7 @@ class KotlinController : FreKotlinMainController {
 
     fun showConsentForm(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 3 } ?: return FreArgException("showConsentForm")
-        val url = String(argv[0]) ?: return FreConversionException("url")
+        val url = String(argv[0]) ?: return null
         val privacyUrl = URL(url)
         val shouldOfferPersonalizedAds = Boolean(argv[1]) ?: true
         val shouldOfferNonPersonalizedAds = Boolean(argv[2]) ?: true
@@ -139,13 +139,13 @@ class KotlinController : FreKotlinMainController {
 
     fun loadBanner(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 6 } ?: return FreArgException("loadBanner")
-        val unitId = String(argv[0]) ?: return FreConversionException("unitId")
-        val adSize = Int(argv[1]) ?: return FreConversionException("adSize")
+        val unitId = String(argv[0]) ?: return null
+        val adSize = Int(argv[1]) ?: return null
         val targeting = Targeting(argv[2])
-        val x = Float(argv[3]) ?: return FreConversionException("x")
-        val y = Float(argv[4]) ?: return FreConversionException("y")
-        val hAlign = String(argv[5]) ?: return FreConversionException("hAlign")
-        val vAlign = String(argv[6]) ?: return FreConversionException("vAlign")
+        val x = Float(argv[3]) ?: return null
+        val y = Float(argv[4]) ?: return null
+        val hAlign = String(argv[5]) ?: return null
+        val vAlign = String(argv[6]) ?: return null
 
         bannerController?.load(unitId, adSize, deviceList,
                 targeting,
@@ -165,7 +165,7 @@ class KotlinController : FreKotlinMainController {
 
     fun loadInterstitial(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 2 } ?: return FreArgException("loadInterstitial")
-        val unitId = String(argv[0]) ?: return FreConversionException("unitId")
+        val unitId = String(argv[0]) ?: return null
         val targeting = Targeting(argv[1])
         val showOnLoad = Boolean(argv[2]) == true
         interstitialController?.load(unitId, deviceList, targeting, showOnLoad)
@@ -179,7 +179,7 @@ class KotlinController : FreKotlinMainController {
 
     fun loadRewardVideo(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 2 } ?: return FreArgException("loadRewardVideo")
-        val unitId = String(argv[0]) ?: return FreConversionException("unitId")
+        val unitId = String(argv[0]) ?: return null
         val targeting = Targeting(argv[1])
         val showOnLoad = Boolean(argv[2]) == true
         rewardController?.load(unitId, deviceList, targeting, showOnLoad)
@@ -225,6 +225,7 @@ class KotlinController : FreKotlinMainController {
         get() = _context
         set(value) {
             _context = value
+            FreKotlinLogger.context = _context
         }
 
 }
