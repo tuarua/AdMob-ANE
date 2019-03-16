@@ -12,34 +12,21 @@ public class Interstitial {
         this._context = context;
     }
 	/**
-	 * 
-	 * 
+	 * Makes an interstitial ad request. Additional targeting options can be supplied with a request object.
+     * Only one interstitial request is allowed at a time.
 	 */
     public function load():void {
-        var theRet:* = _context.call("loadInterstitial", _adUnit, _targeting, _showOnLoad);
-        if (theRet is ANEError) {
-            throw theRet as ANEError;
-        }
+        var ret:* = _context.call("loadInterstitial", _adUnit, _targeting, _showOnLoad);
+        if (ret is ANEError) throw ret as ANEError;
     }
+
 	/**
-	 * 
-	 * 
-	 */
-    public function clear():void {
-        var theRet:* = _context.call("clearInterstitial");
-        if (theRet is ANEError) {
-            throw theRet as ANEError;
-        }
-    }
-	/**
-	 * 
-	 * 
+	 * Presents the interstitial ad which takes over the entire screen until the user dismisses it.
+     * This has no effect unless isReady returns true and/or the delegate's interstitialDidReceiveAd: has been received.
 	 */
     public function show():void {
-        var theRet:* = _context.call("showInterstitial");
-        if (theRet is ANEError) {
-            throw theRet as ANEError;
-        }
+        var ret:* = _context.call("showInterstitial");
+        if (ret is ANEError) throw ret as ANEError;
     }
 	/**
 	 * 

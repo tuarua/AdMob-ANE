@@ -1,5 +1,6 @@
-﻿$AneVersion = "2.1.0"
-$PlayerServicesVersion = "15.0.1"
+﻿$AneVersion = "2.2.0"
+$PlayerServicesVersion = "16.0.1"
+$AdsVersion = "16.0.0"
 $SupportV4Version = "27.1.0"
 $ConsentVersion = "1.0.6"
 
@@ -10,5 +11,5 @@ Invoke-WebRequest -OutFile "$currentDir\android_dependencies\com.tuarua.frekotli
 Invoke-WebRequest -OutFile "$currentDir\android_dependencies\com.google.code.gson.gson-2.8.4.ane" -Uri https://github.com/tuarua/Android-ANE-Dependencies/blob/master/anes/misc/com.google.code.gson.gson-2.8.4.ane?raw=true
 Invoke-WebRequest -OutFile "$currentDir\android_dependencies\com.android.support.support-v4-$SupportV4Version.ane" -Uri https://github.com/tuarua/Android-ANE-Dependencies/blob/master/anes/support/com.android.support.support-v4-$SupportV4Version.ane?raw=true
 Invoke-WebRequest -OutFile "$currentDir\android_dependencies\com.google.android.gms.play-services-base-$PlayerServicesVersion.ane" -Uri https://github.com/tuarua/Android-ANE-Dependencies/blob/master/anes/play-services/com.google.android.gms.play-services-base-$PlayerServicesVersion.ane?raw=true
-Invoke-WebRequest -OutFile "$currentDir\android_dependencies\com.google.android.gms.play-services-ads-lite-$PlayerServicesVersion.ane" -Uri https://github.com/tuarua/Android-ANE-Dependencies/blob/master/anes/play-services/com.google.android.gms.play-services-ads-lite-$PlayerServicesVersion.ane?raw=true
+Invoke-WebRequest -OutFile "$currentDir\android_dependencies\com.google.android.gms.play-services-ads-lite-$AdsVersion.ane" -Uri https://github.com/tuarua/Android-ANE-Dependencies/blob/master/anes/play-services/com.google.android.gms.play-services-ads-lite-$AdsVersion.ane?raw=true
 Invoke-WebRequest -OutFile "$currentDir\android_dependencies\com.google.android.ads.consent.consent-library-$ConsentVersion.ane" -Uri https://github.com/tuarua/Android-ANE-Dependencies/blob/master/anes/play-services/com.google.android.ads.consent.consent-library-$ConsentVersion.ane?raw=true

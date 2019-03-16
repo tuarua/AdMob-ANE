@@ -31,7 +31,7 @@ class InterstitialController(override var context: FREContext?,
                              private val isPersonalised: Boolean) : FreKotlinController, AdListener() {
 
     private var _adView: InterstitialAd? = null
-    private var _showOnLoad:Boolean = true
+    private var _showOnLoad = true
     private val gson = Gson()
 
     init {

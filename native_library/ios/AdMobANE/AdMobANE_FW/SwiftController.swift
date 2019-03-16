@@ -183,7 +183,7 @@ public class SwiftController: NSObject {
 
         return nil
     }
-
+    
     func showInterstitial(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         if let ivc = interstitialController {
             ivc.show()
