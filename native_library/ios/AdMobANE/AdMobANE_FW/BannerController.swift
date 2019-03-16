@@ -22,12 +22,12 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
     static var TAG = "AdMobANE"
     internal var context: FreContextSwift!
     private var adView: GADBannerView!
-    private var _size: Int = 0
+    private var _size = 0
     private var _airView: UIView!
-    private var _hAlign: String = "center"
-    private var _vAlign: String = "bottom"
-    private var _x: CGFloat = CGFloat.init()
-    private var _y: CGFloat = CGFloat.init()
+    private var _hAlign = "center"
+    private var _vAlign = "bottom"
+    private var _x = CGFloat()
+    private var _y = CGFloat()
     private var isPersonalised: Bool = true
 
     override func viewDidLoad() {

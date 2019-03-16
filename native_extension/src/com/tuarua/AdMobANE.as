@@ -77,8 +77,8 @@ public class AdMobANE extends EventDispatcher {
      * Resets consent information to default state and clears ad providers.
      */
     public function resetConsent():void {
-        var theRet:* = ctx.call("resetConsent");
-        if (theRet is ANEError) throw theRet as ANEError;
+        var ret:* = ctx.call("resetConsent");
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     /**
@@ -93,11 +93,11 @@ public class AdMobANE extends EventDispatcher {
                                     shouldOfferPersonalizedAds:Boolean = true,
                                     shouldOfferNonPersonalizedAds:Boolean = true,
                                     shouldOfferAdFree:Boolean = false):void {
-        var theRet:* = ctx.call("showConsentForm", privacyUrl,
+        var ret:* = ctx.call("showConsentForm", privacyUrl,
                 shouldOfferPersonalizedAds,
                 shouldOfferNonPersonalizedAds,
                 shouldOfferAdFree);
-        if (theRet is ANEError) throw theRet as ANEError;
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     /**
@@ -108,8 +108,8 @@ public class AdMobANE extends EventDispatcher {
      *
      */
     public function requestConsentInfoUpdate(key:Vector.<String>):void {
-        var theRet:* = ctx.call("requestConsentInfoUpdate", key);
-        if (theRet is ANEError) throw theRet as ANEError;
+        var ret:* = ctx.call("requestConsentInfoUpdate", key);
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     /**
@@ -124,9 +124,9 @@ public class AdMobANE extends EventDispatcher {
      */
     public function init(key:String, volume:Number = 1.0, muted:Boolean = false, scaleFactor:Number = 1.0,
                          isPersonalised:Boolean = true):Boolean {
-        var theRet:* = ctx.call("init", key, volume, muted, scaleFactor, isPersonalised);
-        if (theRet is ANEError) throw theRet as ANEError;
-        _isInited = theRet as Boolean;
+        var ret:* = ctx.call("init", key, volume, muted, scaleFactor, isPersonalised);
+        if (ret is ANEError) throw ret as ANEError;
+        _isInited = ret as Boolean;
         return _isInited;
     }
 
@@ -145,8 +145,8 @@ public class AdMobANE extends EventDispatcher {
     /** Test ads will be returned for devices with device IDs specified in this array. */
     public function set testDevices(value:Vector.<String>):void {
         _testDevices = value;
-        var theRet:* = ctx.call("setTestDevices", _testDevices);
-        if (theRet is ANEError) throw theRet as ANEError;
+        var ret:* = ctx.call("setTestDevices", _testDevices);
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     public function get testDevices():Vector.<String> {
@@ -168,26 +168,26 @@ public class AdMobANE extends EventDispatcher {
     /** If a publisher is aware that the user is under the age of consent,
      * all ad requests must set TFUA (Tag For Users under the Age of Consent in Europe). */
     public function get isTaggedForUnderAgeOfConsent():Boolean {
-        var theRet:* = ctx.call("getIsTFUA");
-        if (theRet is ANEError) throw theRet as ANEError;
-        var _isTaggedForUnderAgeOfConsent:Boolean = theRet as Boolean;
+        var ret:* = ctx.call("getIsTFUA");
+        if (ret is ANEError) throw ret as ANEError;
+        var _isTaggedForUnderAgeOfConsent:Boolean = ret as Boolean;
         return _isTaggedForUnderAgeOfConsent;
     }
 
     public function set isTaggedForUnderAgeOfConsent(value:Boolean):void {
-        var theRet:* = ctx.call("setIsTFUA", value);
-        if (theRet is ANEError) throw theRet as ANEError;
+        var ret:* = ctx.call("setIsTFUA", value);
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     /** Debug geography. Used for debug devices only.*/
     public function set consentStatus(value:int):void {
-        var theRet:* = ctx.call("setConsentStatus", value);
-        if (theRet is ANEError) throw theRet as ANEError;
+        var ret:* = ctx.call("setConsentStatus", value);
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     public function set debugGeography(value:int):void {
-        var theRet:* = ctx.call("setDebugGeography", value);
-        if (theRet is ANEError) throw theRet as ANEError;
+        var ret:* = ctx.call("setDebugGeography", value);
+        if (ret is ANEError) throw ret as ANEError;
     }
 }
 }

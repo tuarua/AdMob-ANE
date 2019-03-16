@@ -22,9 +22,9 @@ class InterstitialController: NSObject, FreSwiftController, GADInterstitialDeleg
 
     internal var context: FreContextSwift!
     private var adView: GADInterstitial?
-    private var _showOnLoad: Bool = true
+    private var _showOnLoad = true
     private var _airVC: UIViewController?
-    private var isPersonalised: Bool = true
+    private var isPersonalised = true
     convenience init(context: FreContextSwift, isPersonalised: Bool) {
         self.init()
         self.context = context

@@ -13,18 +13,21 @@ public class RewardVideo {
         this._context = context;
     }
 
+    /**
+     * Initiates the request to fetch the reward based video ad. The |request| object supplies ad targeting
+     * information and must not be null. The adUnit is the ad unit id used for fetching an ad and must not be nil.
+     */
     public function load():void {
-        var theRet:* = _context.call("loadRewardVideo", _adUnit, _targeting, _showOnLoad);
-        if (theRet is ANEError) {
-            throw theRet as ANEError;
-        }
+        var ret:* = _context.call("loadRewardVideo", _adUnit, _targeting, _showOnLoad);
+        if (ret is ANEError) throw ret as ANEError;
     }
 
+    /**
+     * Presents the reward based video ad.
+     */
     public function show():void {
-        var theRet:* = _context.call("showRewardVideo");
-        if (theRet is ANEError) {
-            throw theRet as ANEError;
-        }
+        var ret:* = _context.call("showRewardVideo");
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     public function get adUnit():String {

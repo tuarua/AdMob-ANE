@@ -21,9 +21,9 @@ import FreSwift
 class RewardVideoController: NSObject, FreSwiftController, GADRewardBasedVideoAdDelegate {
     static var TAG = "RewardVideoController"
     internal var context: FreContextSwift!
-    private var _showOnLoad: Bool = true
+    private var _showOnLoad = true
     private var _airVC: UIViewController?
-    private var isPersonalised: Bool = true
+    private var isPersonalised = true
     private var adView: GADRewardBasedVideoAd?
     
     convenience init(context: FreContextSwift, isPersonalised: Bool) {

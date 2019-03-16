@@ -1,3 +1,7 @@
+### 2.2.0
+- iOS: Updated to Google Mobile Ads SDK 7.40.0
+- Android: Updated Android Play Services to 16.0.1
+
 ### 2.1.0
 - iOS: Updated to Google Mobile Ads SDK 7.36.0
 - Upgraded to AIR 32

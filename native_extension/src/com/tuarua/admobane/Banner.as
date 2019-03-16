@@ -18,24 +18,18 @@ public class Banner {
         this._context = context;
     }
 	/**
-	 * 
 	 * Load the banner
 	 */
     public function load():void {
-        var theRet:* = _context.call("loadBanner", _adUnit, _adSize, _targeting, _x, _y, _hAlign, _vAlign);
-        if (theRet is ANEError) {
-            throw theRet as ANEError;
-        }
+        var ret:* = _context.call("loadBanner", _adUnit, _adSize, _targeting, _x, _y, _hAlign, _vAlign);
+        if (ret is ANEError) throw ret as ANEError;
     }
 	/**
-	 * 
 	 * Clear the banner
 	 */
     public function clear():void {
-        var theRet:* = _context.call("clearBanner");
-        if (theRet is ANEError) {
-            throw theRet as ANEError;
-        }
+        var ret:* = _context.call("clearBanner");
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     /** Example AdMob ad unit ID: @"ca-app-pub-0123456789012345/0123456789" */
@@ -57,11 +51,9 @@ public class Banner {
 
     public function get availableSizes():Array {
         if (_availableSizes.length == 0) {
-            var theRet:* = _context.call("getBannerSizes");
-            if (theRet is ANEError) {
-                throw theRet as ANEError;
-            }
-            _availableSizes = theRet as Array;
+            var ret:* = _context.call("getBannerSizes");
+            if (ret is ANEError) throw ret as ANEError;
+            _availableSizes = ret as Array;
         }
         return _availableSizes
     }
