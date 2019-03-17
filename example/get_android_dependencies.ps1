@@ -2,7 +2,7 @@
 $PlayerServicesVersion = "16.0.1"
 $AdsVersion = "16.0.0"
 $SupportV4Version = "27.1.0"
-$ConsentVersion = "1.0.6"
+$ConsentVersion = "1.0.7"
 
 $currentDir = (Get-Item -Path ".\" -Verbose).FullName
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12

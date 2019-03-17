@@ -20,16 +20,16 @@
             <entry library-name="com.android.support.support-v4-27.1.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.google.android.gms.play-services-ads-lite-15.0.1" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-name="com.google.android.gms.play-services-base-15.0.1" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-name="com.google.code.gson.gson-2.8.4" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.google.android.ads.consent.consent-library-1.0.6" library-level="project">
+            <entry library-name="com.google.android.ads.consent.consent-library-1.0.7" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="com.google.android.gms.play-services-ads-lite-16.0.0" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="com.google.android.gms.play-services-base-16.0.1" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -181,5 +181,8 @@
     <orderEntry type="library" exported="" name="com.google.code.gson.gson-2.8.4" level="project" />
     <orderEntry type="library" exported="" name="com.google.android.ads.consent.consent-library-1.0.6" level="project" />
     <orderEntry type="library" exported="" name="com.android.support.appcompat-v7-27.1.0" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.ads.consent.consent-library-1.0.7" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-ads-lite-16.0.0" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-base-16.0.1" level="project" />
   </component>
 </module>
