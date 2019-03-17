@@ -33,7 +33,8 @@ The dependencies can be downloaded directly from [this repo](https://github.com/
 <extensions>
     <extensionID>com.tuarua.frekotlin</extensionID>
     <extensionID>com.google.android.gms.play-services-base</extensionID>
-    <extensionID>com.google.android.gms.play-services-ads-lite</extensionID>
+    <extensionID>com.google.android.gms.play-services-ads-lite</extensionID>       
+    <extensionID>com.google.android.ads.consent.consent-library</extensionID>
     <extensionID>com.android.support.support-v4</extensionID>
     <extensionID>com.google.code.gson.gson</extensionID>
     ...
