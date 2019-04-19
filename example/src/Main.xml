@@ -3,7 +3,7 @@
     <id>com.tuarua.admobaneexample</id>
     <filename>MainAdMob</filename>
     <name>MainAdMob</name>
-    <versionNumber>0.0.1</versionNumber>
+    <versionNumber>2.3.0</versionNumber>
 
     <initialWindow>
         <content>[This value will be overwritten by Flash Builder in the output app.xml]</content>

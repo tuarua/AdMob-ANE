@@ -1,3 +1,8 @@
+### 2.3.0
+- Upgraded to AIR 32.0.0.116
+- AND: Updated to FreKotlin 1.7.0
+- iOS: Updated to FreSwift 3.1.0
+
 ### 2.2.0
 - iOS: Updated to Google Mobile Ads SDK 7.40.0
 - Android: Updated Android Play Services to 16.0.1

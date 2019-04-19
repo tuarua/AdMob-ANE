@@ -54,7 +54,8 @@ public class StarlingRoot extends Sprite {
         adMobANE.addEventListener(AdMobEvent.ON_CONSENT_INFO_UPDATE, onConsentInfoUpdate);
         adMobANE.addEventListener(AdMobEvent.ON_CONSENT_FORM_DISMISSED, onConsentFormDismissed);
 
-
+        initAdMob(true);
+        return;
         adMobANE.isTaggedForUnderAgeOfConsent = true;
         adMobANE.debugGeography = DebugGeography.EEA;
         adMobANE.requestConsentInfoUpdate(new <String>["pub-YOUR_ID"]);

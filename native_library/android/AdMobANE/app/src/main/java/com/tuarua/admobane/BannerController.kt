@@ -183,9 +183,7 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
     }
 
     fun getBannerSizes(): IntArray {
-        val screenSize = this.context?.activity?.resources?.configuration?.screenLayout?.and(SCREENLAYOUT_SIZE_MASK)
-
-        return when (screenSize) {
+        return when (this.context?.activity?.resources?.configuration?.screenLayout?.and(SCREENLAYOUT_SIZE_MASK)) {
             SCREENLAYOUT_SIZE_LARGE, SCREENLAYOUT_SIZE_XLARGE -> intArrayOf(0, 1, 2, 3,
                     4, 5)
             else -> intArrayOf(0, 2, 5)

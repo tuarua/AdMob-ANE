@@ -1,6 +1,6 @@
 #!/bin/sh
 
-AneVersion="2.2.0"
+AneVersion="2.3.0"
 PlayerServicesVersion="16.0.1"
 AdsVersion="16.0.0"
 ConsentVersion="1.0.7"
