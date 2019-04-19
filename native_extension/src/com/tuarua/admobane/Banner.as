@@ -7,7 +7,7 @@ public class Banner {
     private var _context:ExtensionContext;
     private var _adUnit:String = "ca-app-pub-3940256099942544/6300978111";
     private var _adSize:int = AdSize.BANNER;
-    private var _availableSizes:Array = [];
+    private var _availableSizes:Vector.<int> = new Vector.<int>();
     private var _targeting:Targeting;
     private var _x:Number = -1;
     private var _y:Number = -1;
@@ -49,11 +49,11 @@ public class Banner {
         _adSize = value;
     }
 
-    public function get availableSizes():Array {
+    public function get availableSizes():Vector.<int> {
         if (_availableSizes.length == 0) {
             var ret:* = _context.call("getBannerSizes");
             if (ret is ANEError) throw ret as ANEError;
-            _availableSizes = ret as Array;
+            _availableSizes = ret as Vector.<int> ;
         }
         return _availableSizes
     }
