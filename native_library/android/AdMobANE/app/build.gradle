@@ -3,19 +3,23 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 27
+        targetSdkVersion compileSdkVersion
         versionCode 1
-        versionName "2.2.0"
+        versionName "2.4.0"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
     }
     lintOptions {
         disable 'GradleDependency','UnusedResources'

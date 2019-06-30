@@ -16,7 +16,7 @@ Much time, skill and effort has gone into this. Help support the project
 ##### The ANE + Dependencies
  
 From the command line cd into /example and run:   
-OSX
+macOS
  
 ```shell
 bash get_android_dependencies.sh
@@ -129,10 +129,10 @@ Before using the consent methods:
 You will need:
 
 - IntelliJ IDEA / Flash Builder
-- AIR 32.0.0.103 or greater
+- AIR 33 or greater
 - Xcode 10.1
 - Android Studio 3 if you wish to edit the Android source
-- wget on OSX
+- wget on macOS
 - Powershell on Windows
 
 
