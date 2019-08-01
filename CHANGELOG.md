@@ -1,7 +1,6 @@
 ### 2.4.0
 - AND: Updated to FreKotlin 1.8.0
 - Updated to AIR 33 ARM 64bit
-- Remove Android-x86
 
 ### 2.3.0
 - Upgraded to AIR 32.0.0.116
