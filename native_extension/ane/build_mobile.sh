@@ -12,7 +12,7 @@ PROJECTNAME=AdMobANE
 fwSuffix="_FW"
 libSuffix="_LIB"
 
-AIR_SDK="/Users/eoinlandy/SDKs/AIRSDK_32"
+AIR_SDK="/Users/eoinlandy/SDKs/AIRSDK_33"
 echo $AIR_SDK
 
 if [ ! -d "$pathtome/../../native_library/ios/$PROJECTNAME/Build/Products/Release-iphonesimulator/" ]; then
@@ -84,9 +84,9 @@ echo "Copying Swift dylibs into place for device."
 #Device
 if [ -e "$pathtome/platforms/ios/device/Frameworks/$PROJECTNAME$fwSuffix.framework/Frameworks" ]
 then
-for dylib in "$pathtome/platforms/ios/device/Frameworks/$PROJECTNAME$fwSuffix.framework/Frameworks/*"
+for dylib in "$pathtome"/platforms/ios/device/Frameworks/"$PROJECTNAME""$fwSuffix".framework/Frameworks/*
 do
-mv -f $dylib "$pathtome/../../example/ios_dependencies/device/Frameworks"
+mv -f "$dylib" "$pathtome/../../example/ios_dependencies/device/Frameworks"
 done
 rm -r "$pathtome/platforms/ios/device/Frameworks/$PROJECTNAME$fwSuffix.framework/Frameworks"
 fi
@@ -95,9 +95,9 @@ echo "Copying Swift dylibs into place for simulator."
 #Simulator
 if [ -e "$pathtome/platforms/ios/simulator/Frameworks/$PROJECTNAME$fwSuffix.framework/Frameworks" ]
 then
-for dylib in "$pathtome/platforms/ios/simulator/Frameworks/$PROJECTNAME$fwSuffix.framework/Frameworks/*"
+for dylib in "$pathtome"/platforms/ios/simulator/Frameworks/"$PROJECTNAME""$fwSuffix".framework/Frameworks/*
 do
-mv -f $dylib "$pathtome/../../example/ios_dependencies/simulator/Frameworks"
+mv -f "$dylib" "$pathtome/../../example/ios_dependencies/simulator/Frameworks"
 done
 if [ -d "$pathtome/platforms/ios/device/Frameworks/$PROJECTNAME$fwSuffix.framework/Frameworks" ]; then
 rm -r "$pathtome/platforms/ios/device/Frameworks/$PROJECTNAME$fwSuffix.framework/Frameworks"
@@ -132,11 +132,15 @@ echo "Building ANE."
 "$AIR_SDK"/bin/adt -package \
 -target ane "$pathtome/$PROJECTNAME.ane" "$pathtome/extension_mobile.xml" \
 -swc "$pathtome/$PROJECTNAME.swc" \
+-platform Android-x86 \
+-C "$pathtome/platforms/android" "library.swf" "classes.jar" \
+com.tuarua.$PROJECTNAME-res/. \
+-platformoptions "$pathtome/platforms/android/platform.xml" \
 -platform Android-ARM \
 -C "$pathtome/platforms/android" "library.swf" "classes.jar" \
 com.tuarua.$PROJECTNAME-res/. \
 -platformoptions "$pathtome/platforms/android/platform.xml" \
--platform Android-x86 \
+-platform Android-ARM64 \
 -C "$pathtome/platforms/android" "library.swf" "classes.jar" \
 com.tuarua.$PROJECTNAME-res/. \
 -platformoptions "$pathtome/platforms/android/platform.xml" \

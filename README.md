@@ -16,7 +16,7 @@ Much time, skill and effort has gone into this. Help support the project
 ##### The ANE + Dependencies
  
 From the command line cd into /example and run:   
-OSX
+macOS
  
 ```shell
 bash get_android_dependencies.sh
@@ -67,6 +67,9 @@ You will also need to include the following in your app manifest. Update accordi
 Test Ads are included in the demo.
 You will need an AdMob account to [deliver live ads](https://support.google.com/admob/answer/7356219).   
 
+#### AIR 32 & 33
+This ANE is built against AIR 33 SDK. If you wish to use with AIR 32 you will need to replace dx.jar in lib/android/bin/ with [this one](https://github.com/tuarua/Android-ANE-Dependencies/blob/master/AIR32_patch/lib/android/bin/dx.jar?raw=true)
+
 -------------
 
 ## iOS
@@ -112,6 +115,9 @@ You will also need to include the following in your app manifest. Update accordi
 Test Ads are included in the demo.
 You will need an AdMob account to [deliver live ads](https://support.google.com/admob/answer/7356219).
 
+#### AIR 32 & 33
+You should use AIR 32 for iOS builds
+
 -------------
 
 ### Consent SDK for GDPR
@@ -129,10 +135,10 @@ Before using the consent methods:
 You will need:
 
 - IntelliJ IDEA / Flash Builder
-- AIR 32.0.0.103 or greater
+- AIR 33 or greater
 - Xcode 10.1
 - Android Studio 3 if you wish to edit the Android source
-- wget on OSX
+- wget on macOS
 - Powershell on Windows
 
 
