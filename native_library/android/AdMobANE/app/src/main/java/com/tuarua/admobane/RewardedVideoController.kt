@@ -40,10 +40,6 @@ class RewardedVideoController(override var context: FREContext?,
             _adView = value
         }
 
-    init {
-
-    }
-
     fun load(unitId: String, deviceList: List<String>?, targeting: Targeting?, showOnLoad: Boolean) {
         _adView = MobileAds.getRewardedVideoAdInstance(this.context?.activity)
         _showOnLoad = showOnLoad
@@ -114,7 +110,7 @@ class RewardedVideoController(override var context: FREContext?,
         dispatchEvent(Constants.ON_LOAD_FAILED, gson.toJson(AdMobEvent(REWARD.ordinal, p0)))
     }
 
-    override val TAG: String
+    override val TAG: String?
         get() = this::class.java.canonicalName
 }
 

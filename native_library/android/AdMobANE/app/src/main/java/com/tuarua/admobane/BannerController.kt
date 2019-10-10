@@ -36,7 +36,7 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
 
     private var airView: ViewGroup? = airView
     private var _adView: AdView? = null
-    private var container: FrameLayout
+    private var container: FrameLayout? = null
     private val gson = Gson()
     var adView: AdView?
         get() = _adView
@@ -45,12 +45,15 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
         }
 
     init {
-        container = FrameLayout(this.context?.activity?.applicationContext)
-        container.isClickable = false
+        val applicationContext = this.context?.activity?.applicationContext
+        if (applicationContext != null) {
+            container = FrameLayout(applicationContext)
+            container?.isClickable = false
 
-        val lp = LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
-        lp.gravity = CENTER_HORIZONTAL or BOTTOM
-        container.layoutParams = lp
+            val lp = LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
+            lp.gravity = CENTER_HORIZONTAL or BOTTOM
+            container?.layoutParams = lp
+        }
     }
 
     @SuppressLint("RtlHardcoded")
@@ -59,7 +62,7 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
         val existingAv = _adView
         if (existingAv != null) {
             if (existingAv.parent == container) {
-                container.removeView(existingAv)
+                container?.removeView(existingAv)
             }
             existingAv.destroy()
         }
@@ -79,12 +82,12 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
             5 -> av.adSize = AdSize.SMART_BANNER
         }
 
-        val lp = LayoutParams(LayoutParams.WRAP_CONTENT, WRAP_CONTENT)
+        val lp = LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
 
         when {
             x > -1 && y > -1 -> {
-                container.x = x
-                container.y = y
+                container?.x = x
+                container?.y = y
                 lp.gravity = LEFT or TOP
             }
             else -> {
@@ -103,7 +106,7 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
                 lp.gravity = hGravity or vGravity
             }
         }
-        container.layoutParams = lp
+        container?.layoutParams = lp
 
         val builder = AdRequest.Builder()
 
@@ -133,7 +136,7 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
     fun clear() {
         val av = _adView ?: return
         av.adListener = null
-        container.removeView(av)
+        container?.removeView(av)
         av.destroy()
         _adView = null
     }
@@ -172,9 +175,9 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
         super.onAdLoaded()
         val av = _adView ?: return
         if (av.parent == null) {
-            container.addView(av)
+            container?.addView(av)
         }
-        if (container.parent == null) {
+        if (container?.parent == null) {
             airView?.addView(container)
         }
 
@@ -190,7 +193,7 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
         }
     }
 
-    override val TAG: String
+    override val TAG: String?
         get() = this::class.java.canonicalName
 
 }

@@ -1,3 +1,6 @@
+### 2.5.0
+- AND: Updated to FreKotlin 1.9.0
+
 ### 2.4.0
 - AND: Updated to FreKotlin 1.8.0
 - Updated to AIR 33 ARM 64bit

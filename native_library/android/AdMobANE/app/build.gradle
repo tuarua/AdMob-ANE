@@ -9,7 +9,7 @@ android {
         minSdkVersion 19
         targetSdkVersion compileSdkVersion
         versionCode 1
-        versionName "2.4.0"
+        versionName "2.5.0"
     }
     buildTypes {
         release {
@@ -21,6 +21,10 @@ android {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     lintOptions {
         disable 'GradleDependency','UnusedResources'
     }

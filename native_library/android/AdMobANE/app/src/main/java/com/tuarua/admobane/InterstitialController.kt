@@ -34,9 +34,6 @@ class InterstitialController(override var context: FREContext?,
     private var _showOnLoad = true
     private val gson = Gson()
 
-    init {
-    }
-
     fun load(unitId: String, deviceList: List<String>?, targeting: Targeting?, showOnLoad:Boolean) {
         _adView = InterstitialAd(this.context?.activity?.applicationContext)
         _showOnLoad = showOnLoad
@@ -112,7 +109,7 @@ class InterstitialController(override var context: FREContext?,
     }
 
 
-    override val TAG: String
+    override val TAG: String?
         get() = this::class.java.canonicalName
 
 }

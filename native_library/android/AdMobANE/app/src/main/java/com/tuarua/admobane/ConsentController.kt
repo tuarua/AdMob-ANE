@@ -96,6 +96,6 @@ class ConsentController(override var context: FREContext?) : FreKotlinController
         consentInformation.consentStatus = value
     }
 
-    override val TAG: String
+    override val TAG: String?
         get() = this::class.java.canonicalName
 }

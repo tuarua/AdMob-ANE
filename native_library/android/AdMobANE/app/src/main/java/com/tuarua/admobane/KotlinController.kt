@@ -15,7 +15,13 @@
  */
 package com.tuarua.admobane
 
+import android.content.Intent
+import android.content.res.Configuration
 import android.view.ViewGroup
+import com.adobe.air.AndroidActivityWrapper.*
+import com.adobe.air.AndroidActivityWrapper.ActivityState.*
+import com.adobe.air.FreKotlinActivityResultCallback
+import com.adobe.air.FreKotlinStateChangeCallback
 import com.adobe.fre.FREContext
 import com.adobe.fre.FREObject
 import com.google.ads.consent.ConsentStatus
@@ -25,7 +31,7 @@ import com.tuarua.frekotlin.*
 import java.net.URL
 
 @Suppress("unused", "UNUSED_PARAMETER", "UNCHECKED_CAST")
-class KotlinController : FreKotlinMainController {
+class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, FreKotlinActivityResultCallback {
     private lateinit var airView: ViewGroup
     private val TRACE = "TRACE"
     private var scaleFactor: Float = 1.0F
@@ -45,7 +51,7 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun requestConsentInfoUpdate(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 0 } ?: return FreArgException("requestConsentInfoUpdate")
+        argv.takeIf { argv.size > 0 } ?: return FreArgException()
         val keys = List<String>(argv[0])
         if (keys.isEmpty()) return FreException("You must supply at least 1 appId").getError()
 
@@ -59,7 +65,7 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun showConsentForm(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 3 } ?: return FreArgException("showConsentForm")
+        argv.takeIf { argv.size > 3 } ?: return FreArgException()
         val url = String(argv[0]) ?: return null
         val privacyUrl = URL(url)
         val shouldOfferPersonalizedAds = Boolean(argv[1]) ?: true
@@ -79,17 +85,16 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun setIsTFUA(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 0 } ?: return FreArgException("setIsTFUA")
+        argv.takeIf { argv.size > 0 } ?: return FreArgException()
         consentController?.setIsTFUA(Boolean(argv[0]) == true)
         return null
     }
 
 
     fun setConsentStatus(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 0 } ?: return FreArgException("setConsentStatus")
-        val status = Int(argv[0]) ?: 0
+        argv.takeIf { argv.size > 0 } ?: return FreArgException()
 
-        val consentStatus:ConsentStatus = when (status) {
+        val consentStatus:ConsentStatus = when (Int(argv[0]) ?: 0) {
             1 -> ConsentStatus.NON_PERSONALIZED
             2 -> ConsentStatus.PERSONALIZED
             else -> ConsentStatus.UNKNOWN
@@ -100,9 +105,8 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun setDebugGeography(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 0 } ?: return FreArgException("setDebugGeography")
-        val geography = Int(argv[0]) ?: 0
-        val debugGeography:DebugGeography = when (geography) {
+        argv.takeIf { argv.size > 0 } ?: return FreArgException()
+        val debugGeography:DebugGeography = when (Int(argv[0]) ?: 0) {
             1 -> DebugGeography.DEBUG_GEOGRAPHY_EEA
             2 -> DebugGeography.DEBUG_GEOGRAPHY_NOT_EEA
             else -> DebugGeography.DEBUG_GEOGRAPHY_DISABLED
@@ -113,7 +117,7 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun init(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 4 } ?: return FreArgException("init")
+        argv.takeIf { argv.size > 4 } ?: return FreArgException()
         val key = String(argv[0])
         val volume = Float(argv[1])
         val muted = Boolean(argv[2])
@@ -131,14 +135,14 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun setTestDevices(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 0 } ?: return FreArgException("setTestDevices")
+        argv.takeIf { argv.size > 0 } ?: return FreArgException()
         val deviceArray = FREArray(argv[0])
         deviceList = List(deviceArray)
         return null
     }
 
     fun loadBanner(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 6 } ?: return FreArgException("loadBanner")
+        argv.takeIf { argv.size > 6 } ?: return FreArgException()
         val unitId = String(argv[0]) ?: return null
         val adSize = Int(argv[1]) ?: return null
         val targeting = Targeting(argv[2])
@@ -164,7 +168,7 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun loadInterstitial(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 2 } ?: return FreArgException("loadInterstitial")
+        argv.takeIf { argv.size > 2 } ?: return FreArgException()
         val unitId = String(argv[0]) ?: return null
         val targeting = Targeting(argv[1])
         val showOnLoad = Boolean(argv[2]) == true
@@ -178,7 +182,7 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun loadRewardVideo(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 2 } ?: return FreArgException("loadRewardVideo")
+        argv.takeIf { argv.size > 2 } ?: return FreArgException()
         val unitId = String(argv[0]) ?: return null
         val targeting = Targeting(argv[1])
         val showOnLoad = Boolean(argv[2]) == true
@@ -191,22 +195,28 @@ class KotlinController : FreKotlinMainController {
         return null
     }
 
-    override fun onResumed() {
-        super.onResumed()
-        bannerController?.adView?.resume()
-        rewardController?.adView?.resume(this.context?.activity)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
     }
 
-    override fun onPaused() {
-        super.onPaused()
-        bannerController?.adView?.pause()
-        rewardController?.adView?.pause(this.context?.activity)
+    override fun onConfigurationChanged(configuration: Configuration?) {
     }
 
-    override fun onDestroyed() {
-        super.onDestroyed()
-        bannerController?.adView?.destroy()
-        rewardController?.adView?.destroy(this.context?.activity)
+    override fun onActivityStateChanged(activityState: ActivityState?) {
+        when (activityState) {
+            RESUMED -> {
+                bannerController?.adView?.resume()
+                rewardController?.adView?.resume(this.context?.activity)
+            }
+            PAUSED -> {
+                bannerController?.adView?.pause()
+                rewardController?.adView?.pause(this.context?.activity)
+            }
+            DESTROYED -> {
+                bannerController?.adView?.destroy()
+                rewardController?.adView?.destroy(this.context?.activity)
+            }
+            else -> return
+        }
     }
 
     override fun dispose() {
@@ -218,7 +228,7 @@ class KotlinController : FreKotlinMainController {
         interstitialController = null
     }
 
-    override val TAG: String
+    override val TAG: String?
         get() = this::class.java.canonicalName
     private var _context: FREContext? = null
     override var context: FREContext?
