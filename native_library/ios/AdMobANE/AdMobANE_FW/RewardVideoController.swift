@@ -17,6 +17,7 @@
 import UIKit
 import GoogleMobileAds
 import FreSwift
+import SwiftyJSON
 
 class RewardVideoController: NSObject, FreSwiftController, GADRewardBasedVideoAdDelegate {
     static var TAG = "RewardVideoController"

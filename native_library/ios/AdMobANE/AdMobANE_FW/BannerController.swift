@@ -17,6 +17,7 @@
 import UIKit
 import GoogleMobileAds
 import FreSwift
+import SwiftyJSON
 
 class BannerController: UIViewController, FreSwiftController, GADBannerViewDelegate {
     static var TAG = "AdMobANE"

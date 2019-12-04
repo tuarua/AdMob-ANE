@@ -136,8 +136,7 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
 
     fun setTestDevices(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 0 } ?: return FreArgException()
-        val deviceArray = FREArray(argv[0])
-        deviceList = List(deviceArray)
+        deviceList = List(FREArray(argv[0]))
         return null
     }
 

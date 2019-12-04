@@ -17,6 +17,8 @@
 import UIKit
 import GoogleMobileAds
 import FreSwift
+import SwiftyJSON
+
 class InterstitialController: NSObject, FreSwiftController, GADInterstitialDelegate {
     static var TAG = "InterstitialController"
 

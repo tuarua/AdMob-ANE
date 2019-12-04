@@ -1,5 +1,5 @@
 ﻿$AneVersion = "2.5.0"
-$FreKotlinVersion = "1.9.0"
+$FreKotlinVersion = "1.9.1"
 $PlayerServicesVersion = "16.0.1"
 $AdsVersion = "16.0.0"
 $SupportV4Version = "27.1.0"

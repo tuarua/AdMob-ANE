@@ -11,6 +11,3 @@ disabled_rules: # rule identifiers to exclude from running
 
 type_body_length:
  - 1000 # warning
-
-excluded:
-  - AdMobANE_FW/SwiftyJSON.swift

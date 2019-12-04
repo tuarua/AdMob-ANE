@@ -20,7 +20,6 @@ import com.tuarua.admobane.KotlinController;
 import com.tuarua.frekotlin.FreKotlinContext;
 import com.tuarua.frekotlin.FreKotlinMainController;
 
-@SuppressWarnings("WeakerAccess")
 public class AdMobANEContext extends FreKotlinContext {
     private AndroidActivityWrapper aaw;
     private KotlinController kc;

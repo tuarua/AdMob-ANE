@@ -130,7 +130,7 @@ mv "$pathtome/platforms/android/res" "$pathtome/platforms/android/com.tuarua.$PR
 #Run the build command.
 echo "Building ANE."
 "$AIR_SDK"/bin/adt -package \
--target ane "$pathtome/$PROJECTNAME.ane" "$pathtome/extension_mobile.xml" \
+-target ane "$pathtome/$PROJECTNAME.ane" "$pathtome/extension.xml" \
 -swc "$pathtome/$PROJECTNAME.swc" \
 -platform Android-x86 \
 -C "$pathtome/platforms/android" "library.swf" "classes.jar" \

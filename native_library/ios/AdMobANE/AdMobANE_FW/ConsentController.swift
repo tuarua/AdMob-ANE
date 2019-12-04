@@ -18,6 +18,7 @@ import UIKit
 import GoogleMobileAds
 import FreSwift
 import PersonalizedAdConsent
+import SwiftyJSON
 
 class ConsentController: FreSwiftController {
     static var TAG = "ConsentController"
