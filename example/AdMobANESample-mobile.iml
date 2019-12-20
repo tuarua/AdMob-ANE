@@ -14,22 +14,25 @@
             <entry library-name="FiraSansSemiBold" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.android.support.support-v4-27.1.0" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-name="com.google.code.gson.gson-2.8.4" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-name="com.google.android.ads.consent.consent-library-1.0.7" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-name="com.google.android.gms.play-services-ads-lite-16.0.0" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-name="com.google.android.gms.play-services-base-16.0.1" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-name="com.tuarua.frekotlin-1.9.1" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="com.google.code.gson.gson-2.8.6" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="com.google.android.gms.play-services-base-17.0.0" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="com.google.android.gms.play-services-ads-lite-18.3.0" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="com.google.android.ads.consent.consent-library-1.0.8" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="androidx.legacy.legacy-support-v4-1.0.0" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="com.google.android.gms.play-services-measurement-17.2.1" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -153,5 +156,11 @@
     <orderEntry type="library" exported="" name="com.tuarua.frekotlin-1.8.0" level="project" />
     <orderEntry type="library" exported="" name="com.tuarua.frekotlin-1.9.0" level="project" />
     <orderEntry type="library" exported="" name="com.tuarua.frekotlin-1.9.1" level="project" />
+    <orderEntry type="library" exported="" name="com.google.code.gson.gson-2.8.6" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-base-17.0.0" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-ads-lite-18.3.0" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.ads.consent.consent-library-1.0.8" level="project" />
+    <orderEntry type="library" exported="" name="androidx.legacy.legacy-support-v4-1.0.0" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms.play-services-measurement-17.2.1" level="project" />
   </component>
 </module>

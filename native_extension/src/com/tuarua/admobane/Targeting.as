@@ -7,6 +7,7 @@ public final class Targeting {
     public function get forChildren():Boolean {
         return _forChildren;
     }
+    /** @deprecated */
     public function set forChildren(value:Boolean):void {
         forChildrenSet = true;
         _forChildren = value;

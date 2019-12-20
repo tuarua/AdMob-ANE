@@ -3,9 +3,9 @@
 buildscript {
     ext.kotlin_version = '1.3.50'
     ext.frekotlin_version = '1.9.1'
-    ext.gson_version = '2.8.4'
-    ext.play_services_version = '16.0.0'
-    ext.consent_library_version  = '1.0.7'
+    ext.gson_version = '2.8.6'
+    ext.play_services_version = '18.3.0'
+    ext.consent_library_version  = '1.0.8'
     repositories {
         google()
         jcenter()

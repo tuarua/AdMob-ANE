@@ -3,7 +3,7 @@
     <id>com.tuarua.admobaneexample</id>
     <filename>MainAdMob</filename>
     <name>MainAdMob</name>
-    <versionNumber>2.4.0</versionNumber>
+    <versionNumber>2.5.0</versionNumber>
 
     <initialWindow>
         <content>[This value will be overwritten by Flash Builder in the output app.xml]</content>
@@ -52,8 +52,9 @@
         <extensionID>com.tuarua.frekotlin</extensionID>
         <extensionID>com.google.android.gms.play-services-base</extensionID>
         <extensionID>com.google.android.gms.play-services-ads-lite</extensionID>
+        <extensionID>com.google.android.gms.play-services-measurement</extensionID>
         <extensionID>com.google.android.ads.consent.consent-library</extensionID>
-        <extensionID>com.android.support.support-v4</extensionID>
+        <extensionID>androidx.legacy.legacy-support-v4</extensionID>
         <extensionID>com.google.code.gson.gson</extensionID>
         <extensionID>com.tuarua.AdMobANE</extensionID>
     </extensions>
