@@ -23,7 +23,6 @@ extension SwiftController: FreSwiftMainController {
         functionsToSet["\(prefix)requestConsentInfoUpdate"] = requestConsentInfoUpdate
         functionsToSet["\(prefix)resetConsent"] = resetConsent
         functionsToSet["\(prefix)showConsentForm"] = showConsentForm
-        functionsToSet["\(prefix)isSupported"] = isSupported
         functionsToSet["\(prefix)init"] = initController
         functionsToSet["\(prefix)loadBanner"] = loadBanner
         functionsToSet["\(prefix)clearBanner"] = clearBanner

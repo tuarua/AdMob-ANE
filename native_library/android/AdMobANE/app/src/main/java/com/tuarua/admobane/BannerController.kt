@@ -17,18 +17,19 @@ package com.tuarua.admobane
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration.*
+import android.os.Bundle
 import android.view.Gravity.*
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.widget.FrameLayout.*
-import android.widget.FrameLayout.LayoutParams.*
+import android.widget.FrameLayout.LayoutParams
+import android.widget.FrameLayout.LayoutParams.WRAP_CONTENT
 import com.adobe.fre.FREContext
-import com.google.android.gms.ads.*
-import com.tuarua.frekotlin.FreKotlinController
-import com.google.gson.Gson
-import com.tuarua.admobane.Position.*
-import android.os.Bundle
 import com.google.ads.mediation.admob.AdMobAdapter
+import com.google.android.gms.ads.*
+import com.google.gson.Gson
+import com.tuarua.admobane.Position.BANNER
+import com.tuarua.frekotlin.FreKotlinController
+
 
 @Suppress("JoinDeclarationAndAssignment")
 class BannerController(override var context: FREContext?, airView: ViewGroup,
@@ -108,24 +109,26 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
         }
         container?.layoutParams = lp
 
-        val builder = AdRequest.Builder()
-
+        val requestBuilder = AdRequest.Builder()
         if (!isPersonalised) {
             val extras = Bundle()
             extras.putString("npa", "1")
-            builder.addNetworkExtrasBundle(AdMobAdapter::class.java, extras)
+            requestBuilder.addNetworkExtrasBundle(AdMobAdapter::class.java, extras)
         }
-
-
-        if (targeting != null) {
-            if (targeting.forChildren != null) {
-                val forChildren = targeting.forChildren
-                forChildren?.let { builder.tagForChildDirectedTreatment(it) }
-            }
+        val configBuilder = MobileAds.getRequestConfiguration().toBuilder()
+        targeting?.maxAdContentRating?.let {
+            configBuilder.setMaxAdContentRating(it)
         }
+        targeting?.tagForChildDirectedTreatment?.let {
+            configBuilder.setTagForUnderAgeOfConsent(it)
+        }
+        targeting?.tagForUnderAgeOfConsent?.let {
+            configBuilder.setTagForUnderAgeOfConsent(it)
+        }
+        MobileAds.setRequestConfiguration(configBuilder.build())
 
-        deviceList?.forEach { device -> builder.addTestDevice(device) }
-        av.loadAd(builder.build())
+        deviceList?.forEach { device -> requestBuilder.addTestDevice(device) }
+        av.loadAd(requestBuilder.build())
     }
 
     fun dispose() {

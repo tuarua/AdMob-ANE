@@ -5,6 +5,7 @@ import com.tuarua.admobane.AdSize;
 import com.tuarua.admobane.Align;
 import com.tuarua.admobane.ConsentStatus;
 import com.tuarua.admobane.DebugGeography;
+import com.tuarua.admobane.MaxAdContentRating;
 import com.tuarua.admobane.Targeting;
 import com.tuarua.fre.ANEError;
 
@@ -24,7 +25,6 @@ import views.SimpleButton;
 
 public class StarlingRoot extends Sprite {
     private static const GAP:int = 70;
-    private static const key:String = "ca-app-pub-3940256099942544~3347511713";
     private var btn1:SimpleButton = new SimpleButton("Load Banner");
     private var btn2:SimpleButton = new SimpleButton("Clear Banner");
     private var btn3:SimpleButton = new SimpleButton("Load Interstitial");
@@ -121,7 +121,7 @@ public class StarlingRoot extends Sprite {
     }
 
     private function initAdMob(isPersonalised:Boolean, inEU:Boolean = false):void {
-        adMobANE.init(key, 0.5, true, Starling.current.contentScaleFactor, isPersonalised);
+        adMobANE.init(0.5, true, Starling.current.contentScaleFactor, isPersonalised);
         initMenu(inEU);
     }
 
@@ -143,7 +143,7 @@ public class StarlingRoot extends Sprite {
         if (touch != null && touch.phase == TouchPhase.ENDED) {
             try {
                 var targeting:Targeting = new Targeting();
-                targeting.forChildren = false;
+                targeting.tagForChildDirectedTreatment = false;
 
                 adMobANE.interstitial.adUnit = "ca-app-pub-3940256099942544/1033173712";
                 adMobANE.interstitial.targeting = targeting;
@@ -159,7 +159,7 @@ public class StarlingRoot extends Sprite {
         if (touch != null && touch.phase == TouchPhase.ENDED) {
             try {
                 var targeting:Targeting = new Targeting();
-                targeting.forChildren = false;
+                targeting.tagForChildDirectedTreatment = false;
 
                 adMobANE.rewardVideo.adUnit = os.isIos ? "ca-app-pub-3940256099942544/1712485313" : "ca-app-pub-3940256099942544/5224354917";
                 adMobANE.rewardVideo.targeting = targeting;
@@ -234,7 +234,8 @@ public class StarlingRoot extends Sprite {
         if (touch != null && touch.phase == TouchPhase.ENDED) {
             try {
                 var targeting:Targeting = new Targeting();
-                targeting.forChildren = true;
+                targeting.tagForChildDirectedTreatment = true;
+                targeting.maxAdContentRating = MaxAdContentRating.PARENTAL_GUIDANCE;
                 targeting.contentUrl = "http://googleadsdeveloper.blogspot.com/2016/03/rewarded-video-support-for-admob.html";
 
                 trace("adMobANE.banner.availableSizes:", adMobANE.banner.availableSizes);

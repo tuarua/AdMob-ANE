@@ -33,7 +33,8 @@ The dependencies can be downloaded directly from [this repo](https://github.com/
 <extensions>
     <extensionID>com.tuarua.frekotlin</extensionID>
     <extensionID>com.google.android.gms.play-services-base</extensionID>
-    <extensionID>com.google.android.gms.play-services-ads-lite</extensionID>       
+    <extensionID>com.google.android.gms.play-services-ads-lite</extensionID>
+    <extensionID>com.google.android.gms.play-services-measurement</extensionID>
     <extensionID>com.google.android.ads.consent.consent-library</extensionID>
     <extensionID>com.android.support.support-v4</extensionID>
     <extensionID>com.google.code.gson.gson</extensionID>
@@ -50,6 +51,9 @@ You will also need to include the following in your app manifest. Update accordi
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <application android:enabled="true">
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="[YOUR_APP_ID]"/>
         <activity android:excludeFromRecents="false" android:hardwareAccelerated="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -100,7 +104,12 @@ You will also need to include the following in your app manifest. Update accordi
     </array>
     <key>MinimumOSVersion</key>
     <string>9.0</string>
+    <key>GADApplicationIdentifier</key>
+    <string>[YOUR_APP_ID]</string>
     <key>NSAppTransportSecurity</key>
+    <!-- If performing EU GDPR check -->
+    <key>GADDelayAppMeasurementInit</key>
+    <true/>
     <dict>
         <key>NSAllowsArbitraryLoads</key>
         <true/>

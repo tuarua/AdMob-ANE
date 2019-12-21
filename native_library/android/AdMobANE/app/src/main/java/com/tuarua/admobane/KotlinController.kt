@@ -46,10 +46,6 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
             return ConsentController(context)
         }
 
-    fun isSupported(ctx: FREContext, argv: FREArgv): FREObject? {
-        return true.toFREObject()
-    }
-
     fun requestConsentInfoUpdate(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 0 } ?: return FreArgException()
         val keys = List<String>(argv[0])
@@ -90,7 +86,6 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
         return null
     }
 
-
     fun setConsentStatus(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 0 } ?: return FreArgException()
 
@@ -117,21 +112,21 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
     }
 
     fun init(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 4 } ?: return FreArgException()
-        val key = String(argv[0])
-        val volume = Float(argv[1])
-        val muted = Boolean(argv[2])
-        val isPersonalised = Boolean(argv[4]) == true
-        scaleFactor = Float(argv[3]) ?: 1.0F
+        argv.takeIf { argv.size > 3 } ?: return FreArgException()
+        val volume = Float(argv[0]) ?: return null
+        val muted = Boolean(argv[1]) == true
+        val isPersonalised = Boolean(argv[3]) == true
+        scaleFactor = Float(argv[2]) ?: 1.0F
         airView = context?.activity?.findViewById(android.R.id.content) as ViewGroup
         airView = airView.getChildAt(0) as ViewGroup
-        MobileAds.initialize(ctx.activity?.applicationContext, key)
-        volume?.let { MobileAds.setAppVolume(it) }
-        muted?.let { MobileAds.setAppMuted(it) }
+        MobileAds.initialize(ctx.activity?.applicationContext){
+            MobileAds.setAppVolume(volume)
+            MobileAds.setAppMuted(muted)
+        }
         bannerController = BannerController(_context, airView, isPersonalised)
         interstitialController = InterstitialController(ctx, isPersonalised)
         rewardController = RewardedVideoController(ctx, isPersonalised)
-        return true.toFREObject()
+        return null
     }
 
     fun setTestDevices(ctx: FREContext, argv: FREArgv): FREObject? {

@@ -16,18 +16,31 @@
 package com.tuarua.admobane
 
 import com.adobe.fre.FREObject
+import com.google.android.gms.ads.RequestConfiguration.*
 import com.tuarua.frekotlin.*
 
 class Targeting() {
-    var forChildren: Boolean? = null
+    var tagForChildDirectedTreatment: Int? = null
+    var tagForUnderAgeOfConsent: Int? = null
+    var maxAdContentRating: String? = null
 
     constructor(freObject: FREObject?) : this() {
         val o = freObject ?: return
-        val forChildrenSet = Boolean(o["forChildrenSet"]) == true
-        val forChildren = Boolean(o["forChildren"]) == true
-        if (forChildrenSet && forChildren) {
-            this.forChildren = forChildren
-        }
-    }
 
+        if (Boolean(o["tagForChildDirectedTreatmentSet"]) == true) {
+            tagForChildDirectedTreatment = when {
+                Boolean(o["tagForChildDirectedTreatment"]) == true -> TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE
+                else -> TAG_FOR_CHILD_DIRECTED_TREATMENT_FALSE
+            }
+        }
+
+        if (Boolean(o["tagForUnderAgeOfConsentSet"]) == true) {
+            tagForUnderAgeOfConsent = when {
+                Boolean(o["tagForUnderAgeOfConsent"]) == true -> TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE
+                else -> TAG_FOR_UNDER_AGE_OF_CONSENT_FALSE
+            }
+        }
+
+        String(o["maxAdContentRating"])?.let { maxAdContentRating = it }
+    }
 }

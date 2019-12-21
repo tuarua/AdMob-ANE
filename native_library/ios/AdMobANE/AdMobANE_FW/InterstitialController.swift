@@ -45,13 +45,18 @@ class InterstitialController: NSObject, FreSwiftController, GADInterstitialDeleg
             extras.additionalParameters = ["npa": "1"]
             request.register(extras)
         }
-        if deviceList != nil {
-            request.testDevices = deviceList!
-        }
+        
+        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = deviceList
         
         if let t = targeting {
-            if let fc = t.forChildren {
-                request.tag(forChildDirectedTreatment: fc)
+            if let fc = t.tagForChildDirectedTreatment {
+                GADMobileAds.sharedInstance().requestConfiguration.tag(forChildDirectedTreatment: fc)
+            }
+            if let fua = t.tagForUnderAgeOfConsent {
+                GADMobileAds.sharedInstance().requestConfiguration.tagForUnderAge(ofConsent: fua)
+            }
+            if let mcr = t.maxAdContentRating {
+                GADMobileAds.sharedInstance().requestConfiguration.maxAdContentRating = mcr
             }
             if let contentUrl = t.contentUrl {
                 request.contentURL = contentUrl

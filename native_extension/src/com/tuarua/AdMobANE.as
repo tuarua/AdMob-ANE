@@ -1,3 +1,18 @@
+/*
+ *  Copyright 2018 Tua Rua Ltd.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package com.tuarua {
 import com.tuarua.admobane.AdMobEvent;
 import com.tuarua.admobane.Banner;
@@ -12,14 +27,15 @@ import flash.external.ExtensionContext;
 public class AdMobANE extends EventDispatcher {
     private static const NAME:String = "AdMobANE";
     private var ctx:ExtensionContext;
-    private var _isInited:Boolean;
-    private var _isSupported:Boolean = false;
     private var argsAsJSON:Object;
     private static const TRACE:String = "TRACE";
     private var _testDevices:Vector.<String> = new <String>[];
     private var _banner:Banner;
     private var _interstitial:Interstitial;
     private var _rewardVideo:RewardVideo;
+
+    private var _disableSDKCrashReporting:Boolean;
+    private var _disableAutomatedInAppPurchaseReporting:Boolean;
 
     public function AdMobANE() {
         initiate();
@@ -31,7 +47,6 @@ public class AdMobANE extends EventDispatcher {
         try {
             ctx = ExtensionContext.createExtensionContext("com.tuarua." + NAME, null);
             ctx.addEventListener(StatusEvent.STATUS, gotEvent);
-            _isSupported = ctx.call("isSupported");
             _banner = new Banner(ctx);
             _interstitial = new Interstitial(ctx);
             _rewardVideo = new RewardVideo(ctx);
@@ -114,7 +129,6 @@ public class AdMobANE extends EventDispatcher {
 
     /**
      *
-     * @param key - iOS only. This is your AdMob API key
      * @param volume - Sets the volume of Video Ads
      * @param muted - Sets whether Video Ads are muted
      * @param scaleFactor - Used on Android only
@@ -122,12 +136,11 @@ public class AdMobANE extends EventDispatcher {
      * @return
      *
      */
-    public function init(key:String, volume:Number = 1.0, muted:Boolean = false, scaleFactor:Number = 1.0,
-                         isPersonalised:Boolean = true):Boolean {
-        var ret:* = ctx.call("init", key, volume, muted, scaleFactor, isPersonalised);
+    public function init(volume:Number = 1.0, muted:Boolean = false, scaleFactor:Number = 1.0,
+                         isPersonalised:Boolean = true):void {
+        var ret:* = ctx.call("init", volume, muted, scaleFactor, isPersonalised,
+                _disableSDKCrashReporting ,_disableAutomatedInAppPurchaseReporting);
         if (ret is ANEError) throw ret as ANEError;
-        _isInited = ret as Boolean;
-        return _isInited;
     }
 
     public function get banner():Banner {
@@ -188,6 +201,25 @@ public class AdMobANE extends EventDispatcher {
     public function set debugGeography(value:int):void {
         var ret:* = ctx.call("setDebugGeography", value);
         if (ret is ANEError) throw ret as ANEError;
+    }
+
+    /**
+     * <p>Disables automated SDK crash reporting. If not called, the SDK records the original exception handler if
+     * available and registers a new exception handler. The new exception handler only reports SDK related exceptions
+     * and calls the recorded original exception handler.</p>
+     * <p><b>iOS only</b></p>
+     * */
+    public function set disableSDKCrashReporting(value:Boolean):void {
+        _disableSDKCrashReporting = value;
+    }
+
+    /**
+     * <p>Disables automated in app purchase (IAP) reporting. Must be called before any IAP transaction is initiated.
+     * IAP reporting is used to track IAP ad conversions. Do not disable reporting if you use IAP ads.</p>
+     * <p><b>iOS only</b></p>
+     * */
+    public function set disableAutomatedInAppPurchaseReporting(value:Boolean):void {
+        _disableAutomatedInAppPurchaseReporting = value;
     }
 }
 }

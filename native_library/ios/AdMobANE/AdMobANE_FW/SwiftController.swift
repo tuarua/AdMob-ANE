@@ -28,6 +28,7 @@ public class SwiftController: NSObject {
     private var rewardVideoController: RewardVideoController?
     
     private var _consentController: ConsentController?
+    private var pListDict: NSDictionary?
     var consentController: ConsentController {
         if _consentController == nil {
             _consentController = ConsentController(context: context, deviceList: deviceArray)
@@ -36,10 +37,6 @@ public class SwiftController: NSObject {
     }
     
     private var deviceArray: [String] = []
-
-    func isSupported(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        return true.toFREObject()
-    }
 
     func requestConsentInfoUpdate(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         guard argc > 0,
@@ -112,19 +109,27 @@ public class SwiftController: NSObject {
     }
     
     func initController(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        guard argc > 4,
-            let key = String(argv[0]),
-            let volume = Float(argv[1]),
-            let muted = Bool(argv[2]),
-            let isPersonalised = Bool(argv[4])
+        guard argc > 5,
+            let volume = Float(argv[0]),
+            let muted = Bool(argv[1]),
+            let isPersonalised = Bool(argv[3]),
+            let disableSDKCrashReporting = Bool(argv[4]),
+            let disableAutomatedInAppPurchaseReporting = Bool(argv[5])
           else {
             return FreArgError(message: "initAdMob").getError(#file, #line, #column)
         }
 
-        GADMobileAds.configure(withApplicationID: key)
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         GADMobileAds.sharedInstance().applicationVolume = volume
         GADMobileAds.sharedInstance().applicationMuted = muted
-
+        
+        if disableSDKCrashReporting {
+            GADMobileAds.disableSDKCrashReporting()
+        }
+        if disableAutomatedInAppPurchaseReporting {
+            GADMobileAds.disableAutomatedInAppPurchaseReporting()
+        }
+        
         bannerController = BannerController(context: context, isPersonalised: isPersonalised)
         interstitialController = InterstitialController(context: context, isPersonalised: isPersonalised)
         rewardVideoController = RewardVideoController(context: context, isPersonalised: isPersonalised)

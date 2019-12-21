@@ -38,8 +38,7 @@ CONTEXT_INIT(TRAMA) {
 
     static FRENamedFunction extensionFunctions[] =
     {
-         MAP_FUNCTION(TRAMA, isSupported)
-        ,MAP_FUNCTION(TRAMA, init)
+         MAP_FUNCTION(TRAMA, init)
         ,MAP_FUNCTION(TRAMA, loadBanner)
         ,MAP_FUNCTION(TRAMA, clearBanner)
         ,MAP_FUNCTION(TRAMA, loadInterstitial)

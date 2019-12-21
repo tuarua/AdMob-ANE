@@ -19,9 +19,7 @@ package com.tuarua.admobane
 import android.os.Bundle
 import com.adobe.fre.FREContext
 import com.google.ads.mediation.admob.AdMobAdapter
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.*
 import com.google.gson.Gson
 import com.tuarua.admobane.Position.*
 import com.tuarua.frekotlin.FreKotlinController
@@ -34,35 +32,39 @@ class InterstitialController(override var context: FREContext?,
     private var _showOnLoad = true
     private val gson = Gson()
 
-    fun load(unitId: String, deviceList: List<String>?, targeting: Targeting?, showOnLoad:Boolean) {
+    fun load(unitId: String, deviceList: List<String>?, targeting: Targeting?, showOnLoad: Boolean) {
         _adView = InterstitialAd(this.context?.activity?.applicationContext)
         _showOnLoad = showOnLoad
         val av = _adView ?: return
         av.adListener = this
         av.adUnitId = unitId
 
-        val builder = AdRequest.Builder()
-
-        if (!isPersonalised){
+        val requestBuilder = AdRequest.Builder()
+        if (!isPersonalised) {
             val extras = Bundle()
             extras.putString("npa", "1")
-            builder.addNetworkExtrasBundle(AdMobAdapter::class.java, extras)
+            requestBuilder.addNetworkExtrasBundle(AdMobAdapter::class.java, extras)
         }
 
-        if (targeting != null) {
-            if (targeting.forChildren != null) {
-                val forChildren = targeting.forChildren
-                forChildren?.let { builder.tagForChildDirectedTreatment(it) }
-            }
+        val configBuilder = MobileAds.getRequestConfiguration().toBuilder()
+        targeting?.maxAdContentRating?.let {
+            configBuilder.setMaxAdContentRating(it)
         }
-        deviceList?.forEach { device -> builder.addTestDevice(device) }
-        av.loadAd(builder.build())
+        targeting?.tagForChildDirectedTreatment?.let {
+            configBuilder.setTagForUnderAgeOfConsent(it)
+        }
+        targeting?.tagForUnderAgeOfConsent?.let {
+            configBuilder.setTagForUnderAgeOfConsent(it)
+        }
+        MobileAds.setRequestConfiguration(configBuilder.build())
+        deviceList?.forEach { device -> requestBuilder.addTestDevice(device) }
+        av.loadAd(requestBuilder.build())
 
     }
 
     fun show() {
         val av = _adView ?: return
-        if (av.isLoaded){
+        if (av.isLoaded) {
             av.show()
         }
     }
@@ -101,7 +103,7 @@ class InterstitialController(override var context: FREContext?,
         super.onAdLoaded()
 
         val av = _adView ?: return
-        if(_showOnLoad) {
+        if (_showOnLoad) {
             av.show()
         }
 

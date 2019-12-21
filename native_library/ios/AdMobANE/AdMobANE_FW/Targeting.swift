@@ -19,20 +19,27 @@ import FreSwift
 import GoogleMobileAds
 
 public struct Targeting {
-    public var forChildren: Bool?
-    public var contentUrl: String?
+    var tagForChildDirectedTreatment: Bool?
+    var tagForUnderAgeOfConsent: Bool?
+    var maxAdContentRating: GADMaxAdContentRating?
+    var contentUrl: String?
 
     init(freObject: FREObject?) {
         guard let o = freObject else {
             return
         }
 
-        let forChildrenSet = Bool(o["forChildrenSet"]) == true
-        if forChildrenSet {
-            forChildren = Bool(o["forChildren"])
+        if Bool(o["tagForChildDirectedTreatmentSet"]) == true {
+            tagForChildDirectedTreatment = Bool(o["tagForChildDirectedTreatment"])
         }
-        if let contentUrlFre = o["contentUrl"] {
-            contentUrl = String(contentUrlFre)
+        if Bool(o["tagForUnderAgeOfConsentSet"]) == true {
+            tagForUnderAgeOfConsent = Bool(o["tagForUnderAgeOfConsent"])
+        }
+        if let contentUrlFre = String(o["contentUrl"]) {
+            contentUrl = contentUrlFre
+        }
+        if let mcr = String(o["maxAdContentRating"]) {
+            maxAdContentRating = GADMaxAdContentRating(rawValue: mcr)
         }
     }
 }
