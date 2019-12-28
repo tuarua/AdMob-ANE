@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		285FE3EB871F2DD420623AEE /* AdMobANE_LIB.h in Headers */ = {isa = PBXBuildFile; fileRef = 285FEBB3CADF8D704FAB5E4D /* AdMobANE_LIB.h */; platformFilter = ios; };
 		285FECB67C2311471C2CD119 /* AdMobANE_LIB.m in Sources */ = {isa = PBXBuildFile; fileRef = 285FE6D7F3D6356FA03A26C0 /* AdMobANE_LIB.m */; platformFilter = ios; };
 		90326851210E39D800B5A1B2 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90326850210E39D800B5A1B2 /* URL.swift */; platformFilter = ios; };
 		906C4C87210FD09900EFA678 /* ConsentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906C4C86210FD09900EFA678 /* ConsentController.swift */; platformFilter = ios; };
@@ -17,7 +16,6 @@
 		90FAB92023AE8C7600572B20 /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FAB91F23AE8C7600572B20 /* GoogleAppMeasurement.framework */; platformFilter = ios; };
 		90FAB92223AE8C7D00572B20 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FAB92123AE8C7D00572B20 /* GoogleUtilities.framework */; platformFilter = ios; };
 		CE164B221F6C5A5C00035B1E /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE164B211F6C5A5C00035B1E /* FreMacros.h */; platformFilter = ios; };
-		CE164B231F6C5A6200035B1E /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE164B211F6C5A5C00035B1E /* FreMacros.h */; platformFilter = ios; };
 		CE3311B51FCA3AA90032F25E /* FreSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE3311B41FCA3AA90032F25E /* FreSwift.framework */; platformFilter = ios; };
 		CE39808E1E58BAA90062485B /* AdMobANE_FW.h in Headers */ = {isa = PBXBuildFile; fileRef = CE39808C1E58BAA90062485B /* AdMobANE_FW.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		CE3980981E58BB070062485B /* SwiftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3980971E58BB070062485B /* SwiftController.swift */; platformFilter = ios; };
@@ -61,6 +59,7 @@
 		90326848210E213600B5A1B2 /* PersonalizedAdConsent.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PersonalizedAdConsent.xcodeproj; path = "googleads-consent-sdk-ios/PersonalizedAdConsent/PersonalizedAdConsent.xcodeproj"; sourceTree = "<group>"; };
 		90326850210E39D800B5A1B2 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		906C4C86210FD09900EFA678 /* ConsentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentController.swift; sourceTree = "<group>"; };
+		906FE53C23B18DAC009A0559 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		907FA0312396D95D00A02384 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		90FAB91D23AE8C6B00572B20 /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = nanopb.framework; path = Frameworks/nanopb.framework; sourceTree = "<group>"; };
 		90FAB91F23AE8C7600572B20 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = Frameworks/GoogleAppMeasurement.framework; sourceTree = "<group>"; };
@@ -69,7 +68,6 @@
 		CE3311B41FCA3AA90032F25E /* FreSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FreSwift.framework; path = Carthage/Build/iOS/FreSwift.framework; sourceTree = "<group>"; };
 		CE39808A1E58BAA90062485B /* AdMobANE_FW.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdMobANE_FW.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE39808C1E58BAA90062485B /* AdMobANE_FW.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdMobANE_FW.h; sourceTree = "<group>"; };
-		CE39808D1E58BAA90062485B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE3980971E58BB070062485B /* SwiftController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = SwiftController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		CE39809F1E58BEE10062485B /* libAdMobANE_LIB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAdMobANE_LIB.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE43C32E1F5CA4E1002170F2 /* InterstitialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterstitialController.swift; sourceTree = "<group>"; };
@@ -115,30 +113,51 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CE3551E01E7F1C2E009375A7 /* Misc */ = {
+		906FE53A23B18C35009A0559 /* AdMobANE */ = {
 			isa = PBXGroup;
 			children = (
-				CE39808D1E58BAA90062485B /* Info.plist */,
+				906FE53E23B18E0D009A0559 /* Headers */,
+				906FE53D23B18DB0009A0559 /* Misc */,
+				CE3980971E58BB070062485B /* SwiftController.swift */,
+				CE827F7B1F5C041F0041D809 /* BannerController.swift */,
+				CE43C32E1F5CA4E1002170F2 /* InterstitialController.swift */,
+				CE95E4921F6D745500BC0F46 /* RewardVideoController.swift */,
+				CE8BC49420B192D3009164ED /* SwiftController+FreSwift.swift */,
+				906C4C86210FD09900EFA678 /* ConsentController.swift */,
+				CE46CA6F1F5B73650067794D /* Targeting.swift */,
+				CEB5ED141F5C56F900AE8B16 /* Constants.swift */,
+				CEB5ED161F5C578500AE8B16 /* Position.swift */,
+				90326850210E39D800B5A1B2 /* URL.swift */,
+				285FE6D7F3D6356FA03A26C0 /* AdMobANE_LIB.m */,
 			);
-			name = Misc;
+			path = AdMobANE;
 			sourceTree = "<group>";
 		};
-		CE3551E11E7F1C37009375A7 /* Headers */ = {
+		906FE53D23B18DB0009A0559 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
-				CE39808C1E58BAA90062485B /* AdMobANE_FW.h */,
+				906FE53C23B18DAC009A0559 /* Info.plist */,
 			);
-			name = Headers;
+			path = Misc;
+			sourceTree = "<group>";
+		};
+		906FE53E23B18E0D009A0559 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				285FEBB3CADF8D704FAB5E4D /* AdMobANE_LIB.h */,
+				CE39808C1E58BAA90062485B /* AdMobANE_FW.h */,
+				CE164B211F6C5A5C00035B1E /* FreMacros.h */,
+			);
+			path = Headers;
 			sourceTree = "<group>";
 		};
 		CE3980621E58BA7F0062485B = {
 			isa = PBXGroup;
 			children = (
+				906FE53A23B18C35009A0559 /* AdMobANE */,
 				907FA0312396D95D00A02384 /* .swiftlint.yml */,
 				90326848210E213600B5A1B2 /* PersonalizedAdConsent.xcodeproj */,
 				CE46CA6B1F5B6BC30067794D /* Frameworks */,
-				CE39808B1E58BAA90062485B /* AdMobANE_FW */,
-				CE3980A01E58BEE10062485B /* AdMobANELIB */,
 				CE39806C1E58BA7F0062485B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -150,36 +169,6 @@
 				CE39809F1E58BEE10062485B /* libAdMobANE_LIB.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		CE39808B1E58BAA90062485B /* AdMobANE_FW */ = {
-			isa = PBXGroup;
-			children = (
-				CE3551E11E7F1C37009375A7 /* Headers */,
-				CE3551E01E7F1C2E009375A7 /* Misc */,
-				CE3980971E58BB070062485B /* SwiftController.swift */,
-				CE46CA6F1F5B73650067794D /* Targeting.swift */,
-				CE827F7B1F5C041F0041D809 /* BannerController.swift */,
-				CEB5ED141F5C56F900AE8B16 /* Constants.swift */,
-				CEB5ED161F5C578500AE8B16 /* Position.swift */,
-				CE43C32E1F5CA4E1002170F2 /* InterstitialController.swift */,
-				CE95E4921F6D745500BC0F46 /* RewardVideoController.swift */,
-				CE8BC49420B192D3009164ED /* SwiftController+FreSwift.swift */,
-				90326850210E39D800B5A1B2 /* URL.swift */,
-				906C4C86210FD09900EFA678 /* ConsentController.swift */,
-			);
-			path = AdMobANE_FW;
-			sourceTree = "<group>";
-		};
-		CE3980A01E58BEE10062485B /* AdMobANELIB */ = {
-			isa = PBXGroup;
-			children = (
-				CE164B211F6C5A5C00035B1E /* FreMacros.h */,
-				285FE6D7F3D6356FA03A26C0 /* AdMobANE_LIB.m */,
-				285FEBB3CADF8D704FAB5E4D /* AdMobANE_LIB.h */,
-			);
-			name = AdMobANELIB;
-			path = AdMobANE_LIB;
 			sourceTree = "<group>";
 		};
 		CE46CA6B1F5B6BC30067794D /* Frameworks */ = {
@@ -210,8 +199,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				285FE3EB871F2DD420623AEE /* AdMobANE_LIB.h in Headers */,
-				CE164B231F6C5A6200035B1E /* FreMacros.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,7 +514,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
-				INFOPLIST_FILE = AdMobANE_FW/Info.plist;
+				INFOPLIST_FILE = AdMobANE/Misc/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -575,7 +562,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
-				INFOPLIST_FILE = AdMobANE_FW/Info.plist;
+				INFOPLIST_FILE = AdMobANE/Misc/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
