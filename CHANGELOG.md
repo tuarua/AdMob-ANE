@@ -1,5 +1,5 @@
 ### 2.5.0
-- AND: Updated to FreKotlin 1.9.1
+- AND: Updated to FreKotlin 1.9.5
 - AND: Updated Support to Jetpack 1.0.0
 - AND: Updated Play Services to 17.0.0
 - AND: Updated Ads to 18.2.0

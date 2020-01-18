@@ -31,6 +31,7 @@
 			    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 			    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 			    <application android:enabled="true">
+			        <meta-data android:name="android.max_aspect" android:value="2.1" />
                     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
                     <meta-data
                         android:name="com.google.android.gms.ads.APPLICATION_ID"
