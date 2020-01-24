@@ -42,7 +42,7 @@ public class SwiftController: NSObject {
         guard argc > 0,
             let keys = [String](argv[0])
             else {
-                return FreArgError(message: "requestConsentInfoUpdate").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         consentController.requestConsentInfoUpdate(keys: keys)
         return nil
@@ -62,7 +62,7 @@ public class SwiftController: NSObject {
             let shouldOfferAdFree = Bool(argv[3]),
             let rootViewController = UIApplication.shared.keyWindow?.rootViewController
             else {
-                return FreArgError(message: "showConsentForm").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         
         consentController.showConsentForm(airVC: rootViewController, privacyUrl: privacyUrl,
@@ -79,7 +79,7 @@ public class SwiftController: NSObject {
     func setIsTFUA(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         guard argc > 0
             else {
-                return FreArgError(message: "setIsTFUA").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         consentController.setIsTFUA(value: Bool(argv[0]) == true)
         return nil
@@ -91,7 +91,7 @@ public class SwiftController: NSObject {
         let status = Int(argv[0]),
             let consentStatus = PACConsentStatus.init(rawValue: status)
             else {
-                return FreArgError(message: "setConsentStatus").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         consentController.setConsentStatus(value: consentStatus)
         return nil
@@ -102,7 +102,7 @@ public class SwiftController: NSObject {
         let geography = Int(argv[0]),
             let debugGeography = PACDebugGeography.init(rawValue: geography)
             else {
-                return FreArgError(message: "setDebugGeography").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         consentController.setDebugGeography(value: debugGeography)
         return nil
@@ -116,7 +116,7 @@ public class SwiftController: NSObject {
             let disableSDKCrashReporting = Bool(argv[4]),
             let disableAutomatedInAppPurchaseReporting = Bool(argv[5])
           else {
-            return FreArgError(message: "initAdMob").getError(#file, #line, #column)
+            return FreArgError().getError()
         }
 
         GADMobileAds.sharedInstance().start(completionHandler: nil)
@@ -147,7 +147,7 @@ public class SwiftController: NSObject {
               let hAlign = String(argv[5]),
               let vAlign = String(argv[6])
           else {
-            return FreArgError(message: "loadBanner").getError(#file, #line, #column)
+            return FreArgError().getError()
         }
 
         let targeting = Targeting(freObject: inFRE2)
@@ -175,7 +175,7 @@ public class SwiftController: NSObject {
               let unitId = String(argv[0]),
               let showOnLoad = Bool(argv[2])
           else {
-            return FreArgError(message: "loadInterstitial").getError(#file, #line, #column)
+            return FreArgError().getError()
         }
 
         let targeting = Targeting(freObject: inFRE1)
@@ -202,7 +202,7 @@ public class SwiftController: NSObject {
             let unitId = String(argv[0]),
             let showOnLoad = Bool(argv[2])
             else {
-                return FreArgError(message: "loadRewardVideo").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         
         let targeting = Targeting(freObject: inFRE1)
@@ -233,7 +233,7 @@ public class SwiftController: NSObject {
         guard argc > 0,
               let deviceArray = [String](argv[0])
           else {
-            return FreArgError(message: "setTestDevices").getError(#file, #line, #column)
+            return FreArgError().getError()
         }
         self.deviceArray = deviceArray
         return nil

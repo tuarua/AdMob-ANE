@@ -144,10 +144,10 @@ Before using the consent methods:
 You will need:
 
 - IntelliJ IDEA / Flash Builder
-- AIR 33 or greater
-- Xcode 10.1
+- AIR 33.0.2.338+
+- Xcode 11.3
+- [wget](http://rudix.org/packages/wget.html) on macOS
 - Android Studio 3 if you wish to edit the Android source
-- wget on macOS
 - Powershell on Windows
 
 
