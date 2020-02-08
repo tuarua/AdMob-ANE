@@ -29,7 +29,7 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
     private var _vAlign = "bottom"
     private var _x = CGFloat()
     private var _y = CGFloat()
-    private var isPersonalised: Bool = true
+    private var isPersonalised = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,8 +71,8 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
         guard let airv = _airView, let adV = adView else {
             return
         }
-        var theX: CGFloat = CGFloat.init()
-        var theY: CGFloat = CGFloat.init()
+        var theX = CGFloat()
+        var theY = CGFloat()
         //handle smart banners separately
         let theW: CGFloat = adV.adSize.size.width > 0.0 ? adV.adSize.size.width : adV.frame.width
         let theH: CGFloat = adV.adSize.size.width > 0.0 ? adV.adSize.size.height : adV.frame.height
@@ -88,8 +88,8 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
         } else if _vAlign == "bottom" {
             theY = airv.frame.height - theH
         }
-        self.view.frame = CGRect.init(origin: CGPoint.init(x: theX, y: theY),
-                                      size: CGSize.init(width: theW, height: theH))
+        self.view.frame = CGRect(origin: CGPoint(x: theX, y: theY),
+                                      size: CGSize(width: theW, height: theH))
     }
 
     func load(airView: UIView, unitId: String, size: Int,
@@ -195,7 +195,7 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
     }
 
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        var props: [String: Any] = Dictionary()
+        var props = [String: Any]()
         props["position"] = Position.banner.rawValue
         dispatchEvent(name: Constants.ON_LOADED, value: JSON(props).description)
         
@@ -212,21 +212,16 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
     }
 
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        var props: [String: Any] = Dictionary()
+        var props = [String: Any]()
         props["position"] = Position.banner.rawValue
         props["errorCode"] = error.code
         dispatchEvent(name: Constants.ON_LOAD_FAILED, value: JSON(props).description)
     }
     
     func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
-        var props: [String: Any] = Dictionary()
+        var props = [String: Any]()
         props["position"] = Position.banner.rawValue
         dispatchEvent(name: Constants.ON_LEFT_APPLICATION, value: JSON(props).description)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     deinit {

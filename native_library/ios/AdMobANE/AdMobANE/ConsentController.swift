@@ -37,7 +37,7 @@ class ConsentController: FreSwiftController {
             if let err = error {
                 self.trace(err.localizedDescription)
             } else {
-                var props: [String: Any] = Dictionary()
+                var props = [String: Any]()
                 props["consentStatus"] = instance.consentStatus.rawValue
                 props["isRequestLocationInEEAOrUnknown"] = instance.isRequestLocationInEEAOrUnknown
                 self.dispatchEvent(name: Constants.ON_CONSENT_INFO_UPDATE, value: JSON(props).description)
@@ -65,7 +65,7 @@ class ConsentController: FreSwiftController {
                         if let err = error {
                             self.trace(err.localizedDescription)
                         } else {
-                            var props: [String: Any] = Dictionary()
+                            var props = [String: Any]()
                             props["consentStatus"] = PACConsentInformation.sharedInstance.consentStatus.rawValue
                             props["userPrefersAdFree"] = userPrefersAdFree
                             self.dispatchEvent(name: Constants.ON_CONSENT_FORM_DISMISSED,

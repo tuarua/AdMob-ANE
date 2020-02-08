@@ -18,7 +18,6 @@ import Foundation
 import FreSwift
 
 extension SwiftController: FreSwiftMainController {
-    // Must have this function. It exposes the methods to our entry ObjC.
     @objc public func getFunctions(prefix: String) -> [String] {
         functionsToSet["\(prefix)requestConsentInfoUpdate"] = requestConsentInfoUpdate
         functionsToSet["\(prefix)resetConsent"] = resetConsent
@@ -44,7 +43,6 @@ extension SwiftController: FreSwiftMainController {
         return arr
     }
     
-    // Must have these 3 functions. It exposes the methods to our entry ObjC.
     @objc public func callSwiftFunction(name: String, ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         if let fm = functionsToSet[name] {
             return fm(ctx, argc, argv)
@@ -53,7 +51,7 @@ extension SwiftController: FreSwiftMainController {
     }
     
     @objc public func setFREContext(ctx: FREContext) {
-        self.context = FreContextSwift.init(freContext: ctx)
+        self.context = FreContextSwift(freContext: ctx)
     }
     
     @objc public func onLoad() {

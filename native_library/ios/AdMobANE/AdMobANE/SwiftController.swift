@@ -89,7 +89,7 @@ public class SwiftController: NSObject {
     func setConsentStatus(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         guard argc > 0,
         let status = Int(argv[0]),
-            let consentStatus = PACConsentStatus.init(rawValue: status)
+            let consentStatus = PACConsentStatus(rawValue: status)
             else {
                 return FreArgError().getError()
         }
@@ -100,7 +100,7 @@ public class SwiftController: NSObject {
     func setDebugGeography(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         guard argc > 0,
         let geography = Int(argv[0]),
-            let debugGeography = PACDebugGeography.init(rawValue: geography)
+            let debugGeography = PACDebugGeography(rawValue: geography)
             else {
                 return FreArgError().getError()
         }

@@ -84,7 +84,7 @@ class InterstitialController: NSObject, FreSwiftController, GADInterstitialDeleg
     }
     
     func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-        var props: [String: Any] = Dictionary()
+        var props = [String: Any]()
         props["position"] = Position.interstitial.rawValue
         dispatchEvent(name: Constants.ON_LOADED, value: JSON(props).description)
         
@@ -96,26 +96,26 @@ class InterstitialController: NSObject, FreSwiftController, GADInterstitialDeleg
     }
     
     func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
-        var props: [String: Any] = Dictionary()
+        var props = [String: Any]()
         props["position"] = Position.interstitial.rawValue
         props["errorCode"] = error.code
         dispatchEvent(name: Constants.ON_LOAD_FAILED, value: JSON(props).description)
     }
     
     func interstitialWillPresentScreen(_ ad: GADInterstitial) {
-        var props: [String: Any] = Dictionary()
+        var props = [String: Any]()
         props["position"] = Position.interstitial.rawValue
         dispatchEvent(name: Constants.ON_OPENED, value: JSON(props).description)
     }
     
     func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-        var props: [String: Any] = Dictionary()
+        var props = [String: Any]()
         props["position"] = Position.interstitial.rawValue
         dispatchEvent(name: Constants.ON_CLOSED, value: JSON(props).description)
     }
     
     func interstitialWillLeaveApplication(_ ad: GADInterstitial) {
-        var props: [String: Any] = Dictionary()
+        var props = [String: Any]()
         props["position"] = Position.interstitial.rawValue
         dispatchEvent(name: Constants.ON_LEFT_APPLICATION, value: JSON(props).description)
     }
