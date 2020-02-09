@@ -1,16 +1,13 @@
-package com.tuarua.admobane {
+package com.tuarua.admob {
+import com.tuarua.AdMobANEContext;
 import com.tuarua.fre.ANEError;
 
-import flash.external.ExtensionContext;
-
 public class RewardVideo {
-    private var _context:ExtensionContext;
     private var _adUnit:String = "ca-app-pub-3940256099942544/1712485313";
     private var _targeting:Targeting;
     private var _showOnLoad:Boolean = true;
 
-    public function RewardVideo(context:ExtensionContext) {
-        this._context = context;
+    public function RewardVideo() {
     }
 
     /**
@@ -18,7 +15,7 @@ public class RewardVideo {
      * information and must not be null. The adUnit is the ad unit id used for fetching an ad and must not be nil.
      */
     public function load():void {
-        var ret:* = _context.call("loadRewardVideo", _adUnit, _targeting, _showOnLoad);
+        var ret:* = AdMobANEContext.context.call("loadRewardVideo", _adUnit, _targeting, _showOnLoad);
         if (ret is ANEError) throw ret as ANEError;
     }
 
@@ -26,7 +23,7 @@ public class RewardVideo {
      * Presents the reward based video ad.
      */
     public function show():void {
-        var ret:* = _context.call("showRewardVideo");
+        var ret:* = AdMobANEContext.context.call("showRewardVideo");
         if (ret is ANEError) throw ret as ANEError;
     }
 

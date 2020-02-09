@@ -1,4 +1,4 @@
-package com.tuarua.admobane {
+package com.tuarua.admob {
 import flash.events.Event;
 
 public class AdMobEvent extends Event{

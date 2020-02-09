@@ -1,22 +1,19 @@
-package com.tuarua.admobane {
+package com.tuarua.admob {
+import com.tuarua.AdMobANEContext;
 import com.tuarua.fre.ANEError;
 
-import flash.external.ExtensionContext;
-
 public class Interstitial {
-    private var _context:ExtensionContext;
     private var _adUnit:String = "ca-app-pub-3940256099942544/1033173712";
     private var _targeting:Targeting;
     private var _showOnLoad:Boolean = true;
-    public function Interstitial(context:ExtensionContext) {
-        this._context = context;
+    public function Interstitial() {
     }
 	/**
 	 * Makes an interstitial ad request. Additional targeting options can be supplied with a request object.
      * Only one interstitial request is allowed at a time.
 	 */
     public function load():void {
-        var ret:* = _context.call("loadInterstitial", _adUnit, _targeting, _showOnLoad);
+        var ret:* = AdMobANEContext.context.call("loadInterstitial", _adUnit, _targeting, _showOnLoad);
         if (ret is ANEError) throw ret as ANEError;
     }
 
@@ -25,7 +22,7 @@ public class Interstitial {
      * This has no effect unless isReady returns true and/or the delegate's interstitialDidReceiveAd: has been received.
 	 */
     public function show():void {
-        var ret:* = _context.call("showInterstitial");
+        var ret:* = AdMobANEContext.context.call("showInterstitial");
         if (ret is ANEError) throw ret as ANEError;
     }
 	/**

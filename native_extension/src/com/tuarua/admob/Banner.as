@@ -1,10 +1,8 @@
-package com.tuarua.admobane {
+package com.tuarua.admob {
+import com.tuarua.AdMobANEContext;
 import com.tuarua.fre.ANEError;
 
-import flash.external.ExtensionContext;
-
 public class Banner {
-    private var _context:ExtensionContext;
     private var _adUnit:String = "ca-app-pub-3940256099942544/6300978111";
     private var _adSize:int = AdSize.BANNER;
     private var _availableSizes:Vector.<int> = new Vector.<int>();
@@ -14,21 +12,21 @@ public class Banner {
     private var _hAlign:String = Align.CENTER;
     private var _vAlign:String = Align.BOTTOM;
 
-    public function Banner(context:ExtensionContext) {
-        this._context = context;
+    public function Banner() {
     }
 	/**
 	 * Load the banner
 	 */
     public function load():void {
-        var ret:* = _context.call("loadBanner", _adUnit, _adSize, _targeting, _x, _y, _hAlign, _vAlign);
+        var ret:* = AdMobANEContext.context.call("loadBanner", _adUnit, _adSize,
+                _targeting, _x, _y, _hAlign, _vAlign);
         if (ret is ANEError) throw ret as ANEError;
     }
 	/**
 	 * Clear the banner
 	 */
     public function clear():void {
-        var ret:* = _context.call("clearBanner");
+        var ret:* = AdMobANEContext.context.call("clearBanner");
         if (ret is ANEError) throw ret as ANEError;
     }
 
@@ -51,7 +49,7 @@ public class Banner {
 
     public function get availableSizes():Vector.<int> {
         if (_availableSizes.length == 0) {
-            var ret:* = _context.call("getBannerSizes");
+            var ret:* = AdMobANEContext.context.call("getBannerSizes");
             if (ret is ANEError) throw ret as ANEError;
             _availableSizes = ret as Vector.<int> ;
         }

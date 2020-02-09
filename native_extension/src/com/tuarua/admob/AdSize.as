@@ -1,4 +1,4 @@
-package com.tuarua.admobane {
+package com.tuarua.admob {
 public final class AdSize {
     public static const BANNER:int = 0;
     public static const FULL_BANNER:int = 1;

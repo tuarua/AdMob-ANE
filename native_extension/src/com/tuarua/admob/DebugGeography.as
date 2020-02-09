@@ -1,4 +1,4 @@
-package com.tuarua.admobane {
+package com.tuarua.admob {
 public final class DebugGeography {
     public static const DISABLED:int = 0;
     public static const EEA:int = 1;

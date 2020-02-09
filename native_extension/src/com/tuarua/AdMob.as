@@ -14,85 +14,57 @@
  *  limitations under the License.
  */
 package com.tuarua {
-import com.tuarua.admobane.AdMobEvent;
-import com.tuarua.admobane.Banner;
-import com.tuarua.admobane.Interstitial;
-import com.tuarua.admobane.RewardVideo;
+import com.tuarua.admob.Banner;
+import com.tuarua.admob.Interstitial;
+import com.tuarua.admob.RewardVideo;
 import com.tuarua.fre.ANEError;
 
 import flash.events.EventDispatcher;
-import flash.events.StatusEvent;
 import flash.external.ExtensionContext;
 
-public class AdMobANE extends EventDispatcher {
-    private static const NAME:String = "AdMobANE";
-    private var ctx:ExtensionContext;
-    private var argsAsJSON:Object;
-    private static const TRACE:String = "TRACE";
+public class AdMob extends EventDispatcher {
     private var _testDevices:Vector.<String> = new <String>[];
-    private var _banner:Banner;
-    private var _interstitial:Interstitial;
-    private var _rewardVideo:RewardVideo;
+    private var _banner:Banner = new Banner();
+    private var _interstitial:Interstitial = new Interstitial();
+    private var _rewardVideo:RewardVideo = new RewardVideo();
+    private static var _disableSDKCrashReporting:Boolean;
+    private static var _disableAutomatedInAppPurchaseReporting:Boolean;
 
-    private var _disableSDKCrashReporting:Boolean;
-    private var _disableAutomatedInAppPurchaseReporting:Boolean;
+    private static var _shared:AdMob;
 
-    public function AdMobANE() {
-        initiate();
-    }
-
-    /** @private */
-    private function initiate():void {
-        trace("[" + NAME + "] Initalizing ANE...");
-        try {
-            ctx = ExtensionContext.createExtensionContext("com.tuarua." + NAME, null);
-            ctx.addEventListener(StatusEvent.STATUS, gotEvent);
-            _banner = new Banner(ctx);
-            _interstitial = new Interstitial(ctx);
-            _rewardVideo = new RewardVideo(ctx);
-        } catch (e:Error) {
-            trace(e.name);
-            trace(e.message);
-            trace(e.getStackTrace());
-            trace(e.errorID);
-            trace("[" + NAME + "] ANE Not loaded properly.  Future calls will fail.");
+    public function AdMob() {
+        if (_shared) {
+            throw new Error(AdMobANEContext.NAME + " is a singleton, use .shared()");
         }
+        var tmp:ExtensionContext = AdMobANEContext.context;
+        _shared = this;
     }
 
-    /** @private */
-    private function gotEvent(event:StatusEvent):void {
-        switch (event.level) {
-            case TRACE:
-                trace("[" + NAME + "]", event.code);
-                break;
-            case AdMobEvent.ON_REWARDED:
-            case AdMobEvent.ON_CLICKED:
-            case AdMobEvent.ON_LOADED:
-            case AdMobEvent.ON_LOAD_FAILED:
-            case AdMobEvent.ON_OPENED:
-            case AdMobEvent.ON_CLOSED:
-            case AdMobEvent.ON_IMPRESSION:
-            case AdMobEvent.ON_LEFT_APPLICATION:
-            case AdMobEvent.ON_VIDEO_STARTED:
-            case AdMobEvent.ON_VIDEO_COMPLETE:
-            case AdMobEvent.ON_CONSENT_INFO_UPDATE:
-            case AdMobEvent.ON_CONSENT_FORM_DISMISSED:
-                try {
-                    argsAsJSON = JSON.parse(event.code);
-                    dispatchEvent(new AdMobEvent(event.level, argsAsJSON));
-                } catch (e:Error) {
-                    trace(e.message);
-                }
-                break;
-        }
+    public static function shared():AdMob {
+        if (!_shared) new AdMob();
+        return _shared;
     }
 
+    /**
+     *
+     * @param volume - Sets the volume of Video Ads
+     * @param muted - Sets whether Video Ads are muted
+     * @param scaleFactor - Used on Android only
+     * @param isPersonalised - Set based on user consent for GDPR
+     *
+     */
+    public function init(volume:Number = 1.0, muted:Boolean = false, scaleFactor:Number = 1.0,
+                         isPersonalised:Boolean = true):void {
+        var ret:* = AdMobANEContext.context.call("init", volume, muted, scaleFactor, isPersonalised,
+                _disableSDKCrashReporting ,_disableAutomatedInAppPurchaseReporting);
+        if (ret is ANEError) throw ret as ANEError;
+    }
 
     /**
      * Resets consent information to default state and clears ad providers.
      */
     public function resetConsent():void {
-        var ret:* = ctx.call("resetConsent");
+        var ret:* = AdMobANEContext.context.call("resetConsent");
         if (ret is ANEError) throw ret as ANEError;
     }
 
@@ -108,7 +80,7 @@ public class AdMobANE extends EventDispatcher {
                                     shouldOfferPersonalizedAds:Boolean = true,
                                     shouldOfferNonPersonalizedAds:Boolean = true,
                                     shouldOfferAdFree:Boolean = false):void {
-        var ret:* = ctx.call("showConsentForm", privacyUrl,
+        var ret:* = AdMobANEContext.context.call("showConsentForm", privacyUrl,
                 shouldOfferPersonalizedAds,
                 shouldOfferNonPersonalizedAds,
                 shouldOfferAdFree);
@@ -123,23 +95,7 @@ public class AdMobANE extends EventDispatcher {
      *
      */
     public function requestConsentInfoUpdate(key:Vector.<String>):void {
-        var ret:* = ctx.call("requestConsentInfoUpdate", key);
-        if (ret is ANEError) throw ret as ANEError;
-    }
-
-    /**
-     *
-     * @param volume - Sets the volume of Video Ads
-     * @param muted - Sets whether Video Ads are muted
-     * @param scaleFactor - Used on Android only
-     * @param isPersonalised - Set based on user consent for GDPR
-     * @return
-     *
-     */
-    public function init(volume:Number = 1.0, muted:Boolean = false, scaleFactor:Number = 1.0,
-                         isPersonalised:Boolean = true):void {
-        var ret:* = ctx.call("init", volume, muted, scaleFactor, isPersonalised,
-                _disableSDKCrashReporting ,_disableAutomatedInAppPurchaseReporting);
+        var ret:* = AdMobANEContext.context.call("requestConsentInfoUpdate", key);
         if (ret is ANEError) throw ret as ANEError;
     }
 
@@ -158,7 +114,7 @@ public class AdMobANE extends EventDispatcher {
     /** Test ads will be returned for devices with device IDs specified in this array. */
     public function set testDevices(value:Vector.<String>):void {
         _testDevices = value;
-        var ret:* = ctx.call("setTestDevices", _testDevices);
+        var ret:* = AdMobANEContext.context.call("setTestDevices", _testDevices);
         if (ret is ANEError) throw ret as ANEError;
     }
 
@@ -166,40 +122,28 @@ public class AdMobANE extends EventDispatcher {
         return _testDevices;
     }
 
-    /** disposes the ANE*/
-    public function dispose():void {
-        if (!ctx) {
-            trace("[" + NAME + "] Error. ANE Already in a disposed or failed state...");
-            return;
-        }
-        trace("[" + NAME + "] Unloading ANE...");
-        ctx.removeEventListener(StatusEvent.STATUS, gotEvent);
-        ctx.dispose();
-        ctx = null;
-    }
-
     /** If a publisher is aware that the user is under the age of consent,
      * all ad requests must set TFUA (Tag For Users under the Age of Consent in Europe). */
     public function get isTaggedForUnderAgeOfConsent():Boolean {
-        var ret:* = ctx.call("getIsTFUA");
+        var ret:* = AdMobANEContext.context.call("getIsTFUA");
         if (ret is ANEError) throw ret as ANEError;
         var _isTaggedForUnderAgeOfConsent:Boolean = ret as Boolean;
         return _isTaggedForUnderAgeOfConsent;
     }
 
     public function set isTaggedForUnderAgeOfConsent(value:Boolean):void {
-        var ret:* = ctx.call("setIsTFUA", value);
+        var ret:* = AdMobANEContext.context.call("setIsTFUA", value);
         if (ret is ANEError) throw ret as ANEError;
     }
 
     /** Debug geography. Used for debug devices only.*/
     public function set consentStatus(value:int):void {
-        var ret:* = ctx.call("setConsentStatus", value);
+        var ret:* = AdMobANEContext.context.call("setConsentStatus", value);
         if (ret is ANEError) throw ret as ANEError;
     }
 
     public function set debugGeography(value:int):void {
-        var ret:* = ctx.call("setDebugGeography", value);
+        var ret:* = AdMobANEContext.context.call("setDebugGeography", value);
         if (ret is ANEError) throw ret as ANEError;
     }
 
@@ -209,7 +153,7 @@ public class AdMobANE extends EventDispatcher {
      * and calls the recorded original exception handler.</p>
      * <p><b>iOS only</b></p>
      * */
-    public function set disableSDKCrashReporting(value:Boolean):void {
+    public static function set disableSDKCrashReporting(value:Boolean):void {
         _disableSDKCrashReporting = value;
     }
 
@@ -218,8 +162,15 @@ public class AdMobANE extends EventDispatcher {
      * IAP reporting is used to track IAP ad conversions. Do not disable reporting if you use IAP ads.</p>
      * <p><b>iOS only</b></p>
      * */
-    public function set disableAutomatedInAppPurchaseReporting(value:Boolean):void {
+    public static function set disableAutomatedInAppPurchaseReporting(value:Boolean):void {
         _disableAutomatedInAppPurchaseReporting = value;
+    }
+
+    /** Disposes the ANE */
+    public static function dispose():void {
+        if (AdMobANEContext.context) {
+            AdMobANEContext.dispose();
+        }
     }
 }
 }

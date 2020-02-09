@@ -1,4 +1,4 @@
-package com.tuarua.admobane {
+package com.tuarua.admob {
 public class Align {
     public static const LEFT:String = "left";
     public static const RIGHT:String = "right";

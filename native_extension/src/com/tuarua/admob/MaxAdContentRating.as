@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.tuarua.admobane {
+package com.tuarua.admob {
 public final class MaxAdContentRating {
     public static const GENERAL:String = "G";
     public static const PARENTAL_GUIDANCE:String = "PG";

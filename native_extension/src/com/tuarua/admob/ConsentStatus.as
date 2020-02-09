@@ -1,4 +1,4 @@
-package com.tuarua.admobane {
+package com.tuarua.admob {
 public final class ConsentStatus {
     public static const UNKNOWN:int = 0;
     public static const NON_PERSONALIZED:int = 1;

@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.tuarua.admobane {
+package com.tuarua.admob {
 public final class Targeting {
     public var contentUrl:String;
     private var _tagForChildDirectedTreatment:Boolean;

@@ -1,4 +1,4 @@
-package com.tuarua.admobane {
+package com.tuarua.admob {
 public class ErrorCodes {
 	/**
 	 * Something happened internally; for instance, an invalid response was received from the ad server.

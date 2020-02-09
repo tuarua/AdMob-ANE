@@ -42,7 +42,7 @@
       <libraryPathEntry kind="5" linkType="2" path="android_dependencies/com.google.android.gms.play-services-measurement-17.2.1"/>
       <libraryPathEntry kind="5" linkType="2" path="android_dependencies/com.google.android.ads.consent.consent-library-1.0.8.ane"/>
       <libraryPathEntry kind="5" linkType="2" path="android_dependencies/com.google.code.gson.gson-2.8.6.ane"/>
-      <libraryPathEntry kind="5" linkType="2" path="android_dependencies/com.tuarua.frekotlin-1.9.1.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="android_dependencies/com.tuarua.frekotlin-1.9.5.ane"/>
 
     </libraryPath>
     <sourceAttachmentPath/>
@@ -76,7 +76,7 @@
           <anePathEntry path="android_dependencies/com.google.android.gms.play-services-measurement-17.2.1.ane"/>
           <anePathEntry path="android_dependencies/com.google.android.ads.consent.consent-library-1.0.8.ane"/>
           <anePathEntry path="android_dependencies/com.google.code.gson.gson-2.8.6.ane"/>
-          <anePathEntry path="android_dependencies/com.tuarua.frekotlin-1.9.1.ane"/>
+          <anePathEntry path="android_dependencies/com.tuarua.frekotlin-1.9.5.ane"/>
         </anePaths>
         <newLaunchParams/>
         <modifiedLaunchParams/>
