@@ -5,7 +5,7 @@
 - AND: Updated Ads to 18.2.0
 - AND: Updated Consent to 1.0.8
 - AND: Updated Gson to 2.8.6
-- iOS: Updated to FreSwift 4.2.0
+- iOS: Updated to FreSwift 4.3.0
 - iOS: Updated to Google Mobile Ads SDK 7.53.1
 
 ### 2.4.0
