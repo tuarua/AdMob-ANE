@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/User/flash/AdMob-ANE/native_library/ios/SwiftIOSANE/AdMobANE.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

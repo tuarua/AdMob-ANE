@@ -36,12 +36,13 @@
       </libraryPathEntry>
       <libraryPathEntry kind="1" linkType="1" path="libs"/>
       <libraryPathEntry kind="5" linkType="2" path="D:/dev/flash/AdMob-ANE/native_extension/ane/AdMobANE.ane"/>
-      <libraryPathEntry kind="5" linkType="2" path="android_dependencies/com.android.support.support-v4-27.1.0.ane"/>
-      <libraryPathEntry kind="5" linkType="2" path="android_dependencies/com.google.android.gms.play-services-ads-lite-16.0.0.ane"/>
-      <libraryPathEntry kind="5" linkType="2" path="android_dependencies/com.google.android.gms.play-services-base-16.0.1.ane"/>
-      <libraryPathEntry kind="5" linkType="2" path="android_dependencies/com.google.android.ads.consent.consent-library-1.0.7.ane"/>
-      <libraryPathEntry kind="5" linkType="2" path="android_dependencies/com.google.code.gson.gson-2.8.4.ane"/>
-      <libraryPathEntry kind="5" linkType="2" path="android_dependencies/com.tuarua.frekotlin-1.8.0.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="android_dependencies/androidx.legacy.legacy-support-v4-1.0.0.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="android_dependencies/com.google.android.gms.play-services-ads-lite-18.3.0.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="android_dependencies/com.google.android.gms.play-services-base-17.0.0.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="android_dependencies/com.google.android.gms.play-services-measurement-17.2.1"/>
+      <libraryPathEntry kind="5" linkType="2" path="android_dependencies/com.google.android.ads.consent.consent-library-1.0.8.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="android_dependencies/com.google.code.gson.gson-2.8.6.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="android_dependencies/com.tuarua.frekotlin-1.9.5.ane"/>
 
     </libraryPath>
     <sourceAttachmentPath/>
@@ -69,12 +70,13 @@
         <airExcludes/>
         <anePaths>
           <anePathEntry path="${DOCUMENTS}/AdMob-ANE/native_extension/ane/AdMobANE.ane"/>
-          <anePathEntry path="android_dependencies/com.android.support.support-v4-27.1.0.ane"/>
-          <anePathEntry path="android_dependencies/com.google.android.gms.play-services-ads-lite-16.0.0.ane"/>
-          <anePathEntry path="android_dependencies/com.google.android.gms.play-services-base-16.0.1.ane"/>
-          <anePathEntry path="android_dependencies/com.google.android.ads.consent.consent-library-1.0.7.ane"/>
-          <anePathEntry path="android_dependencies/com.google.code.gson.gson-2.8.4.ane"/>
-          <anePathEntry path="android_dependencies/com.tuarua.frekotlin-1.8.0.ane"/>
+          <anePathEntry path="android_dependencies/androidx.legacy.legacy-support-v4-1.0.0.ane"/>
+          <anePathEntry path="android_dependencies/com.google.android.gms.play-services-ads-lite-18.3.0.ane"/>
+          <anePathEntry path="android_dependencies/com.google.android.gms.play-services-base-17.0.0.ane"/>
+          <anePathEntry path="android_dependencies/com.google.android.gms.play-services-measurement-17.2.1.ane"/>
+          <anePathEntry path="android_dependencies/com.google.android.ads.consent.consent-library-1.0.8.ane"/>
+          <anePathEntry path="android_dependencies/com.google.code.gson.gson-2.8.6.ane"/>
+          <anePathEntry path="android_dependencies/com.tuarua.frekotlin-1.9.5.ane"/>
         </anePaths>
         <newLaunchParams/>
         <modifiedLaunchParams/>

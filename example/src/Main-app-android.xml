@@ -3,7 +3,7 @@
     <id>com.tuarua.admobaneexample</id>
     <filename>MainAdMob</filename>
     <name>MainAdMob</name>
-    <versionNumber>2.4.0</versionNumber>
+    <versionNumber>2.5.0</versionNumber>
 
     <initialWindow>
         <content>[This value will be overwritten by Flash Builder in the output app.xml]</content>
@@ -31,7 +31,15 @@
 			    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 			    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 			    <application android:enabled="true">
+			        <meta-data android:name="android.max_aspect" android:value="2.1" />
                     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+                    <meta-data
+                        android:name="com.google.android.gms.ads.APPLICATION_ID"
+                        android:value="ca-app-pub-3940256099942544~3347511713"/>
+                    <!-- Delay app measurement until MobileAds.initialize() is called. -->
+                    <meta-data
+                        android:name="com.google.android.gms.ads.DELAY_APP_MEASUREMENT_INIT"
+                        android:value="true"/>
                     <activity android:excludeFromRecents="false" android:hardwareAccelerated="true">
                         <intent-filter>
                             <action android:name="android.intent.action.MAIN"/>
@@ -52,8 +60,9 @@
         <extensionID>com.tuarua.frekotlin</extensionID>
         <extensionID>com.google.android.gms.play-services-base</extensionID>
         <extensionID>com.google.android.gms.play-services-ads-lite</extensionID>
+        <extensionID>com.google.android.gms.play-services-measurement</extensionID>
         <extensionID>com.google.android.ads.consent.consent-library</extensionID>
-        <extensionID>com.android.support.support-v4</extensionID>
+        <extensionID>androidx.legacy.legacy-support-v4</extensionID>
         <extensionID>com.google.code.gson.gson</extensionID>
         <extensionID>com.tuarua.AdMobANE</extensionID>
     </extensions>

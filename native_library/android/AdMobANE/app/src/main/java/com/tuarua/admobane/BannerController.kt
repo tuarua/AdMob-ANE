@@ -17,18 +17,19 @@ package com.tuarua.admobane
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration.*
+import android.os.Bundle
 import android.view.Gravity.*
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.widget.FrameLayout.*
-import android.widget.FrameLayout.LayoutParams.*
+import android.widget.FrameLayout.LayoutParams
+import android.widget.FrameLayout.LayoutParams.WRAP_CONTENT
 import com.adobe.fre.FREContext
-import com.google.android.gms.ads.*
-import com.tuarua.frekotlin.FreKotlinController
-import com.google.gson.Gson
-import com.tuarua.admobane.Position.*
-import android.os.Bundle
 import com.google.ads.mediation.admob.AdMobAdapter
+import com.google.android.gms.ads.*
+import com.google.gson.Gson
+import com.tuarua.admobane.Position.BANNER
+import com.tuarua.frekotlin.FreKotlinController
+
 
 @Suppress("JoinDeclarationAndAssignment")
 class BannerController(override var context: FREContext?, airView: ViewGroup,
@@ -36,7 +37,7 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
 
     private var airView: ViewGroup? = airView
     private var _adView: AdView? = null
-    private var container: FrameLayout
+    private var container: FrameLayout? = null
     private val gson = Gson()
     var adView: AdView?
         get() = _adView
@@ -45,12 +46,15 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
         }
 
     init {
-        container = FrameLayout(this.context?.activity?.applicationContext)
-        container.isClickable = false
+        val applicationContext = this.context?.activity?.applicationContext
+        if (applicationContext != null) {
+            container = FrameLayout(applicationContext)
+            container?.isClickable = false
 
-        val lp = LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
-        lp.gravity = CENTER_HORIZONTAL or BOTTOM
-        container.layoutParams = lp
+            val lp = LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
+            lp.gravity = CENTER_HORIZONTAL or BOTTOM
+            container?.layoutParams = lp
+        }
     }
 
     @SuppressLint("RtlHardcoded")
@@ -59,7 +63,7 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
         val existingAv = _adView
         if (existingAv != null) {
             if (existingAv.parent == container) {
-                container.removeView(existingAv)
+                container?.removeView(existingAv)
             }
             existingAv.destroy()
         }
@@ -79,12 +83,12 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
             5 -> av.adSize = AdSize.SMART_BANNER
         }
 
-        val lp = LayoutParams(LayoutParams.WRAP_CONTENT, WRAP_CONTENT)
+        val lp = LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
 
         when {
             x > -1 && y > -1 -> {
-                container.x = x
-                container.y = y
+                container?.x = x
+                container?.y = y
                 lp.gravity = LEFT or TOP
             }
             else -> {
@@ -103,26 +107,28 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
                 lp.gravity = hGravity or vGravity
             }
         }
-        container.layoutParams = lp
+        container?.layoutParams = lp
 
-        val builder = AdRequest.Builder()
-
+        val requestBuilder = AdRequest.Builder()
         if (!isPersonalised) {
             val extras = Bundle()
             extras.putString("npa", "1")
-            builder.addNetworkExtrasBundle(AdMobAdapter::class.java, extras)
+            requestBuilder.addNetworkExtrasBundle(AdMobAdapter::class.java, extras)
         }
-
-
-        if (targeting != null) {
-            if (targeting.forChildren != null) {
-                val forChildren = targeting.forChildren
-                forChildren?.let { builder.tagForChildDirectedTreatment(it) }
-            }
+        val configBuilder = MobileAds.getRequestConfiguration().toBuilder()
+        targeting?.maxAdContentRating?.let {
+            configBuilder.setMaxAdContentRating(it)
         }
+        targeting?.tagForChildDirectedTreatment?.let {
+            configBuilder.setTagForUnderAgeOfConsent(it)
+        }
+        targeting?.tagForUnderAgeOfConsent?.let {
+            configBuilder.setTagForUnderAgeOfConsent(it)
+        }
+        MobileAds.setRequestConfiguration(configBuilder.build())
 
-        deviceList?.forEach { device -> builder.addTestDevice(device) }
-        av.loadAd(builder.build())
+        deviceList?.forEach { device -> requestBuilder.addTestDevice(device) }
+        av.loadAd(requestBuilder.build())
     }
 
     fun dispose() {
@@ -133,7 +139,7 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
     fun clear() {
         val av = _adView ?: return
         av.adListener = null
-        container.removeView(av)
+        container?.removeView(av)
         av.destroy()
         _adView = null
     }
@@ -172,9 +178,9 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
         super.onAdLoaded()
         val av = _adView ?: return
         if (av.parent == null) {
-            container.addView(av)
+            container?.addView(av)
         }
-        if (container.parent == null) {
+        if (container?.parent == null) {
             airView?.addView(container)
         }
 
@@ -190,7 +196,7 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
         }
     }
 
-    override val TAG: String
+    override val TAG: String?
         get() = this::class.java.canonicalName
 
 }

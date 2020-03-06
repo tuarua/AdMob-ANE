@@ -33,7 +33,8 @@ The dependencies can be downloaded directly from [this repo](https://github.com/
 <extensions>
     <extensionID>com.tuarua.frekotlin</extensionID>
     <extensionID>com.google.android.gms.play-services-base</extensionID>
-    <extensionID>com.google.android.gms.play-services-ads-lite</extensionID>       
+    <extensionID>com.google.android.gms.play-services-ads-lite</extensionID>
+    <extensionID>com.google.android.gms.play-services-measurement</extensionID>
     <extensionID>com.google.android.ads.consent.consent-library</extensionID>
     <extensionID>com.android.support.support-v4</extensionID>
     <extensionID>com.google.code.gson.gson</extensionID>
@@ -50,6 +51,9 @@ You will also need to include the following in your app manifest. Update accordi
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <application android:enabled="true">
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="[YOUR_APP_ID]"/>
         <activity android:excludeFromRecents="false" android:hardwareAccelerated="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -66,9 +70,6 @@ You will also need to include the following in your app manifest. Update accordi
 
 Test Ads are included in the demo.
 You will need an AdMob account to [deliver live ads](https://support.google.com/admob/answer/7356219).   
-
-#### AIR 32 & 33
-This ANE is built against AIR 33 SDK. If you wish to use with AIR 32 you will need to replace dx.jar in lib/android/bin/ with [this one](https://github.com/tuarua/Android-ANE-Dependencies/blob/master/AIR32_patch/lib/android/bin/dx.jar?raw=true)
 
 -------------
 
@@ -100,7 +101,12 @@ You will also need to include the following in your app manifest. Update accordi
     </array>
     <key>MinimumOSVersion</key>
     <string>9.0</string>
+    <key>GADApplicationIdentifier</key>
+    <string>[YOUR_APP_ID]</string>
     <key>NSAppTransportSecurity</key>
+    <!-- If performing EU GDPR check -->
+    <key>GADDelayAppMeasurementInit</key>
+    <true/>
     <dict>
         <key>NSAllowsArbitraryLoads</key>
         <true/>
@@ -114,9 +120,6 @@ You will also need to include the following in your app manifest. Update accordi
 
 Test Ads are included in the demo.
 You will need an AdMob account to [deliver live ads](https://support.google.com/admob/answer/7356219).
-
-#### AIR 32 & 33
-You should use AIR 32 for iOS builds
 
 -------------
 
@@ -135,10 +138,10 @@ Before using the consent methods:
 You will need:
 
 - IntelliJ IDEA / Flash Builder
-- AIR 33 or greater
-- Xcode 10.1
+- AIR 33.0.2.338+
+- Xcode 11.3
+- wget on macOS via `brew install wget`
 - Android Studio 3 if you wish to edit the Android source
-- wget on macOS
 - Powershell on Windows
 
 

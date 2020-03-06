@@ -40,30 +40,31 @@ class RewardedVideoController(override var context: FREContext?,
             _adView = value
         }
 
-    init {
-
-    }
-
     fun load(unitId: String, deviceList: List<String>?, targeting: Targeting?, showOnLoad: Boolean) {
         _adView = MobileAds.getRewardedVideoAdInstance(this.context?.activity)
         _showOnLoad = showOnLoad
         val av = _adView ?: return
         av.rewardedVideoAdListener = this
 
-        val builder = AdRequest.Builder()
+        val requestBuilder = AdRequest.Builder()
         if (!isPersonalised) {
             val extras = Bundle()
             extras.putString("npa", "1")
-            builder.addNetworkExtrasBundle(AdMobAdapter::class.java, extras)
+            requestBuilder.addNetworkExtrasBundle(AdMobAdapter::class.java, extras)
         }
-        if (targeting != null) {
-            if (targeting.forChildren != null) {
-                val forChildren = targeting.forChildren
-                forChildren?.let { builder.tagForChildDirectedTreatment(it) }
-            }
+        val configBuilder = MobileAds.getRequestConfiguration().toBuilder()
+        targeting?.maxAdContentRating?.let {
+            configBuilder.setMaxAdContentRating(it)
         }
-        deviceList?.forEach { device -> builder.addTestDevice(device) }
-        av.loadAd(unitId, builder.build())
+        targeting?.tagForChildDirectedTreatment?.let {
+            configBuilder.setTagForUnderAgeOfConsent(it)
+        }
+        targeting?.tagForUnderAgeOfConsent?.let {
+            configBuilder.setTagForUnderAgeOfConsent(it)
+        }
+        MobileAds.setRequestConfiguration(configBuilder.build())
+        deviceList?.forEach { device -> requestBuilder.addTestDevice(device) }
+        av.loadAd(unitId, requestBuilder.build())
     }
 
     fun show() {
@@ -114,7 +115,7 @@ class RewardedVideoController(override var context: FREContext?,
         dispatchEvent(Constants.ON_LOAD_FAILED, gson.toJson(AdMobEvent(REWARD.ordinal, p0)))
     }
 
-    override val TAG: String
+    override val TAG: String?
         get() = this::class.java.canonicalName
 }
 

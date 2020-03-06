@@ -15,7 +15,7 @@
  */
 package com.tuarua.admobane
 @Suppress("UNUSED_PARAMETER")
-enum class Position(i: kotlin.Int) {
+enum class Position(i: Int) {
     BANNER(0),
     INTERSTITIAL(1),
     REWARD(2)

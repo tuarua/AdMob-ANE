@@ -23,8 +23,7 @@ import com.tuarua.admobane.KotlinController;
 public class AdMobANE implements FREExtension {
 
     private static final String[] FUNCTIONS = {
-            "isSupported"
-            ,"init"
+             "init"
             ,"loadBanner"
             ,"clearBanner"
             ,"loadInterstitial"

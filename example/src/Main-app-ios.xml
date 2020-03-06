@@ -3,7 +3,7 @@
     <id>com.tuarua.admobaneexample</id>
     <filename>MainAdMob</filename>
     <name>MainAdMob</name>
-    <versionNumber>2.4.0</versionNumber>
+    <versionNumber>2.5.0</versionNumber>
 
     <initialWindow>
         <content>[This value will be overwritten by Flash Builder in the output app.xml]</content>
@@ -31,6 +31,10 @@
 			</array>
 			<key>MinimumOSVersion</key>
             <string>9.0</string>
+            <key>GADApplicationIdentifier</key>
+            <string>ca-app-pub-3940256099942544~3347511713</string>
+            <key>GADDelayAppMeasurementInit</key>
+            <true/>
 			<key>NSAppTransportSecurity</key>
             <dict>
                 <key>NSAllowsArbitraryLoads</key>
