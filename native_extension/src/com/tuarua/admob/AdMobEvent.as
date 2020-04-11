@@ -8,9 +8,12 @@ public class AdMobEvent extends Event{
     public static const ON_CLOSED:String = "AdMob.OnClosed";
     public static const ON_CLICKED:String = "AdMob.OnClicked";
     public static const ON_IMPRESSION:String = "AdMob.OnImpression";
+    /** Android only */
     public static const ON_LEFT_APPLICATION:String = "AdMob.OnLeftApplication";
     public static const ON_REWARDED:String = "AdMob.onRewarded";
+    /** Android only */
     public static const ON_VIDEO_STARTED:String = "AdMob.onVideoStarted";
+    /** Android only */
     public static const ON_VIDEO_COMPLETE:String = "AdMob.onVideoComplete";
     public static const ON_CONSENT_INFO_UPDATE:String = "AdMob.onConsentInfoUpdate";
     public static const ON_CONSENT_FORM_DISMISSED:String = "AdMob.onConsentFormDismissed";

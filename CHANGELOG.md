@@ -1,3 +1,10 @@
+### 2.6.0
+- AND: Updated to FreKotlin 1.10.0
+- iOS: Updated to FreSwift 4.4.0
+- AND: Updated Ads to 19.0.1
+- AND: Updated play-services-measurement to 17.3.0
+- iOS: Updated to Google Mobile Ads SDK 7.57.0
+
 ### 2.5.0
 - AND: Updated to FreKotlin 1.9.5
 - AND: Updated Support to Jetpack 1.0.0
