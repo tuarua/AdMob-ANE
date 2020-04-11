@@ -124,10 +124,10 @@ public class SwiftController: NSObject {
         GADMobileAds.sharedInstance().applicationMuted = muted
         
         if disableSDKCrashReporting {
-            GADMobileAds.disableSDKCrashReporting()
+            GADMobileAds.sharedInstance().disableSDKCrashReporting()
         }
         if disableAutomatedInAppPurchaseReporting {
-            GADMobileAds.disableAutomatedInAppPurchaseReporting()
+            GADMobileAds.sharedInstance().disableAutomatedInAppPurchaseReporting()
         }
         
         bannerController = BannerController(context: context, isPersonalised: isPersonalised)
