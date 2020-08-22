@@ -1,9 +1,9 @@
 #!/bin/sh
 
-AneVersion="2.6.0"
-FreKotlinVersion="1.10.0"
-PlayerServicesVersion="17.0.0"
-PlayerServicesMeasurementVersion="17.3.0"
+AneVersion="2.7.0"
+FreKotlinVersion="1.40.0"
+PlayerServicesVersion="17.1.0"
+PlayerServicesMeasurementVersion="17.5.0"
 AdsVersion="19.0.1"
 ConsentVersion="1.0.8"
 SupportV4Version="1.0.0"
