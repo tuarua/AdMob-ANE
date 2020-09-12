@@ -57,10 +57,13 @@ You will need an AdMob account to [deliver live ads](https://support.google.com/
 
 ## iOS
 
-##### The ANE + Dependencies
-
 >N.B. You must use a Mac to build an iOS app using this ANE. Windows is **NOT** supported.
 
+#### iOS: Packaging Frameworks Dependencies
+
+The iOS FirebaseANEs are written in Swift. We need to package the Swift libraries (along with a couple of dynamic frameworks) with our AIR app
+
+![https://raw.githubusercontent.com/wiki/tuarua/Firebase-ANE/images/frameworks-package.png](https://raw.githubusercontent.com/wiki/tuarua/Firebase-ANE/images/frameworks-package.png)
 
 -------------
 
