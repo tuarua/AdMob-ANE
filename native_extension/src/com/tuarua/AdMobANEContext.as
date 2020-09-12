@@ -80,8 +80,6 @@ public class AdMobANEContext {
             case ON_CONSENT_INFO_UPDATE:
             case ON_CONSENT_FORM_DISMISSED:
                 try {
-                    trace(event.code);
-
                     argsAsJSON = JSON.parse(event.code);
                     callbackCaller = callbackCallers[argsAsJSON.callbackId];
                     if (callbackCaller == null) return;

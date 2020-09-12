@@ -48,6 +48,8 @@ public class StarlingRoot extends Sprite {
         // Sample AdMob app ID: ca-app-pub-3940256099942544~1458002511
         // on iOS to retrieve your deviceID run: adt -devices -platform iOS
         adMob = AdMob.shared();
+        adMob.testDevices.push("D60FB410E9B0319F54455FCB28564145");
+
         adMob.addEventListener(AdMobEvent.ON_CLICKED, onAdClicked);
         adMob.addEventListener(AdMobEvent.ON_CLOSED, onAdClosed);
         adMob.addEventListener(AdMobEvent.ON_IMPRESSION, onAdImpression);

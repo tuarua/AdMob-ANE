@@ -1,0 +1,15 @@
+{
+  "name": "admob-sample",
+  "version": "2.8.0",
+  "appDescriptor": "src/Main-app.xml",
+  "variables": {
+  },
+  "airDotPrefix": true,
+  "appleTeamId": "XXXXXX",
+  "repository": {
+    "url": "https://tuarua.github.io/air/air_packages.json"
+  },
+  "dependencies": {
+    "com.tuarua.AdMobANE": "2.8.0"
+  }
+}

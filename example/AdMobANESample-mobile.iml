@@ -5,9 +5,6 @@
       <configuration name="AdMob Sample Android" target-platform="Mobile" pure-as="true" main-class="Main" output-file="Main.swf" output-folder="$MODULE_DIR$/bin-release/device">
         <dependencies>
           <entries>
-            <entry library-name="AdMobANE" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-name="starling" library-level="project">
               <dependency linkage="Merged" />
             </entry>
@@ -34,7 +31,6 @@
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system/AppIcon76x76@2x~ipad.png" path-in-package="AppIcon76x76@2x~ipad.png" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system/AppIcon60x60@3x.png" path-in-package="AppIcon60x60@3x.png" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system/AppIcon60x60@2x.png" path-in-package="AppIcon60x60@2x.png" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/assets/consentform.html" path-in-package="consentform.html" />
           </files-to-package>
           <AirSigningOptions arch="armv8" />
         </packaging-android>
@@ -49,7 +45,7 @@
             <entry library-name="FiraSansSemiBold" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="AdMobANE" library-level="project">
+            <entry library-name="extensions" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -80,7 +76,7 @@
             <entry library-name="FiraSansSemiBold" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="AdMobANE" library-level="project">
+            <entry library-name="extensions" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>

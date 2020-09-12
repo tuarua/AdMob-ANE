@@ -22,13 +22,14 @@ import com.google.android.ump.ConsentInformation.ConsentType
 import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.UserMessagingPlatform
 import com.google.gson.Gson
+import com.tuarua.admobane.extensions.toMap
 import com.tuarua.frekotlin.FreKotlinController
 
 class ConsentController(override var context: FREContext?) : FreKotlinController {
 
     private val consentInformation: ConsentInformation
         get() {
-            return UserMessagingPlatform.getConsentInformation(context?.activity?.applicationContext);
+            return UserMessagingPlatform.getConsentInformation(context?.activity?.applicationContext)
         }
 
     fun requestConsentInfoUpdate(parameters: ConsentRequestParameters, callbackId: String) {
@@ -43,12 +44,42 @@ class ConsentController(override var context: FREContext?) : FreKotlinController
                                             "formStatus" to (if (consentInformation.isConsentFormAvailable) 1 else 2)
                                     )))
                     )
-
                 },
                 {
-                    // TODO
-                    trace("onFailedToUpdateConsentInfo", it.message)
+                    dispatchEvent(ConsentEvent.ON_CONSENT_FORM_DISMISSED, Gson().toJson(
+                            ConsentEvent(callbackId, error = it.toMap()))
+                    )
                 })
+    }
+
+    fun showConsentForm(callbackId: String) {
+        UserMessagingPlatform.loadConsentForm(context?.activity?.applicationContext, { form ->
+            if (consentInformation.consentStatus == ConsentStatus.REQUIRED) {
+                form.show(context?.activity) { error ->
+                    if (error != null) {
+                        dispatchEvent(ConsentEvent.ON_CONSENT_FORM_DISMISSED, Gson().toJson(
+                                ConsentEvent(callbackId, error = error.toMap()))
+                        )
+                        return@show
+                    }
+                    dispatchEvent(ConsentEvent.ON_CONSENT_FORM_DISMISSED, Gson().toJson(
+                            ConsentEvent(callbackId,
+                                    mapOf("consentStatus" to normalizeConsentStatus(consentInformation.consentStatus),
+                                            "consentType" to normalizeConsentType(consentInformation.consentType),
+                                            "formStatus" to (if (consentInformation.isConsentFormAvailable) 1 else 2)
+                                    )))
+                    )
+                }
+            }
+        }, {
+            dispatchEvent(ConsentEvent.ON_CONSENT_FORM_DISMISSED, Gson().toJson(
+                    ConsentEvent(callbackId, error = it.toMap()))
+            )
+        })
+    }
+
+    fun resetConsent() {
+        consentInformation.reset()
     }
 
     private fun normalizeConsentType(consentType: Int): Int = when (consentType) {
@@ -61,34 +92,6 @@ class ConsentController(override var context: FREContext?) : FreKotlinController
         ConsentStatus.REQUIRED -> 1
         ConsentStatus.NOT_REQUIRED -> 2
         else -> consentStatus
-    }
-
-    fun showConsentForm(callbackId: String) {
-        UserMessagingPlatform.loadConsentForm(context?.activity?.applicationContext, { form ->
-            if (consentInformation.consentStatus == ConsentStatus.REQUIRED) {
-                form.show(context?.activity) { error ->
-                    if (error != null) {
-                        trace(error.message)
-                        return@show
-                        // TODO return error
-                    }
-                    dispatchEvent(ConsentEvent.ON_CONSENT_FORM_DISMISSED, Gson().toJson(
-                            ConsentEvent(callbackId,
-                                    mapOf("consentStatus" to normalizeConsentStatus(consentInformation.consentStatus),
-                                            "consentType" to normalizeConsentType(consentInformation.consentType),
-                                            "formStatus" to (if (consentInformation.isConsentFormAvailable) 1 else 2)
-                                    )))
-                    )
-
-                }
-            }
-        }, {
-            trace(it.message)
-        })
-    }
-
-    fun resetConsent() {
-        consentInformation.reset()
     }
 
     override val TAG: String?
