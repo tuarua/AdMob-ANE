@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<application xmlns="http://ns.adobe.com/air/application/33.1">
+  <id>com.tuarua.admobaneexample</id>
+  <filename>MainAdMob</filename>
+  <name>MainAdMob</name>
+  <versionNumber>2.8.0</versionNumber>
+  <initialWindow>
+    <content>[This value will be overwritten by Flash Builder in the output app.xml]</content>
+    <aspectRatio>any</aspectRatio>
+    <autoOrients>true</autoOrients>
+    <fullScreen>true</fullScreen>
+    <renderMode>direct</renderMode>
+    <depthAndStencil>true</depthAndStencil>
+  </initialWindow>
+  <icon>
+    <image76x76>AppIcon76x76~ipad.png</image76x76>
+    <image120x120>AppIcon60x60@2x.png</image120x120>
+    <image152x152>AppIcon76x76@2x~ipad.png</image152x152>
+    <image167x167>AppIcon83.5x83.5@2x~ipad.png</image167x167>
+    <image180x180>AppIcon60x60@3x.png</image180x180>
+  </icon>
+  <extensions>
+    <extensionID>com.tuarua.AdMobANE</extensionID>
+    <extensionID>com.tuarua.frekotlin</extensionID>
+    <extensionID>com.google.code.gson.gson</extensionID>
+    <extensionID>androidx.legacy.legacy-support-v4</extensionID>
+    <extensionID>com.google.android.gms.play-services-measurement</extensionID>
+    <extensionID>com.google.android.gms.play-services-base</extensionID>
+  </extensions>
+  <android>
+    <manifestAdditions><![CDATA[<manifest android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="28" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+	<!-- Required by older versions of Google Play services to create IID tokens -->
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+	<application android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:enabled="true">
+		<meta-data android:name="android.max_aspect" android:value="2.1" />
+		<activity android:excludeFromRecents="false" android:hardwareAccelerated="true">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-3940256099942544~3347511713" />
+		<!-- Delay app measurement until MobileAds.initialize() is called. -->
+		<meta-data android:name="com.google.android.gms.ads.DELAY_APP_MEASUREMENT_INIT" android:value="true" />
+		<receiver android:name="com.google.android.gms.measurement.AppMeasurementReceiver" android:enabled="true" android:exported="false"></receiver>
+		<service android:name="com.google.android.gms.measurement.AppMeasurementService" android:enabled="true" android:exported="false" />
+		<service android:name="com.google.android.gms.measurement.AppMeasurementJobService" android:enabled="true" android:exported="false" android:permission="android.permission.BIND_JOB_SERVICE" />
+		<service android:name="com.google.firebase.components.ComponentDiscoveryService" android:exported="false">
+			<meta-data android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar" android:value="com.google.firebase.components.ComponentRegistrar" />
+		</service>
+		<activity android:name="com.google.android.gms.common.api.GoogleApiActivity" android:exported="false" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+	</application>
+</manifest>]]></manifestAdditions>
+  </android>
+  <iPhone>
+    <requestedDisplayResolution>high</requestedDisplayResolution>
+    <InfoAdditions><![CDATA[
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-3940256099942544~1458002511</string>
+	<key>GADDelayAppMeasurementInit</key>
+	<true />
+	<key>MinimumOSVersion</key>
+	<string>9.0</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true />
+		<key>NSAllowsArbitraryLoadsForMedia</key>
+		<true />
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<true />
+	</dict>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>This identifier will be used to deliver personalized ads to you.</string>
+	<key>SKAdNetworkItems</key>
+	<array>
+		<dict>
+			<key>SKAdNetworkIdentifier</key>
+			<string>cstr6suwn9.skadnetwork</string>
+		</dict>
+	</array>
+	<key>UIDeviceFamily</key>
+	<array>
+		<string>1</string>
+		<string>2</string>
+	</array>
+]]></InfoAdditions>
+  </iPhone>
+</application>

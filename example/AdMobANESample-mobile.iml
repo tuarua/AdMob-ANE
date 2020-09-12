@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="Flex" version="4">
-  <component name="FlexBuildConfigurationManager" active="AdMob Sample iOS Device">
+  <component name="FlexBuildConfigurationManager" active="AdMob Sample Android">
     <configurations>
       <configuration name="AdMob Sample Android" target-platform="Mobile" pure-as="true" main-class="Main" output-file="Main.swf" output-folder="$MODULE_DIR$/bin-release/device">
         <dependencies>
           <entries>
-            <entry library-name="AdMobANE" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-name="starling" library-level="project">
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="FiraSansSemiBold" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="android_dependencies" library-level="project">
+            <entry library-name="extensions" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -27,14 +24,13 @@
           <option name="additionalOptions" value="-swf-version=44" />
         </compiler-options>
         <packaging-air-desktop />
-        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/Main-app-android.xml" package-file-name="AdMobANESample-mobile">
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/Main-app.xml" package-file-name="AdMobANESample-mobile">
           <files-to-package>
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system/AppIcon83.5x83.5@2x~ipad.png" path-in-package="AppIcon83.5x83.5@2x~ipad.png" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system/AppIcon76x76~ipad.png" path-in-package="AppIcon76x76~ipad.png" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system/AppIcon76x76@2x~ipad.png" path-in-package="AppIcon76x76@2x~ipad.png" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system/AppIcon60x60@3x.png" path-in-package="AppIcon60x60@3x.png" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system/AppIcon60x60@2x.png" path-in-package="AppIcon60x60@2x.png" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/assets/consentform.html" path-in-package="consentform.html" />
           </files-to-package>
           <AirSigningOptions arch="armv8" />
         </packaging-android>
@@ -49,7 +45,7 @@
             <entry library-name="FiraSansSemiBold" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="AdMobANE" library-level="project">
+            <entry library-name="extensions" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -62,12 +58,11 @@
         </compiler-options>
         <packaging-air-desktop />
         <packaging-android custom-descriptor-path="$MODULE_DIR$/src/AdMobANESample.xml" package-file-name="AdMob_Sample_iOS" />
-        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/Main-app-ios.xml" package-file-name="AdMob_Sample_iOS">
+        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/Main-app.xml" package-file-name="AdMob_Sample_iOS">
           <files-to-package>
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/ios_dependencies/simulator" path-in-package="." />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system" path-in-package="." />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/Assets.car" path-in-package="Assets.car" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/ios_dependencies/PersonalizedAdConsent.bundle" path-in-package="PersonalizedAdConsent.bundle" />
           </files-to-package>
           <AirSigningOptions keystore-path="$USER_HOME$/Documents/appleCertsProv/2020/dev/tua_rua_dev_2020.p12" provisioning-profile-path="$USER_HOME$/Documents/appleCertsProv/2020/dev/Tua_Rua_Dev_Provisioning.mobileprovision" />
         </packaging-ios>
@@ -81,7 +76,7 @@
             <entry library-name="FiraSansSemiBold" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="AdMobANE" library-level="project">
+            <entry library-name="extensions" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -96,12 +91,11 @@
         <packaging-android custom-descriptor-path="$MODULE_DIR$/src/AdMobANESample.xml">
           <AirSigningOptions use-temp-certificate="false" />
         </packaging-android>
-        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/Main-app-ios.xml" package-file-name="AdMob_Sample_iOS_Device">
+        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/Main-app.xml" package-file-name="AdMob_Sample_iOS_Device">
           <files-to-package>
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/ios_dependencies/device" path-in-package="." />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system" path-in-package="." />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/Assets.car" path-in-package="Assets.car" />
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/ios_dependencies/PersonalizedAdConsent.bundle" path-in-package="PersonalizedAdConsent.bundle" />
           </files-to-package>
           <AirSigningOptions keystore-path="$USER_HOME$/Documents/appleCertsProv/2020/dev/tua_rua_dev_2020.p12" provisioning-profile-path="$USER_HOME$/Documents/appleCertsProv/2020/dev/Tua_Rua_Dev_Provisioning.mobileprovision" />
         </packaging-ios>
@@ -148,6 +142,6 @@
     <orderEntry type="library" exported="" name="com.tuarua.frekotlin-1.10.0" level="project" />
     <orderEntry type="library" exported="" name="com.google.android.gms.play-services-ads-lite-19.0.1" level="project" />
     <orderEntry type="library" exported="" name="com.google.android.gms.play-services-measurement-17.3.0" level="project" />
-    <orderEntry type="library" exported="" name="android_dependencies" level="project" />
+    <orderEntry type="library" exported="" name="extensions" level="project" />
   </component>
 </module>

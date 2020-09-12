@@ -32,7 +32,7 @@ android {
 
 dependencies {
     implementation "com.google.android.gms:play-services-ads-lite:$play_services_version"
-    implementation "com.google.android.ads.consent:consent-library:$consent_library_version"
+    implementation "com.google.android.ump:user-messaging-platform:$user_messaging_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "com.google.code.gson:gson:$gson_version"
     implementation "com.tuarua:FreKotlin:$frekotlin_version"

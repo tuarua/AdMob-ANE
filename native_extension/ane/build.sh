@@ -145,7 +145,6 @@ com.tuarua.$PROJECTNAME-res/. \
 -platformoptions "$pathtome/platforms/ios/platform.xml" \
 -platform default -C "$pathtome/platforms/default" "library.swf" \
 
-
 rm "$pathtome/platforms/android/classes.jar"
 rm "$pathtome/platforms/android/app-release.aar"
 rm "$pathtome/platforms/android/library.swf"
@@ -157,4 +156,12 @@ rm -r "$pathtome/platforms/android/com.tuarua.$PROJECTNAME-res"
 
 echo "Packaging docs into ANE."
 zip "$pathtome/$PROJECTNAME.ane" -u docs/*
+
+zip "$pathtome/$PROJECTNAME.ane" -u "AndroidManifest.xml"
+zip "$pathtome/$PROJECTNAME.ane" -u "Entitlements.entitlements"
+zip "$pathtome/$PROJECTNAME.ane" -u "InfoAdditions.plist"
+zip "$pathtome/$PROJECTNAME.ane" -u "air_package.json"
+
+cp "$pathtome/$PROJECTNAME.ane" "$pathtome/../../example/extensions/$PROJECTNAME.ane"
+
 echo "DONE!"

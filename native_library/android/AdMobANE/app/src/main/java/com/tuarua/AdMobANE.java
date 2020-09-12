@@ -24,6 +24,7 @@ public class AdMobANE implements FREExtension {
 
     private static final String[] FUNCTIONS = {
              "init"
+            ,"createGUID"
             ,"loadBanner"
             ,"clearBanner"
             ,"loadInterstitial"
@@ -35,11 +36,6 @@ public class AdMobANE implements FREExtension {
             ,"requestConsentInfoUpdate"
             ,"resetConsent"
             ,"showConsentForm"
-            ,"getIsTFUA"
-            ,"setIsTFUA"
-            ,"setDebugGeography"
-            ,"setConsentStatus"
-
     };
 
     @Override

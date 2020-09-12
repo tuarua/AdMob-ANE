@@ -16,84 +16,82 @@
 package com.tuarua.admobane
 
 import com.adobe.fre.FREContext
-import com.google.ads.consent.*
+import com.google.android.ump.ConsentInformation
+import com.google.android.ump.ConsentInformation.ConsentStatus
+import com.google.android.ump.ConsentInformation.ConsentType
+import com.google.android.ump.ConsentRequestParameters
+import com.google.android.ump.UserMessagingPlatform
 import com.google.gson.Gson
+import com.tuarua.admobane.extensions.toMap
 import com.tuarua.frekotlin.FreKotlinController
-import java.net.URL
 
 class ConsentController(override var context: FREContext?) : FreKotlinController {
 
-    val consentInformation: ConsentInformation
+    private val consentInformation: ConsentInformation
         get() {
-            return ConsentInformation.getInstance(context?.activity?.applicationContext)
+            return UserMessagingPlatform.getConsentInformation(context?.activity?.applicationContext)
         }
 
-    fun requestConsentInfoUpdate(keys: List<String>) {
-        consentInformation.requestConsentInfoUpdate(keys.toTypedArray(),
-                object : ConsentInfoUpdateListener {
-                    override fun onConsentInfoUpdated(consentStatus: ConsentStatus) {
-                        dispatchEvent(Constants.ON_CONSENT_INFO_UPDATE, Gson().toJson(
-                                ConsentInfoEvent(consentStatus.ordinal,
-                                        consentInformation.isRequestLocationInEeaOrUnknown))
-                        )
-                    }
-
-                    override fun onFailedToUpdateConsentInfo(errorDescription: String) {
-                        // TODO
-                        trace("onFailedToUpdateConsentInfo", errorDescription)
-                    }
+    fun requestConsentInfoUpdate(parameters: ConsentRequestParameters, callbackId: String) {
+        consentInformation.requestConsentInfoUpdate(
+                context?.activity,
+                parameters,
+                {
+                    dispatchEvent(ConsentEvent.ON_CONSENT_INFO_UPDATE, Gson().toJson(
+                            ConsentEvent(callbackId,
+                                    mapOf("consentStatus" to normalizeConsentStatus(consentInformation.consentStatus),
+                                            "consentType" to normalizeConsentType(consentInformation.consentType),
+                                            "formStatus" to (if (consentInformation.isConsentFormAvailable) 1 else 2)
+                                    )))
+                    )
+                },
+                {
+                    dispatchEvent(ConsentEvent.ON_CONSENT_FORM_DISMISSED, Gson().toJson(
+                            ConsentEvent(callbackId, error = it.toMap()))
+                    )
                 })
+    }
+
+    fun showConsentForm(callbackId: String) {
+        UserMessagingPlatform.loadConsentForm(context?.activity?.applicationContext, { form ->
+            if (consentInformation.consentStatus == ConsentStatus.REQUIRED) {
+                form.show(context?.activity) { error ->
+                    if (error != null) {
+                        dispatchEvent(ConsentEvent.ON_CONSENT_FORM_DISMISSED, Gson().toJson(
+                                ConsentEvent(callbackId, error = error.toMap()))
+                        )
+                        return@show
+                    }
+                    dispatchEvent(ConsentEvent.ON_CONSENT_FORM_DISMISSED, Gson().toJson(
+                            ConsentEvent(callbackId,
+                                    mapOf("consentStatus" to normalizeConsentStatus(consentInformation.consentStatus),
+                                            "consentType" to normalizeConsentType(consentInformation.consentType),
+                                            "formStatus" to (if (consentInformation.isConsentFormAvailable) 1 else 2)
+                                    )))
+                    )
+                }
+            }
+        }, {
+            dispatchEvent(ConsentEvent.ON_CONSENT_FORM_DISMISSED, Gson().toJson(
+                    ConsentEvent(callbackId, error = it.toMap()))
+            )
+        })
     }
 
     fun resetConsent() {
         consentInformation.reset()
     }
 
-    fun showConsentForm(privacyUrl: URL, shouldOfferPersonalizedAds: Boolean,
-                        shouldOfferNonPersonalizedAds: Boolean, shouldOfferAdFree: Boolean) {
-        var form: ConsentForm? = null
-        val builder = ConsentForm.Builder(context?.activity, privacyUrl)
-                .withListener(object : ConsentFormListener() {
-                    override fun onConsentFormClosed(consentStatus: ConsentStatus?,
-                                                     userPrefersAdFree: Boolean?) {
-                        super.onConsentFormClosed(consentStatus, userPrefersAdFree)
-                        dispatchEvent(Constants.ON_CONSENT_FORM_DISMISSED, Gson().toJson(
-                                ConsentDismissEvent(consentStatus?.ordinal ?: 0,
-                                        userPrefersAdFree == true))
-                        )
-                    }
-
-                    override fun onConsentFormLoaded() {
-                        form?.show()
-                    }
-
-                    override fun onConsentFormError(reason: String?) {
-                        super.onConsentFormError(reason)
-                        trace(reason)
-                    }
-
-                })
-        if (shouldOfferPersonalizedAds) builder.withPersonalizedAdsOption()
-        if (shouldOfferNonPersonalizedAds) builder.withNonPersonalizedAdsOption()
-        if (shouldOfferAdFree) builder.withAdFreeOption()
-        form = builder.build()
-        form?.load()
+    private fun normalizeConsentType(consentType: Int): Int = when (consentType) {
+        ConsentType.PERSONALIZED -> 1
+        ConsentType.NON_PERSONALIZED -> 2
+        else -> consentType
     }
 
-    fun getIsTFUA(): Boolean {
-        return consentInformation.isTaggedForUnderAgeOfConsent
-    }
-
-    fun setIsTFUA(value: Boolean) {
-        consentInformation.setTagForUnderAgeOfConsent(value)
-    }
-
-    fun setDebugGeography(value: DebugGeography) {
-        consentInformation.debugGeography = value
-    }
-
-    fun setConsentStatus(value: ConsentStatus) {
-        consentInformation.consentStatus = value
+    private fun normalizeConsentStatus(consentStatus: Int): Int = when (consentStatus) {
+        ConsentStatus.REQUIRED -> 1
+        ConsentStatus.NOT_REQUIRED -> 2
+        else -> consentStatus
     }
 
     override val TAG: String?

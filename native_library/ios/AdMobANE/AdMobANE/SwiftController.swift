@@ -17,7 +17,7 @@
 import Foundation
 import CoreImage
 import GoogleMobileAds
-import PersonalizedAdConsent
+import UserMessagingPlatform
 
 public class SwiftController: NSObject {
     public static var TAG = "SwiftController"
@@ -31,7 +31,7 @@ public class SwiftController: NSObject {
     private var pListDict: NSDictionary?
     var consentController: ConsentController {
         if _consentController == nil {
-            _consentController = ConsentController(context: context, deviceList: deviceArray)
+            _consentController = ConsentController(context: context)
         }
         return _consentController!
     }
@@ -40,11 +40,12 @@ public class SwiftController: NSObject {
 
     func requestConsentInfoUpdate(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         guard argc > 0,
-            let keys = [String](argv[0])
+            let parameters = UMPRequestParameters(argv[0]),
+            let callbackId = String(argv[1])
             else {
                 return FreArgError().getError()
         }
-        consentController.requestConsentInfoUpdate(keys: keys)
+        consentController.requestConsentInfoUpdate(parameters: parameters, callbackId: callbackId)
         return nil
     }
     
@@ -54,58 +55,19 @@ public class SwiftController: NSObject {
     }
     
     func showConsentForm(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        guard argc > 3,
-            let url = String(argv[0]),
-            let privacyUrl = URL(safe: url),
-            let shouldOfferPersonalizedAds = Bool(argv[1]),
-            let shouldOfferNonPersonalizedAds = Bool(argv[2]),
-            let shouldOfferAdFree = Bool(argv[3]),
+        guard argc > 0,
+            let callbackId = String(argv[0]),
             let rootViewController = UIApplication.shared.keyWindow?.rootViewController
             else {
                 return FreArgError().getError()
         }
         
-        consentController.showConsentForm(airVC: rootViewController, privacyUrl: privacyUrl,
-                                           shouldOfferPersonalizedAds: shouldOfferPersonalizedAds,
-                                           shouldOfferNonPersonalizedAds: shouldOfferNonPersonalizedAds,
-                                           shouldOfferAdFree: shouldOfferAdFree)
+        consentController.showConsentForm(airVC: rootViewController, callbackId: callbackId)
         return nil
     }
     
-    func getIsTFUA(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        return consentController.getIsTFUA().toFREObject()
-    }
-    
-    func setIsTFUA(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        guard argc > 0
-            else {
-                return FreArgError().getError()
-        }
-        consentController.setIsTFUA(value: Bool(argv[0]) == true)
-        return nil
-        
-    }
-    
-    func setConsentStatus(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        guard argc > 0,
-        let status = Int(argv[0]),
-            let consentStatus = PACConsentStatus(rawValue: status)
-            else {
-                return FreArgError().getError()
-        }
-        consentController.setConsentStatus(value: consentStatus)
-        return nil
-    }
-    
-    func setDebugGeography(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        guard argc > 0,
-        let geography = Int(argv[0]),
-            let debugGeography = PACDebugGeography(rawValue: geography)
-            else {
-                return FreArgError().getError()
-        }
-        consentController.setDebugGeography(value: debugGeography)
-        return nil
+    func createGUID(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        return UUID().uuidString.toFREObject()
     }
     
     func initController(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
