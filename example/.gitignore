@@ -75,4 +75,4 @@ fabric.properties
 # .idea/misc.xml
 # *.ipr
 
-/android_dependencies/*.ane
+/air_package.resolved.json

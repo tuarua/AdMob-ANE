@@ -3,6 +3,8 @@
   "version": "2.8.0",
   "appDescriptor": "src/Main-app.xml",
   "variables": {
+    "AdMobIosAppId": "ca-app-pub-3940256099942544~1458002511",
+    "AdMobAndroidAppId": "ca-app-pub-3940256099942544~3347511713"
   },
   "airDotPrefix": true,
   "appleTeamId": "XXXXXX",

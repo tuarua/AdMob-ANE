@@ -24,7 +24,7 @@
           <option name="additionalOptions" value="-swf-version=44" />
         </compiler-options>
         <packaging-air-desktop />
-        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/Main-app-android.xml" package-file-name="AdMobANESample-mobile">
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/Main-app.xml" package-file-name="AdMobANESample-mobile">
           <files-to-package>
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system/AppIcon83.5x83.5@2x~ipad.png" path-in-package="AppIcon83.5x83.5@2x~ipad.png" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system/AppIcon76x76~ipad.png" path-in-package="AppIcon76x76~ipad.png" />
@@ -58,7 +58,7 @@
         </compiler-options>
         <packaging-air-desktop />
         <packaging-android custom-descriptor-path="$MODULE_DIR$/src/AdMobANESample.xml" package-file-name="AdMob_Sample_iOS" />
-        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/Main-app-ios.xml" package-file-name="AdMob_Sample_iOS">
+        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/Main-app.xml" package-file-name="AdMob_Sample_iOS">
           <files-to-package>
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/ios_dependencies/simulator" path-in-package="." />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system" path-in-package="." />
@@ -91,7 +91,7 @@
         <packaging-android custom-descriptor-path="$MODULE_DIR$/src/AdMobANESample.xml">
           <AirSigningOptions use-temp-certificate="false" />
         </packaging-android>
-        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/Main-app-ios.xml" package-file-name="AdMob_Sample_iOS_Device">
+        <packaging-ios enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/Main-app.xml" package-file-name="AdMob_Sample_iOS_Device">
           <files-to-package>
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/ios_dependencies/device" path-in-package="." />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system" path-in-package="." />

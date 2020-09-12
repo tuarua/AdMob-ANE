@@ -5,7 +5,7 @@
     <application>
         <meta-data
                 android:name="com.google.android.gms.ads.APPLICATION_ID"
-                android:value="ca-app-pub-3940256099942544~3347511713"/>
+                android:value="#{AdMobAndroidAppId}"/>
         <!-- Delay app measurement until MobileAds.initialize() is called. -->
         <meta-data
                 android:name="com.google.android.gms.ads.DELAY_APP_MEASUREMENT_INIT"
