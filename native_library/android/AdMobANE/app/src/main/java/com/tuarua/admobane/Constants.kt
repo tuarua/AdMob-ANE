@@ -26,6 +26,4 @@ object Constants {
     const val ON_REWARDED = "AdMob.onRewarded"
     const val ON_VIDEO_STARTED = "AdMob.onVideoStarted"
     const val ON_VIDEO_COMPLETE = "AdMob.onVideoComplete"
-    const val ON_CONSENT_INFO_UPDATE = "AdMob.onConsentInfoUpdate"
-    const val ON_CONSENT_FORM_DISMISSED = "AdMob.onConsentFormDismissed"
 }

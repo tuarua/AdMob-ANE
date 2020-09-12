@@ -35,6 +35,7 @@ CONTEXT_INIT(TRAMA) {
     static FRENamedFunction extensionFunctions[] =
     {
          MAP_FUNCTION(TRAMA, init)
+        ,MAP_FUNCTION(TRAMA, createGUID)
         ,MAP_FUNCTION(TRAMA, loadBanner)
         ,MAP_FUNCTION(TRAMA, clearBanner)
         ,MAP_FUNCTION(TRAMA, loadInterstitial)
@@ -46,10 +47,6 @@ CONTEXT_INIT(TRAMA) {
         ,MAP_FUNCTION(TRAMA, requestConsentInfoUpdate)
         ,MAP_FUNCTION(TRAMA, resetConsent)
         ,MAP_FUNCTION(TRAMA, showConsentForm)
-        ,MAP_FUNCTION(TRAMA, getIsTFUA)
-        ,MAP_FUNCTION(TRAMA, setIsTFUA)
-        ,MAP_FUNCTION(TRAMA, setConsentStatus)
-        ,MAP_FUNCTION(TRAMA, setDebugGeography)
     };
 
     SET_FUNCTIONS

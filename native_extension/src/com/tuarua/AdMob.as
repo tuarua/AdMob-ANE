@@ -20,7 +20,6 @@ import com.tuarua.admob.RewardVideo;
 import com.tuarua.fre.ANEError;
 
 import flash.events.EventDispatcher;
-import flash.external.ExtensionContext;
 
 public class AdMob extends EventDispatcher {
     private var _testDevices:Vector.<String> = new <String>[];
@@ -36,7 +35,6 @@ public class AdMob extends EventDispatcher {
         if (_shared) {
             throw new Error(AdMobANEContext.NAME + " is a singleton, use .shared()");
         }
-        var tmp:ExtensionContext = AdMobANEContext.context;
         _shared = this;
     }
 
@@ -50,52 +48,13 @@ public class AdMob extends EventDispatcher {
      * @param volume - Sets the volume of Video Ads
      * @param muted - Sets whether Video Ads are muted
      * @param scaleFactor - Used on Android only
-     * @param isPersonalised - Set based on user consent for GDPR
+     * @param personalized - Set based on user consent for GDPR
      *
      */
     public function init(volume:Number = 1.0, muted:Boolean = false, scaleFactor:Number = 1.0,
-                         isPersonalised:Boolean = true):void {
-        var ret:* = AdMobANEContext.context.call("init", volume, muted, scaleFactor, isPersonalised,
+                         personalized:Boolean = true):void {
+        var ret:* = AdMobANEContext.context.call("init", volume, muted, scaleFactor, personalized,
                 _disableSDKCrashReporting ,_disableAutomatedInAppPurchaseReporting);
-        if (ret is ANEError) throw ret as ANEError;
-    }
-
-    /**
-     * Resets consent information to default state and clears ad providers.
-     */
-    public function resetConsent():void {
-        var ret:* = AdMobANEContext.context.call("resetConsent");
-        if (ret is ANEError) throw ret as ANEError;
-    }
-
-    /**
-     * Presents the full screen consent form above AIR stage.
-     *
-     * @param privacyUrl
-     * @param shouldOfferPersonalizedAds Indicates whether the consent form should show a personalized ad option. Defaults to true.
-     * @param shouldOfferNonPersonalizedAds Indicates whether the consent form should show a non-personalized ad option. Defaults to true.
-     * @param shouldOfferAdFree Indicates whether the consent form should show an ad-free app option. Defaults to false.
-     */
-    public function showConsentForm(privacyUrl:String,
-                                    shouldOfferPersonalizedAds:Boolean = true,
-                                    shouldOfferNonPersonalizedAds:Boolean = true,
-                                    shouldOfferAdFree:Boolean = false):void {
-        var ret:* = AdMobANEContext.context.call("showConsentForm", privacyUrl,
-                shouldOfferPersonalizedAds,
-                shouldOfferNonPersonalizedAds,
-                shouldOfferAdFree);
-        if (ret is ANEError) throw ret as ANEError;
-    }
-
-    /**
-     * Requests consent information update for the provided publisher identifiers. All publisher
-     * identifiers used in the application should be specified in this call. Consent status is reset to
-     * unknown when the ad provider list changes.
-     * @param key -
-     *
-     */
-    public function requestConsentInfoUpdate(key:Vector.<String>):void {
-        var ret:* = AdMobANEContext.context.call("requestConsentInfoUpdate", key);
         if (ret is ANEError) throw ret as ANEError;
     }
 
@@ -122,30 +81,6 @@ public class AdMob extends EventDispatcher {
         return _testDevices;
     }
 
-    /** If a publisher is aware that the user is under the age of consent,
-     * all ad requests must set TFUA (Tag For Users under the Age of Consent in Europe). */
-    public function get isTaggedForUnderAgeOfConsent():Boolean {
-        var ret:* = AdMobANEContext.context.call("getIsTFUA");
-        if (ret is ANEError) throw ret as ANEError;
-        var _isTaggedForUnderAgeOfConsent:Boolean = ret as Boolean;
-        return _isTaggedForUnderAgeOfConsent;
-    }
-
-    public function set isTaggedForUnderAgeOfConsent(value:Boolean):void {
-        var ret:* = AdMobANEContext.context.call("setIsTFUA", value);
-        if (ret is ANEError) throw ret as ANEError;
-    }
-
-    /** Debug geography. Used for debug devices only.*/
-    public function set consentStatus(value:int):void {
-        var ret:* = AdMobANEContext.context.call("setConsentStatus", value);
-        if (ret is ANEError) throw ret as ANEError;
-    }
-
-    public function set debugGeography(value:int):void {
-        var ret:* = AdMobANEContext.context.call("setDebugGeography", value);
-        if (ret is ANEError) throw ret as ANEError;
-    }
 
     /**
      * <p>Disables automated SDK crash reporting. If not called, the SDK records the original exception handler if

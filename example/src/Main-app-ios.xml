@@ -3,7 +3,7 @@
     <id>com.tuarua.admobaneexample</id>
     <filename>MainAdMob</filename>
     <name>MainAdMob</name>
-    <versionNumber>2.6.0</versionNumber>
+    <versionNumber>2.8.0</versionNumber>
 
     <initialWindow>
         <content>[This value will be overwritten by Flash Builder in the output app.xml]</content>
@@ -44,6 +44,8 @@
                 <key>NSAllowsArbitraryLoadsInWebContent</key>
                 <true/>
             </dict>
+            <key>NSUserTrackingUsageDescription</key>
+            <string>This identifier will be used to deliver personalized ads to you.</string>
 		]]></InfoAdditions>
         <requestedDisplayResolution>high</requestedDisplayResolution>
     </iPhone>

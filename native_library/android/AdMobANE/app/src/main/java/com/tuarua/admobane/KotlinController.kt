@@ -24,11 +24,10 @@ import com.adobe.air.FreKotlinActivityResultCallback
 import com.adobe.air.FreKotlinStateChangeCallback
 import com.adobe.fre.FREContext
 import com.adobe.fre.FREObject
-import com.google.ads.consent.ConsentStatus
-import com.google.ads.consent.DebugGeography
 import com.google.android.gms.ads.MobileAds
+import com.tuarua.admobane.extensions.ConsentRequestParameters
 import com.tuarua.frekotlin.*
-import java.net.URL
+import java.util.*
 
 @Suppress("unused", "UNUSED_PARAMETER", "UNCHECKED_CAST")
 class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, FreKotlinActivityResultCallback {
@@ -46,12 +45,17 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
             return ConsentController(context)
         }
 
+    fun createGUID(ctx: FREContext, argv: FREArgv): FREObject? {
+        return UUID.randomUUID().toString().toFREObject()
+    }
+
     fun requestConsentInfoUpdate(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 0 } ?: return FreArgException()
-        val keys = List<String>(argv[0])
-        if (keys.isEmpty()) return FreException("You must supply at least 1 appId").getError()
+        val context = context?.activity?.applicationContext ?: return null
+        val parameters = ConsentRequestParameters(context, argv[0]) ?: return null
+        val callbackId = String(argv[1]) ?: return null
 
-        consentController?.requestConsentInfoUpdate(keys)
+        consentController?.requestConsentInfoUpdate(parameters, callbackId)
         return null
     }
 
@@ -61,53 +65,9 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
     }
 
     fun showConsentForm(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 3 } ?: return FreArgException()
-        val url = String(argv[0]) ?: return null
-        val privacyUrl = URL(url)
-        val shouldOfferPersonalizedAds = Boolean(argv[1]) ?: true
-        val shouldOfferNonPersonalizedAds = Boolean(argv[2]) ?: true
-        val shouldOfferAdFree = Boolean(argv[3]) ?: false
-
-        consentController?.showConsentForm(privacyUrl,
-                shouldOfferPersonalizedAds,
-                shouldOfferNonPersonalizedAds,
-                shouldOfferAdFree)
-
-        return null
-    }
-
-    fun getIsTFUA(ctx: FREContext, argv: FREArgv): FREObject? {
-        return consentController?.getIsTFUA()?.toFREObject()
-    }
-
-    fun setIsTFUA(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 0 } ?: return FreArgException()
-        consentController?.setIsTFUA(Boolean(argv[0]) == true)
-        return null
-    }
-
-    fun setConsentStatus(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 0 } ?: return FreArgException()
-
-        val consentStatus:ConsentStatus = when (Int(argv[0]) ?: 0) {
-            1 -> ConsentStatus.NON_PERSONALIZED
-            2 -> ConsentStatus.PERSONALIZED
-            else -> ConsentStatus.UNKNOWN
-        }
-        consentController?.setConsentStatus(consentStatus)
-
-        return null
-    }
-
-    fun setDebugGeography(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 0 } ?: return FreArgException()
-        val debugGeography:DebugGeography = when (Int(argv[0]) ?: 0) {
-            1 -> DebugGeography.DEBUG_GEOGRAPHY_EEA
-            2 -> DebugGeography.DEBUG_GEOGRAPHY_NOT_EEA
-            else -> DebugGeography.DEBUG_GEOGRAPHY_DISABLED
-        }
-        consentController?.setDebugGeography(debugGeography)
-
+        val callbackId = String(argv[0]) ?: return null
+        consentController?.showConsentForm(callbackId)
         return null
     }
 

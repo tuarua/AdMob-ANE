@@ -1,5 +1,5 @@
 /*
- *  Copyright 2018 Tua Rua Ltd.
+ *  Copyright 2020 Tua Rua Ltd.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -13,15 +13,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.tuarua.admobane
 
-data class AdMobEvent(val position: Int, val errorCode: Int = 0)
-data class AdMobEventWithReward(val position: Int, val errorCode: Int = 0,
-                                val amount: Int = 0, val type: String? = null)
+package com.tuarua.ump {
+/** Overrides settings for debugging or testing. */
+public class ConsentDebugSettings {
+    /** Debug geography. */
+    public var geography:uint;
+    /** Array of device identifier strings. Debug features are enabled for devices with these identifiers.
+     * Debug features are always enabled for simulators. */
+    public var testDeviceIdentifiers:Vector.<String> = new Vector.<String>();
 
-data class ConsentEvent(val callbackId: String, val data: Map<String, Any>? = null, val error: Map<String, Any>? = null) {
-    companion object {
-        const val ON_CONSENT_INFO_UPDATE = "AdMob.onConsentInfoUpdate"
-        const val ON_CONSENT_FORM_DISMISSED = "AdMob.onConsentFormDismissed"
+    public function ConsentDebugSettings() {
     }
+}
 }

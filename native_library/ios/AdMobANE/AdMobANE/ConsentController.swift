@@ -17,79 +17,72 @@
 import UIKit
 import GoogleMobileAds
 import FreSwift
-import PersonalizedAdConsent
 import SwiftyJSON
+import UserMessagingPlatform
 
 class ConsentController: FreSwiftController {
     static var TAG = "ConsentController"
     internal var context: FreContextSwift!
     
-    convenience init(context: FreContextSwift, deviceList: [String]?) {
+    private let consentInformation = UMPConsentInformation.sharedInstance
+    
+    convenience init(context: FreContextSwift) {
         self.init()
         self.context = context
-        PACConsentInformation.sharedInstance.debugIdentifiers = deviceList
     }
     
-    func requestConsentInfoUpdate(keys: [String]) {
-        let instance = PACConsentInformation.sharedInstance
-        instance.requestConsentInfoUpdate(
-        forPublisherIdentifiers: keys) { (error: Error?) in
-            if let err = error {
-                self.trace(err.localizedDescription)
+    func requestConsentInfoUpdate(parameters: UMPRequestParameters, callbackId: String) {
+        consentInformation.requestConsentInfoUpdate(with: parameters) { error in
+            if let err = error as NSError? {
+                self.dispatchEvent(name: ConsentEvent.ON_CONSENT_INFO_UPDATE,
+                                   value: ConsentEvent(callbackId: callbackId,
+                                    error: err).toJSONString())
             } else {
                 var props = [String: Any]()
-                props["consentStatus"] = instance.consentStatus.rawValue
-                props["isRequestLocationInEEAOrUnknown"] = instance.isRequestLocationInEEAOrUnknown
-                self.dispatchEvent(name: Constants.ON_CONSENT_INFO_UPDATE, value: JSON(props).description)
+                props["consentStatus"] = self.consentInformation.consentStatus.rawValue
+                props["consentType"] = self.consentInformation.consentType.rawValue
+                props["formStatus"] = self.consentInformation.formStatus.rawValue
+                self.dispatchEvent(name: ConsentEvent.ON_CONSENT_INFO_UPDATE,
+                                   value: ConsentEvent(callbackId: callbackId, data: props).toJSONString())
+                
             }
         }
     }
     
     func resetConsent() {
-        PACConsentInformation.sharedInstance.reset()
+        UMPConsentInformation.sharedInstance.reset()
     }
     
-    func showConsentForm(airVC: UIViewController, privacyUrl: URL, shouldOfferPersonalizedAds: Bool,
-                         shouldOfferNonPersonalizedAds: Bool, shouldOfferAdFree: Bool ) {
-        guard let form = PACConsentForm(applicationPrivacyPolicyURL: privacyUrl) else {return}
-        form.shouldOfferPersonalizedAds = shouldOfferPersonalizedAds
-        form.shouldOfferNonPersonalizedAds = shouldOfferNonPersonalizedAds
-        form.shouldOfferAdFree = shouldOfferAdFree
-        
-        form.load { (error: Error?) in
-            if let err = error {
-                self.trace(err.localizedDescription)
-            } else {
-                DispatchQueue.main.async {
-                    form.present(from: airVC, dismissCompletion: { (error, userPrefersAdFree) in
-                        if let err = error {
-                            self.trace(err.localizedDescription)
-                        } else {
-                            var props = [String: Any]()
-                            props["consentStatus"] = PACConsentInformation.sharedInstance.consentStatus.rawValue
-                            props["userPrefersAdFree"] = userPrefersAdFree
-                            self.dispatchEvent(name: Constants.ON_CONSENT_FORM_DISMISSED,
-                                               value: JSON(props).description)
-                        }
-                    })
+    func showConsentForm(airVC: UIViewController, callbackId: String) {
+        let formStatus = consentInformation.formStatus
+        if formStatus == .available {
+            UMPConsentForm.load { form, error in
+                if let err = error as NSError? {
+                    self.dispatchEvent(name: ConsentEvent.ON_CONSENT_FORM_DISMISSED,
+                                       value: ConsentEvent(callbackId: callbackId,
+                                                           error: err).toJSONString())
+                } else {
+                    DispatchQueue.main.async {
+                        form?.present(from: airVC, completionHandler: { error in
+                            if let err = error as NSError? {
+                                self.dispatchEvent(name: ConsentEvent.ON_CONSENT_FORM_DISMISSED,
+                                                   value: ConsentEvent(callbackId: callbackId,
+                                                                       error: err).toJSONString())
+                            } else {
+                                var props = [String: Any]()
+                                props["consentStatus"] = self.consentInformation.consentStatus.rawValue
+                                props["consentType"] = self.consentInformation.consentType.rawValue
+                                props["formStatus"] = self.consentInformation.formStatus.rawValue
+                                
+                                self.dispatchEvent(name: ConsentEvent.ON_CONSENT_FORM_DISMISSED,
+                                                   value: ConsentEvent(callbackId: callbackId,
+                                                                       data: props).toJSONString())
+                            }
+                        })
+                    }
                 }
             }
         }
     }
-    
-    func getIsTFUA() -> Bool {
-        return PACConsentInformation.sharedInstance.isTaggedForUnderAgeOfConsent
-    }
-    
-    func setIsTFUA(value: Bool) {
-        PACConsentInformation.sharedInstance.isTaggedForUnderAgeOfConsent = value
-    }
-    
-    func setConsentStatus(value: PACConsentStatus) {
-        PACConsentInformation.sharedInstance.consentStatus = value
-    }
-    
-    func setDebugGeography(value: PACDebugGeography) {
-        PACConsentInformation.sharedInstance.debugGeography = value
-    }
+
 }

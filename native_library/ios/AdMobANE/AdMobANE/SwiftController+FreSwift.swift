@@ -23,6 +23,7 @@ extension SwiftController: FreSwiftMainController {
         functionsToSet["\(prefix)resetConsent"] = resetConsent
         functionsToSet["\(prefix)showConsentForm"] = showConsentForm
         functionsToSet["\(prefix)init"] = initController
+        functionsToSet["\(prefix)createGUID"] = createGUID
         functionsToSet["\(prefix)loadBanner"] = loadBanner
         functionsToSet["\(prefix)clearBanner"] = clearBanner
         functionsToSet["\(prefix)loadInterstitial"] = loadInterstitial
@@ -31,10 +32,6 @@ extension SwiftController: FreSwiftMainController {
         functionsToSet["\(prefix)setTestDevices"] = setTestDevices
         functionsToSet["\(prefix)loadRewardVideo"] = loadRewardVideo
         functionsToSet["\(prefix)showRewardVideo"] = showRewardVideo
-        functionsToSet["\(prefix)getIsTFUA"] = getIsTFUA
-        functionsToSet["\(prefix)setIsTFUA"] = setIsTFUA
-        functionsToSet["\(prefix)setConsentStatus"] = setConsentStatus
-        functionsToSet["\(prefix)setDebugGeography"] = setDebugGeography
         
         var arr: [String] = []
         for key in functionsToSet.keys {

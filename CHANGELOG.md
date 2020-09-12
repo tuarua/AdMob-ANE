@@ -1,3 +1,8 @@
+### 2.8.0
+- AND: Updated Ads to 19.3.0
+- iOS: Updated to Google Mobile Ads SDK 7.65.0
+- Replace Consent with Google User Messaging Platform
+
 ### 2.7.0
 - AND: Updated to FreKotlin 1.40.0
 - iOS: Updated to FreSwift 4.5.0

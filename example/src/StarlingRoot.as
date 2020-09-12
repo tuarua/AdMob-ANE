@@ -3,11 +3,16 @@ import com.tuarua.AdMob;
 import com.tuarua.admob.AdMobEvent;
 import com.tuarua.admob.AdSize;
 import com.tuarua.admob.Align;
-import com.tuarua.admob.ConsentStatus;
-import com.tuarua.admob.DebugGeography;
 import com.tuarua.admob.MaxAdContentRating;
 import com.tuarua.admob.Targeting;
 import com.tuarua.fre.ANEError;
+import com.tuarua.ump.ConsentDebugGeography;
+import com.tuarua.ump.ConsentDebugSettings;
+import com.tuarua.ump.ConsentFormStatus;
+import com.tuarua.ump.ConsentInformation;
+import com.tuarua.ump.ConsentRequestParameters;
+import com.tuarua.ump.ConsentStatus;
+import com.tuarua.ump.ConsentType;
 
 import flash.desktop.NativeApplication;
 import flash.events.Event;
@@ -23,6 +28,7 @@ import utils.os;
 
 import views.SimpleButton;
 
+//noinspection JSMethodCanBeStatic
 public class StarlingRoot extends Sprite {
     private static const GAP:int = 70;
     private var btn1:SimpleButton = new SimpleButton("Load Banner");
@@ -31,6 +37,7 @@ public class StarlingRoot extends Sprite {
     private var btn4:SimpleButton = new SimpleButton("Load Reward");
     private var btn5:SimpleButton = new SimpleButton("Reset Consent");
     private var adMob:AdMob;
+    private var consentInformation:ConsentInformation;
 
     public function StarlingRoot() {
     }
@@ -38,8 +45,8 @@ public class StarlingRoot extends Sprite {
     public function start():void {
         NativeApplication.nativeApplication.addEventListener(Event.EXITING, onExiting);
 
-        //// Sample AdMob app ID: ca-app-pub-3940256099942544~1458002511
-        //on iOS to retrieve your deviceID run: adt -devices -platform iOS
+        // Sample AdMob app ID: ca-app-pub-3940256099942544~1458002511
+        // on iOS to retrieve your deviceID run: adt -devices -platform iOS
         adMob = AdMob.shared();
         adMob.addEventListener(AdMobEvent.ON_CLICKED, onAdClicked);
         adMob.addEventListener(AdMobEvent.ON_CLOSED, onAdClosed);
@@ -51,16 +58,51 @@ public class StarlingRoot extends Sprite {
         adMob.addEventListener(AdMobEvent.ON_VIDEO_STARTED, onVideoStarted);
         adMob.addEventListener(AdMobEvent.ON_VIDEO_COMPLETE, onVideoComplete);
         adMob.addEventListener(AdMobEvent.ON_REWARDED, onRewarded);
-        adMob.addEventListener(AdMobEvent.ON_CONSENT_INFO_UPDATE, onConsentInfoUpdate);
-        adMob.addEventListener(AdMobEvent.ON_CONSENT_FORM_DISMISSED, onConsentFormDismissed);
 
-        //initAdMob(true);
-        //return;
-        adMob.isTaggedForUnderAgeOfConsent = true;
-        adMob.debugGeography = DebugGeography.EEA;
-        adMob.requestConsentInfoUpdate(new <String>["pub-YOUR_ID"]);
+        consentInformation = ConsentInformation.shared();
+
+        // In real app we don't reset everytime. This is for testing development.
+        consentInformation.reset();
+        var parameters:ConsentRequestParameters = new ConsentRequestParameters();
+        parameters.tagForUnderAgeOfConsent = false;
+        var debugSettings:ConsentDebugSettings = new ConsentDebugSettings();
+        debugSettings.geography = ConsentDebugGeography.notEEA;
+        parameters.appId = "ca-app-pub-6662565384314504~8614994766";
+
+        // on iOS to retrieve your deviceID run: adt -devices -platform iOS
+        debugSettings.testDeviceIdentifiers.push("459d71e2266bab6c3b7702ab5fe011e881b90d3c");
+        parameters.debugSettings = debugSettings;
+        consentInformation.requestConsentInfoUpdate(parameters, function (error:Error):void {
+            if (error != null) {
+                trace("requestConsentInfoUpdate error:", error.message);
+                initAdMob(false);
+                return;
+            }
+            handleConsentUpdate();
+        })
     }
 
+    private function handleConsentUpdate():void {
+        trace("consentInformation.consentType: ", consentInformation.consentType);
+
+        switch (consentInformation.consentStatus) {
+            case ConsentStatus.unknown:
+                trace("ConsentStatus.unknown");
+                return;
+            case ConsentStatus.obtained:
+                trace("User consent obtained. Personalization not defined.");
+                initAdMob(consentInformation.consentType == ConsentType.personalized, true);
+                break;
+            case ConsentStatus.required:
+                trace("User consent required but not yet obtained.");
+                showConsentForm();
+                break;
+            case ConsentStatus.notRequired:
+                trace("User consent not required. For example, the user is not in the EEA or UK.");
+                initAdMob(true, false);
+                break;
+        }
+    }
 
     private function initMenu(inEU:Boolean):void {
         btn1.x = btn2.x = btn3.x = btn4.x = btn5.x = (stage.stageWidth - 200) * 0.5;
@@ -88,40 +130,21 @@ public class StarlingRoot extends Sprite {
         stage.addEventListener(Event.RESIZE, onResize);
     }
 
-    private function onConsentInfoUpdate(event:AdMobEvent):void {
-        if (event.params.isRequestLocationInEEAOrUnknown) {
-            // in EU, ask whether user wishes to receive personalised Ads
-            switch (event.params.consentStatus) {
-                case ConsentStatus.UNKNOWN:
-                    // launch consent form
-                    showConsentForm();
-                    return;
-                case ConsentStatus.PERSONALIZED:
-                    // user has agreed prior
-                    initAdMob(true, true);
-                    break;
-                case ConsentStatus.NON_PERSONALIZED:
-                    // boo user said no
-                    initAdMob(false, true);
-                    break;
-            }
-        } else {
-            // outside EU
-            initAdMob(true);
-        }
-
-    }
-
-    private function onConsentFormDismissed(event:AdMobEvent):void {
-        initAdMob(event.params.consentStatus == ConsentStatus.PERSONALIZED, true);
-    }
-
     private function showConsentForm():void {
-        adMob.showConsentForm("https://media.termsfeed.com/pdf/privacy-policy-template.pdf");
+        if (consentInformation.formStatus === ConsentFormStatus.available) {
+            consentInformation.showConsentForm(function (error:Error):void {
+                if (error != null) {
+                    trace("showConsentForm error:", error.message);
+                    initAdMob(false);
+                    return;
+                }
+                handleConsentUpdate();
+            });
+        }
     }
 
-    private function initAdMob(isPersonalised:Boolean, inEU:Boolean = false):void {
-        adMob.init(0.5, true, Starling.current.contentScaleFactor, isPersonalised);
+    private function initAdMob(personalized:Boolean, inEU:Boolean = false):void {
+        adMob.init(0.5, true, Starling.current.contentScaleFactor, personalized);
         initMenu(inEU);
     }
 
@@ -173,7 +196,7 @@ public class StarlingRoot extends Sprite {
     private function onResetConsent(event:TouchEvent):void {
         var touch:Touch = event.getTouch(btn5);
         if (touch != null && touch.phase == TouchPhase.ENDED) {
-            adMob.resetConsent();
+            consentInformation.reset();
         }
     }
 

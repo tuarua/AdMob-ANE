@@ -85,9 +85,8 @@ fabric.properties
 # .idea/misc.xml
 # *.ipr
 
-Frameworks/*.bundle
-Frameworks/*.framework
+Frameworks/
 Frameworks_bak/
+Frameworks_old/
 Carthage/
-FreSwift_bak/
 Cartfile.resolved

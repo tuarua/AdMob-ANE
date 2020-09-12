@@ -3,7 +3,7 @@
     <id>com.tuarua.admobaneexample</id>
     <filename>MainAdMob</filename>
     <name>MainAdMob</name>
-    <versionNumber>2.6.0</versionNumber>
+    <versionNumber>2.8.0</versionNumber>
 
     <initialWindow>
         <content>[This value will be overwritten by Flash Builder in the output app.xml]</content>
@@ -49,7 +49,13 @@
                     <activity
 			             android:name="com.google.android.gms.ads.AdActivity"
 			             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+			             android:exported="false"
 			             android:theme="@android:style/Theme.Translucent" />
+			        <provider
+			            android:name="com.google.android.gms.ads.MobileAdsInitProvider"
+			            android:authorities="air.com.tuarua.admobaneexample.mobileadsinitprovider"
+			            android:exported="false"
+			            android:initOrder="100" />
                 </application>
 			</manifest>
 			
@@ -61,7 +67,7 @@
         <extensionID>com.google.android.gms.play-services-base</extensionID>
         <extensionID>com.google.android.gms.play-services-ads-lite</extensionID>
         <extensionID>com.google.android.gms.play-services-measurement</extensionID>
-        <extensionID>com.google.android.ads.consent.consent-library</extensionID>
+        <extensionID>com.google.android.ump.user-messaging-platform</extensionID>
         <extensionID>androidx.legacy.legacy-support-v4</extensionID>
         <extensionID>com.google.code.gson.gson</extensionID>
         <extensionID>com.tuarua.AdMobANE</extensionID>
