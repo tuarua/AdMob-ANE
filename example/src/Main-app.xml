@@ -26,6 +26,8 @@
     <extensionID>androidx.legacy.legacy-support-v4</extensionID>
     <extensionID>com.google.android.gms.play-services-measurement</extensionID>
     <extensionID>com.google.android.gms.play-services-base</extensionID>
+    <extensionID>com.google.android.gms.play-services-ads-lite</extensionID>
+    <extensionID>com.google.android.ump.user-messaging-platform</extensionID>
   </extensions>
   <android>
     <manifestAdditions><![CDATA[<manifest android:installLocation="auto">
@@ -55,6 +57,9 @@
 		</service>
 		<activity android:name="com.google.android.gms.common.api.GoogleApiActivity" android:exported="false" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+		<!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
+		<activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" android:exported="false" android:theme="@android:style/Theme.Translucent" />
+		<provider android:name="com.google.android.gms.ads.MobileAdsInitProvider" android:authorities="com.google.android.gms.ads.mobileadsinitprovider" android:exported="false" android:initOrder="100" />
 	</application>
 </manifest>]]></manifestAdditions>
   </android>
