@@ -20,6 +20,7 @@ You will need:
 - AIR 33.1.1.217+
 - Xcode 11.6
 - [.Net Core Runtime](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+- [AIR-Tools](https://github.com/tuarua/AIR-Tools/)
 
 -------------
 
@@ -33,17 +34,12 @@ Change directory into the _example_ folder eg
 cd /MyMac/dev/AIR/AdMob-ANE/example
 ```
 
-Run the _"air-tools"_ command (You will need [.Net Core Runtime](https://dotnet.microsoft.com/download/dotnet-core/3.1) installed)
+Run the _"air-tools"_ command (You will need [AIR-Tools](https://github.com/tuarua/AIR-Tools/) installed)
 
 ```bash
-./air-tools install
+air-tools install
 ```
 
-If using Windows for Android use
-
-```bash
-air-tools.bat install
-```
 
 **NEW** This tool now: 
 
