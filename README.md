@@ -57,7 +57,7 @@ You will need an AdMob account to [deliver live ads](https://support.google.com/
 
 #### iOS: Packaging Frameworks Dependencies
 
-The iOS FirebaseANEs are written in Swift. We need to package the Swift libraries (along with a couple of dynamic frameworks) with our AIR app
+The iOS ANEs are written in Swift. We need to package the Swift libraries (along with a couple of dynamic frameworks) with our AIR app
 
 ![https://raw.githubusercontent.com/wiki/tuarua/Firebase-ANE/images/frameworks-package.png](https://raw.githubusercontent.com/wiki/tuarua/Firebase-ANE/images/frameworks-package.png)
 
