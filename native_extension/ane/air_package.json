@@ -12,7 +12,7 @@
     "com.google.android.gms.play-services-base": "17.1.0",
     "com.google.android.gms.play-services-ads-lite": "19.3.0",
     "com.google.android.ump.user-messaging-platform": "1.0.0",
-    "com.tuarua.FreSwift": "4.5.0",
+    "com.tuarua.iOS.FreSwift": "4.5.0",
     "com.tuarua.AdMobANE.IosDependencies": "2.8.0"
   }
 }
