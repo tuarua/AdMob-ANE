@@ -1,3 +1,8 @@
+### 2.9.0
+- AND: Updated to FreKotlin 1.41.0
+- iOS: Updated to FreSwift 5.0.0
+- Upgraded to AIR 33.1.1.300
+
 ### 2.8.0
 - AND: Updated Ads to 19.3.0
 - iOS: Updated to Google Mobile Ads SDK 7.65.0
