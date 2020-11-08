@@ -1,18 +1,18 @@
 {
   "name": "com.tuarua.AdMobANE",
-  "version": "2.8.0",
+  "version": "2.9.0",
   "repository": {
     "url": "https://tuarua.github.io/air/air_packages.json"
   },
   "dependencies": {
-    "com.tuarua.frekotlin": "1.40.0",
+    "com.tuarua.frekotlin": "1.41.0",
     "com.google.code.gson.gson": "2.8.6",
     "androidx.legacy.legacy-support-v4": "1.0.0",
     "com.google.android.gms.play-services-measurement": "17.5.0",
     "com.google.android.gms.play-services-base": "17.1.0",
     "com.google.android.gms.play-services-ads-lite": "19.3.0",
     "com.google.android.ump.user-messaging-platform": "1.0.0",
-    "com.tuarua.iOS.FreSwift": "4.5.0",
-    "com.tuarua.AdMobANE.IosDependencies": "2.8.0"
+    "com.tuarua.iOS.FreSwift": "5.0.0",
+    "com.tuarua.AdMobANE.IosDependencies": "2.9.0"
   }
 }
