@@ -13,11 +13,3 @@ Download and unzip the latest SDK
 https://developers.google.com/admob/ios/download
 
 Copy GoogleMobileAds.framework into the Frameworks folder
-
-#### To download the required Google Consent Project
-
- In Terminal cd into this directory and run:
- 
-```shell
-git clone https://github.com/googleads/googleads-consent-sdk-ios.git
-```

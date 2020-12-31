@@ -1,6 +1,6 @@
 {
   "name": "admob-sample",
-  "version": "2.9.0",
+  "version": "3.0.0",
   "appDescriptor": "src/Main-app.xml",
   "variables": {
     "AdMobIosAppId": "ca-app-pub-3940256099942544~1458002511",
@@ -12,6 +12,6 @@
     "url": "https://tuarua.github.io/air/air_packages.json"
   },
   "dependencies": {
-    "com.tuarua.AdMobANE": "2.9.0"
+    "com.tuarua.AdMobANE": "3.0.0"
   }
 }
