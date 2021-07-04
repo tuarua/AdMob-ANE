@@ -76,10 +76,12 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
         val volume = Float(argv[0]) ?: return null
         val muted = Boolean(argv[1]) == true
         val isPersonalised = Boolean(argv[3]) == true
+        val activity = ctx.activity ?: return null
+        val context = activity.applicationContext ?: return null
         scaleFactor = Float(argv[2]) ?: 1.0F
-        airView = context?.activity?.findViewById(android.R.id.content) as ViewGroup
+        airView = activity.findViewById(android.R.id.content) as ViewGroup
         airView = airView.getChildAt(0) as ViewGroup
-        MobileAds.initialize(ctx.activity?.applicationContext){
+        MobileAds.initialize(context){
             MobileAds.setAppVolume(volume)
             MobileAds.setAppMuted(muted)
         }
@@ -159,15 +161,12 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
         when (activityState) {
             RESUMED -> {
                 bannerController?.adView?.resume()
-                rewardController?.adView?.resume(this.context?.activity)
             }
             PAUSED -> {
                 bannerController?.adView?.pause()
-                rewardController?.adView?.pause(this.context?.activity)
             }
             DESTROYED -> {
                 bannerController?.adView?.destroy()
-                rewardController?.adView?.destroy(this.context?.activity)
             }
             else -> return
         }
@@ -175,7 +174,6 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
 
     override fun dispose() {
         super.dispose()
-        rewardController?.adView?.destroy(this.context?.activity)
         rewardController = null
         bannerController?.dispose()
         bannerController = null

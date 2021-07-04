@@ -18,6 +18,8 @@ package com.tuarua.admobane
 
 import android.os.Bundle
 import com.adobe.fre.FREContext
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.ads.mediation.admob.AdMobAdapter
 import com.google.android.gms.ads.*
 import com.google.gson.Gson
@@ -26,18 +28,16 @@ import com.tuarua.frekotlin.FreKotlinController
 
 @Suppress("JoinDeclarationAndAssignment")
 class InterstitialController(override var context: FREContext?,
-                             private val isPersonalised: Boolean) : FreKotlinController, AdListener() {
+                             private val isPersonalised: Boolean) : FreKotlinController {
 
     private var _adView: InterstitialAd? = null
     private var _showOnLoad = true
     private val gson = Gson()
 
     fun load(unitId: String, deviceList: List<String>?, targeting: Targeting?, showOnLoad: Boolean) {
-        _adView = InterstitialAd(this.context?.activity?.applicationContext)
         _showOnLoad = showOnLoad
-        val av = _adView ?: return
-        av.adListener = this
-        av.adUnitId = unitId
+        val activity = this.context?.activity ?: return
+        val context = activity.applicationContext ?: return
 
         val requestBuilder = AdRequest.Builder()
         if (!isPersonalised) {
@@ -56,60 +56,44 @@ class InterstitialController(override var context: FREContext?,
         targeting?.tagForUnderAgeOfConsent?.let {
             configBuilder.setTagForUnderAgeOfConsent(it)
         }
+
+        configBuilder.setTestDeviceIds(deviceList)
+
         MobileAds.setRequestConfiguration(configBuilder.build())
-        deviceList?.forEach { device -> requestBuilder.addTestDevice(device) }
-        av.loadAd(requestBuilder.build())
+
+        InterstitialAd.load(context, unitId, requestBuilder.build(), object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                _adView = null
+
+                dispatchEvent(Constants.ON_LOAD_FAILED, gson.toJson(AdMobEvent(INTERSTITIAL.ordinal, adError.code)))
+            }
+
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                _adView = interstitialAd
+                _adView?.fullScreenContentCallback = object: FullScreenContentCallback() {
+                    override fun onAdShowedFullScreenContent() {
+                        dispatchEvent(Constants.ON_OPENED, gson.toJson(AdMobEvent(INTERSTITIAL.ordinal)))
+                    }
+
+                    override fun onAdDismissedFullScreenContent() {
+                        _adView = null
+                        dispatchEvent(Constants.ON_CLOSED, gson.toJson(AdMobEvent(INTERSTITIAL.ordinal)))
+                    }
+                }
+                if (_showOnLoad) {
+                    interstitialAd.show(activity)
+                }
+
+                dispatchEvent(Constants.ON_LOADED, gson.toJson(AdMobEvent(INTERSTITIAL.ordinal)))
+            }
+        })
 
     }
 
     fun show() {
-        val av = _adView ?: return
-        if (av.isLoaded) {
-            av.show()
-        }
+        val activity = this.context?.activity ?: return
+        _adView?.show(activity)
     }
-
-    override fun onAdImpression() {
-        super.onAdImpression()
-        dispatchEvent(Constants.ON_IMPRESSION, gson.toJson(AdMobEvent(INTERSTITIAL.ordinal)))
-    }
-
-    override fun onAdLeftApplication() {
-        super.onAdLeftApplication()
-        dispatchEvent(Constants.ON_LEFT_APPLICATION, gson.toJson(AdMobEvent(INTERSTITIAL.ordinal)))
-    }
-
-    override fun onAdClicked() {
-        super.onAdClicked()
-        dispatchEvent(Constants.ON_CLICKED, gson.toJson(AdMobEvent(INTERSTITIAL.ordinal)))
-    }
-
-    override fun onAdFailedToLoad(p0: Int) {
-        super.onAdFailedToLoad(p0)
-        dispatchEvent(Constants.ON_LOAD_FAILED, gson.toJson(AdMobEvent(INTERSTITIAL.ordinal, p0)))
-    }
-
-    override fun onAdClosed() {
-        super.onAdClosed()
-        dispatchEvent(Constants.ON_CLOSED, gson.toJson(AdMobEvent(INTERSTITIAL.ordinal)))
-    }
-
-    override fun onAdOpened() {
-        super.onAdOpened()
-        dispatchEvent(Constants.ON_OPENED, gson.toJson(AdMobEvent(INTERSTITIAL.ordinal)))
-    }
-
-    override fun onAdLoaded() {
-        super.onAdLoaded()
-
-        val av = _adView ?: return
-        if (_showOnLoad) {
-            av.show()
-        }
-
-        dispatchEvent(Constants.ON_LOADED, gson.toJson(AdMobEvent(INTERSTITIAL.ordinal)))
-    }
-
 
     override val TAG: String?
         get() = this::class.java.canonicalName

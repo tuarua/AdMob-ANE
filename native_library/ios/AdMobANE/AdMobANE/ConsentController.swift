@@ -17,7 +17,6 @@
 import UIKit
 import GoogleMobileAds
 import FreSwift
-import SwiftyJSON
 import UserMessagingPlatform
 
 class ConsentController: FreSwiftController {
@@ -40,7 +39,7 @@ class ConsentController: FreSwiftController {
             } else {
                 var props = [String: Any]()
                 props["consentStatus"] = self.consentInformation.consentStatus.rawValue
-                props["consentType"] = self.consentInformation.consentType.rawValue
+                props["consentType"] = 2
                 props["formStatus"] = self.consentInformation.formStatus.rawValue
                 self.dispatchEvent(name: ConsentEvent.ON_CONSENT_INFO_UPDATE,
                                    value: ConsentEvent(callbackId: callbackId, data: props).toJSONString())
@@ -71,7 +70,7 @@ class ConsentController: FreSwiftController {
                             } else {
                                 var props = [String: Any]()
                                 props["consentStatus"] = self.consentInformation.consentStatus.rawValue
-                                props["consentType"] = self.consentInformation.consentType.rawValue
+                                props["consentType"] = 2
                                 props["formStatus"] = self.consentInformation.formStatus.rawValue
                                 
                                 self.dispatchEvent(name: ConsentEvent.ON_CONSENT_FORM_DISMISSED,

@@ -20,31 +20,23 @@ package com.tuarua.admobane
 import android.os.Bundle
 import com.adobe.fre.FREContext
 import com.google.ads.mediation.admob.AdMobAdapter
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.reward.RewardItem
-import com.google.android.gms.ads.reward.RewardedVideoAd
-import com.google.android.gms.ads.reward.RewardedVideoAdListener
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.rewarded.RewardItem
+import com.google.android.gms.ads.rewarded.RewardedAd
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.google.gson.Gson
 import com.tuarua.admobane.Position.*
 import com.tuarua.frekotlin.FreKotlinController
 
 class RewardedVideoController(override var context: FREContext?,
-                              private val isPersonalised: Boolean) : FreKotlinController, RewardedVideoAdListener {
+                              private val isPersonalised: Boolean) : FreKotlinController, OnUserEarnedRewardListener {
     private val gson = Gson()
-    private var _adView: RewardedVideoAd? = null
+    private var _adView: RewardedAd? = null
     private var _showOnLoad: Boolean = true
-    var adView: RewardedVideoAd?
-        get() = _adView
-        set(value) {
-            _adView = value
-        }
 
     fun load(unitId: String, deviceList: List<String>?, targeting: Targeting?, showOnLoad: Boolean) {
-        _adView = MobileAds.getRewardedVideoAdInstance(this.context?.activity)
         _showOnLoad = showOnLoad
-        val av = _adView ?: return
-        av.rewardedVideoAdListener = this
+        val activity = this.context?.activity ?: return
 
         val requestBuilder = AdRequest.Builder()
         if (!isPersonalised) {
@@ -62,57 +54,48 @@ class RewardedVideoController(override var context: FREContext?,
         targeting?.tagForUnderAgeOfConsent?.let {
             configBuilder.setTagForUnderAgeOfConsent(it)
         }
+
+        configBuilder.setTestDeviceIds(deviceList)
+
         MobileAds.setRequestConfiguration(configBuilder.build())
-        deviceList?.forEach { device -> requestBuilder.addTestDevice(device) }
-        av.loadAd(unitId, requestBuilder.build())
+
+        RewardedAd.load(activity, unitId, requestBuilder.build(), object : RewardedAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                _adView = null
+                dispatchEvent(Constants.ON_LOAD_FAILED, gson.toJson(AdMobEvent(REWARD.ordinal, adError.code)))
+            }
+
+            override fun onAdLoaded(rewardedAd: RewardedAd) {
+                _adView = rewardedAd
+                _adView?.fullScreenContentCallback = object : FullScreenContentCallback() {
+                    override fun onAdShowedFullScreenContent() {
+                        dispatchEvent(Constants.ON_OPENED, gson.toJson(AdMobEvent(REWARD.ordinal)))
+                    }
+
+                    override fun onAdDismissedFullScreenContent() {
+                        _adView = null
+                        dispatchEvent(Constants.ON_CLOSED, gson.toJson(AdMobEvent(REWARD.ordinal)))
+                    }
+                }
+                if (_showOnLoad) {
+                    rewardedAd.show(activity) {
+                        dispatchEvent(Constants.ON_REWARDED,
+                                gson.toJson(AdMobEventWithReward(REWARD.ordinal, amount = it.amount, type = it.type)))
+                    }
+                }
+                dispatchEvent(Constants.ON_LOADED, gson.toJson(AdMobEvent(REWARD.ordinal)))
+            }
+        })
     }
 
     fun show() {
-        val av = _adView ?: return
-        if (av.isLoaded) {
-            av.show()
-        }
+        val activity = this.context?.activity ?: return
+        _adView?.show(activity, this)
     }
 
-    override fun onRewardedVideoAdClosed() {
-        dispatchEvent(Constants.ON_CLOSED, gson.toJson(AdMobEvent(REWARD.ordinal)))
-    }
-
-    override fun onRewardedVideoAdLeftApplication() {
-        dispatchEvent(Constants.ON_LEFT_APPLICATION, gson.toJson(AdMobEvent(REWARD.ordinal)))
-    }
-
-    override fun onRewardedVideoAdLoaded() {
-        val av = _adView ?: return
-        if (_showOnLoad) {
-            av.show()
-        }
-        dispatchEvent(Constants.ON_LOADED, gson.toJson(AdMobEvent(REWARD.ordinal)))
-    }
-
-    override fun onRewardedVideoAdOpened() {
-        dispatchEvent(Constants.ON_OPENED, gson.toJson(AdMobEvent(REWARD.ordinal)))
-    }
-
-    override fun onRewarded(rewardItem: RewardItem?) {
-        if (rewardItem != null) {
-            dispatchEvent(Constants.ON_REWARDED,
-                    gson.toJson(AdMobEventWithReward(REWARD.ordinal, amount = rewardItem.amount, type = rewardItem.type)))
-        } else {
-            dispatchEvent(Constants.ON_REWARDED, gson.toJson(AdMobEventWithReward(REWARD.ordinal)))
-        }
-    }
-
-    override fun onRewardedVideoCompleted() {
-        dispatchEvent(Constants.ON_VIDEO_COMPLETE, gson.toJson(AdMobEvent(REWARD.ordinal)))
-    }
-
-    override fun onRewardedVideoStarted() {
-        dispatchEvent(Constants.ON_VIDEO_STARTED, gson.toJson(AdMobEvent(REWARD.ordinal)))
-    }
-
-    override fun onRewardedVideoAdFailedToLoad(p0: Int) {
-        dispatchEvent(Constants.ON_LOAD_FAILED, gson.toJson(AdMobEvent(REWARD.ordinal, p0)))
+    override fun onUserEarnedReward(rewardItem: RewardItem) {
+        dispatchEvent(Constants.ON_REWARDED,
+                gson.toJson(AdMobEventWithReward(REWARD.ordinal, amount = rewardItem.amount, type = rewardItem.type)))
     }
 
     override val TAG: String?

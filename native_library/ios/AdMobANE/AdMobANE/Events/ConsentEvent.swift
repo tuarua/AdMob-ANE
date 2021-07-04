@@ -15,7 +15,6 @@
  */
 
 import Foundation
-import SwiftyJSON
 
 class ConsentEvent: NSObject {
     public static let ON_CONSENT_INFO_UPDATE = "AdMob.onConsentInfoUpdate"

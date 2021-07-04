@@ -22,8 +22,5 @@ object Constants {
     const val ON_CLOSED = "AdMob.OnClosed"
     const val ON_CLICKED = "AdMob.OnClicked"
     const val ON_IMPRESSION = "AdMob.OnImpression"
-    const val ON_LEFT_APPLICATION = "AdMob.OnLeftApplication"
     const val ON_REWARDED = "AdMob.onRewarded"
-    const val ON_VIDEO_STARTED = "AdMob.onVideoStarted"
-    const val ON_VIDEO_COMPLETE = "AdMob.onVideoComplete"
 }
