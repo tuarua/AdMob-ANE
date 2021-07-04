@@ -3,7 +3,7 @@
   <id>com.tuarua.admobaneexample</id>
   <filename>MainAdMob</filename>
   <name>MainAdMob</name>
-  <versionNumber>3.0.0</versionNumber>
+  <versionNumber>3.1.0</versionNumber>
   <initialWindow>
     <content>[This value will be overwritten by Flash Builder in the output app.xml]</content>
     <aspectRatio>any</aspectRatio>
@@ -24,6 +24,9 @@
     <extensionID>com.tuarua.frekotlin</extensionID>
     <extensionID>com.google.code.gson.gson</extensionID>
     <extensionID>androidx.legacy.legacy-support-v4</extensionID>
+    <extensionID>androidx.room.room-runtime</extensionID>
+    <extensionID>androidx.sqlite.sqlite-framework</extensionID>
+    <extensionID>androidx.work.work-runtime</extensionID>
     <extensionID>com.google.android.gms.play-services-measurement</extensionID>
     <extensionID>com.google.android.gms.play-services-base</extensionID>
     <extensionID>com.google.android.gms.play-services-ads-lite</extensionID>
@@ -33,8 +36,10 @@
     <manifestAdditions><![CDATA[<manifest android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
 	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 	<uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
 	<!-- Required by older versions of Google Play services to create IID tokens -->
 	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
@@ -49,6 +54,52 @@
 		<meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-3940256099942544~3347511713" />
 		<!-- Delay app measurement until MobileAds.initialize() is called. -->
 		<meta-data android:name="com.google.android.gms.ads.DELAY_APP_MEASUREMENT_INIT" android:value="true" />
+		<service android:name="androidx.room.MultiInstanceInvalidationService" android:directBootAware="true" android:exported="false" />
+		<provider android:name="androidx.work.impl.WorkManagerInitializer" android:authorities="air.com.tuarua.admobaneexample.workmanager-init" android:directBootAware="false" android:exported="false" android:multiprocess="true" />
+		<service android:name="androidx.work.impl.background.systemalarm.SystemAlarmService" android:directBootAware="false" android:enabled="@bool/enable_system_alarm_service_default" android:exported="false" />
+		<service android:name="androidx.work.impl.background.systemjob.SystemJobService" android:directBootAware="false" android:enabled="@bool/enable_system_job_service_default" android:exported="true" android:permission="android.permission.BIND_JOB_SERVICE" />
+		<service android:name="androidx.work.impl.foreground.SystemForegroundService" android:directBootAware="false" android:enabled="@bool/enable_system_foreground_service_default" android:exported="false" />
+		<receiver android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver" android:directBootAware="false" android:enabled="true" android:exported="false" />
+		<receiver android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy" android:directBootAware="false" android:enabled="false" android:exported="false">
+			<intent-filter>
+				<action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+				<action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+			</intent-filter>
+		</receiver>
+		<receiver android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy" android:directBootAware="false" android:enabled="false" android:exported="false">
+			<intent-filter>
+				<action android:name="android.intent.action.BATTERY_OKAY" />
+				<action android:name="android.intent.action.BATTERY_LOW" />
+			</intent-filter>
+		</receiver>
+		<receiver android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy" android:directBootAware="false" android:enabled="false" android:exported="false">
+			<intent-filter>
+				<action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
+				<action android:name="android.intent.action.DEVICE_STORAGE_OK" />
+			</intent-filter>
+		</receiver>
+		<receiver android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy" android:directBootAware="false" android:enabled="false" android:exported="false">
+			<intent-filter>
+				<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+			</intent-filter>
+		</receiver>
+		<receiver android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver" android:directBootAware="false" android:enabled="false" android:exported="false">
+			<intent-filter>
+				<action android:name="android.intent.action.BOOT_COMPLETED" />
+				<action android:name="android.intent.action.TIME_SET" />
+				<action android:name="android.intent.action.TIMEZONE_CHANGED" />
+			</intent-filter>
+		</receiver>
+		<receiver android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver" android:directBootAware="false" android:enabled="@bool/enable_system_alarm_service_default" android:exported="false">
+			<intent-filter>
+				<action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
+			</intent-filter>
+		</receiver>
+		<receiver android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver" android:directBootAware="false" android:enabled="true" android:exported="true" android:permission="android.permission.DUMP">
+			<intent-filter>
+				<action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
+			</intent-filter>
+		</receiver>
 		<receiver android:name="com.google.android.gms.measurement.AppMeasurementReceiver" android:enabled="true" android:exported="false"></receiver>
 		<service android:name="com.google.android.gms.measurement.AppMeasurementService" android:enabled="true" android:exported="false" />
 		<service android:name="com.google.android.gms.measurement.AppMeasurementJobService" android:enabled="true" android:exported="false" android:permission="android.permission.BIND_JOB_SERVICE" />
@@ -60,6 +111,7 @@
 		<!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
 		<activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" android:exported="false" android:theme="@android:style/Theme.Translucent" />
 		<provider android:name="com.google.android.gms.ads.MobileAdsInitProvider" android:authorities="com.google.android.gms.ads.mobileadsinitprovider" android:exported="false" android:initOrder="100" />
+		<service android:name="com.google.android.gms.ads.AdService" android:enabled="true" android:exported="false" />
 	</application>
 </manifest>]]></manifestAdditions>
   </android>

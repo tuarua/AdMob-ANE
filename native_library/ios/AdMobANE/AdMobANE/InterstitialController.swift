@@ -17,13 +17,12 @@
 import UIKit
 import GoogleMobileAds
 import FreSwift
-import SwiftyJSON
 
-class InterstitialController: NSObject, FreSwiftController, GADInterstitialDelegate {
+class InterstitialController: NSObject, FreSwiftController, GADFullScreenContentDelegate {
     static var TAG = "InterstitialController"
 
     internal var context: FreContextSwift!
-    private var adView: GADInterstitial?
+    private var adView: GADInterstitialAd?
     private var _showOnLoad = true
     private var _airVC: UIViewController?
     private var isPersonalised = true
@@ -37,8 +36,6 @@ class InterstitialController: NSObject, FreSwiftController, GADInterstitialDeleg
               targeting: Targeting?, showOnLoad: Bool) {
         _airVC = airVC
         _showOnLoad = showOnLoad
-        adView = GADInterstitial(adUnitID: unitId)
-        adView?.delegate = self
         let request = GADRequest()
         if !isPersonalised {
             let extras = GADExtras()
@@ -63,61 +60,57 @@ class InterstitialController: NSObject, FreSwiftController, GADInterstitialDeleg
             }
             
         }
-        adView?.load(request)
+        
+        GADInterstitialAd.load(withAdUnitID: unitId,
+                               request: request,
+                               completionHandler: { [self] ad, error in
+                                
+                                if let error = error as NSError? {
+                                    var props = [String: Any]()
+                                    props["position"] = Position.interstitial.rawValue
+                                    props["errorCode"] = error.code
+                                    dispatchEvent(name: Constants.ON_LOAD_FAILED, value: JSON(props).description)
+                                    return
+                                }
+                                
+                                adView = ad
+                                adView?.fullScreenContentDelegate = self
+
+                                var props = [String: Any]()
+                                props["position"] = Position.interstitial.rawValue
+                                dispatchEvent(name: Constants.ON_LOADED, value: JSON(props).description)
+                                
+                                guard let av = adView, let avc = _airVC else {return}
+                                if _showOnLoad {
+                                    av.present(fromRootViewController: avc)
+                                }
+                               }
+        )
     }
     
     func show() {
-        guard let av = adView, let avc = _airVC else {return}
-        if av.isReady {
-            av.present(fromRootViewController: avc)
-        } else {
-            trace("Ad wasn't ready")
-        }
+        guard let av = adView, let avc = _airVC else { return }
+        av.present(fromRootViewController: avc)
     }
     
     func dispose() {
         guard let av = adView else {
             return
         }
-        av.delegate = nil
+        av.fullScreenContentDelegate = nil
         adView = nil
     }
     
-    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-        var props = [String: Any]()
-        props["position"] = Position.interstitial.rawValue
-        dispatchEvent(name: Constants.ON_LOADED, value: JSON(props).description)
-        
-        guard let av = adView, let avc = _airVC else {return}
-        if _showOnLoad {
-            av.present(fromRootViewController: avc)
-        }
-        
-    }
-    
-    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
-        var props = [String: Any]()
-        props["position"] = Position.interstitial.rawValue
-        props["errorCode"] = error.code
-        dispatchEvent(name: Constants.ON_LOAD_FAILED, value: JSON(props).description)
-    }
-    
-    func interstitialWillPresentScreen(_ ad: GADInterstitial) {
+    func adDidPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
         var props = [String: Any]()
         props["position"] = Position.interstitial.rawValue
         dispatchEvent(name: Constants.ON_OPENED, value: JSON(props).description)
     }
     
-    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
         var props = [String: Any]()
         props["position"] = Position.interstitial.rawValue
         dispatchEvent(name: Constants.ON_CLOSED, value: JSON(props).description)
-    }
-    
-    func interstitialWillLeaveApplication(_ ad: GADInterstitial) {
-        var props = [String: Any]()
-        props["position"] = Position.interstitial.rawValue
-        dispatchEvent(name: Constants.ON_LEFT_APPLICATION, value: JSON(props).description)
     }
     
 }

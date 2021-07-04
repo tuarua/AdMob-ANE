@@ -17,9 +17,8 @@
 import UIKit
 import GoogleMobileAds
 import FreSwift
-import SwiftyJSON
 
-class RewardVideoController: NSObject, FreSwiftController, GADRewardedAdDelegate {
+class RewardVideoController: NSObject, FreSwiftController, GADFullScreenContentDelegate {
     static var TAG = "RewardVideoController"
     internal var context: FreContextSwift!
     private var _showOnLoad = true
@@ -36,7 +35,6 @@ class RewardVideoController: NSObject, FreSwiftController, GADRewardedAdDelegate
               targeting: Targeting?, showOnLoad: Bool) {
         _airVC = airVC
         _showOnLoad = showOnLoad
-        adView = GADRewardedAd(adUnitID: unitId)
 
         let request = GADRequest()
         if !isPersonalised {
@@ -61,8 +59,9 @@ class RewardVideoController: NSObject, FreSwiftController, GADRewardedAdDelegate
                 request.contentURL = contentUrl
             }
         }
-        adView?.load(request) { error in
-            if let error = error {
+        
+        GADRewardedAd.load(withAdUnitID: unitId, request: request) { ad, error in
+            if let error = error as NSError? {
                 var props = [String: Any]()
                 props["position"] = Position.reward.rawValue
                 props["errorCode"] = error.code
@@ -72,20 +71,32 @@ class RewardVideoController: NSObject, FreSwiftController, GADRewardedAdDelegate
                 props["position"] = Position.reward.rawValue
                 self.dispatchEvent(name: Constants.ON_LOADED, value: JSON(props).description)
                 
+                self.adView = ad
+                
                 guard let av = self.adView, let avc = self._airVC else { return }
                 if self._showOnLoad {
-                    av.present(fromRootViewController: avc, delegate: self)
+                    av.present(fromRootViewController: avc) {
+                        let reward = av.adReward
+                        var props = [String: Any]()
+                        props["position"] = Position.reward.rawValue
+                        props["type"] = reward.type
+                        props["amount"] = reward.amount
+                        self.dispatchEvent(name: Constants.ON_REWARDED, value: JSON(props).description)
+                    }
                 }
             }
         }
     }
     
     func show() {
-        guard let av = adView, let avc = _airVC else {return}
-        if av.isReady == true {
-            av.present(fromRootViewController: avc, delegate: self)
-        } else {
-            trace("Ad wasn't ready")
+        guard let av = adView, let avc = _airVC else { return }
+        av.present(fromRootViewController: avc) {
+            let reward = av.adReward
+            var props = [String: Any]()
+            props["position"] = Position.reward.rawValue
+            props["type"] = reward.type
+            props["amount"] = reward.amount
+            self.dispatchEvent(name: Constants.ON_REWARDED, value: JSON(props).description)
         }
     }
     
@@ -93,31 +104,16 @@ class RewardVideoController: NSObject, FreSwiftController, GADRewardedAdDelegate
         adView = nil
     }
     
-    func rewardedAd(_ rewardedAd: GADRewardedAd, userDidEarn reward: GADAdReward) {
-        var props = [String: Any]()
-        props["position"] = Position.reward.rawValue
-        props["type"] = reward.type
-        props["amount"] = reward.amount
-        dispatchEvent(name: Constants.ON_REWARDED, value: JSON(props).description)
-    }
-    
-    func rewardedAdDidDismiss(_ rewardedAd: GADRewardedAd) {
-        var props = [String: Any]()
-        props["position"] = Position.reward.rawValue
-        dispatchEvent(name: Constants.ON_CLOSED, value: JSON(props).description)
-    }
-    
-    func rewardedAdDidPresent(_ rewardedAd: GADRewardedAd) {
+    func adDidPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
         var props = [String: Any]()
         props["position"] = Position.reward.rawValue
         dispatchEvent(name: Constants.ON_OPENED, value: JSON(props).description)
     }
     
-    func rewardedAd(_ rewardedAd: GADRewardedAd, didFailToPresentWithError error: Error) {
+    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
         var props = [String: Any]()
         props["position"] = Position.reward.rawValue
-        props["errorCode"] = 0
-        dispatchEvent(name: Constants.ON_LOAD_FAILED, value: JSON(props).description)
+        dispatchEvent(name: Constants.ON_CLOSED, value: JSON(props).description)
     }
     
 }

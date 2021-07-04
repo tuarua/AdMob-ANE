@@ -53,12 +53,9 @@ public class StarlingRoot extends Sprite {
         adMob.addEventListener(AdMobEvent.ON_CLICKED, onAdClicked);
         adMob.addEventListener(AdMobEvent.ON_CLOSED, onAdClosed);
         adMob.addEventListener(AdMobEvent.ON_IMPRESSION, onAdImpression);
-        adMob.addEventListener(AdMobEvent.ON_LEFT_APPLICATION, onAdLeftApplication);
         adMob.addEventListener(AdMobEvent.ON_LOAD_FAILED, onAdLoadFailed);
         adMob.addEventListener(AdMobEvent.ON_LOADED, onAdLoaded);
         adMob.addEventListener(AdMobEvent.ON_OPENED, onAdOpened);
-        adMob.addEventListener(AdMobEvent.ON_VIDEO_STARTED, onVideoStarted);
-        adMob.addEventListener(AdMobEvent.ON_VIDEO_COMPLETE, onVideoComplete);
         adMob.addEventListener(AdMobEvent.ON_REWARDED, onRewarded);
 
         consentInformation = ConsentInformation.shared();
@@ -150,14 +147,6 @@ public class StarlingRoot extends Sprite {
         initMenu(inEU);
     }
 
-    private function onVideoStarted(event:AdMobEvent):void {
-        trace(event);
-    }
-
-    private function onVideoComplete(event:AdMobEvent):void {
-        trace(event);
-    }
-
     private function onRewarded(event:AdMobEvent):void {
         trace(event);
         trace("Reward=", event.params.amount, event.params.type);
@@ -222,11 +211,6 @@ public class StarlingRoot extends Sprite {
 
     }
 
-    private static function onAdLeftApplication(event:AdMobEvent):void {
-        trace(event);
-        var position:int = event.params.position;
-    }
-
     private static function onAdImpression(event:AdMobEvent):void {
         trace(event);
         var position:int = event.params.position;
@@ -264,7 +248,8 @@ public class StarlingRoot extends Sprite {
                 targeting.contentUrl = "http://googleadsdeveloper.blogspot.com/2016/03/rewarded-video-support-for-admob.html";
 
                 trace("adMob.banner.availableSizes:", adMob.banner.availableSizes);
-                trace("Can we display a smart banner? ", adMob.banner.canDisplay(AdSize.FULL_BANNER));
+                trace("Can we display a full banner? ", adMob.banner.canDisplay(AdSize.FULL_BANNER));
+                trace("Can we display a smart banner? ", adMob.banner.canDisplay(AdSize.SMART_BANNER));
 
                 if (adMob.banner.canDisplay(AdSize.FULL_BANNER)) {
                     adMob.banner.adSize = AdSize.FULL_BANNER;

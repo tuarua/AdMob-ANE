@@ -9,18 +9,19 @@
 /* Begin PBXBuildFile section */
 		285FECB67C2311471C2CD119 /* AdMobANE_LIB.m in Sources */ = {isa = PBXBuildFile; fileRef = 285FE6D7F3D6356FA03A26C0 /* AdMobANE_LIB.m */; platformFilter = ios; };
 		90326851210E39D800B5A1B2 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90326850210E39D800B5A1B2 /* URL.swift */; platformFilter = ios; };
-		907FA0302396D90B00A02384 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 907FA02F2396D90B00A02384 /* SwiftyJSON */; };
+		904DB3A02690AD01007CFAF4 /* UserMessagingPlatform.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 904DB39F2690AD01007CFAF4 /* UserMessagingPlatform.xcframework */; platformFilter = ios; };
+		904DB3A22690AD0D007CFAF4 /* GoogleAppMeasurement.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 904DB3A12690AD0D007CFAF4 /* GoogleAppMeasurement.xcframework */; platformFilter = ios; };
+		904DB3A42690AD19007CFAF4 /* GoogleMobileAds.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 904DB3A32690AD19007CFAF4 /* GoogleMobileAds.xcframework */; platformFilter = ios; };
+		904DB3A92690BBC4007CFAF4 /* SwiftyJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 904DB3A72690BBC4007CFAF4 /* SwiftyJSON.h */; platformFilter = ios; };
+		904DB3AA2690BBC4007CFAF4 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904DB3A82690BBC4007CFAF4 /* SwiftyJSON.swift */; platformFilter = ios; };
 		90D0DE5E250BD2CF00EE6302 /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D0DE5D250BD2CE00EE6302 /* GoogleUtilities.xcframework */; platformFilter = ios; };
 		90D0DE60250BD2DF00EE6302 /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D0DE5F250BD2DF00EE6302 /* nanopb.xcframework */; platformFilter = ios; };
 		90D0DE62250BD2EF00EE6302 /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D0DE61250BD2EF00EE6302 /* PromisesObjC.xcframework */; platformFilter = ios; };
-		90D0DE64250BD2FA00EE6302 /* UserMessagingPlatform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D0DE63250BD2FA00EE6302 /* UserMessagingPlatform.framework */; platformFilter = ios; };
 		90D0DE66250BD34300EE6302 /* ConsentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D0DE65250BD34300EE6302 /* ConsentController.swift */; platformFilter = ios; };
-		90D0DE69250C11D700EE6302 /* FreUMPDebugSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D0DE68250C11D700EE6302 /* FreUMPDebugSettings.swift */; };
-		90D0DE6B250C12B600EE6302 /* FreUMPRequestParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D0DE6A250C12B600EE6302 /* FreUMPRequestParameters.swift */; };
-		90D0DE6E250C15D000EE6302 /* ConsentEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D0DE6D250C15D000EE6302 /* ConsentEvent.swift */; };
-		90D0DE70250C160900EE6302 /* FreNSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D0DE6F250C160900EE6302 /* FreNSError.swift */; };
-		90FAB91323AE53AC00572B20 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE46CA6C1F5B6C050067794D /* GoogleMobileAds.framework */; platformFilter = ios; };
-		90FAB92023AE8C7600572B20 /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FAB91F23AE8C7600572B20 /* GoogleAppMeasurement.framework */; platformFilter = ios; };
+		90D0DE69250C11D700EE6302 /* FreUMPDebugSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D0DE68250C11D700EE6302 /* FreUMPDebugSettings.swift */; platformFilter = ios; };
+		90D0DE6B250C12B600EE6302 /* FreUMPRequestParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D0DE6A250C12B600EE6302 /* FreUMPRequestParameters.swift */; platformFilter = ios; };
+		90D0DE6E250C15D000EE6302 /* ConsentEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D0DE6D250C15D000EE6302 /* ConsentEvent.swift */; platformFilter = ios; };
+		90D0DE70250C160900EE6302 /* FreNSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D0DE6F250C160900EE6302 /* FreNSError.swift */; platformFilter = ios; };
 		CE164B221F6C5A5C00035B1E /* FreMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CE164B211F6C5A5C00035B1E /* FreMacros.h */; platformFilter = ios; };
 		CE3311B51FCA3AA90032F25E /* FreSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE3311B41FCA3AA90032F25E /* FreSwift.framework */; platformFilter = ios; };
 		CE39808E1E58BAA90062485B /* AdMobANE_FW.h in Headers */ = {isa = PBXBuildFile; fileRef = CE39808C1E58BAA90062485B /* AdMobANE_FW.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,18 +50,21 @@
 		285FE6D7F3D6356FA03A26C0 /* AdMobANE_LIB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdMobANE_LIB.m; sourceTree = "<group>"; };
 		285FEBB3CADF8D704FAB5E4D /* AdMobANE_LIB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobANE_LIB.h; sourceTree = "<group>"; };
 		90326850210E39D800B5A1B2 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		904DB39F2690AD01007CFAF4 /* UserMessagingPlatform.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = UserMessagingPlatform.xcframework; path = Frameworks/UserMessagingPlatform.xcframework; sourceTree = "<group>"; };
+		904DB3A12690AD0D007CFAF4 /* GoogleAppMeasurement.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurement.xcframework; path = Frameworks/GoogleAppMeasurement.xcframework; sourceTree = "<group>"; };
+		904DB3A32690AD19007CFAF4 /* GoogleMobileAds.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleMobileAds.xcframework; path = Frameworks/GoogleMobileAds.xcframework; sourceTree = "<group>"; };
+		904DB3A72690BBC4007CFAF4 /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
+		904DB3A82690BBC4007CFAF4 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		906FE53C23B18DAC009A0559 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		907FA0312396D95D00A02384 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		90D0DE5D250BD2CE00EE6302 /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleUtilities.xcframework; path = Frameworks/GoogleUtilities.xcframework; sourceTree = "<group>"; };
 		90D0DE5F250BD2DF00EE6302 /* nanopb.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = nanopb.xcframework; path = Frameworks/nanopb.xcframework; sourceTree = "<group>"; };
 		90D0DE61250BD2EF00EE6302 /* PromisesObjC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = PromisesObjC.xcframework; path = Frameworks/PromisesObjC.xcframework; sourceTree = "<group>"; };
-		90D0DE63250BD2FA00EE6302 /* UserMessagingPlatform.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserMessagingPlatform.framework; path = Frameworks/UserMessagingPlatform.framework; sourceTree = "<group>"; };
 		90D0DE65250BD34300EE6302 /* ConsentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentController.swift; sourceTree = "<group>"; };
 		90D0DE68250C11D700EE6302 /* FreUMPDebugSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreUMPDebugSettings.swift; sourceTree = "<group>"; };
 		90D0DE6A250C12B600EE6302 /* FreUMPRequestParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreUMPRequestParameters.swift; sourceTree = "<group>"; };
 		90D0DE6D250C15D000EE6302 /* ConsentEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentEvent.swift; sourceTree = "<group>"; };
 		90D0DE6F250C160900EE6302 /* FreNSError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreNSError.swift; sourceTree = "<group>"; };
-		90FAB91F23AE8C7600572B20 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = Frameworks/GoogleAppMeasurement.framework; sourceTree = "<group>"; };
 		CE164B211F6C5A5C00035B1E /* FreMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreMacros.h; sourceTree = "<group>"; };
 		CE3311B41FCA3AA90032F25E /* FreSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FreSwift.framework; path = Carthage/Build/iOS/FreSwift.framework; sourceTree = "<group>"; };
 		CE39808A1E58BAA90062485B /* AdMobANE_FW.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdMobANE_FW.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,7 +72,6 @@
 		CE3980971E58BB070062485B /* SwiftController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = SwiftController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		CE39809F1E58BEE10062485B /* libAdMobANE_LIB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAdMobANE_LIB.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE43C32E1F5CA4E1002170F2 /* InterstitialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterstitialController.swift; sourceTree = "<group>"; };
-		CE46CA6C1F5B6C050067794D /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = Frameworks/GoogleMobileAds.framework; sourceTree = "<group>"; };
 		CE46CA6F1F5B73650067794D /* Targeting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Targeting.swift; sourceTree = "<group>"; };
 		CE827F7B1F5C041F0041D809 /* BannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerController.swift; sourceTree = "<group>"; };
 		CE8BC49420B192D3009164ED /* SwiftController+FreSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftController+FreSwift.swift"; sourceTree = "<group>"; };
@@ -82,13 +85,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90FAB91323AE53AC00572B20 /* GoogleMobileAds.framework in Frameworks */,
 				90D0DE5E250BD2CF00EE6302 /* GoogleUtilities.xcframework in Frameworks */,
-				907FA0302396D90B00A02384 /* SwiftyJSON in Frameworks */,
 				90D0DE62250BD2EF00EE6302 /* PromisesObjC.xcframework in Frameworks */,
-				90FAB92023AE8C7600572B20 /* GoogleAppMeasurement.framework in Frameworks */,
-				90D0DE64250BD2FA00EE6302 /* UserMessagingPlatform.framework in Frameworks */,
+				904DB3A22690AD0D007CFAF4 /* GoogleAppMeasurement.xcframework in Frameworks */,
+				904DB3A42690AD19007CFAF4 /* GoogleMobileAds.xcframework in Frameworks */,
 				CE3311B51FCA3AA90032F25E /* FreSwift.framework in Frameworks */,
+				904DB3A02690AD01007CFAF4 /* UserMessagingPlatform.xcframework in Frameworks */,
 				90D0DE60250BD2DF00EE6302 /* nanopb.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,9 +106,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		904DB3A62690BB98007CFAF4 /* SwiftyJSON */ = {
+			isa = PBXGroup;
+			children = (
+				904DB3A72690BBC4007CFAF4 /* SwiftyJSON.h */,
+				904DB3A82690BBC4007CFAF4 /* SwiftyJSON.swift */,
+			);
+			path = SwiftyJSON;
+			sourceTree = "<group>";
+		};
 		906FE53A23B18C35009A0559 /* AdMobANE */ = {
 			isa = PBXGroup;
 			children = (
+				904DB3A62690BB98007CFAF4 /* SwiftyJSON */,
 				90D0DE6C250C15B800EE6302 /* Events */,
 				90D0DE67250C11B300EE6302 /* Extensions */,
 				906FE53E23B18E0D009A0559 /* Headers */,
@@ -187,10 +199,10 @@
 				90D0DE5D250BD2CE00EE6302 /* GoogleUtilities.xcframework */,
 				90D0DE5F250BD2DF00EE6302 /* nanopb.xcframework */,
 				90D0DE61250BD2EF00EE6302 /* PromisesObjC.xcframework */,
-				90D0DE63250BD2FA00EE6302 /* UserMessagingPlatform.framework */,
-				90FAB91F23AE8C7600572B20 /* GoogleAppMeasurement.framework */,
+				904DB39F2690AD01007CFAF4 /* UserMessagingPlatform.xcframework */,
+				904DB3A12690AD0D007CFAF4 /* GoogleAppMeasurement.xcframework */,
 				CE3311B41FCA3AA90032F25E /* FreSwift.framework */,
-				CE46CA6C1F5B6C050067794D /* GoogleMobileAds.framework */,
+				904DB3A32690AD19007CFAF4 /* GoogleMobileAds.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -202,6 +214,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				904DB3A92690BBC4007CFAF4 /* SwiftyJSON.h in Headers */,
 				CE39808E1E58BAA90062485B /* AdMobANE_FW.h in Headers */,
 				CE164B221F6C5A5C00035B1E /* FreMacros.h in Headers */,
 			);
@@ -232,7 +245,6 @@
 			);
 			name = AdMobANE_FW;
 			packageProductDependencies = (
-				907FA02F2396D90B00A02384 /* SwiftyJSON */,
 			);
 			productName = SwiftIOSANE_FW;
 			productReference = CE39808A1E58BAA90062485B /* AdMobANE_FW.framework */;
@@ -263,7 +275,7 @@
 		CE3980631E58BA7F0062485B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1230;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Tua Rua Ltd";
 				TargetAttributes = {
 					CE3980891E58BAA90062485B = {
@@ -288,7 +300,6 @@
 			);
 			mainGroup = CE3980621E58BA7F0062485B;
 			packageReferences = (
-				907FA02E2396D90B00A02384 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = CE39806C1E58BA7F0062485B /* Products */;
 			projectDirPath = "";
@@ -337,6 +348,7 @@
 				CE43C32F1F5CA4E1002170F2 /* InterstitialController.swift in Sources */,
 				90D0DE70250C160900EE6302 /* FreNSError.swift in Sources */,
 				CEB5ED151F5C56F900AE8B16 /* Constants.swift in Sources */,
+				904DB3AA2690BBC4007CFAF4 /* SwiftyJSON.swift in Sources */,
 				90D0DE69250C11D700EE6302 /* FreUMPDebugSettings.swift in Sources */,
 				CE8BC49520B192D3009164ED /* SwiftController+FreSwift.swift in Sources */,
 				90D0DE6E250C15D000EE6302 /* ConsentEvent.swift in Sources */,
@@ -490,7 +502,6 @@
 		CE3980941E58BAA90062485B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = YES;
@@ -511,13 +522,13 @@
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				INFOPLIST_FILE = AdMobANE/Misc/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.0;
+				MARKETING_VERSION = 3.1.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tuarua.AdMobANE;
@@ -538,7 +549,6 @@
 		CE3980951E58BAA90062485B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = YES;
@@ -551,7 +561,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 i386";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -560,13 +570,13 @@
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				INFOPLIST_FILE = AdMobANE/Misc/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.0;
+				MARKETING_VERSION = 3.1.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tuarua.AdMobANE;
@@ -622,7 +632,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 i386";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -674,25 +684,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		907FA02E2396D90B00A02384 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		907FA02F2396D90B00A02384 /* SwiftyJSON */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 907FA02E2396D90B00A02384 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
-			productName = SwiftyJSON;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CE3980631E58BA7F0062485B /* Project object */;
 }

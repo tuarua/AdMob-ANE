@@ -67,9 +67,6 @@ public class AdMobANEContext {
             case AdMobEvent.ON_OPENED:
             case AdMobEvent.ON_CLOSED:
             case AdMobEvent.ON_IMPRESSION:
-            case AdMobEvent.ON_LEFT_APPLICATION:
-            case AdMobEvent.ON_VIDEO_STARTED:
-            case AdMobEvent.ON_VIDEO_COMPLETE:
                 try {
                     argsAsJSON = JSON.parse(event.code);
                     AdMob.shared().dispatchEvent(new AdMobEvent(event.level, argsAsJSON));

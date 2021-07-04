@@ -30,10 +30,9 @@ import com.google.gson.Gson
 import com.tuarua.admobane.Position.BANNER
 import com.tuarua.frekotlin.FreKotlinController
 
-
 @Suppress("JoinDeclarationAndAssignment")
 class BannerController(override var context: FREContext?, airView: ViewGroup,
-                       private val isPersonalised: Boolean) : FreKotlinController, AdListener() {
+                       private val isPersonalised: Boolean) : FreKotlinController {
 
     private var airView: ViewGroup? = airView
     private var _adView: AdView? = null
@@ -67,11 +66,49 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
             }
             existingAv.destroy()
         }
+        val context = this.context?.activity?.applicationContext ?: return
 
-        _adView = AdView(this.context?.activity?.applicationContext)
+        _adView = AdView(context)
 
         val av = _adView ?: return
-        av.adListener = this
+        av.adListener = object: AdListener() {
+            override fun onAdLoaded() {
+                super.onAdLoaded()
+                if (av.parent == null) {
+                    container?.addView(av)
+                }
+                if (container?.parent == null) {
+                    airView?.addView(container)
+                }
+
+                dispatchEvent(Constants.ON_LOADED, gson.toJson(AdMobEvent(BANNER.ordinal)))
+            }
+
+            override fun onAdFailedToLoad(adError : LoadAdError) {
+                super.onAdFailedToLoad(adError)
+                dispatchEvent(Constants.ON_LOAD_FAILED, gson.toJson(AdMobEvent(BANNER.ordinal, adError.code)))
+            }
+
+            override fun onAdOpened() {
+                super.onAdOpened()
+                dispatchEvent(Constants.ON_OPENED, gson.toJson(AdMobEvent(BANNER.ordinal)))
+            }
+
+            override fun onAdClicked() {
+                super.onAdClicked()
+                dispatchEvent(Constants.ON_CLICKED, gson.toJson(AdMobEvent(BANNER.ordinal)))
+            }
+
+            override fun onAdClosed() {
+                super.onAdClosed()
+                dispatchEvent(Constants.ON_CLOSED, gson.toJson(AdMobEvent(BANNER.ordinal)))
+            }
+
+            override fun onAdImpression() {
+                super.onAdImpression()
+                dispatchEvent(Constants.ON_IMPRESSION, gson.toJson(AdMobEvent(BANNER.ordinal)))
+            }
+        }
         av.adUnitId = unitId
 
         when (size) {
@@ -125,9 +162,11 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
         targeting?.tagForUnderAgeOfConsent?.let {
             configBuilder.setTagForUnderAgeOfConsent(it)
         }
+
+        configBuilder.setTestDeviceIds(deviceList)
+
         MobileAds.setRequestConfiguration(configBuilder.build())
 
-        deviceList?.forEach { device -> requestBuilder.addTestDevice(device) }
         av.loadAd(requestBuilder.build())
     }
 
@@ -138,54 +177,9 @@ class BannerController(override var context: FREContext?, airView: ViewGroup,
 
     fun clear() {
         val av = _adView ?: return
-        av.adListener = null
         container?.removeView(av)
         av.destroy()
         _adView = null
-    }
-
-    override fun onAdImpression() {
-        super.onAdImpression()
-        dispatchEvent(Constants.ON_IMPRESSION, gson.toJson(AdMobEvent(BANNER.ordinal)))
-    }
-
-    override fun onAdLeftApplication() {
-        super.onAdLeftApplication()
-        dispatchEvent(Constants.ON_LEFT_APPLICATION, gson.toJson(AdMobEvent(BANNER.ordinal)))
-    }
-
-    override fun onAdClicked() {
-        super.onAdClicked()
-        dispatchEvent(Constants.ON_CLICKED, gson.toJson(AdMobEvent(BANNER.ordinal)))
-    }
-
-    override fun onAdFailedToLoad(p0: Int) {
-        super.onAdFailedToLoad(p0)
-        dispatchEvent(Constants.ON_LOAD_FAILED, gson.toJson(AdMobEvent(BANNER.ordinal, p0)))
-    }
-
-    override fun onAdClosed() {
-        super.onAdClosed()
-        dispatchEvent(Constants.ON_CLOSED, gson.toJson(AdMobEvent(BANNER.ordinal)))
-    }
-
-    override fun onAdOpened() {
-        super.onAdOpened()
-        dispatchEvent(Constants.ON_OPENED, gson.toJson(AdMobEvent(BANNER.ordinal)))
-    }
-
-    override fun onAdLoaded() {
-        super.onAdLoaded()
-        val av = _adView ?: return
-        if (av.parent == null) {
-            container?.addView(av)
-        }
-        if (container?.parent == null) {
-            airView?.addView(container)
-        }
-
-        dispatchEvent(Constants.ON_LOADED, gson.toJson(AdMobEvent(BANNER.ordinal)))
-
     }
 
     fun getBannerSizes(): IntArray {

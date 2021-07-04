@@ -17,7 +17,6 @@
 import UIKit
 import GoogleMobileAds
 import FreSwift
-import SwiftyJSON
 
 class BannerController: UIViewController, FreSwiftController, GADBannerViewDelegate {
     static var TAG = "AdMobANE"
@@ -140,7 +139,7 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
         default:
             adView.adSize = kGADAdSizeBanner
         }
-
+        
         position()
 
         let request = GADRequest()
@@ -211,17 +210,11 @@ class BannerController: UIViewController, FreSwiftController, GADBannerViewDeleg
         self.removeFromParent()
     }
 
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
         var props = [String: Any]()
         props["position"] = Position.banner.rawValue
-        props["errorCode"] = error.code
+        props["errorCode"] = 0
         dispatchEvent(name: Constants.ON_LOAD_FAILED, value: JSON(props).description)
-    }
-    
-    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
-        var props = [String: Any]()
-        props["position"] = Position.banner.rawValue
-        dispatchEvent(name: Constants.ON_LEFT_APPLICATION, value: JSON(props).description)
     }
     
     deinit {

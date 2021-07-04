@@ -117,7 +117,6 @@ public class SwiftController: NSObject {
            let avc = bannerController {
             avc.load(airView: rootViewController.view, unitId: unitId, size: adSize, deviceList: deviceArray,
               targeting: targeting, x: x, y: y, hAlign: hAlign, vAlign: vAlign)
-
         }
 
         return nil

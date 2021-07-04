@@ -1,3 +1,21 @@
+### 3.1.0
+- Internal code changes to support updated SDKs
+- iOS: min version 10.0
+- iOS: Updated to FreSwift 5.2.0
+- iOS: Updated to Google Mobile Ads SDK 8.7.0
+- iOS: compile SwiftyJSON
+- AND: Updated Ads to 20.2.0
+- AND: Updated androidx.legacy.legacy-support-v4 to 1.2.0 (re-install to pull latest)
+- AND: Updated play-services-base to 17.6.0
+- AND: Updated play-services-measurement to 19.0.0
+- AND: Updated androidx.room to 2.3.0
+- AND: Updated androidx.work to 2.5.0
+- AND: Updated androidx.sqlite to 2.1.0
+- Remove `AdMobEvent.ON_LEFT_APPLICATION`
+- Remove `AdMobEvent.ON_VIDEO_STARTED`
+- Remove `AdMobEvent.ON_VIDEO_COMPLETE`
+- Upgraded to AIR 33.1.1.476
+
 ### 3.0.0
 - AND: Updated to FreKotlin 1.42.0
 - iOS: Updated to FreSwift 5.1.0
