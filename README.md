@@ -1,6 +1,6 @@
 # AdMob-ANE
 
-AdMob Adobe Air Native Extension for iOS 9.0+, Android 19+.
+AdMob Adobe Air Native Extension for iOS 10.0+, Android 19+.
 
 
 -------------
@@ -18,7 +18,7 @@ You will need:
 
 - IntelliJ IDEA
 - AIR 33.1.1.217+
-- Xcode 12.3
+- Xcode 12.5
 - [.Net Core Runtime](https://dotnet.microsoft.com/download/dotnet-core/3.1)
 - [AIR-Tools](https://github.com/tuarua/AIR-Tools/)
 
